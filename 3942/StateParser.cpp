@@ -4,7 +4,7 @@
 #include "GameObjectFactory.h"
 
 
-bool StateParser::parseState(const char* stateFile, std::string stateID, std::vector<GameObject*> * objects, std::vector<std::string> *textureIDs) {
+bool StateParser::parseState(const char* stateFile, const std::string& stateID, std::vector<GameObject*> * objects, std::vector<std::string> *textureIDs) {
 	tinyxml2::XMLDocument xmlDoc;
 
 	if (xmlDoc.LoadFile(stateFile) != tinyxml2::XML_SUCCESS) {

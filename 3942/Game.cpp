@@ -11,7 +11,7 @@ Game * Game::instance = nullptr;
 
 Game::Game() {}
 
-bool Game::init(const char * title, const int xpos, int ypos, int width, int height, bool fullscreen) {
+bool Game::init(const char * title, const int xpos, const int ypos, const int width, const int height, const bool fullscreen) {
 	if(SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
 		sdl_window = SDL_CreateWindow(title, xpos, ypos, width, height, fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN ); 
 		if(sdl_window != nullptr) {

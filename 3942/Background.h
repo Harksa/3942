@@ -1,0 +1,52 @@
+#pragma once
+#include <string>
+#include <SDL2/SDL_image.h>
+
+/**
+ * \brief Gère les background des scènes
+ */
+class Background {
+public:
+	Background() = default;
+	~Background() = default;
+
+	/**
+	 * \brief Charge l'image du background
+	 * \param fileName L'emplacement du fichier
+	 * \param id l'ID de la texture
+	 * \param speed Vitesse de déplacement du background. 0 par défaut si le background ne bouge pas.
+	 */
+	bool load(const std::string& fileName, const std::string& id, float speed = 0);
+
+	/**
+	 * \brief Affiche le background
+	 */
+	void draw();
+
+private:
+	/**
+	 * \brief Affiche un background statique
+	 */
+	void drawStatic() const;
+
+	/**
+	 * \brief Affiche un background animé
+	 */
+	void drawMoving();
+
+	/**
+	 * \brief L'ID du background
+	 */
+	std::string backgroundID;
+
+	/**
+	 * \brief Vitesse de déplacement du background
+	 */
+	float movingSpeed;
+
+	/**
+	 * \brief l'offset par rapport au haut de l'écran de jeu.
+	 */
+	float offset;
+};
+

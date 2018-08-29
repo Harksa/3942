@@ -56,7 +56,7 @@ public:
 	/**
 	 * \brief Affiche le sprite dans la fenêtre SDL
 	 */
-	void draw(Vector2D position, Vector2D velocity);
+	void draw(Vector2D position, Vector2D velocity) const;
 private:
 	
 	int _width;

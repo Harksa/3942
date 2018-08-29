@@ -17,8 +17,6 @@ void PlayState::update() {
 		return;
 	}
 
-	_level->update();
-
 	for (auto game_object : _gameObjects) {
 		game_object->update();
 	}
@@ -26,8 +24,6 @@ void PlayState::update() {
 }
 
 void PlayState::render() {
-	_level->render();
-
 	for (auto game_object : _gameObjects) {
 		game_object->draw();
 	}
@@ -35,11 +31,8 @@ void PlayState::render() {
 
 bool PlayState::onEnter() {
 
-	LevelParser _levelParser;
-	_level = _levelParser.parseLevel("ressources/map1.tmx");
-
-	//StateParser stateParser;
-	//stateParser.parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
+	StateParser stateParser;
+	stateParser.parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
 
 	return true;
 }

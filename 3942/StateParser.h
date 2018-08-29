@@ -18,7 +18,7 @@ public:
 	 * \param textureIDs La liste des textures de l'état
 	 * \return Vrai si l'état a correctement été chargée, faux sinon.
 	 */
-	bool parseState(const char * stateFile, std::string stateID, std::vector<GameObject*> * objects, std::vector<std::string> *textureIDs);
+	bool parseState(const char * stateFile, const std::string& stateID, std::vector<GameObject*> * objects, std::vector<std::string> *textureIDs);
 
 private:
 

@@ -4,6 +4,7 @@
 #include "PlayState.h"
 #include "MainMenuState.h"
 #include "StateParser.h"
+#include "Background.h"
 
 const std::string MainMenuState::menuID = "MENU";
 
@@ -18,6 +19,7 @@ void MainMenuState::update() {
 }
 
 void MainMenuState::render() {
+	background->draw();
 	for (auto game_object : _gameObjects) {
 		game_object->draw();
 	}
@@ -35,6 +37,10 @@ void MainMenuState::exitFromMenu() {
 bool MainMenuState::onEnter() {
 	StateParser stateParser;
 	stateParser.parseState("ressources/test.xml", menuID, &_gameObjects, &_textureIDList);
+
+	
+	background = new Background();
+	background->load("Textures/starBackground.png", "Star", 0.5f);
 
 	_callbacks.push_back(menuToPlay);
 	_callbacks.push_back(exitFromMenu);

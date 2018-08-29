@@ -7,7 +7,7 @@ constexpr int DELAY_TIME = static_cast<int> (1000.0f / FPS);
 
 int main(int argc, char** args) {
 
-	Game::Instance()->init("BobVenture", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, false);
+	Game::Instance()->init("BobVenture", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 800, false);
 
 	while(Game::Instance()->running()) {
 		const Uint32 frame_start = SDL_GetTicks();
