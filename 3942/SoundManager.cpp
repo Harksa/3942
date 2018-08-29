@@ -1,5 +1,6 @@
 #include "SoundManager.h"
-#include <iostream>
+
+SoundManager * SoundManager::instance = nullptr;
 
 SoundManager::SoundManager() {
 	Mix_OpenAudio(22050, AUDIO_S16, 2, 4096);
@@ -9,7 +10,7 @@ SoundManager::~SoundManager() {
 	Mix_CloseAudio();
 }
 
-bool SoundManager::load(std::string fileName, std::string id, sound_type type) {
+bool SoundManager::load(const std::string& fileName, const std::string& id, const sound_type type) {
 	if(type == SOUND_MUSIC) {
 		Mix_Music * music = Mix_LoadMUS(fileName.c_str());
 		if(music == nullptr) {
@@ -37,7 +38,23 @@ void SoundManager::playMusic(std::string id, int loop) {
 	Mix_PlayMusic(_musics[id], loop);
 }
 
+
 void SoundManager::playSound(std::string id, int loop) {
 	Mix_PlayChannel(-1, _sfxs[id], loop);
 }
 
+void SoundManager::clean() {
+	for (auto& _music : _musics) {
+		Mix_FreeMusic(_music.second);
+	}
+
+	_musics.clear();
+
+	for (auto& _sfx : _sfxs) {
+		Mix_FreeChunk(_sfx.second);
+	}
+
+	_sfxs.clear();
+
+	Mix_CloseAudio();
+}

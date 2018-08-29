@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "AnimatedGraphic.h"
+#include "SoundManager.h"
 
 
 Game * Game::instance = nullptr;
@@ -33,6 +34,9 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 	GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
 	GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
 	GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
+
+	SoundManager::Instance()->load("Musics/level1.ogg", "lol", SOUND_MUSIC);
+	SoundManager::Instance()->playMusic("lol");
 
 	_gameStateMachine = new GameStateMachine();
 	_gameStateMachine->changeState(new MainMenuState());
@@ -67,6 +71,7 @@ void Game::handleEvents() {
 
 void Game::clean() {
 	InputHandler::Instance()->clean();
+	SoundManager::Instance()->clean();
 
 	SDL_DestroyRenderer(sdl_renderer);
 	SDL_DestroyWindow(sdl_window);
