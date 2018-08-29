@@ -1,20 +1,17 @@
 #include "Game.h"
 
-#include "InputHandler.h"
 #include "MainMenuState.h"
 #include "PlayState.h"
 #include "MenuButton.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "AnimatedGraphic.h"
-#include "SoundManager.h"
-
 
 Game * Game::instance = nullptr;
 
 Game::Game() {}
 
-bool Game::init(const char * title, int xpos, int ypos, int width, int height, bool fullscreen) {
+bool Game::init(const char * title, const int xpos, int ypos, int width, int height, bool fullscreen) {
 	if(SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
 		sdl_window = SDL_CreateWindow(title, xpos, ypos, width, height, fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN ); 
 		if(sdl_window != nullptr) {

@@ -1,8 +1,9 @@
 #pragma once
-#include "Layer.h"
 #include <vector>
+#include "Layer.h"
 #include "Level.h"
 #include "Vector2D.h"
+#include "TextureManager.h"
 
 /**
  * \brief Représente un layer d'arrière plan du jeu.

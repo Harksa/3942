@@ -1,8 +1,8 @@
 #pragma once
 #include <SDL2/SDL.h>
-#include "TextureManager.h"
 #include "GameStateMachine.h"
-#include "GameObject.h"
+#include "InputHandler.h"
+#include "SoundManager.h"
 
 /**
  * \brief Le jeu ainsi que les éléments permettant à son fonctionnement.

@@ -1,6 +1,7 @@
 #include "TileLayer.h"
 #include "Game.h"
 
+
 TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) : _tileSize(tileSize), _tilesets(tilesets) {
 	_numColumns = Game::Instance()->getGameWidth() / tileSize;
 	_numRows = Game::Instance()->getGameHeight() / tileSize;
