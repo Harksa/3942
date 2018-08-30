@@ -140,6 +140,7 @@
     <ClCompile Include="StateParser.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TileLayer.cpp" />
+    <ClCompile Include="WaveGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedGraphic.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TileLayer.h" />
     <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="WaveGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ressources\bob.png" />

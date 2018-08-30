@@ -20,7 +20,6 @@ public:
 		return instance;
 	}
 
-
 	/**
 	 * \brief Initialise la fenêtre du jeu.
 	 * \param title Le titre de la fenêtre

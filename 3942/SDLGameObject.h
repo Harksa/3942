@@ -19,7 +19,7 @@ public:
 		position = Vector2D(parameters->getX(), parameters->getY());
 		velocity =  acceleration = Vector2D(0,0);
 
-		sprite = new Sprite(parameters->getWidth(), parameters->getHeight(),parameters->getNumFrames(), parameters->getTextureID());
+		sprite = new Sprite(parameters->getTextureID());
 	}
 
 	/**

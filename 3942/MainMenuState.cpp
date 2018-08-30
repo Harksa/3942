@@ -61,6 +61,8 @@ void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks) {
 
 
 bool MainMenuState::onExit() {
+	background->clean();
+
 	for (auto game_object : _gameObjects) {
 		game_object->clean();
 	}

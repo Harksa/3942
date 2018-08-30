@@ -27,20 +27,16 @@ void StateParser::parseObject(tinyxml2::XMLElement * stateRoot, std::vector<Game
 	//objects = new std::vector<GameObject*>();
 
 	for(tinyxml2::XMLElement *e = stateRoot->FirstChildElement() ; e != nullptr ; e = e->NextSiblingElement()) {
-		int x, y, width, height, numFrames, callbackID, animSpeed;
+		int x, y, callbackID;
 		std::string textureId;
 
 		x = e->IntAttribute("x");
 		y = e->IntAttribute("y");
-		width = e->IntAttribute("width");
-		height = e->IntAttribute("height");
 		textureId = e->Attribute("textureID");
-		numFrames = e->IntAttribute("numFrames");
-		animSpeed = e->IntAttribute("animSpeed");
 		callbackID = e->IntAttribute("callbackID");
 
 		GameObject * gameObject = GameObjectFactory::Instance()->create(e->Attribute("type"));
-		gameObject->load(new LoadParameters(static_cast<float> (x), static_cast<float> (y),width, height, textureId, numFrames, callbackID, animSpeed));
+		gameObject->load(new LoadParameters(static_cast<float> (x), static_cast<float> (y), textureId, callbackID));
 		objects->push_back(gameObject);
 	}
 }
@@ -49,7 +45,11 @@ void StateParser::parseTexture(tinyxml2::XMLElement * stateRoot, std::vector<std
 	for(tinyxml2::XMLElement *e = stateRoot->FirstChildElement() ; e != nullptr ; e = e->NextSiblingElement()) {
 		const std::string fileNameAttribute = e->Attribute("filename");
 		const std::string id = e->Attribute("ID");
+		const int w = e->IntAttribute("width");
+		const int h = e->IntAttribute("height");
+		const int numframes = e->IntAttribute("numFrames");
+		const int speed = e->IntAttribute("animSpeed");
 		textureIDs->push_back(id);
-		TextureManager::Instance()->load(fileNameAttribute, id, Game::Instance()->getRenderer());
+		TextureManager::Instance()->load(fileNameAttribute, id, w, h, numframes, speed, Game::Instance()->getRenderer());
 	}
 }

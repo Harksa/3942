@@ -2,23 +2,23 @@
 <STATES>
 	<MENU>
 		<TEXTURES>
-			<texture filename="ressources/play.png" ID="playbutton"/>
-			<texture filename="ressources/exit.png" ID="exitbutton"/>
+			<texture filename="ressources/play.png" ID="playbutton" width="400" height="100" numFrames="0"/>
+			<texture filename="ressources/exit.png" ID="exitbutton" width="400" height="100" numFrames="0"/>
 		</TEXTURES>
 		<OBJECTS>
-			<object type="MenuButton" x="100" y="100" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="0"/>
-			<object type="MenuButton" x="100" y="300" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="1"/>
+			<object type="MenuButton" x="100" y="100" textureID="playbutton" callbackID="0"/>
+			<object type="MenuButton" x="100" y="300" textureID="exitbutton" callbackID="1"/>
 		</OBJECTS>
 	</MENU>
 	
 	<PLAY>
 		<TEXTURES>
-			<texture filename="ressources/bob.png" ID="bob"/>
-			<texture filename="ressources/cartable.png" ID="cartable"/>
+			<texture filename="ressources/bob.png" ID="bob" width="50" height="50" numFrames="0"/>
+			<texture filename="ressources/cartable.png" ID="cartable" width="50" height="50" numFrames="0"/>
 		</TEXTURES>
 		<OBJECTS>
-			<object type="Player" x="500" y="100" width="50" height="50" textureID="bob" numFrames="0"/>
-			<object type="Enemy" x="100" y="100" width="50" height="50" textureID="cartable" numFrames="0"/>
+			<object type="Player" x="500" y="100" textureID="bob"/>
+			<object type="Enemy" x="100" y="100" textureID="cartable"/>
 		</OBJECTS>
 	</PLAY>
 	

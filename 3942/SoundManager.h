@@ -57,6 +57,11 @@ public:
 	void playMusic(std::string id, int loop = -1);
 
 	/**
+	 * \brief Arrête la musique en cours
+	 */
+	void stopMusic() const;
+
+	/**
 	 * \brief Nettoie les sons de la mémoire
 	 */
 	void clean();

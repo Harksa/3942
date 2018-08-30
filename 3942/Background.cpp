@@ -21,11 +21,15 @@ void Background::drawStatic() const {
 }
 
 void Background::drawMoving() {
-	TextureManager::Instance()->draw(backgroundID, 0, offset, Game::Instance()->getGameWidth(), Game::Instance()->getGameHeight(), Game::Instance()->getRenderer());
-	TextureManager::Instance()->draw(backgroundID, 0, offset - Game::Instance()->getGameHeight(), Game::Instance()->getGameWidth(), Game::Instance()->getGameHeight(), Game::Instance()->getRenderer());
+	TextureManager::Instance()->draw(backgroundID, 0, static_cast<int>(offset), Game::Instance()->getGameWidth(), Game::Instance()->getGameHeight(), Game::Instance()->getRenderer());
+	TextureManager::Instance()->draw(backgroundID, 0, static_cast<int>(offset) - Game::Instance()->getGameHeight(), Game::Instance()->getGameWidth(), Game::Instance()->getGameHeight(), Game::Instance()->getRenderer());
 
 	offset += movingSpeed;
 
 	if(offset >= Game::Instance()->getGameHeight())
 		offset = 0;
+}
+
+void Background::clean() const {
+	TextureManager::Instance()->clearFromTextureMap(backgroundID);
 }

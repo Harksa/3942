@@ -10,11 +10,21 @@
  */
 class Sprite {
 public:
-	Sprite(int width, int height, int numFrames, std::string textureID) : _width(width), _height(height), _numFrames(numFrames), _textureID(std::move(textureID)) {
+	/**
+	 * \brief Créer un sprite en fonction de l'ID rentré en paramètre.
+	 * Les informations sont cherchés dans le texture manager grâce à ce dernier.
+	 * \param textureID L'ID de la texture
+	 */
+	Sprite(const std::string& textureID) : _textureID(textureID){
+		texture_informations * texture = TextureManager::Instance()->getTextureInformationsFromID(textureID);
+		_width = texture->width;
+		_height = texture->height;
+		_numFrames = texture->numFrames;
+		_animSpeed = texture->animSpeed;
 		_currentFrame = 0;
 		_currentRow = 0;
 		_angle = 0;
-	};
+	}
 
 	/**
 	 * \brief Définie la largeur du sprite, en pixel
@@ -40,23 +50,72 @@ public:
 
 	/**
 	 * \brief Définie l'angle du sprite
+	 * \param angle Le nouvel angle
 	 */
 	void setAngle(int angle) { _angle = angle;}
+
+	/**
+	 * \brief Retourne l'angle du sprite.
+	 * \return L'angle du sprite
+	 */
 	int getAngle() const { return _angle;}
 
+	/**
+	 * \brief Définie le nombre de frames du sprite
+	 * \param numFrames Le nouveau nombre de frames
+	 */
 	void setNumFrames(int numFrames) {_numFrames = numFrames;}
+
+	/**
+	 * \brief Retourne le nombre de frame du sprite
+	 * \return Le nombre de frames du sprite
+	 */
 	int getNumFrames() const {return _numFrames;}
 
+	/**
+	 * \brief Définie la frame actuelle du sprite
+	 * \param frame Le nouveau frame
+	 */
 	void setCurrentFrame(int frame) {_currentFrame = frame;}
+
+	/**
+	 * \brief Retourne la frame actuelle du sprite
+	 * \return La frame actuelle du sprite
+	 */
 	int getCurrentFrame() const {return _currentFrame;}
 
-	void setTextureID(std::string textureID) {_textureID = textureID;}
+	/**
+	 * \brief Définie l'ID de la texture du frame.
+	 * \param textureID L'ID de la nouvelle texture
+	 */
+	void setTextureID(const std::string& textureID) {
+		_textureID = std::move(textureID);
+		texture_informations * texture = TextureManager::Instance()->getTextureInformationsFromID(textureID);
+		_width = texture->width;
+		_height = texture->height;
+		_numFrames = texture->numFrames;
+		_animSpeed = texture->animSpeed;
+		_currentFrame = 0;
+		_currentRow = 0;
+	}
+
+	/**
+	 * \brief Retourne l'ID de la texture du sprite
+	 * \return L'ID de la texture du sprite
+	 */
 	std::string getTextureID() const {return _textureID;}
 
 	/**
 	 * \brief Affiche le sprite dans la fenêtre SDL
+	 * \param position La position du sprite à l'écran
+	 * \param velocity La vélocité du GameObject associé, pour déterminer si l'on doit retourner la texture ou non
 	 */
 	void draw(Vector2D position, Vector2D velocity) const;
+
+	/**
+	 * \brief Mets à jour le sprite
+	 */
+	void update();
 private:
 	
 	int _width;
@@ -67,6 +126,8 @@ private:
 	int _currentFrame;
 	int _currentRow;
 	int _numFrames;
+
+	int _animSpeed;
 	
 	std::string _textureID;
 };

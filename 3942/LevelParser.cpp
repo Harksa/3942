@@ -117,21 +117,13 @@ void LevelParser::parseObjectLayer(tinyxml2::XMLElement* objectElement, std::vec
 
 			//Properties values
 			for(tinyxml2::XMLElement *e = objectRoot->FirstChildElement("properties")->FirstChildElement() ; e != nullptr ; e = e->NextSiblingElement()) {
-				if(e->Attribute("name") == std::string("numFrames"))
-					numFrames = e->IntAttribute("value");
-				else if(e->Attribute("name") == std::string("textureHeight"))
-					height = e->IntAttribute("value");
-				else if(e->Attribute("name") == std::string("textureID"))
+				if(e->Attribute("name") == std::string("textureID"))
 					textureID = e->Attribute("value");
-				else if (e->Attribute("name") == std::string("textureWidth"))
-					width = e->IntAttribute("value");
 				else if (e->Attribute("name") == std::string("callbackID"))
 					callbackID = e->IntAttribute("value");
-				else if(e->Attribute("name") == std::string("animSpeed"))
-					animSpeed = e->IntAttribute("value");
 			}
 
-			gameObject->load(new LoadParameters(static_cast<float> (x), static_cast<float>(y), width, height, textureID, numFrames, callbackID, animSpeed));
+			gameObject->load(new LoadParameters(static_cast<float> (x), static_cast<float>(y), textureID, callbackID));
 			objectLayer->getGameObjects()->push_back(gameObject);
 		}
 	}

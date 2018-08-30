@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <SDL2/SDL_image.h>
 
 /**
  * \brief Gère les background des scènes
@@ -22,6 +21,8 @@ public:
 	 * \brief Affiche le background
 	 */
 	void draw();
+
+	void clean() const;
 
 private:
 	/**

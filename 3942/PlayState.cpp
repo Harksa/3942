@@ -24,6 +24,7 @@ void PlayState::update() {
 }
 
 void PlayState::render() {
+	background->draw();
 	for (auto game_object : _gameObjects) {
 		game_object->draw();
 	}
@@ -34,10 +35,14 @@ bool PlayState::onEnter() {
 	StateParser stateParser;
 	stateParser.parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
 
+	background = new Background();
+	background->load("Textures/ok.png", "ok", 0.5f);
+
 	return true;
 }
 
 bool PlayState::onExit() {
+	background->clean();
 
 	for (auto game_object : _gameObjects) {
 		game_object->clean();
