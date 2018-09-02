@@ -26,8 +26,7 @@ void PauseState::render() {
 }
 
 bool PauseState::onEnter() {
-	StateParser stateParser;
-	stateParser.parseState("ressources/test.xml", pauseID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/test.xml", pauseID, &_gameObjects, &_textureIDList);
 
 	_callbacks.push_back(pauseToMain);
 	_callbacks.push_back(resumePlay);

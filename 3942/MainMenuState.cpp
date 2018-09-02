@@ -35,10 +35,8 @@ void MainMenuState::exitFromMenu() {
 
 
 bool MainMenuState::onEnter() {
-	StateParser stateParser;
-	stateParser.parseState("ressources/test.xml", menuID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/test.xml", menuID, &_gameObjects, &_textureIDList);
 
-	
 	background = new Background();
 	background->load("Textures/starBackground.png", "Star", 0.5f);
 

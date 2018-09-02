@@ -34,8 +34,7 @@ void PlayState::render() {
 
 bool PlayState::onEnter() {
 
-	StateParser stateParser;
-	stateParser.parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
 
 	WaveGenerator::parseWave("ressources/Level1.xml", &enemy_spaw_informations);
 

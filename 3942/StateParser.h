@@ -18,7 +18,7 @@ public:
 	 * \param textureIDs La liste des textures de l'état
 	 * \return Vrai si l'état a correctement été chargée, faux sinon.
 	 */
-	bool parseState(const char * stateFile, const std::string& stateID, std::vector<GameObject*> * objects, std::vector<std::string> *textureIDs);
+	static bool parseState(const char * stateFile, const std::string& stateID, std::vector<GameObject*> * objects, std::vector<std::string> *textureIDs);
 
 private:
 
@@ -27,13 +27,13 @@ private:
 	 * \param stateRoot L'endroit où se trouve les informations des objets, dans le fichier XML
 	 * \param objects La liste des gameobjects de cet état
 	 */
-	void parseObject(tinyxml2::XMLElement * stateRoot, std::vector<GameObject*> *objects);
+	static void parseObject(tinyxml2::XMLElement * stateRoot, std::vector<GameObject*> *objects);
 
 	/**
 	 * \brief Charge les textures présent dans l'état
 	 * \param stateRoot L'endroit où se trouve les informations des textures, dans le fichier XML
 	 * \param textureIDs La liste des textures de cet état
 	 */
-	void parseTexture(tinyxml2::XMLElement * stateRoot, std::vector<std::string> *textureIDs);
+	static void parseTexture(tinyxml2::XMLElement * stateRoot, std::vector<std::string> *textureIDs);
 };
 
