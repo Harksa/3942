@@ -4,6 +4,8 @@
 #include "GameObject.h"
 #include "SDLGameObject.h"
 #include "Level.h"
+#include "WaveGenerator.h"
+
 /**
  * \brief Etat de jeu.
  */
@@ -36,6 +38,8 @@ public:
 	 */
 	std::string getStateID() const override {return playID;}
 
+	void waveUpdate();
+
 private:
 
 	/**
@@ -43,10 +47,11 @@ private:
 	 */
 	static const std::string playID;
 
-	/**
-	 * \brief le Niveau de l'état.
-	 */
-	Level * _level;
+	std::vector<EnemySpawInformations *> enemy_spaw_informations;
+
+	unsigned int timer;
+
+	unsigned int encouter;
 
 };
 

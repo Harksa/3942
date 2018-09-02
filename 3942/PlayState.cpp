@@ -21,6 +21,8 @@ void PlayState::update() {
 		game_object->update();
 	}
 
+	waveUpdate();
+
 }
 
 void PlayState::render() {
@@ -35,8 +37,10 @@ bool PlayState::onEnter() {
 	StateParser stateParser;
 	stateParser.parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
 
+	WaveGenerator::parseWave("ressources/Level1.xml", &enemy_spaw_informations);
+
 	background = new Background();
-	background->load("Textures/ok.png", "ok", 0.5f);
+	background->load("Textures/starBackground.png", "stars", 0.5f);
 
 	return true;
 }
@@ -56,3 +60,18 @@ bool PlayState::onExit() {
 
 	return true;
 }
+
+void PlayState::waveUpdate() {
+	timer++;
+
+	if(encouter < enemy_spaw_informations.size()) 
+		if(enemy_spaw_informations[encouter]->timer == timer) {
+			GameObject * gameObject = GameObjectFactory::Instance()->create(enemy_spaw_informations[encouter]->type);
+			gameObject->load(new LoadParameters((enemy_spaw_informations[encouter]->spawn_x), (enemy_spaw_informations[encouter]->spawn_y), "cartable"));
+			_gameObjects.push_back(gameObject);
+			encouter++;
+		}
+	
+}
+
+
