@@ -25,6 +25,9 @@ void Player::clean() {}
 
 void Player::handleInput() {
 
+
+		
+
 	if(InputHandler::Instance()->joystickInitialised()) {
 		//Sticks analogiques
 		const Sint16 leftX = SDL_JoystickGetAxis(InputHandler::Instance()->getJoystickByID(0), SDL_CONTROLLER_AXIS_LEFTX);

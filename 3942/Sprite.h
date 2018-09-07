@@ -52,13 +52,13 @@ public:
 	 * \brief Définie l'angle du sprite
 	 * \param angle Le nouvel angle
 	 */
-	void setAngle(int angle) { _angle = angle;}
+	void setAngle(float angle) { _angle = angle;}
 
 	/**
 	 * \brief Retourne l'angle du sprite.
 	 * \return L'angle du sprite
 	 */
-	int getAngle() const { return _angle;}
+	float getAngle() const { return _angle;}
 
 	/**
 	 * \brief Définie le nombre de frames du sprite
@@ -89,8 +89,8 @@ public:
 	 * \param textureID L'ID de la nouvelle texture
 	 */
 	void setTextureID(const std::string& textureID) {
-		_textureID = std::move(textureID);
-		texture_informations * texture = TextureManager::Instance()->getTextureInformationsFromID(textureID);
+		_textureID = textureID;
+		texture_informations * texture = TextureManager::Instance()->getTextureInformationsFromID(_textureID);
 		_width = texture->width;
 		_height = texture->height;
 		_numFrames = texture->numFrames;
@@ -121,7 +121,7 @@ private:
 	int _width;
 	int _height;
 
-	int _angle;
+	float _angle;
 	
 	int _currentFrame;
 	int _currentRow;

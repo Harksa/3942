@@ -9,7 +9,7 @@ void WaveGenerator::parseWave(const std::string & fileName, std::vector<EnemySpa
 	for(tinyxml2::XMLElement *e = root->FirstChildElement() ; e != nullptr ; e = e->NextSiblingElement()) {
 		if(e->Value() == std::string("enemy")) {
 			enemy_spaw_informations->push_back(new EnemySpawInformations(
-				e->Attribute("type"), e->FloatAttribute("x"), e->FloatAttribute("y"), e->IntAttribute("time")
+				e->Attribute("type"), e->FloatAttribute("x"), e->FloatAttribute("y"), e->IntAttribute("time"), e->Attribute("textureID")
 			));
 		}
 	} 

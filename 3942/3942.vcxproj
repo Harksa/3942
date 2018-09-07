@@ -118,6 +118,8 @@
   <ItemGroup>
     <ClCompile Include="AnimatedGraphic.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
@@ -145,6 +147,8 @@
   <ItemGroup>
     <ClInclude Include="AnimatedGraphic.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />

@@ -17,7 +17,7 @@ public:
 	 */
 	void load(const LoadParameters *parameters) override {
 		position = Vector2D(parameters->getX(), parameters->getY());
-		velocity =  acceleration = Vector2D(0,0);
+		velocity = acceleration = Vector2D(0,0);
 
 		sprite = new Sprite(parameters->getTextureID());
 	}
@@ -41,6 +41,22 @@ public:
 	 * \brief Retourne la position du SDLGameObject (haut gauche du sprite)
 	 */
 	Vector2D & getPosition() {return position;}
+
+	void setPosition(Vector2D newposition) {position = newposition; }
+
+	void setPosition(float new_x, float new_y) {
+		position.x = new_x; position.y = new_y;
+	}
+
+	void setVelocity(Vector2D new_velocity) {velocity = new_velocity;}
+
+	void setVelocity(float new_x, float new_y) {
+		velocity.x = new_x; velocity.y = new_y;
+	}
+
+	void setSpriteAngle(float new_angle) const {
+		sprite->setAngle(new_angle);
+	}
 
 	/**
 	 * \brief Retourne la largeur du sprite

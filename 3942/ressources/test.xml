@@ -13,12 +13,12 @@
 	
 	<PLAY>
 		<TEXTURES>
-			<texture filename="ressources/bob.png" ID="bob" width="50" height="50" numFrames="0"/>
-			<texture filename="ressources/cartable.png" ID="cartable" width="50" height="50" numFrames="0"/>
+			<texture filename="ressources/bob.png" ID="bob" width="50" height="50"/>
+			<texture filename="ressources/cartable.png" ID="cartable" width="50" height="50"/>
+			<texture filename="ressources/laser.png" ID="bullet" width="5" height="13" numFrames="2" animSpeed="10"/>
 		</TEXTURES>
 		<OBJECTS>
 			<object type="Player" x="500" y="100" textureID="bob"/>
-			<object type="Enemy" x="100" y="100" textureID="cartable"/>
 		</OBJECTS>
 	</PLAY>
 	

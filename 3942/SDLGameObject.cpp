@@ -9,6 +9,7 @@ void SDLGameObject::draw() {
 }
 
 void SDLGameObject::update() {
+	sprite->update();
 	velocity += acceleration;
 	position += velocity;
 }

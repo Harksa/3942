@@ -5,6 +5,7 @@
 #include "SDLGameObject.h"
 #include "Level.h"
 #include "WaveGenerator.h"
+#include "BulletManager.h"
 
 /**
  * \brief Etat de jeu.
@@ -49,9 +50,11 @@ private:
 
 	std::vector<EnemySpawInformations *> enemy_spaw_informations;
 
-	unsigned int timer;
+	BulletManager * bulletManager;
 
-	unsigned int encouter;
+	unsigned int timer = 0;
+
+	unsigned int encouter = 0;
 
 };
 

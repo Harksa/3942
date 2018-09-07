@@ -7,8 +7,9 @@ struct EnemySpawInformations {
 	float spawn_x{};
 	float spawn_y{};
 	unsigned int timer{};
+	std::string textureID{};
 
-	EnemySpawInformations(std::string enemy, const float x, const float y, const unsigned int t) : type(std::move(enemy)), spawn_x(x), spawn_y(y), timer(t) {}
+	EnemySpawInformations(std::string enemy, const float x, const float y, const unsigned int t, std::string texture) : type(std::move(enemy)), spawn_x(x), spawn_y(y), timer(t), textureID(std::move(texture)) {}
 };
 
 class WaveGenerator {

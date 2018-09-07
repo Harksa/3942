@@ -54,10 +54,10 @@ public:
 	 * \brief Charge un fichier image
 	 * \param fileName l'emplacement du fichier image
 	 * \param id l'Id donnée à cette texture
-	 * \param pRenderer le SDL_Renderer utilisé pour le jeu
+	 * \param renderer le SDL_Renderer utilisé pour le jeu
 	 * \return vrai si l'image a été correctement chargé, faux sinon
 	 */
-	bool load(const std::string& fileName, const std::string& id, SDL_Renderer* pRenderer);
+	bool load(const std::string& fileName, const std::string& id, SDL_Renderer* renderer);
 
 	/**
 	 * \brief Charge un fichier image
@@ -119,6 +119,7 @@ public:
 	 */
 	void drawTile(const std::string& id, int margin, int spacing, int x, int y, int width, 
 	             int height, int currentRow, int currentFrame, SDL_Renderer* renderer);
+
 
 	texture_informations * getTextureInformationsFromID(const std::string& id) {return _textureInformations[id];}
 
