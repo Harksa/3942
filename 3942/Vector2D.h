@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <ostream>
 
 /**
  * \brief Gére les vecteurs ainsi que les calculs qui y sont liés
@@ -66,7 +67,7 @@ public:
 
 		return *this;
 	}
-
+	
 	/**
 	 * \brief La valeur en X du vecteur
 	 */
@@ -77,3 +78,7 @@ public:
 	 */
 	float y;		
 };
+
+std::ostream& operator<<(std::ostream& stream, Vector2D& vector2D);
+
+

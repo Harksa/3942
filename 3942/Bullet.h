@@ -4,17 +4,17 @@
 
 class Bullet : public SDLGameObject {
 public:
-	Bullet();
-	~Bullet();
+	Bullet() = default;
+	~Bullet() = default;
 
-	void draw() override { SDLGameObject::draw();};
-	void update() override { SDLGameObject::update();};
-	void clean() override {};
+	void draw() override;
+	void update() override;
+	void clean() override;
 
 	bool isAvailable() const { return is_available;}
 	void setAvailability(bool value) {is_available = value;}
 
-	void load(const LoadParameters* parameters) override {SDLGameObject::load(parameters);};
+	void load(const LoadParameters* parameters) override;
 
 	void setNext(Bullet * new_bullet) {next = new_bullet;}
 	Bullet * getNext() const {return next;}

@@ -1,8 +1,21 @@
 #include "Bullet.h"
 
+void Bullet::load(const LoadParameters* parameters) {
+	 SDLGameObject::load(parameters);
+}
+
+void Bullet::draw() {
+	SDLGameObject::draw();
+}
 
 
-Bullet::Bullet() {}
+void Bullet::update() {
+	if(isOutsideScreenBondaries())
+	   is_available = false;
+	else 
+		SDLGameObject::update();
+}
 
-
-Bullet::~Bullet() {}
+void Bullet::clean() {
+	
+}

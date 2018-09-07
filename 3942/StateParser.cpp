@@ -47,7 +47,7 @@ void StateParser::parseTexture(tinyxml2::XMLElement * stateRoot, std::vector<std
 		const std::string id = e->Attribute("ID");
 		const int w = e->IntAttribute("width");
 		const int h = e->IntAttribute("height");
-		const int numframes = e->IntAttribute("numFrames") - 1;
+		const int numframes = e->IntAttribute("numFrames");
 		const int speed = e->IntAttribute("animSpeed");
 		textureIDs->push_back(id);
 		TextureManager::Instance()->load(fileNameAttribute, id, w, h, numframes, speed, Game::Instance()->getRenderer());

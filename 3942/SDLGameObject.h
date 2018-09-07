@@ -58,6 +58,8 @@ public:
 		sprite->setAngle(new_angle);
 	}
 
+	bool isOutsideScreenBondaries() const;
+
 	/**
 	 * \brief Retourne la largeur du sprite
 	 * \return La largeur du sprite

@@ -21,24 +21,6 @@ enum stickPosition {
 };
 
 /**
- * \brief Enum pour les différents boutons du joystick
- */
-enum joystickButton {
-	BUTTON_A,
-	BUTTON_B,
-	BUTTON_X,
-	BUTTON_Y,
-	BUTTON_START,
-	BUTTON_SELECT,
-	TRIGGER_LB,
-	TRIGGER_LT,
-	TRIGGER_RB,
-	TRIGGER_RT,
-	DPAD_LEFT_CLICK,
-	DPAD_RIGHT_CLICK
-};
-
-/**
  * Gère les inputs du joueur.
  */
 class InputHandler {

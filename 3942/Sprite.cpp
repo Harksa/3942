@@ -8,7 +8,7 @@ void Sprite::draw(Vector2D position, Vector2D velocity) const {
 }
 
 void Sprite::update() {
-	if(_animSpeed != 0) {
+	if(_numFrames != 0) {
 		_currentFrame = (((SDL_GetTicks() / (1000 / _animSpeed)) % _numFrames));
 	}
 }

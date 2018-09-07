@@ -30,6 +30,9 @@ void BulletManager::update() {
 	for (auto& bullet : bullets) {
 		if(bullet.isAvailable()) {
 			bullet.update();
+		} else {
+			bullet.setNext(firstAvailable);
+			firstAvailable = &bullet;
 		}
 	}
 }
