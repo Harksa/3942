@@ -47,6 +47,17 @@ private:
 	const float speed = 5.0f;
 
 	/**
+	 * \brief Le délai entre deux tires
+	 */
+	const int fireDelay = 15;
+
+	/**
+	 * \brief Le timer qui permettra de savoir si le joueur peut tirer ou non.
+	 */
+	int timerFire = 0;
+
+
+	/**
 	 * \brief La largeur par 2 du sprite du Bullet tiré par le Player.
 	 * Utilisé pour le créer correctement au milieu.
 	 */

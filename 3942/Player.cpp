@@ -3,7 +3,7 @@
 #include "BulletManager.h"
 
 Player::Player() : SDLGameObject() {
-	bullet_sprite_width_by2 = TextureManager::Instance()->getTextureInformationsFromID("bullet")->width / 2;
+	bullet_sprite_width_by2 = TextureManager::Instance()->getTextureInformationsFromID("bullet")->width * 0.5f;
 }
 
 void Player::load(const LoadParameters* parameters) {
@@ -20,6 +20,8 @@ void Player::update() {
 	handleInput();
 
 	SDLGameObject::update();
+
+	timerFire--;
 }
 
 void Player::clean() {}
@@ -48,7 +50,6 @@ void Player::handleInput() {
 			velocity.x = speed * leftX / InputHandler::Instance()->getDiviser();
 		if(leftY > InputHandler::Instance()->getJoystickDeadZone() || leftY < -InputHandler::Instance()->getJoystickDeadZone())
 			velocity.y = speed * leftY / InputHandler::Instance()->getDiviser();
-
 
 		//DPAD
 		if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_LEFT)
@@ -86,5 +87,8 @@ void Player::handleInput() {
 }
 
 void Player::handleBulletSpawner() {
-	BulletManager::Instance()->create(Vector2D( position.x + static_cast<int> (sprite->getWidth() / 2) , position.y), Vector2D(0,-5));
+	if(timerFire <= 0) {
+		BulletManager::Instance()->create(Vector2D( position.x + static_cast<int> (sprite->getWidth() * 0.5f) - bullet_sprite_width_by2, position.y), Vector2D(0,-5));
+		timerFire = fireDelay;
+	}
 }

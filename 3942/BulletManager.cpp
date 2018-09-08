@@ -46,3 +46,9 @@ void BulletManager::render() {
 		}
 	}
 }
+
+void BulletManager::clear() {
+	for (auto& bullet : bullets) {
+		bullet.clean();
+	}
+}
