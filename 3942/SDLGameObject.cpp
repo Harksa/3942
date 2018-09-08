@@ -16,10 +16,9 @@ void SDLGameObject::update() {
 void SDLGameObject::clean() {}
 
 bool SDLGameObject::isOutsideScreenBondaries() const {
-	return (
+	return
 		(position.x + sprite->getWidth()) < 0 || 
 		(position.y + sprite->getHeight()) < 0 ||
 		(position.x - sprite->getWidth()) > Game::Instance()->getGameWidth() ||
-		(position.y - sprite->getHeight()) > Game::Instance()->getGameHeight()
-	);
+		(position.y - sprite->getHeight()) > Game::Instance()->getGameHeight();
 }

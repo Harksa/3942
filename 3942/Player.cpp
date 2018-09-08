@@ -1,8 +1,9 @@
 #include "Player.h"
 #include "InputHandler.h"
+#include "BulletManager.h"
 
 Player::Player() : SDLGameObject() {
-
+	bullet_sprite_width_by2 = TextureManager::Instance()->getTextureInformationsFromID("bullet")->width / 2;
 }
 
 void Player::load(const LoadParameters* parameters) {
@@ -25,9 +26,19 @@ void Player::clean() {}
 
 void Player::handleInput() {
 
+	//Gestion clavier
+	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
+		velocity.x = -speed;
+	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+		velocity.x = speed;
+	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
+		velocity.y = -speed;
+	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
+		velocity.y = speed;
 
+	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+		handleBulletSpawner();
 		
-
 	if(InputHandler::Instance()->joystickInitialised()) {
 		//Sticks analogiques
 		const Sint16 leftX = SDL_JoystickGetAxis(InputHandler::Instance()->getJoystickByID(0), SDL_CONTROLLER_AXIS_LEFTX);
@@ -65,6 +76,15 @@ void Player::handleInput() {
 			velocity.x = speed;
 			velocity.y = speed;
 		}
+
+		//Boutons
+		if(SDL_JoystickGetButton(InputHandler::Instance()->getJoystickByID(0), SDL_CONTROLLER_BUTTON_A)) {
+			handleBulletSpawner();
+		}
 	}
 
+}
+
+void Player::handleBulletSpawner() {
+	BulletManager::Instance()->create(Vector2D( position.x + static_cast<int> (sprite->getWidth() / 2) , position.y), Vector2D(0,-5));
 }

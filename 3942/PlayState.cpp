@@ -23,15 +23,12 @@ void PlayState::update() {
 
 	waveUpdate();
 
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
-		bulletManager->create(Vector2D(250,500), Vector2D(0,-5));
-
-	bulletManager->update();
+	BulletManager::Instance()->update();
 }
 
 void PlayState::render() {
 	background->draw();
-	bulletManager->render();
+	BulletManager::Instance()->render();
 	
 	for (auto game_object : _gameObjects) {
 		game_object->draw();
@@ -43,7 +40,6 @@ bool PlayState::onEnter() {
 
 	StateParser::parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
 	WaveGenerator::parseWave("ressources/Level1.xml", &enemy_spaw_informations);
-	bulletManager = new BulletManager();
 
 	background = new Background();
 	background->load("Textures/starBackground.png", "stars", 0.5f);

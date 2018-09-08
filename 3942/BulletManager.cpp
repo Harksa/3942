@@ -1,6 +1,7 @@
 #include "BulletManager.h"
 #include <cassert>
 
+BulletManager * BulletManager::instance = nullptr;
 
 BulletManager::BulletManager() {
 	firstAvailable = &bullets[0];

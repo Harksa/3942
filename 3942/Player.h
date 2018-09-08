@@ -37,9 +37,20 @@ private:
 	void handleInput();
 
 	/**
+	 * \brief Gère la création de Bullet par le Player.
+	 */
+	void handleBulletSpawner();
+
+	/**
 	 * \brief Vitesse de déplacement du joueur
 	 */
 	const float speed = 5.0f;
+
+	/**
+	 * \brief La largeur par 2 du sprite du Bullet tiré par le Player.
+	 * Utilisé pour le créer correctement au milieu.
+	 */
+	int bullet_sprite_width_by2;
 };
 
 /**

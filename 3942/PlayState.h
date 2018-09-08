@@ -48,12 +48,19 @@ private:
 	 */
 	static const std::string playID;
 
+	/**
+	 * \brief Informations concernant les vagues d'enemies
+	 */
 	std::vector<EnemySpawInformations *> enemy_spaw_informations;
 
-	BulletManager * bulletManager;
-
+	/**
+	 * \brief Le timer pour l'appartion de vagues ennemies
+	 */
 	unsigned int timer = 0;
 
+	/**
+	 * \brief Le compteur d'ennemis créés
+	 */
 	unsigned int encouter = 0;
 
 };
