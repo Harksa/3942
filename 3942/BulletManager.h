@@ -1,5 +1,6 @@
 #pragma once
 #include "Bullet.h"
+#include "PlayerBullet.h"
 
 /**
  * \brief Cette classe gère les piscines de Bullet et permet d'en créer
@@ -19,16 +20,11 @@ public:
 	}
 
 	/**
-	 * \brief Le premier Bullet available
-	 */
-	Bullet * firstAvailable;
-
-	/**
 	 * \brief Créer un Bullet avec la position et la velocité donnée en paramètre
 	 * \param position La position du Bullet
 	 * \param velocity La velocité du Bullet
 	 */
-	void create(Vector2D position, Vector2D velocity);
+	void createPlayerBullet(Vector2D position, Vector2D velocity);
 
 	/**
 	 * \brief Affiches les Bullets à l'écran
@@ -50,6 +46,11 @@ private:
 	~BulletManager();
 
 	/**
+	 * \brief Le premier Bullet available
+	 */
+	PlayerBullet * firstPlayerBulletAvailable;
+
+	/**
 	 * \brief L'instance du BulletManager
 	 */
 	static BulletManager * instance;
@@ -57,11 +58,11 @@ private:
 	/**
 	 * \brief La taille de la piscine de Bullet
 	 */
-	static const int pool_size = 100;
+	static const int player_bullet_pool_size = 100;
 
 	/**
 	 * \brief Le tableau de Bullet
 	 */
-	Bullet bullets[pool_size]; 
+	PlayerBullet player_bullets[player_bullet_pool_size]; 
 };
 

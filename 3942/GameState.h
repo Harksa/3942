@@ -3,6 +3,7 @@
 #include <vector>
 #include "GameObject.h"
 #include "Background.h"
+#include "SoundManager.h"
 
 /**
  * \brief Un GameState représente un niveau dans le jeu.
@@ -52,5 +53,8 @@ protected:
 	 */
 	std::vector<GameObject *> _gameObjects;
 
+	/**
+	 * \brief Background du l'état
+	 */
 	Background * background = nullptr;
 };

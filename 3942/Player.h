@@ -49,7 +49,7 @@ private:
 	/**
 	 * \brief Le délai entre deux tires
 	 */
-	const int fireDelay = 15;
+	const int fireDelay = 10;
 
 	/**
 	 * \brief Le timer qui permettra de savoir si le joueur peut tirer ou non.

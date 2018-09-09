@@ -40,31 +40,31 @@ public:
 	 * \param type Le type de son à charger
 	 * \return Vrai si le son a bien été chargé, faux sinon
 	 */
-	bool load(const std::string& fileName, const std::string& id, sound_type type);
+	static bool load(const std::string& fileName, const std::string& id, sound_type type);
 
 	/**
 	 * \brief Joue le son avec l'ID donnée en paramètre
 	 * \param id L'ID du son
 	 * \param loop
 	 */
-	void playSound(std::string id, int loop);
+	static void playSound(std::string id, int loop = 0);
 
 	/**
 	 * \brief Joue la musique avec l'ID donnée en paramètre
 	 * \param id L'ID de la musique
 	 * \param loop
 	 */
-	void playMusic(std::string id, int loop = -1);
+	static void playMusic(std::string id, int loop = -1);
 
 	/**
 	 * \brief Arrête la musique en cours
 	 */
-	void stopMusic() const;
+	static void stopMusic();
 
 	/**
 	 * \brief Nettoie les sons de la mémoire
 	 */
-	void clean();
+	static void clean();
 
 private:
 	/**
@@ -72,8 +72,8 @@ private:
 	 */
 	static SoundManager* instance;
 
-	std::map<std::string, Mix_Chunk*> _sfxs;
-	std::map<std::string, Mix_Music*> _musics;
+	static std::map<std::string, Mix_Chunk*> _sfxs;
+	static std::map<std::string, Mix_Music*> _musics;
 
 	SoundManager();
 	~SoundManager();

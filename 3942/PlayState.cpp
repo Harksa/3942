@@ -41,6 +41,8 @@ bool PlayState::onEnter() {
 	StateParser::parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
 	WaveGenerator::parseWave("ressources/Level1.xml", &enemy_spaw_informations);
 
+	SoundManager::load("Sons/laser01.wav", "PlayerLaser", SOUND_SFX);
+
 	background = new Background();
 	background->load("Textures/starBackground.png", "stars", 0.5f);
 

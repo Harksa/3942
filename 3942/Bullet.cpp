@@ -17,5 +17,5 @@ void Bullet::update() {
 }
 
 void Bullet::clean() {
-	
+	SDLGameObject::clean();
 }

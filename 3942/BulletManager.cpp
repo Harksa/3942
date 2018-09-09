@@ -4,23 +4,23 @@
 BulletManager * BulletManager::instance = nullptr;
 
 BulletManager::BulletManager() {
-	firstAvailable = &bullets[0];
+	firstPlayerBulletAvailable = &player_bullets[0];
 
-	for(int i = 0 ; i < pool_size - 1 ; i++) {
-		bullets[i].setNext(&bullets[i+1]);
+	for(int i = 0 ; i < player_bullet_pool_size - 1 ; i++) {
+		player_bullets[i].setNext(&player_bullets[i+1]);
 	}
 
-	bullets[pool_size - 1].setNext(nullptr);
+	player_bullets[player_bullet_pool_size - 1].setNext(nullptr);
 }
 
 
 BulletManager::~BulletManager() = default;
 
-void BulletManager::create(Vector2D position, Vector2D velocity) {
-	assert(firstAvailable != nullptr);
+void BulletManager::createPlayerBullet(Vector2D position, Vector2D velocity) {
+	assert(firstPlayerBulletAvailable != nullptr);
 
-	Bullet * bullet = firstAvailable;
-	firstAvailable = bullet->getNext();
+	PlayerBullet * bullet = firstPlayerBulletAvailable;
+	firstPlayerBulletAvailable = dynamic_cast<PlayerBullet*> (bullet->getNext());
 
 	bullet->load(new LoadParameters(position.x, position.y, "bullet"));
 	bullet->setVelocity(velocity);
@@ -28,19 +28,19 @@ void BulletManager::create(Vector2D position, Vector2D velocity) {
 }
 
 void BulletManager::update() {
-	for (auto& bullet : bullets) {
+	for (auto& bullet : player_bullets) {
 		if(bullet.isAvailable()) {
 			bullet.update();
 		} else {
-			bullet.setNext(firstAvailable);
-			firstAvailable = &bullet;
+			bullet.setNext(firstPlayerBulletAvailable);
+			firstPlayerBulletAvailable = &bullet;
 		}
 	}
 }
 
 
 void BulletManager::render() {
-	for (auto& bullet : bullets) {
+	for (auto& bullet : player_bullets) {
 		if(bullet.isAvailable()) {
 			bullet.draw();
 		}
@@ -48,7 +48,7 @@ void BulletManager::render() {
 }
 
 void BulletManager::clear() {
-	for (auto& bullet : bullets) {
+	for (auto& bullet : player_bullets) {
 		bullet.clean();
 	}
 }

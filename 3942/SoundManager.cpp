@@ -2,6 +2,9 @@
 
 SoundManager * SoundManager::instance = nullptr;
 
+std::map<std::string, Mix_Chunk*> SoundManager::_sfxs;
+std::map<std::string, Mix_Music*> SoundManager::_musics;
+
 SoundManager::SoundManager() {
 	Mix_OpenAudio(22050, AUDIO_S16, 2, 4096);
 }
@@ -38,10 +41,9 @@ void SoundManager::playMusic(std::string id, int loop) {
 	Mix_PlayMusic(_musics[id], loop);
 }
 
-void SoundManager::stopMusic() const {
+void SoundManager::stopMusic() {
 	Mix_HaltMusic();
 }
-
 
 void SoundManager::playSound(std::string id, int loop) {
 	Mix_PlayChannel(-1, _sfxs[id], loop);

@@ -3,7 +3,7 @@
 #include "BulletManager.h"
 
 Player::Player() : SDLGameObject() {
-	bullet_sprite_width_by2 = TextureManager::Instance()->getTextureInformationsFromID("bullet")->width * 0.5f;
+	bullet_sprite_width_by2 = static_cast<int> (TextureManager::Instance()->getTextureInformationsFromID("bullet")->width * 0.5f);
 }
 
 void Player::load(const LoadParameters* parameters) {
@@ -88,7 +88,8 @@ void Player::handleInput() {
 
 void Player::handleBulletSpawner() {
 	if(timerFire <= 0) {
-		BulletManager::Instance()->create(Vector2D( position.x + static_cast<int> (sprite->getWidth() * 0.5f) - bullet_sprite_width_by2, position.y), Vector2D(0,-5));
+		SoundManager::playSound("PlayerLaser");
+		BulletManager::Instance()->createPlayerBullet(Vector2D(position.x + static_cast<int> (sprite->getWidth() * 0.5f) - bullet_sprite_width_by2, position.y), Vector2D(0,-7.5f));
 		timerFire = fireDelay;
 	}
 }

@@ -46,6 +46,12 @@
     <Filter Include="Fichiers sources\Managers">
       <UniqueIdentifier>{dcc8b642-fdf3-4c3b-b11c-1f6f4a588835}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Bullets">
+      <UniqueIdentifier>{eb29d5e4-cc50-4e20-a7d0-cf9420bde62b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Bullets">
+      <UniqueIdentifier>{170a2f79-c872-455e-9ab6-05f98df4036a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -123,13 +129,19 @@
     <ClCompile Include="StateParser.cpp">
       <Filter>Fichiers sources\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
+    <ClCompile Include="Vector2D.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Fichiers sources\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="BulletManager.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Fichiers sources\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBullet.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -225,9 +237,15 @@
       <Filter>Fichiers d%27en-tête\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="BulletManager.h">
+      <Filter>Fichiers d%27en-tête\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>Fichiers d%27en-tête\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBullet.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
