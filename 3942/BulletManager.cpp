@@ -5,12 +5,18 @@ BulletManager * BulletManager::instance = nullptr;
 
 BulletManager::BulletManager() {
 	firstPlayerBulletAvailable = &player_bullets[0];
+	firstEnemyBulletAvailable =  &enemy_bullets[0];
 
 	for(int i = 0 ; i < player_bullet_pool_size - 1 ; i++) {
 		player_bullets[i].setNext(&player_bullets[i+1]);
 	}
 
+	for(int i = 0 ; i < enemy_bullet_pool_size - 1 ; i++) {
+		enemy_bullets[i].setNext(&enemy_bullets[i+1]);
+	}
+
 	player_bullets[player_bullet_pool_size - 1].setNext(nullptr);
+	enemy_bullets[enemy_bullet_pool_size - 1].setNext(nullptr);
 }
 
 
@@ -22,7 +28,18 @@ void BulletManager::createPlayerBullet(Vector2D position, Vector2D velocity) {
 	PlayerBullet * bullet = firstPlayerBulletAvailable;
 	firstPlayerBulletAvailable = dynamic_cast<PlayerBullet*> (bullet->getNext());
 
-	bullet->load(new LoadParameters(position.x, position.y, "bullet"));
+	bullet->load(new LoadParameters(position.x, position.y, "PlayerBullet"));
+	bullet->setVelocity(velocity);
+	bullet->setAvailability(true);
+}
+
+void BulletManager::createEnemyBullet(Vector2D position, Vector2D velocity) {
+	assert(firstEnemyBulletAvailable != nullptr);
+
+	EnemyBullet * bullet = firstEnemyBulletAvailable;
+	firstEnemyBulletAvailable = dynamic_cast<EnemyBullet*> (bullet->getNext());
+
+	bullet->load(new LoadParameters(position.x, position.y, "EnemyBullet"));
 	bullet->setVelocity(velocity);
 	bullet->setAvailability(true);
 }
@@ -36,6 +53,15 @@ void BulletManager::update() {
 			firstPlayerBulletAvailable = &bullet;
 		}
 	}
+
+	for(auto &bullet : enemy_bullets) {
+		if(bullet.isAvailable())
+			bullet.update();
+		else {
+			bullet.setNext(firstEnemyBulletAvailable);
+			firstEnemyBulletAvailable = &bullet;
+		}
+	}
 }
 
 
@@ -45,10 +71,20 @@ void BulletManager::render() {
 			bullet.draw();
 		}
 	}
+
+	for(auto& bullet : enemy_bullets) {
+		if(bullet.isAvailable()) {
+			bullet.draw();
+		}
+	}
 }
 
 void BulletManager::clear() {
 	for (auto& bullet : player_bullets) {
+		bullet.clean();
+	}
+
+	for(auto& bullet : enemy_bullets) {
 		bullet.clean();
 	}
 }

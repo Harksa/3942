@@ -1,6 +1,7 @@
 #pragma once
 #include "Bullet.h"
 #include "PlayerBullet.h"
+#include "EnemyBullet.h"
 
 /**
  * \brief Cette classe gère les piscines de Bullet et permet d'en créer
@@ -20,11 +21,18 @@ public:
 	}
 
 	/**
-	 * \brief Créer un Bullet avec la position et la velocité donnée en paramètre
+	 * \brief Créer un PlayerBullet avec la position et la velocité donnée en paramètre
 	 * \param position La position du Bullet
 	 * \param velocity La velocité du Bullet
 	 */
 	void createPlayerBullet(Vector2D position, Vector2D velocity);
+
+	/**
+	 * \brief Créer un EnemyBullet avec la position et la velocité donnée en paramètre
+	 * \param position La position du Bullet
+	 * \param velocity La velocité du Bullet
+	 */
+	void createEnemyBullet(Vector2D position, Vector2D velocity);
 
 	/**
 	 * \brief Affiches les Bullets à l'écran
@@ -46,9 +54,14 @@ private:
 	~BulletManager();
 
 	/**
-	 * \brief Le premier Bullet available
+	 * \brief Le premier PlayerBullet disponible
 	 */
 	PlayerBullet * firstPlayerBulletAvailable;
+
+	/**
+	 * \brief Le premier EnemyBullet disponible
+	 */
+	EnemyBullet * firstEnemyBulletAvailable;
 
 	/**
 	 * \brief L'instance du BulletManager
@@ -56,13 +69,23 @@ private:
 	static BulletManager * instance;
 
 	/**
-	 * \brief La taille de la piscine de Bullet
+	 * \brief La taille de la piscine de PlayerBullet
 	 */
 	static const int player_bullet_pool_size = 100;
 
 	/**
-	 * \brief Le tableau de Bullet
+	 * \brief La taille de la piscine d'EnemyBullet
 	 */
-	PlayerBullet player_bullets[player_bullet_pool_size]; 
+	static const int enemy_bullet_pool_size = 250;
+
+	/**
+	 * \brief Le tableau de PlayerBullet
+	 */
+	PlayerBullet player_bullets[player_bullet_pool_size];
+
+	/**
+	 * \brief Le tableau d'EnemyBullet
+	 */
+	EnemyBullet enemy_bullets[enemy_bullet_pool_size];
 };
 

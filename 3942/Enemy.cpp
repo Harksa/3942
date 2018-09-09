@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "BulletManager.h"
 
 Enemy::Enemy() {
 	velocity.y = 2;
@@ -14,6 +15,9 @@ void Enemy::update() {
 		velocity.y = 2;
 	else if (position.y > 400)
 		velocity.y = -2;
+
+	if((SDL_GetTicks() / (1000 / 1) % 3) == 1)
+	   BulletManager::Instance()->createEnemyBullet( Vector2D(position.x + sprite->getWidth() * 0.5f, position.y + sprite->getHeight()), Vector2D(0,5) );
 
 	SDLGameObject::update();
 }
