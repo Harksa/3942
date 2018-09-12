@@ -35,22 +35,22 @@ public:
 	/**
 	 * \brief Affiche les éléments du jeu.
 	 */
-	void render();
+	void render() const;
 
 	/**
 	 * \brief Mets à jour les éléments du jeu.
 	 */
-	void update();
+	void update() const;
 
 	/**
 	 * \brief Prends en charge la saisie d'inputs du joueur.
 	 */
-	void handleEvents();
+	void handleEvents() const;
 
 	/**
 	 * \brief Nettoie les éléments SDL du jeu.
 	 */
-	void clean();
+	void clean() const;
 
 	/**
 	 * \brief Demande de quitter le jeu.

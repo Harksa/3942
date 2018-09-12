@@ -32,8 +32,9 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 	GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
 	GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
 
-	SoundManager::Instance()->load("Musics/level1.ogg", "lol", SOUND_MUSIC);
-	SoundManager::Instance()->playMusic("lol");
+	SoundManager::openAudio();
+	SoundManager::load("Musics/level1.ogg", "lol", SOUND_MUSIC);
+	SoundManager::playMusic("lol");
 
 	_gameStateMachine = new GameStateMachine();
 	_gameStateMachine->changeState(new MainMenuState());
@@ -46,7 +47,7 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 }
 
 
-void Game::render() {
+void Game::render() const {
 	SDL_RenderClear(sdl_renderer);
 
 	_gameStateMachine->render();
@@ -54,11 +55,11 @@ void Game::render() {
 	SDL_RenderPresent(sdl_renderer);
 }
 
-void Game::update() {
+void Game::update() const {
 	_gameStateMachine->update();
 }
 
-void Game::handleEvents() {
+void Game::handleEvents() const {
 	InputHandler::Instance()->update();
 
 	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN)) {
@@ -66,9 +67,9 @@ void Game::handleEvents() {
 	}
 }
 
-void Game::clean() {
+void Game::clean() const {
 	InputHandler::Instance()->clean();
-	SoundManager::Instance()->clean();
+	SoundManager::clean();
 
 	SDL_DestroyRenderer(sdl_renderer);
 	SDL_DestroyWindow(sdl_window);

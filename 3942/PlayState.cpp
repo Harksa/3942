@@ -19,16 +19,16 @@ void PlayState::update() {
 			return;
 		}
 
-		CollisionManager::checkCollisionPlayerBullets(_gameObjects);
+		waveUpdate();
 
 		for (auto game_object : _gameObjects) {
 			if(!game_object->isDead())
 				game_object->update();
 		}
 
-		waveUpdate();
-
 		BulletManager::Instance()->update();
+
+		CollisionManager::checkCollisionPlayerBullets(_gameObjects);
 
 		std::vector<int> toBeDeleted;
 		for(unsigned int i = 0 ; i < _gameObjects.size() ; i++) {
@@ -37,8 +37,11 @@ void PlayState::update() {
 		}
 
 		for (auto to_be_deleted : toBeDeleted) {
+			_gameObjects[to_be_deleted]->clean();
 			_gameObjects.erase(_gameObjects.begin() + to_be_deleted);
 		}
+
+		toBeDeleted.clear();
 	}
 }
 

@@ -1,17 +1,23 @@
+#include <iostream>
 #include "SoundManager.h"
-
-SoundManager * SoundManager::instance = nullptr;
 
 std::map<std::string, Mix_Chunk*> SoundManager::_sfxs;
 std::map<std::string, Mix_Music*> SoundManager::_musics;
 
-SoundManager::SoundManager() {
-	Mix_OpenAudio(22050, AUDIO_S16, 2, 4096);
+bool SoundManager::audioOpened = false;
+
+void SoundManager::openAudio() {
+	if(!audioOpened) {
+		Mix_OpenAudio(22050, AUDIO_S16, 2, 4096);
+		audioOpened = true;
+	}
 }
 
-SoundManager::~SoundManager() {
+void SoundManager::closeAudio() {
 	Mix_CloseAudio();
+	audioOpened = false;
 }
+
 
 bool SoundManager::load(const std::string& fileName, const std::string& id, const sound_type type) {
 	if(type == SOUND_MUSIC) {

@@ -11,7 +11,9 @@ void GameObject::update() {
 	position += velocity;
 }
 
-void GameObject::clean() {}
+void GameObject::clean() {
+	delete sprite;
+}
 
 bool GameObject::isOutsideScreenBondaries() const {
 	return

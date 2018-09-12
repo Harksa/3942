@@ -1,11 +1,8 @@
 #pragma once
-#include <iostream>
 #include <string>
 #include <map>
 
-#include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_audio.h>
 
 /**
  * \brief Type de son
@@ -22,16 +19,14 @@ enum sound_type {
 class SoundManager {
 public:
 	/**
-	 * \brief Retourne l'instance du SoundManager
-	 * \return L'instance du SoundManager
+	 * \brief Ouvre le mixer de son
 	 */
-	static SoundManager * Instance() {
-		if(instance == nullptr) {
-			instance = new SoundManager();
-		}
+	static void openAudio();
 
-		return instance;
-	}
+	/**
+	 * \brief Ferme le mixer de son
+	 */
+	static void closeAudio();
 
 	/**
 	 * \brief Charge un fichier son
@@ -67,10 +62,11 @@ public:
 	static void clean();
 
 private:
+
 	/**
-	 * \brief L'instance du SoundManager
+	 * \brief Booléen permettant de définir si l'audio a déjà été initialisé ou non.
 	 */
-	static SoundManager* instance;
+	static bool audioOpened;
 
 	/**
 	 * \brief Map regroupant la liste des sfxs
@@ -81,8 +77,5 @@ private:
 	 * \brief Map regroupant la liste des musiques
 	 */
 	static std::map<std::string, Mix_Music*> _musics;
-
-	SoundManager();
-	~SoundManager();
 };
 
