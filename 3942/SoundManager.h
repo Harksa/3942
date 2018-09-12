@@ -72,7 +72,14 @@ private:
 	 */
 	static SoundManager* instance;
 
+	/**
+	 * \brief Map regroupant la liste des sfxs
+	 */
 	static std::map<std::string, Mix_Chunk*> _sfxs;
+
+	/**
+	 * \brief Map regroupant la liste des musiques
+	 */
 	static std::map<std::string, Mix_Music*> _musics;
 
 	SoundManager();

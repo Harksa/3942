@@ -1,17 +1,41 @@
 #pragma once
 #include "Bullet.h"
 
+/**
+ * \brief Classe représentant les Bullets tirés par le joueur
+ */
 class PlayerBullet :
 	public Bullet {
 public:
 	PlayerBullet() = default;
 	~PlayerBullet() = default;
 
+	/**
+	 * \brief Affiche le Bullet à l'écran
+	 */
 	void draw() override;
+
+	/**
+	 * \brief Mets à jour le Bullet
+	 */
 	void update() override;
+
+	/**
+	 * \brief Nettoie le Bullet de la mémoire
+	 */
 	void clean() override;
-	void load(const LoadParameters* parameters) override;
+
+	/**
+	 * \brief Actions effecttuées lorsque le Bullet rentre en collision avec un autre objet.
+	 */
 	void onCollision() override;
+
+	/**
+	 * \brief Charge le Bullet en fonction du LoadParameter
+	 * \param parameters Les paramètres du Bullet
+	 */
+	void load(const LoadParameters* parameters) override;
+
 
 	/**
 	 * \brief Mets à jour le voisin de ce Bullet

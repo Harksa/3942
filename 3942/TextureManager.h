@@ -134,6 +134,9 @@ private:
 	 */
 	std::map<std::string, SDL_Texture*> _textureMap;
 
+	/**
+	 * \brief Map gérant les informations des textures
+	 */
 	std::map<std::string, texture_informations *> _textureInformations;
 
 	TextureManager() = default;

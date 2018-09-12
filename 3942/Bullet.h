@@ -31,6 +31,12 @@ public:
 	void onCollision() override;
 
 	/**
+	 * \brief Charge le Bullet en fonction du LoadParameter
+	 * \param parameters Les paramètres du Bullet
+	 */
+	void load(const LoadParameters* parameters) override;
+
+	/**
 	 * \brief Détermine si le Bullet courrant est utilisable ou non
 	 * \return Vrai si le Bullet est disponible, faux sinon
 	 */
@@ -41,12 +47,6 @@ public:
 	 * \param value La nouvelle disponibilité du Bullet
 	 */
 	void setAvailability(const bool value) {is_available = value;}
-
-	/**
-	 * \brief Charge le Bullet en fonction du LoadParameter
-	 * \param parameters Les paramètres du Bullet
-	 */
-	void load(const LoadParameters* parameters) override;
 
 private:
 	/**
