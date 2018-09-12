@@ -49,6 +49,20 @@ public:
 	 */
 	void clear();
 
+	PlayerBullet * getPlayerBullets() { return player_bullets;}
+
+	EnemyBullet * getEnemyBullets() { return enemy_bullets;}
+
+	/**
+	 * \brief La taille de la piscine de PlayerBullet
+	 */
+	static const int player_bullet_pool_size = 100;
+
+	/**
+	 * \brief La taille de la piscine d'EnemyBullet
+	 */
+	static const int enemy_bullet_pool_size = 250;
+
 private:
 	BulletManager();
 	~BulletManager();
@@ -67,16 +81,6 @@ private:
 	 * \brief L'instance du BulletManager
 	 */
 	static BulletManager * instance;
-
-	/**
-	 * \brief La taille de la piscine de PlayerBullet
-	 */
-	static const int player_bullet_pool_size = 100;
-
-	/**
-	 * \brief La taille de la piscine d'EnemyBullet
-	 */
-	static const int enemy_bullet_pool_size = 250;
 
 	/**
 	 * \brief Le tableau de PlayerBullet

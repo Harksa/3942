@@ -1,14 +1,21 @@
 #pragma once
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "GameObjectFactory.h"
 
-class Enemy : public SDLGameObject {
+class Enemy : public GameObject {
 public:
 	Enemy();
 	void draw() override;
 	void update() override;
 	void clean() override;
 	void load(const LoadParameters* parameters) override;
+	void onCollision() override;
+
+private:
+	/**
+	 * \brief La vie de l'enemie.
+	 */
+	int health;
 };
 
 class EnemyCreator : public BaseCreator {

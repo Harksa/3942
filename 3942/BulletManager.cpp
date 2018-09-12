@@ -22,22 +22,22 @@ BulletManager::BulletManager() {
 
 BulletManager::~BulletManager() = default;
 
-void BulletManager::createPlayerBullet(Vector2D position, Vector2D velocity) {
+void BulletManager::createPlayerBullet(const Vector2D position, const Vector2D velocity) {
 	assert(firstPlayerBulletAvailable != nullptr);
 
 	PlayerBullet * bullet = firstPlayerBulletAvailable;
-	firstPlayerBulletAvailable = dynamic_cast<PlayerBullet*> (bullet->getNext());
+	firstPlayerBulletAvailable = bullet->getNext();
 
 	bullet->load(new LoadParameters(position.x, position.y, "PlayerBullet"));
 	bullet->setVelocity(velocity);
 	bullet->setAvailability(true);
 }
 
-void BulletManager::createEnemyBullet(Vector2D position, Vector2D velocity) {
+void BulletManager::createEnemyBullet(const Vector2D position, const Vector2D velocity) {
 	assert(firstEnemyBulletAvailable != nullptr);
 
 	EnemyBullet * bullet = firstEnemyBulletAvailable;
-	firstEnemyBulletAvailable = dynamic_cast<EnemyBullet*> (bullet->getNext());
+	firstEnemyBulletAvailable = bullet->getNext();
 
 	bullet->load(new LoadParameters(position.x, position.y, "EnemyBullet"));
 	bullet->setVelocity(velocity);

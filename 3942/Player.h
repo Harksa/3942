@@ -1,11 +1,11 @@
 #pragma once
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "GameObjectFactory.h"
 
 /**
  * \brief La classe qui désigne l'avatar du joueur
  */
-class Player : public SDLGameObject {
+class Player : public GameObject {
 public:
 	Player();
 
@@ -29,6 +29,11 @@ public:
 	 * \brief Nettoie le Player
 	 */
 	void clean() override;
+
+	/**
+	 * \brief Actions effectués lorsque le joueur rentre en collision avec un autre objet
+	 */
+	void onCollision() override;
 
 private:
 	/**
@@ -56,12 +61,16 @@ private:
 	 */
 	int timerFire = 0;
 
-
 	/**
 	 * \brief La largeur par 2 du sprite du Bullet tiré par le Player.
 	 * Utilisé pour le créer correctement au milieu.
 	 */
 	int bullet_sprite_width_by2;
+
+	/**
+	 * \brief Les vies du joueur
+	 */
+	int lives = 3;
 };
 
 /**

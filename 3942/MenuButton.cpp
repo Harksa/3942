@@ -4,13 +4,13 @@
 MenuButton::MenuButton() : _callback(nullptr), released(true), _callbackID(0) { }
 
 void MenuButton::load(const LoadParameters *parameters) {
-	SDLGameObject::load(parameters);
+	GameObject::load(parameters);
 	_callbackID = parameters->getCallbackID();
 	sprite->setCurrentFrame(MOUSE_OUT);
 }
 
 void MenuButton::draw() {
-	SDLGameObject::draw();
+	GameObject::draw();
 }
 
 void MenuButton::update() {
@@ -34,5 +34,5 @@ void MenuButton::update() {
 }
 
 void MenuButton::clean() {
-	SDLGameObject::clean();
+	GameObject::clean();
 }

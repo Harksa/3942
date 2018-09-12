@@ -16,5 +16,7 @@ void EnemyBullet::load(const LoadParameters* parameters) {
 	Bullet::load(parameters);
 }
 
-
+void EnemyBullet::onCollision() {
+	Bullet::onCollision();
+}
 

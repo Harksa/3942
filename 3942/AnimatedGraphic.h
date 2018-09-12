@@ -1,12 +1,12 @@
 #pragma once
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "GameObjectFactory.h"
 
 /**
  * \brief Représente un objet possédant une animation mais n'interaggissant pas avec le joueur.
  */
 class AnimatedGraphic :
-	public SDLGameObject {
+	public GameObject {
 public:
 	AnimatedGraphic() {}
 
@@ -25,6 +25,10 @@ public:
 	 * \param parameters Les paramètres de l'AnimatedGraphic
 	 */
 	void load(const LoadParameters* parameters) override;
+
+	void onCollision() override {}
+
+	void clean() override {};
 
 private:
 	/**

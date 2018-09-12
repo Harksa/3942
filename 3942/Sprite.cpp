@@ -1,4 +1,5 @@
 #include "Sprite.h"
+#include "Game.h"
 
 void Sprite::draw(Vector2D position, Vector2D velocity) const {
 	if(velocity.x > 0)

@@ -1,9 +1,7 @@
 #pragma once
 #include <string>
-#include <utility>
 #include "TextureManager.h"
 #include "Vector2D.h"
-#include "Game.h"
 
 /**
  * \brief Gère le sprite des SDLGameObjects

@@ -106,7 +106,6 @@ private:
 	 */
 	GameStateMachine * _gameStateMachine;
 
-
 	/**
 	 * \brief l'instance de la classe Game.
 	 */

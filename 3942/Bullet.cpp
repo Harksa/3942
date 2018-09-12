@@ -1,21 +1,24 @@
 #include "Bullet.h"
 
 void Bullet::load(const LoadParameters* parameters) {
-	 SDLGameObject::load(parameters);
+	 GameObject::load(parameters);
 }
 
 void Bullet::draw() {
-	SDLGameObject::draw();
+	GameObject::draw();
 }
-
 
 void Bullet::update() {
 	if(isOutsideScreenBondaries())
 	   is_available = false;
 	else 
-		SDLGameObject::update();
+		GameObject::update();
 }
 
 void Bullet::clean() {
-	SDLGameObject::clean();
+	GameObject::clean();
+}
+
+void Bullet::onCollision() {
+	is_available = false;
 }

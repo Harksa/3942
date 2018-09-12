@@ -1,30 +1,40 @@
 #include "Player.h"
 #include "InputHandler.h"
 #include "BulletManager.h"
+#include "SoundManager.h"
 
-Player::Player() : SDLGameObject() {
+Player::Player() : GameObject() {
 	bullet_sprite_width_by2 = static_cast<int> (TextureManager::Instance()->getTextureInformationsFromID("PlayerBullet")->width * 0.5f);
 }
 
 void Player::load(const LoadParameters* parameters) {
-	SDLGameObject::load(parameters);
+	GameObject::load(parameters);
 }
 
 
 void Player::draw() {
-	SDLGameObject::draw();
+	GameObject::draw();
 }
 
 void Player::update() {
 	velocity.x = 0; velocity.y = 0;
 	handleInput();
 
-	SDLGameObject::update();
+	GameObject::update();
 
 	timerFire--;
 }
 
-void Player::clean() {}
+void Player::clean() {
+	GameObject::clean();
+}
+
+void Player::onCollision() {
+	lives--;
+
+	if(lives >= 0)
+		is_dead = true;
+}
 
 void Player::handleInput() {
 

@@ -16,5 +16,7 @@ void PlayerBullet::load(const LoadParameters* parameters) {
 	Bullet::load(parameters);
 }
 
-
+void PlayerBullet::onCollision() {
+	Bullet::onCollision();
+}
 

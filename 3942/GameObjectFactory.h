@@ -10,7 +10,7 @@
 class BaseCreator {
 public:
 	virtual GameObject * createGameObject() const = 0;
-	virtual ~BaseCreator() {};
+	virtual ~BaseCreator() = default;
 };
 
 /**

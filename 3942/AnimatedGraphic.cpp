@@ -5,10 +5,10 @@ void AnimatedGraphic::update() {
 }
 
 void AnimatedGraphic::draw() {
-	SDLGameObject::draw();
+	GameObject::draw();
 }
 
 void AnimatedGraphic::load(const LoadParameters * parameters) {
-	SDLGameObject::load(parameters);
+	GameObject::load(parameters);
 }
 

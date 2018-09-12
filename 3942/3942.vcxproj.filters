@@ -63,9 +63,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="SDLGameObject.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="MenuButton.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -135,30 +132,30 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Fichiers sources\Bullets</Filter>
     </ClCompile>
-    <ClCompile Include="BulletManager.cpp">
-      <Filter>Fichiers sources\Bullets</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBullet.cpp">
       <Filter>Fichiers sources\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="EnemyBullet.cpp">
       <Filter>Fichiers sources\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Fichiers sources\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletManager.cpp">
+      <Filter>Fichiers sources\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="LoadParameters.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLGameObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
@@ -239,14 +236,23 @@
     <ClInclude Include="Bullet.h">
       <Filter>Fichiers d%27en-tête\Bullets</Filter>
     </ClInclude>
-    <ClInclude Include="BulletManager.h">
-      <Filter>Fichiers d%27en-tête\Bullets</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerBullet.h">
       <Filter>Fichiers d%27en-tête\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBullet.h">
       <Filter>Fichiers d%27en-tête\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletManager.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

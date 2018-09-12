@@ -1,11 +1,11 @@
 #pragma once
 #include "Sprite.h"
-#include "SDLGameObject.h"
+#include "GameObject.h"
 
 /**
  * \brief Classe gérant les balles tirées
  */
-class Bullet : public SDLGameObject {
+class Bullet : public GameObject {
 public:
 	Bullet() = default;
 	~Bullet() = default;
@@ -26,6 +26,11 @@ public:
 	void clean() override;
 
 	/**
+	 * \brief Actions effecttuées lorsque le Bullet rentre en collision avec un autre objet.
+	 */
+	void onCollision() override;
+
+	/**
 	 * \brief Détermine si le Bullet courrant est utilisable ou non
 	 * \return Vrai si le Bullet est disponible, faux sinon
 	 */
@@ -43,24 +48,7 @@ public:
 	 */
 	void load(const LoadParameters* parameters) override;
 
-	/**
-	 * \brief Mets à jour le voisin de ce Bullet
-	 * \param new_bullet Le nouveau voisin
-	 */
-	void setNext(Bullet * new_bullet) {next = new_bullet;}
-
-	/**
-	 * \brief Retourne le voisin de ce Bullet
-	 * \return Le voisin de ce Bullet
-	 */
-	Bullet * getNext() const {return next;}
-
 private:
-	/**
-	 * \brief Le voisin de ce Bullet
-	 */
-	Bullet * next{};
-
 	/**
 	 * \brief Le booléen déterminant si ce Bullet est disponible ou non.
 	 */

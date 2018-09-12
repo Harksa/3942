@@ -1,21 +1,19 @@
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "Game.h"
 
-SDLGameObject::SDLGameObject() : GameObject() {}
-
-void SDLGameObject::draw() {
+void GameObject::draw() {
 	sprite->draw(position, velocity);
 }
 
-void SDLGameObject::update() {
+void GameObject::update() {
 	sprite->update();
 	velocity += acceleration;
 	position += velocity;
 }
 
-void SDLGameObject::clean() {}
+void GameObject::clean() {}
 
-bool SDLGameObject::isOutsideScreenBondaries() const {
+bool GameObject::isOutsideScreenBondaries() const {
 	return
 		(position.x + sprite->getWidth()) < 0 || 
 		(position.y + sprite->getHeight()) < 0 ||

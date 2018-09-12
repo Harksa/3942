@@ -1,11 +1,11 @@
 #pragma once
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "GameObjectFactory.h"
 
 /**
  * \brief Boutton de menu. Le joueur peut cliquer dessus et une action sera effectué en fonction du callback associé.
  */
-class MenuButton : public SDLGameObject {
+class MenuButton : public GameObject {
 public:
 	 MenuButton();
 
@@ -41,6 +41,8 @@ public:
 	 * \return L'ID du callback associé
 	 */
 	int getCallbackID() const {return _callbackID;}
+
+	void onCollision() override {};
 
 private:
 	/**

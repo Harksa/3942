@@ -8,32 +8,50 @@
 #include "GameOverState.h"
 #include "StateParser.h"
 #include "LevelParser.h"
+#include "CollisionManager.h"
 
 const std::string PlayState::playID = "PLAY";
 
 void PlayState::update() {
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {
-		Game::Instance()->getStateMachine()->pushState(new PauseState());
-		return;
+	if(is_loaded) {
+		if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {
+			Game::Instance()->getStateMachine()->pushState(new PauseState());
+			return;
+		}
+
+		CollisionManager::checkCollisionPlayerBullets(_gameObjects);
+
+		for (auto game_object : _gameObjects) {
+			if(!game_object->isDead())
+				game_object->update();
+		}
+
+		waveUpdate();
+
+		BulletManager::Instance()->update();
+
+		std::vector<int> toBeDeleted;
+		for(unsigned int i = 0 ; i < _gameObjects.size() ; i++) {
+			if(_gameObjects[i]->isDead())
+				toBeDeleted.push_back(i);
+		}
+
+		for (auto to_be_deleted : toBeDeleted) {
+			_gameObjects.erase(_gameObjects.begin() + to_be_deleted);
+		}
 	}
-
-	for (auto game_object : _gameObjects) {
-		game_object->update();
-	}
-
-	waveUpdate();
-
-	BulletManager::Instance()->update();
 }
 
 void PlayState::render() {
-	background->draw();
-	BulletManager::Instance()->render();
-	
-	for (auto game_object : _gameObjects) {
-		game_object->draw();
+	if(is_loaded) {
+		background->draw();
+		BulletManager::Instance()->render();
+		
+		for (auto game_object : _gameObjects) {
+			if(!game_object->isDead())
+				game_object->draw();
+		}
 	}
-
 }
 
 bool PlayState::onEnter() {
@@ -45,6 +63,8 @@ bool PlayState::onEnter() {
 
 	background = new Background();
 	background->load("Textures/starBackground.png", "stars", 0.5f);
+
+	is_loaded = true;
 
 	return true;
 }

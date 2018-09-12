@@ -2,7 +2,7 @@
 #include "GameState.h"
 #include <vector>
 #include "GameObject.h"
-#include "SDLGameObject.h"
+#include "GameObject.h"
 #include "Level.h"
 #include "WaveGenerator.h"
 #include "BulletManager.h"
