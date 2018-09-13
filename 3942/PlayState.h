@@ -6,6 +6,7 @@
 #include "Level.h"
 #include "WaveGenerator.h"
 #include "BulletManager.h"
+#include "Player.h"
 
 /**
  * \brief Etat de jeu.
@@ -39,6 +40,9 @@ public:
 	 */
 	std::string getStateID() const override {return playID;}
 
+	/**
+	 * \brief Mets à jour les informations des vagues et fait apparaitre les ennemis
+	 */
 	void waveUpdate();
 
 private:
@@ -62,6 +66,11 @@ private:
 	 * \brief Le compteur d'ennemis créés
 	 */
 	unsigned int encouter = 0;
+
+	/**
+	 * \brief Le joueur
+	 */
+	Player * player = nullptr;
 
 };
 

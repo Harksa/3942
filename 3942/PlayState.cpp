@@ -4,10 +4,8 @@
 #include "Player.h"
 #include "InputHandler.h"
 #include "PauseState.h"
-#include "Enemy.h"
 #include "GameOverState.h"
 #include "StateParser.h"
-#include "LevelParser.h"
 #include "CollisionManager.h"
 
 const std::string PlayState::playID = "PLAY";
@@ -21,6 +19,8 @@ void PlayState::update() {
 
 		waveUpdate();
 
+		player->update();
+
 		for (auto game_object : _gameObjects) {
 			if(!game_object->isDead())
 				game_object->update();
@@ -28,7 +28,8 @@ void PlayState::update() {
 
 		BulletManager::Instance()->update();
 
-		CollisionManager::checkCollisionPlayerBullets(_gameObjects);
+		CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
+		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
 
 		std::vector<int> toBeDeleted;
 		for(unsigned int i = 0 ; i < _gameObjects.size() ; i++) {
@@ -48,7 +49,10 @@ void PlayState::update() {
 void PlayState::render() {
 	if(is_loaded) {
 		background->draw();
+
 		BulletManager::Instance()->render();
+
+		player->draw();
 		
 		for (auto game_object : _gameObjects) {
 			if(!game_object->isDead())
@@ -67,6 +71,11 @@ bool PlayState::onEnter() {
 	background = new Background();
 	background->load("Textures/starBackground.png", "stars", 0.5f);
 
+	player = new Player();
+	player->load(new LoadParameters(Game::Instance()->getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob")->width * 0.5f, 
+									static_cast<int> (Game::Instance()->getGameHeight()) * 0.8f,
+									"bob"));
+
 	is_loaded = true;
 
 	return true;
@@ -74,6 +83,8 @@ bool PlayState::onEnter() {
 
 bool PlayState::onExit() {
 	background->clean();
+
+	player->clean();
 
 	for (auto game_object : _gameObjects) {
 		game_object->clean();

@@ -5,7 +5,7 @@
 #include "Collision.h"
 #include "Enemy.h"
 
-void CollisionManager::checkCollisionPlayerBullets(std::vector<GameObject *> &objects) {
+void CollisionManager::checkCollisionEnemyWithPlayerBullets(std::vector<GameObject *> &objects) {
 	PlayerBullet * player_bullets = BulletManager::Instance()->getPlayerBullets();
 
 	for (GameObject * object : objects) {
@@ -18,6 +18,19 @@ void CollisionManager::checkCollisionPlayerBullets(std::vector<GameObject *> &ob
 						player_bullets[i].onCollision();
 					}
 				}
+			}
+		}
+	}
+}
+
+void CollisionManager::checkCollisionPlayerWithEnemyBullets(Player* player) {
+	EnemyBullet * enemy_bullet = BulletManager::Instance()->getEnemyBullets();
+
+	for(unsigned i = 0 ; i < BulletManager::enemy_bullet_pool_size ; i++) {
+		if(enemy_bullet[i].isAvailable()) {
+			if(IntersectRect(player->getRect(), enemy_bullet[i].getRect())) {
+				enemy_bullet[i].onCollision();
+				player->onCollision();
 			}
 		}
 	}

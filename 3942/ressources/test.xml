@@ -19,7 +19,6 @@
 			<texture filename="Textures/Enemy_Bullet.png" ID="EnemyBullet" width="5" height="22"/>
 		</TEXTURES>
 		<OBJECTS>
-			<object type="Player" x="500" y="100" textureID="bob"/>
 		</OBJECTS>
 	</PLAY>
 	
