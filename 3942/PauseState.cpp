@@ -8,7 +8,7 @@
 const std::string PauseState::pauseID = "PAUSE";
 
 void PauseState::update() {
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {
+	if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
 		Game::Instance()->getStateMachine()->popState();
 		return;
 	}
@@ -53,7 +53,7 @@ bool PauseState::onExit() {
 	}
 
 	_gameObjects.clear();
-	InputHandler::Instance()->reset();
+	InputHandler::reset();
 
 	return true;
 }

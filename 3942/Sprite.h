@@ -83,7 +83,7 @@ public:
 	int getCurrentFrame() const {return _currentFrame;}
 
 	/**
-	 * \brief Définie l'ID de la texture du frame.
+	 * \brief Définie l'ID de la nouvelle texture du sprite
 	 * \param textureID L'ID de la nouvelle texture
 	 */
 	void setTextureID(const std::string& textureID) {

@@ -4,7 +4,7 @@
 std::map<std::string, Mix_Chunk*> SoundManager::_sfxs;
 std::map<std::string, Mix_Music*> SoundManager::_musics;
 
-bool SoundManager::audioOpened = false;
+bool SoundManager::audioOpened{false};
 
 void SoundManager::openAudio() {
 	if(!audioOpened) {

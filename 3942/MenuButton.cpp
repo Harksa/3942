@@ -1,7 +1,7 @@
 #include "MenuButton.h"
 #include "InputHandler.h"
 
-MenuButton::MenuButton() : _callback(nullptr), released(true), _callbackID(0) { }
+MenuButton::MenuButton() : _callback{nullptr}, released{true}, _callbackID{0} { }
 
 void MenuButton::load(const LoadParameters *parameters) {
 	GameObject::load(parameters);
@@ -14,17 +14,17 @@ void MenuButton::draw() {
 }
 
 void MenuButton::update() {
-	Vector2D * mousePosition = InputHandler::Instance()->getMousePosition();
+	Vector2D * mousePosition = InputHandler::getMousePosition();
 
 	if(mousePosition->x < (position.x + sprite->getWidth()) && mousePosition->x > position.x &&
 	   mousePosition->y < (position.y + sprite->getHeight()) && mousePosition->y > position.y) {
 		sprite->setCurrentFrame(MOUSE_OVER);
 
-		if(InputHandler::Instance()->getMouseButtonState(LEFT) && released) {
+		if(InputHandler::getMouseButtonState(LEFT) && released) {
 			sprite->setCurrentFrame(CLICKED);
 			_callback();
 			released = false;
-		} else if(!InputHandler::Instance()->getMouseButtonState(LEFT)) {
+		} else if(!InputHandler::getMouseButtonState(LEFT)) {
 			released = true;
 			sprite->setCurrentFrame(MOUSE_OVER);
 		}

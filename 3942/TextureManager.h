@@ -27,7 +27,7 @@ struct texture_informations {
 	 */
 	int animSpeed;
 
-	texture_informations(const int w, const int h, const int numF, const int speed = 0) :  width(w), height(h), numFrames(numF), animSpeed(speed) {}
+	texture_informations(const int w, const int h, const int numF, const int speed = 0) :  width{w}, height{h}, numFrames{numF}, animSpeed{speed} {}
 };
 
 /**
@@ -48,7 +48,7 @@ public:
 		return instance;
 	}
 
-	~TextureManager();
+	~TextureManager() = default;
 
 	/**
 	 * \brief Charge un fichier image
@@ -121,6 +121,11 @@ public:
 	             int height, int currentRow, int currentFrame, SDL_Renderer* renderer);
 
 
+	/**
+	 * \brief Donne les informations d'une texture à partir de son ID.
+	 * \param id L'ID de la texture dont ont souhaite obtenir les informations
+	 * \return Les informations de la texture
+	 */
 	texture_informations * getTextureInformationsFromID(const std::string& id) {return _textureInformations[id];}
 
 private:

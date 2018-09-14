@@ -25,140 +25,112 @@ enum stickPosition {
  */
 class InputHandler {
 public:
-	/**
-	 * \brief Retourne l'instance d'InputHandler
-	 * \return L'instance d'InputHandler
-	 */
-	static InputHandler * Instance() {
-		if(instance == nullptr) {
-			instance = new InputHandler();
-		}
-		return instance;
-	}
 
 	/**
 	 * \brief Initialise le joystick de SDL
 	 */
-	void initialiseJoysticks();
+	static void initialiseJoysticks();
 
 	/**
 	 * \brief Permet de savoir si le joystick a bien été initialisé ou non.
 	 * \return vrai si le joystick a été initialisé, faux sinon.
 	 */
-	bool joystickInitialised() const { return _joystickInitialised; }
+	static bool joystickInitialised() { return _joystickInitialised; }
 
 	/**
 	 * \brief Permet d'obtenir l'état des boutons de la souris
 	 * \param buttonNumber L'index du bouton
 	 * \return vrai si le bouton est appuyé, faux sinon.
 	 */
-	bool getMouseButtonState(int buttonNumber) { return _mouseButtonStates[buttonNumber]; }
+	static bool getMouseButtonState(int buttonNumber) { return _mouseButtonStates[buttonNumber]; }
 
 	/**
 	 * \brief Permet d'obtenir l'état d'un bouton du clavier
 	 * \param key le bouton du clavier dont on souhaite connaître l'état
 	 * \return vrai si le bouton est appuyé, faux sinon
 	 */
-	bool isKeyDown(SDL_Scancode key) const;
+	static bool isKeyDown(SDL_Scancode key);
 
 	/**
 	 * \brief Permet d'obtenir la position de la souris sur la fenêtre de jeu.
 	 * \return La position de la souris
 	 */
-	Vector2D * getMousePosition() const { return mousePosition; }
+	static Vector2D * getMousePosition() { return mousePosition; }
 
 	/**
 	 * \brief Mets à jour les informations des events
 	 */
-	void update();
+	static void update();
 
 	/**
 	 * \brief Nettoie les events.
 	 */
-	void clean();
+	static void clean();
 
 	/**
 	 * \brief Réinitialise les events.
 	 */
-	void reset();
+	static void reset();
 
 	/**
 	 * \brief Retourne le SDL_Joystick en fonction de son ID.
 	 * \param id L'ID du joystick désiré
 	 * \return Le joystick lié à l'ID
 	 */
-	SDL_Joystick * getJoystickByID(int id) {return _joysticks[id];}
-
-	/**
-	 * \brief Retourne la zone morte du joystick
-	 * \return La zone morte du joystick
-	 */
-	float getJoystickDeadZone() const { return _joystickDeadZone;}
-
-	/**
-	 * \brief Retourne le diviser pour les axes du Joystick (afin d'avoir des valeurs comprises entre -1 et 1)
-	 * \return Le diviser
-	 */
-	float getDiviser() {return diviser;}
-
-private:
-	InputHandler();
-	~InputHandler() = default;
+	static SDL_Joystick * getJoystickByID(int id) {return _joysticks[id];}
 
 	/**
 	 * \brief diviseur pour les axis du joysticks
 	 */
-	const float diviser = 32767.0f;
+	static constexpr float diviser = 32767.0f;
+
+	/**
+	 * \brief La zone morte du joystick
+	 */
+	static constexpr float _joystickDeadZone = 10000;
+
+
+private:
 
 	/**
 	 * \brief Gère les connexions des joysticks
 	 */
-	void handleJoysticksConnection();
+	static void handleJoysticksConnection();
 
 	/**
 	 * \brief Gère les évenements liés à la souris
 	 * \param event L'évenement SDL
 	 */
-	void handleMouse(SDL_Event & event);
+	static void handleMouse(SDL_Event & event);
 
 	/**
 	 * \brief La position de la souris sur la fenêtre de jeu
 	 */
-	Vector2D* mousePosition;
+	static Vector2D* mousePosition;
 
 	/**
 	 * \brief Tableau d'informations des touches du claviers
 	 */
-	const Uint8 * keyStates;
+	static const Uint8 * keyStates;
 
 	/**
 	 * \brief Les joysticks initialisés
 	 */
-	std::vector<SDL_Joystick*> _joysticks;
+	static std::vector<SDL_Joystick*> _joysticks;
 
 	/**
 	 * \brief booléen déterminant si au moins un joystick a été initialisé ou non.
 	 */
-	bool _joystickInitialised;
+	static bool _joystickInitialised;
 
 	/**
 	 * \brief Le nombre de joysticks actuellement branché.
 	 */
-	int currentNumberOfJoysticks;
-
-	/**
-	 * \brief La zone morte du joystick
-	 */
-	const float _joystickDeadZone = 10000;
+	static int currentNumberOfJoysticks;
 
 	/**
 	 * \brief Vecteur déterminant les états des boutons de la souris
 	 */
-	std::vector<bool> _mouseButtonStates;
-
-	/**
-	 * \brief L'instance de l'InputHandler
-	 */
-	static InputHandler * instance;
+	static std::vector<bool> _mouseButtonStates;
 
 };

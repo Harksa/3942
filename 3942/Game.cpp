@@ -39,7 +39,7 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 	_gameStateMachine = new GameStateMachine();
 	_gameStateMachine->changeState(new MainMenuState());
 
-	InputHandler::Instance()->initialiseJoysticks();
+	InputHandler::initialiseJoysticks();
 
 	_running = true;
 
@@ -60,15 +60,15 @@ void Game::update() const {
 }
 
 void Game::handleEvents() const {
-	InputHandler::Instance()->update();
+	InputHandler::update();
 
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN)) {
+	if(InputHandler::isKeyDown(SDL_SCANCODE_RETURN)) {
 		_gameStateMachine->changeState(new PlayState());
 	}
 }
 
 void Game::clean() const {
-	InputHandler::Instance()->clean();
+	InputHandler::clean();
 	SoundManager::clean();
 
 	SDL_DestroyRenderer(sdl_renderer);

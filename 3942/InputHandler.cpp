@@ -2,16 +2,12 @@
 #include <iostream>
 #include "Game.h"
 
-InputHandler * InputHandler::instance = nullptr;
-
-InputHandler::InputHandler() {
-	for (int i = 0 ; i < 3 ; i++) {
-		_mouseButtonStates.push_back(false);
-	}
-
-	mousePosition = new Vector2D();
-}
-
+bool InputHandler::_joystickInitialised{false};
+std::vector<bool> InputHandler::_mouseButtonStates{false, false, false}; //Bouton gauche/milieu/droit
+Vector2D * InputHandler::mousePosition = new Vector2D();
+std::vector<SDL_Joystick*> InputHandler::_joysticks{};
+int InputHandler::currentNumberOfJoysticks{0};
+unsigned char const * InputHandler::keyStates = new unsigned char();
 
 void InputHandler::initialiseJoysticks() {
 	if(SDL_WasInit(SDL_INIT_JOYSTICK) == 0) {
@@ -103,7 +99,7 @@ void InputHandler::handleMouse(SDL_Event& event) {
 	}
 }
 
-bool InputHandler::isKeyDown(SDL_Scancode key) const {
+bool InputHandler::isKeyDown(SDL_Scancode key) {
 	if(keyStates != nullptr) {
 		return keyStates[key] == 1;
 	}

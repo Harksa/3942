@@ -2,6 +2,7 @@
 #include "InputHandler.h"
 #include "BulletManager.h"
 #include "SoundManager.h"
+#include "Game.h"
 
 Player::Player() : GameObject() {
 	bullet_sprite_width_by2 = static_cast<int> (TextureManager::Instance()->getTextureInformationsFromID("PlayerBullet")->width * 0.5f);
@@ -10,7 +11,6 @@ Player::Player() : GameObject() {
 void Player::load(const LoadParameters* parameters) {
 	GameObject::load(parameters);
 }
-
 
 void Player::draw() {
 	GameObject::draw();
@@ -39,60 +39,70 @@ void Player::onCollision() {
 void Player::handleInput() {
 
 	//Gestion clavier
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
+	if(InputHandler::isKeyDown(SDL_SCANCODE_LEFT) && position.x > 0)
 		velocity.x = -speed;
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+	if(InputHandler::isKeyDown(SDL_SCANCODE_RIGHT) && position.x < (Game::Instance()->getGameWidth() - sprite->getWidth()))
 		velocity.x = speed;
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
+	if(InputHandler::isKeyDown(SDL_SCANCODE_UP)  && position.y > 0)
 		velocity.y = -speed;
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
+	if(InputHandler::isKeyDown(SDL_SCANCODE_DOWN) && position.y < (Game::Instance()->getGameHeight() - sprite->getHeight()))
 		velocity.y = speed;
 
-	if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+	if(InputHandler::isKeyDown(SDL_SCANCODE_SPACE))
 		handleBulletSpawner();
 		
-	if(InputHandler::Instance()->joystickInitialised()) {
+	if(InputHandler::joystickInitialised()) {
 		//Sticks analogiques
-		const Sint16 leftX = SDL_JoystickGetAxis(InputHandler::Instance()->getJoystickByID(0), SDL_CONTROLLER_AXIS_LEFTX);
-		const Sint16 leftY = SDL_JoystickGetAxis(InputHandler::Instance()->getJoystickByID(0), SDL_CONTROLLER_AXIS_LEFTY);
+		const Sint16 leftX = SDL_JoystickGetAxis(InputHandler::getJoystickByID(0), SDL_CONTROLLER_AXIS_LEFTX);
+		const Sint16 leftY = SDL_JoystickGetAxis(InputHandler::getJoystickByID(0), SDL_CONTROLLER_AXIS_LEFTY);
 
-		if(leftX > InputHandler::Instance()->getJoystickDeadZone() || leftX < -InputHandler::Instance()->getJoystickDeadZone())
-			velocity.x = speed * leftX / InputHandler::Instance()->getDiviser();
-		if(leftY > InputHandler::Instance()->getJoystickDeadZone() || leftY < -InputHandler::Instance()->getJoystickDeadZone())
-			velocity.y = speed * leftY / InputHandler::Instance()->getDiviser();
+		if((leftX > InputHandler::_joystickDeadZone && position.x < (Game::Instance()->getGameWidth() - sprite->getWidth())) || 
+			(leftX < -InputHandler::_joystickDeadZone) && position.x > 0)
+			velocity.x = speed * leftX / InputHandler::diviser;
+		if((leftY > InputHandler::_joystickDeadZone && position.y < (Game::Instance()->getGameHeight() - sprite->getHeight())) || 
+			(leftY < -InputHandler::_joystickDeadZone && position.y > 0)) 
+			velocity.y = speed * leftY / InputHandler::diviser;
 
 		//DPAD
-		if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_LEFT)
+		if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_LEFT  && position.x > 0)
 			velocity.x = -speed;
-		else if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_RIGHT)
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_RIGHT && position.x < (Game::Instance()->getGameWidth() - sprite->getWidth()))
 			velocity.x = speed;
-		else if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_UP)
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_UP && position.y > 0)
 			velocity.y = -speed;
-		else if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_DOWN)
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_DOWN  && position.y < (Game::Instance()->getGameHeight() - sprite->getHeight()))
 			velocity.y = speed;
 
-		else if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_LEFTUP) {
-			velocity.x = -speed;
-			velocity.y = -speed;
-		} 
-		else if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_LEFTDOWN) {
-			velocity.x = -speed;
-			velocity.y = speed;
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_LEFTUP) {
+			if(position.x > 0)
+				velocity.x = -speed;
+			if(position.y > 0)
+				velocity.y = - speed;
+		} else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_LEFTDOWN) {
+			if(position.x > 0)
+				velocity.x = -speed;
+			if(position.y < (Game::Instance()->getGameHeight() - sprite->getHeight()))
+				velocity.y = speed;
 		}
-		else if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_RIGHTUP) {
-			velocity.x = speed;
-			velocity.y = -speed;
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_RIGHTUP) {
+			if(position.x < (Game::Instance()->getGameWidth() - sprite->getWidth()))
+				velocity.x = speed;
+			if(position.y > 0)
+				velocity.y = -speed;
 		}
-		else if(SDL_JoystickGetHat(InputHandler::Instance()->getJoystickByID(0), 0) == SDL_HAT_RIGHTDOWN) {
-			velocity.x = speed;
-			velocity.y = speed;
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_RIGHTDOWN) {
+			if(position.x < (Game::Instance()->getGameWidth() - sprite->getWidth()))
+				velocity.x = speed;
+			if(position.y < (Game::Instance()->getGameHeight() - sprite->getHeight()))
+				velocity.y = speed;
 		}
 
 		//Boutons
-		if(SDL_JoystickGetButton(InputHandler::Instance()->getJoystickByID(0), SDL_CONTROLLER_BUTTON_A)) {
+		if(SDL_JoystickGetButton(InputHandler::getJoystickByID(0), SDL_CONTROLLER_BUTTON_A)) {
 			handleBulletSpawner();
 		}
 	}
+
 
 }
 

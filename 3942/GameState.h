@@ -13,7 +13,7 @@
 class GameState {
 public:
 
-	virtual ~GameState();
+	virtual ~GameState() = default;
 
 	/**
 	 * \brief Mets à jour l'état.

@@ -3,8 +3,6 @@
 
 TextureManager * TextureManager::instance = nullptr;
 
-TextureManager::~TextureManager() {}
-
 bool TextureManager::load(const std::string& fileName, const std::string& id, SDL_Renderer * renderer) {
 	SDL_Surface * surface = IMG_Load(fileName.c_str());
 

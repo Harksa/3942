@@ -12,10 +12,14 @@ const std::string PlayState::playID = "PLAY";
 
 void PlayState::update() {
 	if(is_loaded) {
-		if(InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {
+		if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
 			Game::Instance()->getStateMachine()->pushState(new PauseState());
 			return;
 		}
+
+		CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
+		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
+		CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
 
 		waveUpdate();
 
@@ -27,9 +31,6 @@ void PlayState::update() {
 		}
 
 		BulletManager::Instance()->update();
-
-		CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
-		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
 
 		std::vector<int> toBeDeleted;
 		for(unsigned int i = 0 ; i < _gameObjects.size() ; i++) {
@@ -72,7 +73,7 @@ bool PlayState::onEnter() {
 	background->load("Textures/starBackground.png", "stars", 0.5f);
 
 	player = new Player();
-	player->load(new LoadParameters(Game::Instance()->getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob")->width * 0.5f, 
+	player->load(new LoadParameters(Game::Instance()->getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob")->width * 0.5f, //Milieu de l'écran
 									static_cast<int> (Game::Instance()->getGameHeight()) * 0.8f,
 									"bob"));
 

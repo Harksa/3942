@@ -20,6 +20,13 @@ public:
 	 * \param Le player dont on va vérifier les collisions.
 	 */
 	static void checkCollisionPlayerWithEnemyBullets(Player * player);
+	
+	/**
+	 * \brief Gère la collision entre joueurs et ennemis
+	 * \param player Le joueur
+	 * \param objects La liste des objets du jeu
+	 */
+	static void checkCollisionsPlayerAgainstEnemies(Player* player, std::vector<GameObject*>& objects);
 
 };
 
