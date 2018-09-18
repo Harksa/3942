@@ -37,7 +37,7 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 	SoundManager::playMusic("lol");
 
 	_gameStateMachine = new GameStateMachine();
-	_gameStateMachine->changeState(new MainMenuState());
+	_gameStateMachine->changeState(MAIN_MENU);
 
 	InputHandler::initialiseJoysticks();
 
@@ -61,10 +61,6 @@ void Game::update() const {
 
 void Game::handleEvents() const {
 	InputHandler::update();
-
-	if(InputHandler::isKeyDown(SDL_SCANCODE_RETURN)) {
-		_gameStateMachine->changeState(new PlayState());
-	}
 }
 
 void Game::clean() const {

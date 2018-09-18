@@ -1,6 +1,7 @@
 #pragma once
-#include "GameState.h"
 #include <vector>
+#include "GameState.h"
+#include "StateChangeAsker.h"
 
 /**
  * Gére les états du jeu, tel que la transition entre différents états.
@@ -8,17 +9,18 @@
  */
 class GameStateMachine {
 public:
+	void createState(StateChoice choice);
 	/**
 	 * \brief Rajoute un état par dessus un état existant. (sans suppression)
-	 * \param state Le nouvel état où l'on souhaiter aller.
+	 * \param choice Le nouvel état où l'on souhaiter aller.
 	 */
-	void pushState(GameState * state);
+	void pushState(StateChoice choice);
 
 	/**
 	 * \brief Change l'état pour celui rentré en paramètre.
-	 * \param state Le nouvel état où l'on souhaiter aller.
+	 * \param choice Le nouvel état où l'on souhaiter aller.
 	 */
-	void changeState(GameState *state);
+	void changeState(StateChoice choice);
 
 	/**
 	 * \brief Détruit le dernier état de la liste.
@@ -40,6 +42,6 @@ private:
 	/**
 	 * \brief La liste des états du jeu.
 	 */
-	std::vector<GameState *> _gameStates;
+	std::vector<std::shared_ptr<GameState>> _gameStates;
 };
 

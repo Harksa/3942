@@ -1,19 +1,19 @@
 #include "PlayState.h"
 #include "TextureManager.h"
-#include "Game.h"
 #include "Player.h"
 #include "InputHandler.h"
-#include "PauseState.h"
-#include "GameOverState.h"
 #include "StateParser.h"
 #include "CollisionManager.h"
+#include "StateChangeAsker.h"
+#include "SoundManager.h"
+#include "Game.h"
 
 const std::string PlayState::playID = "PLAY";
 
 void PlayState::update() {
 	if(is_loaded) {
 		if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
-			Game::Instance()->getStateMachine()->pushState(new PauseState());
+			StateChangeAsker::askToPush(PAUSE);
 			return;
 		}
 

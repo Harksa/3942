@@ -31,6 +31,9 @@ public:
 	 */
 	std::string getStateID() const override;
 
+	PauseState() = default;
+	~PauseState() = default;
+
 protected:
 	/**
 	 * \brief Permet d'affecter les actions aux bouttons du menu.

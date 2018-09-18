@@ -34,6 +34,9 @@ public:
 	 */
 	std::string getStateID() const override {return gameOverID;}
 
+	GameOverState() = default;
+	~GameOverState() = default;
+
 protected:
 	/**
 	 * \brief Permet d'affecter les actions aux bouttons du menu.

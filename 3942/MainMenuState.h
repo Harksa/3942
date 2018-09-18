@@ -33,6 +33,9 @@ public:
 	 */
 	std::string getStateID() const override {return menuID;}
 
+	MainMenuState() = default;
+	~MainMenuState() = default;
+
 protected:
 	/**
 	 * \brief Permet d'affecter les actions aux bouttons du menu.

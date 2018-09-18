@@ -5,6 +5,7 @@
 #include "MainMenuState.h"
 #include "StateParser.h"
 #include "Background.h"
+#include "StateChangeAsker.h"
 
 const std::string MainMenuState::menuID = "MENU";
 
@@ -26,7 +27,7 @@ void MainMenuState::render() {
 }
 
 void MainMenuState::menuToPlay() {
-	Game::Instance()->getStateMachine()->changeState(new PlayState());
+	StateChangeAsker::askToChange(PLAY);
 }
 
 void MainMenuState::exitFromMenu() {

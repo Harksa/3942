@@ -2,7 +2,6 @@
 #include "GameState.h"
 #include <vector>
 #include "GameObject.h"
-#include "GameObject.h"
 #include "Level.h"
 #include "WaveGenerator.h"
 #include "BulletManager.h"
@@ -45,6 +44,9 @@ public:
 	 */
 	void waveUpdate();
 
+	PlayState() = default;
+	~PlayState() = default;
+	 
 private:
 
 	/**

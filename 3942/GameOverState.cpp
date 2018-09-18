@@ -4,16 +4,17 @@
 #include "PlayState.h"
 #include "MenuButton.h"
 #include "StateParser.h"
+#include "StateChangeAsker.h"
 
 class StateParser;
 const std::string GameOverState::gameOverID = "GAMEOVER";
 
 void GameOverState::_gameOverToMain() {
-	Game::Instance()->getStateMachine()->changeState(new MainMenuState());
+	StateChangeAsker::askToChange(GAME_OVER);
 }
 
 void GameOverState::_restartPlay() {
-	Game::Instance()->getStateMachine()->changeState(new PlayState());
+	StateChangeAsker::askToChange(PLAY);
 }
 
 bool GameOverState::onEnter() {

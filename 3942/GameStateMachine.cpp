@@ -1,29 +1,51 @@
 #include "GameStateMachine.h"
+#include "PlayState.h"
+#include "MainMenuState.h"
+#include "PauseState.h"
+#include "GameOverState.h"
 
-void GameStateMachine::pushState(GameState* state) {
-	_gameStates.push_back(state);
+void GameStateMachine::createState(StateChoice choice) {
+	switch(choice) {
+		case MAIN_MENU:
+			_gameStates.push_back(std::make_shared<MainMenuState>());
+			break;
+		case PLAY:
+			_gameStates.push_back(std::make_shared<PlayState>());
+			break;
+		case PAUSE:
+			_gameStates.push_back(std::make_shared<PauseState>());
+			break;
+		case GAME_OVER:
+			_gameStates.push_back(std::make_shared<GameOverState>());
+			break;
+		default:
+			_gameStates.push_back(std::make_shared<MainMenuState>());
+	}
+
+}
+
+void GameStateMachine::pushState(StateChoice choice) {
+	std::cout << "youpi lol " << choice;
+	createState(choice);
 	_gameStates.back()->onEnter();
 }
 
-void GameStateMachine::changeState(GameState* state) {
+void GameStateMachine::changeState(StateChoice choice) {
 	if (!_gameStates.empty()) {
-		if (_gameStates.back()->getStateID() == state->getStateID()) {
-			return;
-		}
 		_gameStates.back()->onExit();
+		_gameStates.back() = nullptr;
 		_gameStates.pop_back();
 	}
-		
-	state->onEnter();
-	_gameStates.push_back(state);
+
+	createState(choice);
+	_gameStates.back()->onEnter();
 }
 
 void GameStateMachine::popState() {
 	if (!_gameStates.empty()) {
-		if (_gameStates.back()->onExit()) {
-			delete _gameStates.back();
-			_gameStates.pop_back();
-		}
+		_gameStates.back()->onExit();
+		_gameStates.back() = nullptr;
+		_gameStates.pop_back();
 	}
 }
 

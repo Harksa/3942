@@ -13,8 +13,6 @@
 class GameState {
 public:
 
-	virtual ~GameState() = default;
-
 	/**
 	 * \brief Mets à jour l'état.
 	 */
@@ -40,6 +38,26 @@ public:
 	 * \return l'ID de l'état.
 	 */
 	virtual std::string getStateID() const = 0;
+
+	GameState() = default;
+	virtual ~GameState() {
+		delete background;
+
+		for (const auto& i : _textureIDList) {
+			TextureManager::Instance()->clearFromTextureMap(i);
+		}
+
+		_textureIDList.clear();
+
+		for(int i = _gameObjects.size() - 1; i >= 0 ; i--) {
+			_gameObjects[i]->clean();
+			delete _gameObjects.back();
+			_gameObjects.pop_back();
+		}
+
+		_gameObjects.clear();
+	}
+
 
 protected:
 	/**

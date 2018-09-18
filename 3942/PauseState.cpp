@@ -1,15 +1,15 @@
 #include "PauseState.h"
-#include "Game.h"
 #include "MainMenuState.h"
 #include "MenuButton.h"
 #include "InputHandler.h"
 #include "StateParser.h"
+#include "StateChangeAsker.h"
 
 const std::string PauseState::pauseID = "PAUSE";
 
 void PauseState::update() {
 	if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
-		Game::Instance()->getStateMachine()->popState();
+		StateChangeAsker::askForPopBack();
 		return;
 	}
 
@@ -63,10 +63,10 @@ std::string PauseState::getStateID() const {
 }
 
 void PauseState::pauseToMain() {
-	Game::Instance()->getStateMachine()->changeState(new MainMenuState());
+	StateChangeAsker::askToChange(MAIN_MENU);
 }
 
 void PauseState::resumePlay() {
-	Game::Instance()->getStateMachine()->popState();
+	StateChangeAsker::askForPopBack();
 }
 
