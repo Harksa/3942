@@ -8,7 +8,8 @@
 class AnimatedGraphic :
 	public GameObject {
 public:
-	AnimatedGraphic() {}
+	AnimatedGraphic() = default;
+	~AnimatedGraphic() = default;
 
 	/**
 	 * \brief Mets à jour l'animatedGraphic
@@ -28,13 +29,9 @@ public:
 
 	void onCollision() override {}
 
-	void clean() override {};
-
-private:
-	/**
-	 * \brief La vitesse d'animation
-	 */
-	int animSpeed;
+	void clean() override {
+		GameObject::clean();
+	};
 };
 
 /**

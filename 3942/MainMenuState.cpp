@@ -1,11 +1,9 @@
+#include "MainMenuState.h"
 #include "TextureManager.h"
 #include "Game.h"
-#include "MenuButton.h"
-#include "PlayState.h"
-#include "MainMenuState.h"
 #include "StateParser.h"
-#include "Background.h"
 #include "StateChangeAsker.h"
+#include "MenuButton.h"
 
 const std::string MainMenuState::menuID = "MENU";
 
@@ -60,17 +58,7 @@ void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks) {
 
 
 bool MainMenuState::onExit() {
-	background->clean();
-
-	for (auto game_object : _gameObjects) {
-		game_object->clean();
-	}
-
-	_gameObjects.clear();
-
-	for (const auto& i : _textureIDList) {
-		TextureManager::Instance()->clearFromTextureMap(i);
-	}
+	clearState();
 
 	return true;
 }

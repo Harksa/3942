@@ -24,6 +24,10 @@ public:
 		_angle = 0;
 	}
 
+	~Sprite() {
+
+	}
+
 	/**
 	 * \brief Définie la largeur du sprite, en pixel
 	 */

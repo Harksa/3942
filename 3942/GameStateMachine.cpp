@@ -25,7 +25,6 @@ void GameStateMachine::createState(StateChoice choice) {
 }
 
 void GameStateMachine::pushState(StateChoice choice) {
-	std::cout << "youpi lol " << choice;
 	createState(choice);
 	_gameStates.back()->onEnter();
 }

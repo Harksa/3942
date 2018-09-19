@@ -83,19 +83,12 @@ bool PlayState::onEnter() {
 }
 
 bool PlayState::onExit() {
-	background->clean();
+	clearState();
+
+	BulletManager::Instance()->clear();
 
 	player->clean();
-
-	for (auto game_object : _gameObjects) {
-		game_object->clean();
-	}
-
-	_gameObjects.clear();
-
-	for (const auto& i : _textureIDList) {
-		TextureManager::Instance()->clearFromTextureMap(i);
-	}
+	delete player;
 
 	return true;
 }

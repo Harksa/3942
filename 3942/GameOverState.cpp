@@ -1,7 +1,4 @@
 #include "GameOverState.h"
-#include "Game.h"
-#include "MainMenuState.h"
-#include "PlayState.h"
 #include "MenuButton.h"
 #include "StateParser.h"
 #include "StateChangeAsker.h"
@@ -29,15 +26,7 @@ bool GameOverState::onEnter() {
 }
 
 bool GameOverState::onExit() {
-	for (auto game_object : _gameObjects) {
-		game_object->clean();
-	}
-
-	_gameObjects.clear();
-
-	for (const auto& i : _textureIDList) {
-		TextureManager::Instance()->clearFromTextureMap(i);
-	}
+	clearState();
 
 	return true;
 }

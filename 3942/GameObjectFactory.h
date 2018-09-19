@@ -65,7 +65,11 @@ public:
 		return creator->createGameObject();
 	}
 
+	~GameObjectFactory() = default;
+
 private:
+	 GameObjectFactory() = default;
+
 	/**
 	 * \brief L'instance du GameObjectFactory
 	 */

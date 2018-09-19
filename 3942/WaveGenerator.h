@@ -44,7 +44,6 @@ struct EnemySpawInformations {
 class WaveGenerator {
 public:
 
-
 	/**
 	 * \brief Créer une vague en fonction du fichier rentré en paramètre
 	 * \param fileName Le fichier où sont stockées les informations des vagues

@@ -56,17 +56,23 @@ void SoundManager::playSound(std::string id, int loop) {
 }
 
 void SoundManager::clean() {
-	for (auto& _music : _musics) {
-		Mix_FreeMusic(_music.second);
+	for(auto itr = _musics.begin() ; itr != _musics.end() ; ) {
+		Mix_FreeMusic(itr->second);
+		itr = _musics.erase(itr);
+	}
+
+	for(auto itr = _sfxs.begin() ; itr != _sfxs.end() ; ) {
+		Mix_FreeChunk(itr->second);
+		itr = _sfxs.erase(itr);
 	}
 
 	_musics.clear();
 
-	for (auto& _sfx : _sfxs) {
-		Mix_FreeChunk(_sfx.second);
-	}
-
 	_sfxs.clear();
 
 	Mix_CloseAudio();
+}
+
+SoundManager::~SoundManager() {
+	clean();
 }

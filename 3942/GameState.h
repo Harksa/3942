@@ -40,22 +40,32 @@ public:
 	virtual std::string getStateID() const = 0;
 
 	GameState() = default;
-	virtual ~GameState() {
-		delete background;
+
+	void clearState() {
+		if(background != nullptr) {
+			background->clean();
+			delete background;
+		}
 
 		for (const auto& i : _textureIDList) {
-			TextureManager::Instance()->clearFromTextureMap(i);
+			TextureManager::Instance()->clearFromTextureMapAndInformations(i);
 		}
 
 		_textureIDList.clear();
 
-		for(int i = _gameObjects.size() - 1; i >= 0 ; i--) {
-			_gameObjects[i]->clean();
-			delete _gameObjects.back();
-			_gameObjects.pop_back();
+		for (auto object : _gameObjects) {
+			object->clean();
+			delete object;
 		}
 
 		_gameObjects.clear();
+
+		is_already_cleared = true;
+	}
+
+	virtual ~GameState() {
+		if(!is_already_cleared)
+			clearState();
 	}
 
 
@@ -79,4 +89,6 @@ protected:
 	 * \brief Background du l'état
 	 */
 	Background * background = nullptr;
+
+	bool is_already_cleared = false;
 };

@@ -56,12 +56,12 @@ public:
 	/**
 	 * \brief La taille de la piscine de PlayerBullet
 	 */
-	static const int player_bullet_pool_size = 100;
+	static const int player_bullet_pool_size = 50;
 
 	/**
 	 * \brief La taille de la piscine d'EnemyBullet
 	 */
-	static const int enemy_bullet_pool_size = 250;
+	static const int enemy_bullet_pool_size = 100;
 
 private:
 	BulletManager();
@@ -91,5 +91,7 @@ private:
 	 * \brief Le tableau d'EnemyBullet
 	 */
 	EnemyBullet enemy_bullets[enemy_bullet_pool_size];
+
+	bool is_already_cleared = false;
 };
 

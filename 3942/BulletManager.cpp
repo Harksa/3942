@@ -8,19 +8,27 @@ BulletManager::BulletManager() {
 	firstEnemyBulletAvailable =  &enemy_bullets[0];
 
 	for(int i = 0 ; i < player_bullet_pool_size - 1 ; i++) {
+		player_bullets[i].load(new LoadParameters(-5, -5, "PlayerBullet"));
 		player_bullets[i].setNext(&player_bullets[i+1]);
 	}
 
 	for(int i = 0 ; i < enemy_bullet_pool_size - 1 ; i++) {
+		enemy_bullets[i].load(new LoadParameters(-5, -5, "EnemyBullet"));
 		enemy_bullets[i].setNext(&enemy_bullets[i+1]);
 	}
 
 	player_bullets[player_bullet_pool_size - 1].setNext(nullptr);
 	enemy_bullets[enemy_bullet_pool_size - 1].setNext(nullptr);
+
+	enemy_bullets[enemy_bullet_pool_size - 1].load(new LoadParameters(-5, -5, "EnemyBullet"));
+	player_bullets[player_bullet_pool_size - 1].load(new LoadParameters(-5, -5, "PlayerBullet"));
 }
 
 
-BulletManager::~BulletManager() = default;
+BulletManager::~BulletManager() {
+	if(!is_already_cleared)
+		clear();
+}
 
 void BulletManager::createPlayerBullet(const Vector2D position, const Vector2D velocity) {
 	assert(firstPlayerBulletAvailable != nullptr);
@@ -28,7 +36,7 @@ void BulletManager::createPlayerBullet(const Vector2D position, const Vector2D v
 	PlayerBullet * bullet = firstPlayerBulletAvailable;
 	firstPlayerBulletAvailable = bullet->getNext();
 
-	bullet->load(new LoadParameters(position.x, position.y, "PlayerBullet"));
+	bullet->setPosition(position);
 	bullet->setVelocity(velocity);
 	bullet->setAvailability(true);
 }
@@ -39,7 +47,7 @@ void BulletManager::createEnemyBullet(const Vector2D position, const Vector2D ve
 	EnemyBullet * bullet = firstEnemyBulletAvailable;
 	firstEnemyBulletAvailable = bullet->getNext();
 
-	bullet->load(new LoadParameters(position.x, position.y, "EnemyBullet"));
+	bullet->setPosition(position);
 	bullet->setVelocity(velocity);
 	bullet->setAvailability(true);
 }
@@ -87,4 +95,9 @@ void BulletManager::clear() {
 	for(auto& bullet : enemy_bullets) {
 		bullet.clean();
 	}
+
+	delete [] &player_bullets;
+	delete [] &enemy_bullets;
+
+	is_already_cleared = true;
 }

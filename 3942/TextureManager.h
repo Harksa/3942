@@ -48,7 +48,7 @@ public:
 		return instance;
 	}
 
-	~TextureManager() = default;
+	~TextureManager();
 
 	/**
 	 * \brief Charge un fichier image
@@ -99,7 +99,13 @@ public:
 	void drawFrame(const std::string& id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	/**
-	 * \brief Nettoie l'élement rentré en paramètre de la texture map
+	 * \brief Nettoie la texture et les informations ayant l'ID rentré en paramètre
+	 * \param id L'ID de la texture que l'on souhaite effacer
+	 */
+	void clearFromTextureMapAndInformations(const std::string& id);
+
+	/**
+	 * \brief Nettoie la texture seulement ayant l'ID rentré en paramètre
 	 * \param id L'ID de la texture que l'on souhaite effacer
 	 */
 	void clearFromTextureMap(const std::string& id);

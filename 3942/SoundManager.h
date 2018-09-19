@@ -61,6 +61,8 @@ public:
 	 */
 	static void clean();
 
+	~SoundManager();
+
 private:
 
 	/**

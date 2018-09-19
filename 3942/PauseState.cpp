@@ -1,5 +1,4 @@
 #include "PauseState.h"
-#include "MainMenuState.h"
 #include "MenuButton.h"
 #include "InputHandler.h"
 #include "StateParser.h"
@@ -48,11 +47,8 @@ void PauseState::setCallbacks(const std::vector<Callback>& callbacks) {
 
 
 bool PauseState::onExit() {
-	for (auto game_object : _gameObjects) {
-		game_object->clean();
-	}
+	clearState();
 
-	_gameObjects.clear();
 	InputHandler::reset();
 
 	return true;

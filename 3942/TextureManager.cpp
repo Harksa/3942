@@ -3,6 +3,15 @@
 
 TextureManager * TextureManager::instance = nullptr;
 
+TextureManager::~TextureManager() {
+	for (const auto& texture_map : _textureMap) {
+		clearFromTextureMapAndInformations(texture_map.first);
+	}
+
+	_textureMap.clear();
+	_textureInformations.clear();
+}
+
 bool TextureManager::load(const std::string& fileName, const std::string& id, SDL_Renderer * renderer) {
 	SDL_Surface * surface = IMG_Load(fileName.c_str());
 
@@ -63,9 +72,15 @@ void TextureManager::drawFrame(const std::string& id, const int x, const int y, 
 	SDL_RenderCopyEx(pRenderer, _textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
-void TextureManager::clearFromTextureMap(const std::string& id) {
-	_textureMap.erase(id);
+void TextureManager::clearFromTextureMapAndInformations(const std::string& id) {
+	clearFromTextureMap(id);
+	delete _textureInformations.at(id);
 	_textureInformations.erase(id);
+}
+
+void TextureManager::clearFromTextureMap(const std::string& id) {
+	SDL_DestroyTexture(_textureMap.at(id));
+	_textureMap.erase(id);
 }
 
 

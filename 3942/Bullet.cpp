@@ -9,10 +9,12 @@ void Bullet::draw() {
 }
 
 void Bullet::update() {
-	if(isOutsideScreenBondaries())
-	   is_available = false;
-	else 
-		GameObject::update();
+	if(is_available) {
+		if(isOutsideScreenBondaries())
+			is_available = false;
+		else 
+			GameObject::update();
+	}
 }
 
 void Bullet::clean() {
@@ -21,4 +23,8 @@ void Bullet::clean() {
 
 void Bullet::onCollision() {
 	is_available = false;
+}
+
+Bullet::~Bullet() {
+	GameObject::clean();
 }

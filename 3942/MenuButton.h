@@ -13,7 +13,7 @@ public:
 	 * \brief Charge le MenuButton avec les paramètres du LoadParameter
 	 * \param parameters Le LoadParameters contenant les informations du MenuButton
 	 */
-	void load(const LoadParameters *parameters);
+	void load(const LoadParameters *parameters) override;
 
 	/**
 	 * \brief Affiche le MenuButton

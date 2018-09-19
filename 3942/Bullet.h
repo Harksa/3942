@@ -8,7 +8,7 @@
 class Bullet : public GameObject {
 public:
 	Bullet() = default;
-	~Bullet() = default;
+	~Bullet();
 
 	/**
 	 * \brief Affiche le Bullet à l'écran
@@ -52,6 +52,6 @@ private:
 	/**
 	 * \brief Le booléen déterminant si ce Bullet est disponible ou non.
 	 */
-	bool is_available{};
+	bool is_available{false};
 };
 

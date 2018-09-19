@@ -9,7 +9,13 @@
 class GameObject {
 public:
 	GameObject() = default;
-	virtual ~GameObject() = default;
+
+	virtual ~GameObject() {
+		std::cout << "GameObject deleted" <<  std::endl;
+		if(!is_already_cleaned) {
+			delete sprite;
+		}
+	}
 
 	/**
 	 * \brief Charge le GameObject en fonction du LoadParameters
@@ -128,5 +134,7 @@ protected:
 	 * \brief Le Sprite lié au GameObject
 	 */
 	Sprite * sprite = nullptr;
+
+	bool is_already_cleaned = false;
 };
 

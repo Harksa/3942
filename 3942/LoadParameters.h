@@ -17,6 +17,8 @@ public:
 	 */
 	LoadParameters(float x, float y, std::string textureID, int callbackId = 0) :_x(x), _y(y), _textureID(std::move(textureID)), callbackID(callbackId) {}
 
+	~LoadParameters() = default;
+
 	float getX() const {return _x;}
 	float getY() const {return _y;}
 	std::string getTextureID() const {return _textureID;}

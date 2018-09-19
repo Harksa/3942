@@ -13,6 +13,7 @@ void GameObject::update() {
 
 void GameObject::clean() {
 	delete sprite;
+	is_already_cleaned = true;
 }
 
 bool GameObject::isOutsideScreenBondaries() const {

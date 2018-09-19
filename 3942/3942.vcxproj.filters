@@ -46,10 +46,16 @@
     <Filter Include="Fichiers sources\Managers">
       <UniqueIdentifier>{dcc8b642-fdf3-4c3b-b11c-1f6f4a588835}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\Bullets">
+    <Filter Include="Fichiers sources\GameObjects">
+      <UniqueIdentifier>{50345276-18f3-4f98-af66-0e9ba5706689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObjects">
+      <UniqueIdentifier>{d9410f11-bf60-431b-9d9c-e391dface0cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObjects\Bullets">
       <UniqueIdentifier>{eb29d5e4-cc50-4e20-a7d0-cf9420bde62b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\Bullets">
+    <Filter Include="Fichiers sources\GameObjects\Bullets">
       <UniqueIdentifier>{170a2f79-c872-455e-9ab6-05f98df4036a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -58,12 +64,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuButton.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="PlayState.cpp">
@@ -77,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="GameOverState.cpp">
       <Filter>Fichiers sources\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectFactory.cpp">
-      <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuState.cpp">
       <Filter>Fichiers sources\GameStates</Filter>
@@ -99,9 +96,6 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="AnimatedGraphic.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Fichiers sources\Enemies</Filter>
     </ClCompile>
@@ -114,9 +108,6 @@
     <ClCompile Include="InputHandler.cpp">
       <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="WaveGenerator.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -127,13 +118,13 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>Fichiers sources\Bullets</Filter>
+      <Filter>Fichiers sources\GameObjects\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBullet.cpp">
-      <Filter>Fichiers sources\Bullets</Filter>
+      <Filter>Fichiers sources\GameObjects\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="EnemyBullet.cpp">
-      <Filter>Fichiers sources\Bullets</Filter>
+      <Filter>Fichiers sources\GameObjects\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Fichiers sources\Managers</Filter>
@@ -141,27 +132,36 @@
     <ClCompile Include="BulletManager.cpp">
       <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="StateChangeAsker.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Fichiers sources\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Fichiers sources\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedGraphic.cpp">
+      <Filter>Fichiers sources\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Fichiers sources\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
+      <Filter>Fichiers sources\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>Fichiers sources\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="LoadParameters.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuButton.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="PlayState.h">
@@ -206,9 +206,6 @@
     <ClInclude Include="MenuState.h">
       <Filter>Fichiers d%27en-tête\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatedGraphic.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Constants.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -224,9 +221,6 @@
     <ClInclude Include="InputHandler.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="WaveGenerator.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -234,13 +228,13 @@
       <Filter>Fichiers d%27en-tête\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>Fichiers d%27en-tête\Bullets</Filter>
+      <Filter>Fichiers d%27en-tête\GameObjects\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBullet.h">
-      <Filter>Fichiers d%27en-tête\Bullets</Filter>
+      <Filter>Fichiers d%27en-tête\GameObjects\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBullet.h">
-      <Filter>Fichiers d%27en-tête\Bullets</Filter>
+      <Filter>Fichiers d%27en-tête\GameObjects\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
@@ -248,14 +242,26 @@
     <ClInclude Include="BulletManager.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="StateChangeAsker.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Fichiers d%27en-tête\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuButton.h">
+      <Filter>Fichiers d%27en-tête\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Fichiers d%27en-tête\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Fichiers d%27en-tête\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedGraphic.h">
+      <Filter>Fichiers d%27en-tête\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
