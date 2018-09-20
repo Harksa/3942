@@ -17,9 +17,9 @@ void PlayState::update() {
 			return;
 		}
 
-		CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
-		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
-		CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
+		//CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
+		//CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
+		//CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
 
 		waveUpdate();
 

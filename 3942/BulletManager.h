@@ -61,11 +61,19 @@ public:
 	/**
 	 * \brief La taille de la piscine d'EnemyBullet
 	 */
-	static const int enemy_bullet_pool_size = 100;
+	static const int enemy_bullet_pool_size = 500;
 
 private:
 	BulletManager();
 	~BulletManager();
+
+	/**
+	 * \brief Setup un bullet
+	 * \param bullet Le Bullet à paramétrer
+	 * \param position Sa position de départ
+	 * \param velocity Sa vélocité de départ
+	 */
+	void setupBullet(Bullet* bullet, Vector2D position, Vector2D velocity) const;
 
 	/**
 	 * \brief Le premier PlayerBullet disponible

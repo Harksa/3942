@@ -17,8 +17,13 @@ void Enemy::update() {
 	else if (position.y > 400)
 		velocity.y = -2;
 
-	if((SDL_GetTicks() / (1000 / 1) % 3) == 1)
-	   BulletManager::Instance()->createEnemyBullet( Vector2D(position.x + sprite->getWidth() * 0.5f, position.y + sprite->getHeight()), Vector2D(0,5) );
+	if((SDL_GetTicks() / (1000 / 1) % 2) == 1) {
+		if(!bulletCreated) {
+			BulletManager::Instance()->createEnemyBullet(Vector2D(position.x + sprite->getWidth() * 0.5f, position.y + sprite->getHeight()), Vector2D(0,5) );
+		}
+	} else if ((SDL_GetTicks() / (1000 / 1) % 5) == 1) {
+		bulletCreated = false;
+	}
 
 	GameObject::update();
 }

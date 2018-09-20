@@ -15,7 +15,7 @@ public:
 	 * \param textureID 
 	 * \param callbackId 
 	 */
-	LoadParameters(float x, float y, std::string textureID, int callbackId = 0) :_x(x), _y(y), _textureID(std::move(textureID)), callbackID(callbackId) {}
+	LoadParameters(float x, float y, std::string textureID, int callbackId = 0) :_x{x}, _y{y}, _textureID{std::move(textureID)}, callbackID{callbackId} {}
 
 	~LoadParameters() = default;
 

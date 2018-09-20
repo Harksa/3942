@@ -48,10 +48,27 @@ public:
 	 */
 	void setAvailability(const bool value) {is_available = value;}
 
+	/**
+	 * \brief Permet de déterminer si le Bullet a besoin de changer de voisin ou non.
+	 * \return vrai si il y a besoin, faux sinon.
+	 */
+	bool needChangeNext() const { return need_change_next; }
+
+	/**
+	 * \brief Détermine si le Bullet à besoin de changer de voisin ou non
+	 * \param value La nouvelle valeur
+	 */
+	void setChangeNext(bool value) {need_change_next = value;}
+
 private:
 	/**
 	 * \brief Le booléen déterminant si ce Bullet est disponible ou non.
 	 */
 	bool is_available{false};
+
+	/**
+	 * \brief Booléen déterminant si ce Bullet a besoin de changer de voisin ou non
+	 */
+	bool need_change_next{false};
 };
 

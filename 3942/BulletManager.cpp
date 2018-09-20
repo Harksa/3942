@@ -36,9 +36,7 @@ void BulletManager::createPlayerBullet(const Vector2D position, const Vector2D v
 	PlayerBullet * bullet = firstPlayerBulletAvailable;
 	firstPlayerBulletAvailable = bullet->getNext();
 
-	bullet->setPosition(position);
-	bullet->setVelocity(velocity);
-	bullet->setAvailability(true);
+	setupBullet(bullet, position, velocity);
 }
 
 void BulletManager::createEnemyBullet(const Vector2D position, const Vector2D velocity) {
@@ -47,9 +45,14 @@ void BulletManager::createEnemyBullet(const Vector2D position, const Vector2D ve
 	EnemyBullet * bullet = firstEnemyBulletAvailable;
 	firstEnemyBulletAvailable = bullet->getNext();
 
+	setupBullet(bullet, position, velocity);
+}
+
+void BulletManager::setupBullet(Bullet * bullet, Vector2D position, Vector2D velocity) const {
 	bullet->setPosition(position);
 	bullet->setVelocity(velocity);
 	bullet->setAvailability(true);
+	bullet->setChangeNext(false);
 }
 
 void BulletManager::update() {
@@ -57,8 +60,11 @@ void BulletManager::update() {
 		if(bullet.isAvailable()) {
 			bullet.update();
 		} else {
-			bullet.setNext(firstPlayerBulletAvailable);
-			firstPlayerBulletAvailable = &bullet;
+			if(bullet.needChangeNext()) {
+				bullet.setChangeNext(false);
+				bullet.setNext(firstPlayerBulletAvailable);
+				firstPlayerBulletAvailable = &bullet;
+			}
 		}
 	}
 
@@ -66,8 +72,11 @@ void BulletManager::update() {
 		if(bullet.isAvailable())
 			bullet.update();
 		else {
-			bullet.setNext(firstEnemyBulletAvailable);
-			firstEnemyBulletAvailable = &bullet;
+			if(bullet.needChangeNext()) {
+				bullet.setChangeNext(false);
+				bullet.setNext(firstEnemyBulletAvailable);
+				firstEnemyBulletAvailable = &bullet;
+			}
 		}
 	}
 }

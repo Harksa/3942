@@ -16,6 +16,8 @@ private:
 	 * \brief La vie de l'enemie.
 	 */
 	int health;
+
+	bool bulletCreated;
 };
 
 class EnemyCreator : public BaseCreator {

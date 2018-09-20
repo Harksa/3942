@@ -34,12 +34,6 @@
     <Filter Include="Fichiers d%27en-tête\Level\Layers">
       <UniqueIdentifier>{0df187f6-64f6-4ab6-9e64-0ecb263c8726}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\Enemies">
-      <UniqueIdentifier>{1623aecc-c980-4837-aca4-191ece826689}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Enemies">
-      <UniqueIdentifier>{42bfdd26-bb1f-4d9f-99bc-6dc1bbe4f3dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\Managers">
       <UniqueIdentifier>{8dc23366-db2a-48dc-ba17-d4fca101d6dc}</UniqueIdentifier>
     </Filter>
@@ -57,6 +51,12 @@
     </Filter>
     <Filter Include="Fichiers sources\GameObjects\Bullets">
       <UniqueIdentifier>{170a2f79-c872-455e-9ab6-05f98df4036a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObjects\Enemies">
+      <UniqueIdentifier>{1623aecc-c980-4837-aca4-191ece826689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameObjects\Enemies">
+      <UniqueIdentifier>{42bfdd26-bb1f-4d9f-99bc-6dc1bbe4f3dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +97,7 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Fichiers sources\Enemies</Filter>
+      <Filter>Fichiers sources\GameObjects\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>Fichiers sources\Managers</Filter>
@@ -210,7 +210,7 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Fichiers d%27en-tête\Enemies</Filter>
+      <Filter>Fichiers d%27en-tête\GameObjects\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>

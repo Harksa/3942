@@ -17,7 +17,7 @@ public:
 
 	/**
 	 * \brief Gère les collisions des EnemyBullets avec le Player
-	 * \param Le player dont on va vérifier les collisions.
+	 * \param player Le player dont on va vérifier les collisions.
 	 */
 	static void checkCollisionPlayerWithEnemyBullets(Player * player);
 	
