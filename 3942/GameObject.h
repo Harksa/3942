@@ -97,13 +97,13 @@ public:
 	/**
 	 * \brief Retourne le SDL_Rect du sprite
 	 */
-	SDL_Rect * getRect() const {
-		SDL_Rect * tmp_rect = new SDL_Rect();
+	SDL_Rect getRect() const {
+		SDL_Rect tmp_rect;
 
-		tmp_rect->x = static_cast<int>(position.x);
-		tmp_rect->y = static_cast<int>(position.y);
-		tmp_rect->w = static_cast<int>(sprite->getWidth());
-		tmp_rect->h = static_cast<int>(sprite->getHeight());
+		tmp_rect.x = static_cast<int>(position.x);
+		tmp_rect.y = static_cast<int>(position.y);
+		tmp_rect.w = static_cast<int>(sprite->getWidth());
+		tmp_rect.h = static_cast<int>(sprite->getHeight());
 
 		return tmp_rect;
 	}
