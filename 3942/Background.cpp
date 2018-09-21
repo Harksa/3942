@@ -1,12 +1,12 @@
 #include "Background.h"
 #include "TextureManager.h"
-#include "Game.h"
+#include "GameParameters.h"
 
 bool Background::load(const std::string& fileName, const std::string& id, const float speed) {
 	movingSpeed = speed;
 	backgroundID = id;
 	offset = 0;
-	return TextureManager::Instance()->load(fileName, id, Game::Instance()->getRenderer());
+	return TextureManager::Instance()->load(fileName, id);
 }
 
 void Background::draw() {
@@ -17,16 +17,16 @@ void Background::draw() {
 }
 
 void Background::drawStatic() const {
-	TextureManager::Instance()->draw(backgroundID, 0, 0, Game::Instance()->getGameWidth(), Game::Instance()->getGameHeight(), Game::Instance()->getRenderer());
+	TextureManager::Instance()->draw(backgroundID, 0, 0, GameParameters::getGameWidth(), GameParameters::getGameHeight());
 }
 
 void Background::drawMoving() {
-	TextureManager::Instance()->draw(backgroundID, 0, static_cast<int>(offset), Game::Instance()->getGameWidth(), Game::Instance()->getGameHeight(), Game::Instance()->getRenderer());
-	TextureManager::Instance()->draw(backgroundID, 0, static_cast<int>(offset) - Game::Instance()->getGameHeight(), Game::Instance()->getGameWidth(), Game::Instance()->getGameHeight(), Game::Instance()->getRenderer());
+	TextureManager::Instance()->draw(backgroundID, 0, static_cast<int>(offset), GameParameters::getGameWidth(), GameParameters::getGameHeight());
+	TextureManager::Instance()->draw(backgroundID, 0, static_cast<int>(offset) - GameParameters::getGameHeight(), GameParameters::getGameWidth(), GameParameters::getGameHeight());
 
 	offset += movingSpeed;
 
-	if(offset >= Game::Instance()->getGameHeight())
+	if(offset >= GameParameters::getGameHeight())
 		offset = 0;
 }
 

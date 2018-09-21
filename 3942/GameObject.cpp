@@ -1,5 +1,5 @@
 #include "GameObject.h"
-#include "Game.h"
+#include "GameParameters.h"
 
 void GameObject::draw() {
 	sprite->draw(position, velocity);
@@ -20,6 +20,6 @@ bool GameObject::isOutsideScreenBondaries() const {
 	return
 		(position.x + sprite->getWidth()) < 0 || 
 		(position.y + sprite->getHeight()) < 0 ||
-		(position.x - sprite->getWidth()) > Game::Instance()->getGameWidth() ||
-		(position.y - sprite->getHeight()) > Game::Instance()->getGameHeight();
+		(position.x - sprite->getWidth()) > GameParameters::getGameWidth() ||
+		(position.y - sprite->getHeight()) > GameParameters::getGameHeight();
 }

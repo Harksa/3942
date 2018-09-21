@@ -11,7 +11,6 @@ public:
 	GameObject() = default;
 
 	virtual ~GameObject() {
-		std::cout << "GameObject deleted" <<  std::endl;
 		if(!is_already_cleaned) {
 			delete sprite;
 		}
@@ -48,18 +47,40 @@ public:
 	 */
 	Vector2D & getPosition() {return position;}
 
-	void setPosition(Vector2D newposition) {position = newposition; }
+	/**
+	 * \brief Positionne le GameObject
+	 * \param newPosition La nouvelle position du GameObject
+	 */
+	void setPosition(Vector2D newPosition) { position = newPosition; }
 
+	/**
+	 * \brief Positionne le GameObject
+	 * \param new_x La nouvelle position en X
+	 * \param new_y La nouvelle position en Y
+	 */
 	void setPosition(float new_x, float new_y) {
 		position.x = new_x; position.y = new_y;
 	}
 
-	void setVelocity(Vector2D new_velocity) {velocity = new_velocity;}
+	/**
+	 * \brief Définie la vélocité du GameObject
+	 * \param new_velocity La nouvelle vélocité
+	 */
+	void setVelocity(Vector2D new_velocity) { velocity = new_velocity;}
 
+	/**
+	 * \brief Définie la vélocité du GameObject
+	 * \param new_x La nouvelle vélocité en X
+	 * \param new_y La nouvelle vélocité en Y
+	 */
 	void setVelocity(float new_x, float new_y) {
 		velocity.x = new_x; velocity.y = new_y;
 	}
 
+	/**
+	 * \brief Définie l'angle du sprite (en degrès)
+	 * \param new_angle Le nouvelle angle du sprite
+	 */
 	void setSpriteAngle(float new_angle) const {
 		sprite->setAngle(new_angle);
 	}
@@ -135,6 +156,9 @@ protected:
 	 */
 	Sprite * sprite = nullptr;
 
+	/**
+	 * \brief Booléen déterminant si le GameObject a déjà été nettoyé ou non.
+	 */
 	bool is_already_cleaned = false;
 };
 

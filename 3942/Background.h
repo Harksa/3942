@@ -22,6 +22,9 @@ public:
 	 */
 	void draw();
 
+	/**
+	 * \brief Nettoie le background
+	 */
 	void clean() const;
 
 private:

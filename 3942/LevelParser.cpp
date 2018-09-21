@@ -1,10 +1,8 @@
 #include "LevelParser.h"
 #include "TextureManager.h"
-#include "Game.h"
 #include "TileLayer.h"
 
-#include <zlib.h>
-#include <sstream>
+
 #include "ObjectLayer.h"
 #include "GameObjectFactory.h"
 
@@ -49,7 +47,7 @@ void LevelParser::parseTilesets(tinyxml2::XMLElement* tilesetRoot, std::vector<T
 	filename = "ressources/";
 	filename += root->FirstChildElement()->Attribute("source");
 
-	TextureManager::Instance()->load(filename, root->Attribute("name"), Game::Instance()->getRenderer());
+	TextureManager::Instance()->load(filename, root->Attribute("name"));
 
 	Tileset tileset;
 	tileset.width		= root->FirstChildElement()->IntAttribute("width");
@@ -98,7 +96,7 @@ void LevelParser::parseTileLayers(tinyxml2::XMLElement* tileElements, std::vecto
 }
 
 void LevelParser::parseTextures(tinyxml2::XMLElement* textureRoot) {
-	TextureManager::Instance()->load(textureRoot->Attribute("value"), textureRoot->Attribute("name"), Game::Instance()->getRenderer());
+	TextureManager::Instance()->load(textureRoot->Attribute("value"), textureRoot->Attribute("name"));
 }
 
 void LevelParser::parseObjectLayer(tinyxml2::XMLElement* objectElement, std::vector<Layer*>* layer) {

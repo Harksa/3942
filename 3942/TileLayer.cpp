@@ -1,10 +1,10 @@
 #include "TileLayer.h"
-#include "Game.h"
+#include <utility>
+#include "GameParameters.h"
 
-
-TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) : _tileSize(tileSize), _tilesets(tilesets) {
-	_numColumns = Game::Instance()->getGameWidth() / tileSize;
-	_numRows = Game::Instance()->getGameHeight() / tileSize;
+TileLayer::TileLayer(int tileSize, std::vector<Tileset> tilesets) : _tileSize{tileSize}, _tilesets{std::move(tilesets)} {
+	_numColumns = GameParameters::getGameWidth() / tileSize;
+	_numRows = GameParameters::getGameHeight() / tileSize;
 }
 
 void TileLayer::update() {
@@ -12,7 +12,7 @@ void TileLayer::update() {
 	_velocity.x = 1;
 }
 
-Tileset TileLayer::getTilesetByID(int tileID) {
+Tileset TileLayer::getTilesetByID(int tileID) const {
 
     for(unsigned int i = 0; i < _tilesets.size(); i++) {
         if( i + 1 <= _tilesets.size() - 1)  {
@@ -45,7 +45,7 @@ void TileLayer::render() {
 			id--;
 
 			TextureManager::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing, (j * _tileSize) - x2, (i * _tileSize) - y2, _tileSize, _tileSize, (id - (tileset.firstGridID - 1)) /
-												 tileset.numColumns, (id - (tileset.firstGridID - 1)) % tileset.numColumns, Game::Instance()->getRenderer());
+			                                     tileset.numColumns, (id - (tileset.firstGridID - 1)) % tileset.numColumns);
 
 		}
 	}

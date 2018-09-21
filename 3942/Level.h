@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Layer.h"
+#include <zlib.h>
+#include <sstream>
 #include <iostream>
+#include "Layer.h"
 
 /**
  *\brief Les informations d'un set de tile enregistré dans Tiled.

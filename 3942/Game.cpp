@@ -1,11 +1,11 @@
 #include "Game.h"
 
-#include "MainMenuState.h"
 #include "PlayState.h"
 #include "MenuButton.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "AnimatedGraphic.h"
+#include "GameParameters.h"
 
 Game * Game::instance = nullptr;
 
@@ -17,15 +17,15 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 		if(sdl_window != nullptr) {
 			sdl_renderer = SDL_CreateRenderer(sdl_window, -1, 0);
 			if(sdl_renderer != nullptr) {
-				SDL_SetRenderDrawColor(sdl_renderer, 255,255,255,255);
+				SDL_SetRenderDrawColor(sdl_renderer, 0,0,0,255);
 			} else
 				return false;
 		} else
 			return false;
 	}
 
-	_gameWidth = width;
-	_gameHeight = height;
+	GameParameters::game_width = width;
+	GameParameters::game_height = height;
 
 	GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
 	GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());

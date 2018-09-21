@@ -54,10 +54,9 @@ public:
 	 * \brief Charge un fichier image
 	 * \param fileName l'emplacement du fichier image
 	 * \param id l'Id donnée à cette texture
-	 * \param renderer le SDL_Renderer utilisé pour le jeu
 	 * \return vrai si l'image a été correctement chargé, faux sinon
 	 */
-	bool load(const std::string& fileName, const std::string& id, SDL_Renderer* renderer);
+	bool load(const std::string& fileName, const std::string& id);
 
 	/**
 	 * \brief Charge un fichier image
@@ -67,10 +66,10 @@ public:
 	 * \param height La hauteur de la texture
 	 * \param numFrames Le nombres de frames de la texture
 	 * \param speed La vitesse d'animations de la texture
-	 * \param renderer le SDL_Renderer utilisé pour le jeu
 	 * \return vrai si l'image a été correctement chargé, faux sinon
 	 */
-	bool load(const std::string & fileName, const std::string & id, const int width, const int height, const int numFrames, const int speed, SDL_Renderer * renderer);
+	bool load(const std::string& fileName, const std::string& id, const int width, const int height, const int numFrames, const int
+	          speed);
 
 	/**
 	 * \brief Dessine un élément à l'écran
@@ -79,10 +78,10 @@ public:
 	 * \param y La position en Y
 	 * \param width La largeur de la texture
 	 * \param height La hauteur de la texture
-	 * \param renderer Le renderer
 	 * \param flip le paramètre permettant de savoir si la texture est retourné ou non
 	 */
-	void draw(const std::string& id, int x, int y, int width, int height, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void draw(const std::string& id, const int x, const int y, const int width, const int height, SDL_RendererFlip flip =
+		          SDL_FLIP_NONE);
 	
 	/**
 	 * \brief Dessine la frame d'une texture à l'écran
@@ -93,10 +92,10 @@ public:
 	 * \param height La hauteur de la texture
 	 * \param currentRow La ligne de la frame dans le fichier image
 	 * \param currentFrame La frame que l'on désire afficher
-	 * \param renderer Le renderer
 	 * \param flip le paramètre permettant de savoir si la texture est retourné ou non
 	 */
-	void drawFrame(const std::string& id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void drawFrame(const std::string& id, const int x, const int y, const int width, const int height, const int currentRow, const int
+	               currentFrame, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	/**
 	 * \brief Nettoie la texture et les informations ayant l'ID rentré en paramètre
@@ -121,10 +120,9 @@ public:
 	 * \param height La hauteur de la texture
 	 * \param currentRow La ligne de la frame dans le fichier image
 	 * \param currentFrame La frame que l'on désire afficher
-	 * \param renderer Le renderer
 	 */
-	void drawTile(const std::string& id, int margin, int spacing, int x, int y, int width, 
-	             int height, int currentRow, int currentFrame, SDL_Renderer* renderer);
+	void drawTile(const std::string& id, const int margin, const int spacing, const int x, const int y, const int width,
+	              const int height, const int currentRow, const int currentFrame);
 
 
 	/**

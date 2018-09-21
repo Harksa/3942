@@ -6,7 +6,7 @@
 #include "CollisionManager.h"
 #include "StateChangeAsker.h"
 #include "SoundManager.h"
-#include "Game.h"
+#include "GameParameters.h"
 
 const std::string PlayState::playID = "PLAY";
 
@@ -73,8 +73,8 @@ bool PlayState::onEnter() {
 	background->load("Textures/starBackground.png", "stars", 0.5f);
 
 	player = new Player();
-	player->load(new LoadParameters(Game::Instance()->getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob")->width * 0.5f, //Milieu de l'écran
-									static_cast<int> (Game::Instance()->getGameHeight()) * 0.8f,
+	player->load(new LoadParameters(GameParameters::getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob")->width * 0.5f, //Milieu de l'écran
+									static_cast<int> (GameParameters::getGameHeight()) * 0.8f,
 									"bob"));
 
 	is_loaded = true;

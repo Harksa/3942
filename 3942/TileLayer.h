@@ -10,7 +10,7 @@
  */
 class TileLayer : public Layer {
 public:
-	TileLayer(int tileSize, const std::vector<Tileset> &tilesets);
+	TileLayer(int tileSize, std::vector<Tileset> tilesets);
 
 	/**
 	 * \brief Affiche les tiles du layer.
@@ -43,7 +43,7 @@ public:
 	 * \param tileID l'ID du tile que l'on souhaite trouver.
 	 * \return le Tile désiré.
 	 */
-	Tileset getTilesetByID(int tileID);
+	Tileset getTilesetByID(int tileID) const;
 
 private:
 	/**

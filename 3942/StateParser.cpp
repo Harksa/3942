@@ -1,8 +1,6 @@
 #include "StateParser.h"
 #include "TextureManager.h"
-#include "Game.h"
 #include "GameObjectFactory.h"
-
 
 bool StateParser::parseState(const char* stateFile, const std::string& stateID, std::vector<GameObject*> * objects, std::vector<std::string> *textureIDs) {
 	tinyxml2::XMLDocument xmlDoc;
@@ -24,7 +22,6 @@ bool StateParser::parseState(const char* stateFile, const std::string& stateID, 
 }
 
 void StateParser::parseObject(tinyxml2::XMLElement * stateRoot, std::vector<GameObject*>* objects) {
-	//objects = new std::vector<GameObject*>();
 
 	for(tinyxml2::XMLElement *e = stateRoot->FirstChildElement() ; e != nullptr ; e = e->NextSiblingElement()) {
 		int x, y, callbackID;
@@ -50,6 +47,6 @@ void StateParser::parseTexture(tinyxml2::XMLElement * stateRoot, std::vector<std
 		const int numframes = e->IntAttribute("numFrames");
 		const int speed = e->IntAttribute("animSpeed");
 		textureIDs->push_back(id);
-		TextureManager::Instance()->load(fileNameAttribute, id, w, h, numframes, speed, Game::Instance()->getRenderer());
+		TextureManager::Instance()->load(fileNameAttribute, id, w, h, numframes, speed);
 	}
 }
