@@ -14,11 +14,11 @@ public:
 	 * \param textureID L'ID de la texture
 	 */
 	Sprite(const std::string& textureID) : _textureID(textureID){
-		texture_informations * texture = TextureManager::Instance()->getTextureInformationsFromID(textureID);
-		_width = texture->width;
-		_height = texture->height;
-		_numFrames = texture->numFrames;
-		_animSpeed = texture->animSpeed;
+		const texture_informations texture = TextureManager::Instance()->getTextureInformationsFromID(textureID);
+		_width = texture.width;
+		_height = texture.height;
+		_numFrames = texture.numFrames;
+		_animSpeed = texture.animSpeed;
 		_currentFrame = 0;
 		_currentRow = 0;
 		_angle = 0;
@@ -92,11 +92,11 @@ public:
 	 */
 	void setTextureID(const std::string& textureID) {
 		_textureID = textureID;
-		texture_informations * texture = TextureManager::Instance()->getTextureInformationsFromID(_textureID);
-		_width = texture->width;
-		_height = texture->height;
-		_numFrames = texture->numFrames;
-		_animSpeed = texture->animSpeed;
+		const texture_informations texture = TextureManager::Instance()->getTextureInformationsFromID(_textureID);
+		_width = texture.width;
+		_height = texture.height;
+		_numFrames = texture.numFrames;
+		_animSpeed = texture.animSpeed;
 		_currentFrame = 0;
 		_currentRow = 0;
 	}

@@ -73,9 +73,12 @@ bool PlayState::onEnter() {
 	background->load("Textures/starBackground.png", "stars", 0.5f);
 
 	player = new Player();
-	player->load(new LoadParameters(GameParameters::getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob")->width * 0.5f, //Milieu de l'écran
+	LoadParameters * p = new LoadParameters(GameParameters::getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob").width * 0.5f, //Milieu de l'écran
 									static_cast<int> (GameParameters::getGameHeight()) * 0.8f,
-									"bob"));
+									"bob");
+	player->load(p);
+
+	delete p;
 
 	is_loaded = true;
 
@@ -99,8 +102,11 @@ void PlayState::waveUpdate() {
 	if(encouter < enemy_spaw_informations.size()) 
 		if(enemy_spaw_informations[encouter]->timer == timer) {
 			GameObject * gameObject = GameObjectFactory::Instance()->create(enemy_spaw_informations[encouter]->type);
-			gameObject->load(new LoadParameters((enemy_spaw_informations[encouter]->spawn_x), (enemy_spaw_informations[encouter]->spawn_y), enemy_spaw_informations[encouter]->textureID));
+			LoadParameters * parameters = new LoadParameters(enemy_spaw_informations[encouter]->spawn_x, (enemy_spaw_informations[encouter]->spawn_y), enemy_spaw_informations[encouter]->textureID);
+			gameObject->load(parameters);
+			delete parameters;
 			_gameObjects.push_back(gameObject);
+
 			encouter++;
 		}
 	

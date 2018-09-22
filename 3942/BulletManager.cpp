@@ -7,21 +7,27 @@ BulletManager::BulletManager() {
 	firstPlayerBulletAvailable = &player_bullets[0];
 	firstEnemyBulletAvailable =  &enemy_bullets[0];
 
+	LoadParameters * pBullet = new LoadParameters(-5, -5, "PlayerBullet");
+	LoadParameters * eBullet = new LoadParameters(-5,-5, "EnemyBullet");
+
 	for(int i = 0 ; i < player_bullet_pool_size - 1 ; i++) {
-		player_bullets[i].load(new LoadParameters(-5, -5, "PlayerBullet"));
+		player_bullets[i].load(pBullet);
 		player_bullets[i].setNext(&player_bullets[i+1]);
 	}
 
 	for(int i = 0 ; i < enemy_bullet_pool_size - 1 ; i++) {
-		enemy_bullets[i].load(new LoadParameters(-5, -5, "EnemyBullet"));
+		enemy_bullets[i].load(eBullet);
 		enemy_bullets[i].setNext(&enemy_bullets[i+1]);
 	}
 
 	player_bullets[player_bullet_pool_size - 1].setNext(nullptr);
 	enemy_bullets[enemy_bullet_pool_size - 1].setNext(nullptr);
 
-	enemy_bullets[enemy_bullet_pool_size - 1].load(new LoadParameters(-5, -5, "EnemyBullet"));
-	player_bullets[player_bullet_pool_size - 1].load(new LoadParameters(-5, -5, "PlayerBullet"));
+	player_bullets[player_bullet_pool_size - 1].load(pBullet);
+	enemy_bullets[enemy_bullet_pool_size - 1].load(eBullet);
+
+	delete pBullet;
+	delete eBullet;
 }
 
 

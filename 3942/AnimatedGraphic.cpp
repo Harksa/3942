@@ -1,7 +1,7 @@
 #include "AnimatedGraphic.h"
 
 void AnimatedGraphic::update() {
-	sprite->update();
+	GameObject::update();
 }
 
 void AnimatedGraphic::draw() {

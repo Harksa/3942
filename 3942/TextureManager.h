@@ -27,6 +27,9 @@ struct texture_informations {
 	 */
 	int animSpeed;
 
+	texture_informations() = default;
+	~texture_informations() = default;
+
 	texture_informations(const int w, const int h, const int numF, const int speed = 0) :  width{w}, height{h}, numFrames{numF}, animSpeed{speed} {}
 };
 
@@ -130,7 +133,7 @@ public:
 	 * \param id L'ID de la texture dont ont souhaite obtenir les informations
 	 * \return Les informations de la texture
 	 */
-	texture_informations * getTextureInformationsFromID(const std::string& id) {return _textureInformations[id];}
+	texture_informations getTextureInformationsFromID(const std::string& id) {return _textureInformations[id];}
 
 private:
 	/**
@@ -146,7 +149,7 @@ private:
 	/**
 	 * \brief Map gérant les informations des textures
 	 */
-	std::map<std::string, texture_informations *> _textureInformations;
+	std::map<std::string, texture_informations> _textureInformations;
 
 	TextureManager() = default;
 };

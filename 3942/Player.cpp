@@ -6,7 +6,7 @@
 #include "GameParameters.h"
 
 Player::Player() : GameObject() {
-	bullet_sprite_width_by2 = static_cast<int> (TextureManager::Instance()->getTextureInformationsFromID("PlayerBullet")->width * 0.5f);
+	bullet_sprite_width_by2 = static_cast<int> (TextureManager::Instance()->getTextureInformationsFromID("PlayerBullet").width * 0.5f);
 }
 
 void Player::load(const LoadParameters* parameters) {

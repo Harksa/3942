@@ -38,7 +38,7 @@ bool TextureManager::load(const std::string &fileName, const std::string& id, co
 
 	if(texture != nullptr) {
 		_textureMap[id] = texture;
-		_textureInformations[id] = new texture_informations(width, height, numFrames, speed);
+		_textureInformations[id] = texture_informations(width, height, numFrames, speed);
 		return true;
 	}
 
@@ -75,7 +75,6 @@ void TextureManager::drawFrame(const std::string& id, const int x, const int y, 
 
 void TextureManager::clearFromTextureMapAndInformations(const std::string& id) {
 	clearFromTextureMap(id);
-	delete _textureInformations.at(id);
 	_textureInformations.erase(id);
 }
 
