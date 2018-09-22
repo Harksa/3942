@@ -1,5 +1,7 @@
 #pragma once
 #include <SDL2/SDL_ttf.h>
+#include "FontCache/SDL_FontCache.h"
+#include <string>
 
 /**
  * \brief Cette classe gère l'interface utilisateur en jeu.
@@ -19,12 +21,6 @@ public:
 	}
 
 	/**
-	 * \brief Augmente le score et mets à jour les informations à l'écran
-	 * \param points Le nombre de points à incrémenter
-	 */
-	void increaseScore(unsigned int points);
-
-	/**
 	 * \brief Initialise l'UIManager
 	 */
 	void init();
@@ -37,18 +33,13 @@ public:
 	/**
 	 * \brief Nettoie l'UIManager
 	 */
-	void clean() const;
+	void clear() const;
 
 	~UIManager() = default;
 
 private:
 
 	UIManager() = default;
-
-	/**
-	 * \brief Mets à jour les informations des surface et texture
-	 */
-	void updateRenderer();
 
 	/**
 	 * \brief L'instance de UIManager
@@ -58,26 +49,6 @@ private:
 	/**
 	 * \brief La police de caractère utilisé
 	 */
-	TTF_Font * font{nullptr};
+	FC_Font * fc_font{nullptr};
 
-	/**
-	 *\brief Le SDL_Surface du score
-	 */
-	SDL_Surface * surfaceMessage{nullptr};
-
-	/**
-	 * \brief Le SDL_Texture du score
-	 */
-	SDL_Texture * textureMessage{nullptr};
-
-	/**
-	 * \brief La position du score, sur l'écran
-	 */
-	SDL_Rect messagePosition{};
-
-	/**
-	 * \brief Le score représentant les points gagnés par le joueur.
-	 */
-	unsigned int score{0};
 };
-

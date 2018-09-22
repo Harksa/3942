@@ -123,6 +123,7 @@
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
+    <ClCompile Include="FontCache\SDL_FontCache.c" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameOverState.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StateChangeAsker.cpp" />
@@ -160,6 +162,7 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBullet.h" />
+    <ClInclude Include="FontCache\SDL_FontCache.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameOverState.h" />
@@ -180,6 +183,7 @@
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StateChangeAsker.h" />
@@ -189,9 +193,6 @@
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="WaveGenerator.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="ressources\bob.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

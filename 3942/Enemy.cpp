@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "BulletManager.h"
-#include "UIManager.h"
+#include "ScoreManager.h"
 
 Enemy::Enemy() {
 	velocity.y = 2;
@@ -42,7 +42,7 @@ void Enemy::onCollision() {
 	health--;
 
 	if(health <= 0) {
-		UIManager::Instance()->increaseScore(score);
+		ScoreManager::Instance()->addPoints(score);
 		is_dead = true;
 	}
 }

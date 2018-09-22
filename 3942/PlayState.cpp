@@ -94,6 +94,7 @@ bool PlayState::onExit() {
 	clearState();
 
 	BulletManager::Instance()->clear();
+	UIManager::Instance()->clear();
 
 	player->clean();
 	delete player;

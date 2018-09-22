@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Fichiers de ressources\Images">
-      <UniqueIdentifier>{3e9e06d8-9e59-4dbe-a3a4-577b1a89f06a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\GameStates">
       <UniqueIdentifier>{a8243fa9-024b-40bd-942d-7e595cf2a958}</UniqueIdentifier>
     </Filter>
@@ -57,6 +54,9 @@
     </Filter>
     <Filter Include="Fichiers sources\GameObjects\Enemies">
       <UniqueIdentifier>{42bfdd26-bb1f-4d9f-99bc-6dc1bbe4f3dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers de ressources\FontCache">
+      <UniqueIdentifier>{10511648-9e2f-485d-aa99-01c5078f23c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +158,12 @@
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>Fichiers sources\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="FontCache\SDL_FontCache.c">
+      <Filter>Fichiers de ressources\FontCache</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,10 +281,11 @@
     <ClInclude Include="UIManager.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="ressources\bob.png">
-      <Filter>Fichiers de ressources\Images</Filter>
-    </Image>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="FontCache\SDL_FontCache.h">
+      <Filter>Fichiers de ressources\FontCache</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
