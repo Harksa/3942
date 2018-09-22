@@ -37,7 +37,5 @@ int main(int argc, char** args) {
 
 	Game::Instance()->clean();
 
-	SDL_Quit();
-
 	return EXIT_SUCCESS;
 }

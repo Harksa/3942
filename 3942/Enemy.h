@@ -17,6 +17,8 @@ private:
 	 */
 	int health;
 
+	unsigned int score = 100;
+
 	bool bulletCreated;
 };
 

@@ -7,6 +7,7 @@
 #include "StateChangeAsker.h"
 #include "SoundManager.h"
 #include "GameParameters.h"
+#include "UIManager.h"
 
 const std::string PlayState::playID = "PLAY";
 
@@ -59,6 +60,8 @@ void PlayState::render() {
 			if(!game_object->isDead())
 				game_object->draw();
 		}
+
+		UIManager::Instance()->draw();
 	}
 }
 
@@ -79,6 +82,8 @@ bool PlayState::onEnter() {
 	player->load(p);
 
 	delete p;
+
+	UIManager::Instance()->init();
 
 	is_loaded = true;
 
