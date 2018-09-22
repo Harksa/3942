@@ -7,6 +7,7 @@ See SDL_FontCache.h for license info.
 
 #include "SDL_FontCache.h"
 #pragma warning(disable : 4996)
+#pragma warning(disable : 4244)
 
 #include <stdio.h>
 #include <stdlib.h>

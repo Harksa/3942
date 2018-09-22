@@ -42,7 +42,7 @@ void Enemy::onCollision() {
 	health--;
 
 	if(health <= 0) {
-		ScoreManager::Instance()->addPoints(score);
+		ScoreManager::Instance()->addPoints(points);
 		is_dead = true;
 	}
 }

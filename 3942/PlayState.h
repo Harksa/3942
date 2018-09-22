@@ -57,7 +57,7 @@ private:
 	/**
 	 * \brief Informations concernant les vagues d'enemies
 	 */
-	std::vector<EnemySpawInformations *> enemy_spaw_informations;
+	std::vector<EnemySpawInformations> enemy_spaw_informations;
 
 	/**
 	 * \brief Le timer pour l'appartion de vagues ennemies

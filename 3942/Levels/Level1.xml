@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave>
+	<enemy type="Enemy" x="50"  y="50"  health="2" points="100" time="60"  textureID="cartable"/>
+	<enemy type="Enemy" x="50"  y="50"  health="2" points="100" time="120" textureID="cartable"/>
+	<enemy type="Enemy" x="200" y="500" health="3" points="100" time="240" textureID="cartable"/>
+	<enemy type="Enemy" x="200" y="500" health="3" points="150" time="360" textureID="cartable"/>
+	<enemy type="Enemy" x="200" y="500" health="4" points="200" time="500" textureID="cartable"/>
+</wave>

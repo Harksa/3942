@@ -159,11 +159,11 @@
     <ClCompile Include="UIManager.cpp">
       <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="FontCache\SDL_FontCache.c">
       <Filter>Fichiers de ressources\FontCache</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,11 +281,11 @@
     <ClInclude Include="UIManager.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="FontCache\SDL_FontCache.h">
       <Filter>Fichiers de ressources\FontCache</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

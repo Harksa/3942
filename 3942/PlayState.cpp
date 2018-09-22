@@ -68,7 +68,7 @@ void PlayState::render() {
 bool PlayState::onEnter() {
 
 	StateParser::parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
-	WaveGenerator::parseWave("ressources/Level1.xml", &enemy_spaw_informations);
+	WaveGenerator::parseWave("Levels/Level1.xml", &enemy_spaw_informations);
 
 	SoundManager::load("Sons/laser01.wav", "PlayerLaser", SOUND_SFX);
 
@@ -106,11 +106,15 @@ void PlayState::waveUpdate() {
 	timer++;
 
 	if(encouter < enemy_spaw_informations.size()) 
-		if(enemy_spaw_informations[encouter]->timer == timer) {
-			GameObject * gameObject = GameObjectFactory::Instance()->create(enemy_spaw_informations[encouter]->type);
-			LoadParameters * parameters = new LoadParameters(enemy_spaw_informations[encouter]->spawn_x, (enemy_spaw_informations[encouter]->spawn_y), enemy_spaw_informations[encouter]->textureID);
+		if(enemy_spaw_informations[encouter].timer == timer) {
+			GameObject * gameObject = GameObjectFactory::Instance()->create(enemy_spaw_informations[encouter].type);
+			LoadParameters * parameters = new LoadParameters(enemy_spaw_informations[encouter].spawn_x, enemy_spaw_informations[encouter].spawn_y, enemy_spaw_informations[encouter].textureID);
 			gameObject->load(parameters);
 			delete parameters;
+
+			static_cast<Enemy*>(gameObject)->setPoints(enemy_spaw_informations[encouter].points);
+			static_cast<Enemy*>(gameObject)->setHealth(enemy_spaw_informations[encouter].health);
+
 			_gameObjects.push_back(gameObject);
 
 			encouter++;
