@@ -8,6 +8,7 @@
 #include "SoundManager.h"
 #include "GameParameters.h"
 #include "UIManager.h"
+#include "PlayerManager.h"
 
 const std::string PlayState::playID = "PLAY";
 
@@ -19,16 +20,21 @@ void PlayState::update() {
 		}
 
 		CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
-		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
-		CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
+
+		for (auto& player : *PlayerManager::Instance()->getPlayers()) {
+			CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
+			CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
+		}
 
 		waveUpdate();
 
-		player->update();
+		PlayerManager::Instance()->update();
 
-		for (auto game_object : _gameObjects) {
-			if(!game_object->isDead())
-				game_object->update();
+		if(!_gameObjects.empty()) {
+			for (auto game_object : _gameObjects) {
+				if(!game_object->isDead())
+					game_object->update();
+			}
 		}
 
 		BulletManager::Instance()->update();
@@ -54,11 +60,13 @@ void PlayState::render() {
 
 		BulletManager::Instance()->render();
 
-		player->draw();
-		
-		for (auto game_object : _gameObjects) {
-			if(!game_object->isDead())
-				game_object->draw();
+		PlayerManager::Instance()->render();
+
+		if(!_gameObjects.empty()) {
+			for (auto game_object : _gameObjects) {
+				if(!game_object->isDead())
+					game_object->draw();
+			}
 		}
 
 		UIManager::Instance()->draw();
@@ -67,7 +75,7 @@ void PlayState::render() {
 
 bool PlayState::onEnter() {
 
-	StateParser::parseState("ressources/test.xml", playID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/states.xml", playID, &_gameObjects, &_textureIDList);
 	WaveGenerator::parseWave("Levels/Level1.xml", &enemy_spaw_informations);
 
 	SoundManager::load("Sons/laser01.wav", "PlayerLaser", SOUND_SFX);
@@ -75,13 +83,18 @@ bool PlayState::onEnter() {
 	background = new Background();
 	background->load("Textures/starBackground.png", "stars", 0.5f);
 
+	PlayerManager::Instance()->init();
+
+	/*
 	player = new Player();
 	LoadParameters * p = new LoadParameters(GameParameters::getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob").width * 0.5f, //Milieu de l'écran
 									static_cast<int> (GameParameters::getGameHeight()) * 0.8f,
 									"bob");
 	player->load(p);
+	player->setID(0);
 
 	delete p;
+	*/
 
 	UIManager::Instance()->init();
 
@@ -96,8 +109,8 @@ bool PlayState::onExit() {
 	BulletManager::Instance()->clear();
 	UIManager::Instance()->clear();
 
-	player->clean();
-	delete player;
+	PlayerManager::Instance()->clear();
+	//delete player;
 
 	return true;
 }

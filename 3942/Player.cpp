@@ -2,15 +2,13 @@
 #include "InputHandler.h"
 #include "BulletManager.h"
 #include "SoundManager.h"
-#include "Game.h"
 #include "GameParameters.h"
-
-Player::Player() : GameObject() {
-	bullet_sprite_width_by2 = static_cast<int> (TextureManager::Instance()->getTextureInformationsFromID("PlayerBullet").width * 0.5f);
-}
 
 void Player::load(const LoadParameters* parameters) {
 	GameObject::load(parameters);
+
+	bullet_sprite_width_by2 = static_cast<int> (TextureManager::Instance()->getTextureInformationsFromID("PlayerBullet").width * 0.5f);
+	is_dead = false;
 }
 
 void Player::draw() {
@@ -54,8 +52,8 @@ void Player::handleInput() {
 		
 	if(InputHandler::joystickInitialised()) {
 		//Sticks analogiques
-		const Sint16 leftX = SDL_JoystickGetAxis(InputHandler::getJoystickByID(0), SDL_CONTROLLER_AXIS_LEFTX);
-		const Sint16 leftY = SDL_JoystickGetAxis(InputHandler::getJoystickByID(0), SDL_CONTROLLER_AXIS_LEFTY);
+		const Sint16 leftX = SDL_JoystickGetAxis(InputHandler::getJoystickByID(id), SDL_CONTROLLER_AXIS_LEFTX);
+		const Sint16 leftY = SDL_JoystickGetAxis(InputHandler::getJoystickByID(id), SDL_CONTROLLER_AXIS_LEFTY);
 
 		if((leftX > InputHandler::_joystickDeadZone && position.x < (GameParameters::getGameWidth() - sprite->getWidth())) || 
 			(leftX < -InputHandler::_joystickDeadZone) && position.x > 0)
@@ -65,33 +63,33 @@ void Player::handleInput() {
 			velocity.y = speed * leftY / InputHandler::diviser;
 
 		//DPAD
-		if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_LEFT  && position.x > 0)
+		if(SDL_JoystickGetHat(InputHandler::getJoystickByID(id), 0) == SDL_HAT_LEFT  && position.x > 0)
 			velocity.x = -speed;
-		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_RIGHT && position.x < (GameParameters::getGameWidth() - sprite->getWidth()))
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(id), 0) == SDL_HAT_RIGHT && position.x < (GameParameters::getGameWidth() - sprite->getWidth()))
 			velocity.x = speed;
-		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_UP && position.y > 0)
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(id), 0) == SDL_HAT_UP && position.y > 0)
 			velocity.y = -speed;
-		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_DOWN  && position.y < (GameParameters::getGameHeight() - sprite->getHeight()))
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(id), 0) == SDL_HAT_DOWN  && position.y < (GameParameters::getGameHeight() - sprite->getHeight()))
 			velocity.y = speed;
 
-		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_LEFTUP) {
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(id), 0) == SDL_HAT_LEFTUP) {
 			if(position.x > 0)
 				velocity.x = -speed;
 			if(position.y > 0)
 				velocity.y = - speed;
-		} else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_LEFTDOWN) {
+		} else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(id), 0) == SDL_HAT_LEFTDOWN) {
 			if(position.x > 0)
 				velocity.x = -speed;
 			if(position.y < (GameParameters::getGameHeight() - sprite->getHeight()))
 				velocity.y = speed;
 		}
-		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_RIGHTUP) {
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(id), 0) == SDL_HAT_RIGHTUP) {
 			if(position.x < (GameParameters::getGameWidth()  - sprite->getWidth()))
 				velocity.x = speed;
 			if(position.y > 0)
 				velocity.y = -speed;
 		}
-		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(0), 0) == SDL_HAT_RIGHTDOWN) {
+		else if(SDL_JoystickGetHat(InputHandler::getJoystickByID(id), 0) == SDL_HAT_RIGHTDOWN) {
 			if(position.x < (GameParameters::getGameWidth() - sprite->getWidth()))
 				velocity.x = speed;
 			if(position.y < (GameParameters::getGameHeight() - sprite->getHeight()))
@@ -99,7 +97,7 @@ void Player::handleInput() {
 		}
 
 		//Boutons
-		if(SDL_JoystickGetButton(InputHandler::getJoystickByID(0), SDL_CONTROLLER_BUTTON_A)) {
+		if(SDL_JoystickGetButton(InputHandler::getJoystickByID(id), SDL_CONTROLLER_BUTTON_A)) {
 			handleBulletSpawner();
 		}
 	}

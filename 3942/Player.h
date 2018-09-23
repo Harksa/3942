@@ -7,7 +7,8 @@
  */
 class Player : public GameObject {
 public:
-	Player();
+
+	Player(int player_id = 0) : id{player_id} {}
 
 	/**
 	 * \brief Charge le Player en fonction du LoadParameters
@@ -34,6 +35,12 @@ public:
 	 * \brief Actions effectués lorsque le joueur rentre en collision avec un autre objet
 	 */
 	void onCollision() override;
+
+	/**
+	 * \brief Définie l'ID du player
+	 * \param i L'ID du player
+	 */
+	void setID(int i) { id = i; }
 
 private:
 	/**
@@ -65,12 +72,17 @@ private:
 	 * \brief La largeur par 2 du sprite du Bullet tiré par le Player.
 	 * Utilisé pour le créer correctement au milieu.
 	 */
-	int bullet_sprite_width_by2;
+	int bullet_sprite_width_by2{};
 
 	/**
 	 * \brief Les vies du joueur
 	 */
 	int lives = 3;
+
+	/**
+	 * \brief l'ID du player
+	 */
+	int id{};
 };
 
 /**

@@ -15,7 +15,7 @@ void GameOverState::_restartPlay() {
 }
 
 bool GameOverState::onEnter() {
-	StateParser::parseState("ressources/test.xml", gameOverID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/states.xml", gameOverID, &_gameObjects, &_textureIDList);
 
 	_callbacks.push_back(_gameOverToMain);
 	_callbacks.push_back(_restartPlay);

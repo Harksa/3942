@@ -68,11 +68,5 @@ private:
 	 * \brief Le compteur d'ennemis créés
 	 */
 	unsigned int encouter = 0;
-
-	/**
-	 * \brief Le joueur
-	 */
-	Player * player = nullptr;
-
 };
 

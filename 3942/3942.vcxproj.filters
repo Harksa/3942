@@ -165,6 +165,9 @@
     <ClCompile Include="ScoreManager.cpp">
       <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Fichiers sources\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -285,6 +288,9 @@
       <Filter>Fichiers de ressources\FontCache</Filter>
     </ClInclude>
     <ClInclude Include="ScoreManager.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
   </ItemGroup>
