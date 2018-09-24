@@ -84,11 +84,6 @@ public:
 	void setSpriteAngle(float new_angle) const {
 		sprite->setAngle(new_angle);
 	}
-
-	/**
-	 * \brief Actions effectuées lorsque le GameObject est rentré en collision avec un autre objet.
-	 */
-	virtual void onCollision() = 0;
 	
 	/**
 	 * \brief Détermine si le GameObject est dedans ou en dehors des frontières de l'écran de jeu.

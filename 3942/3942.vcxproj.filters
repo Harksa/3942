@@ -293,5 +293,8 @@
     <ClInclude Include="PlayerManager.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerEnum.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

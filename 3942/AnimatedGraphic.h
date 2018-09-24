@@ -27,8 +27,6 @@ public:
 	 */
 	void load(const LoadParameters* parameters) override;
 
-	void onCollision() override {}
-
 	void clean() override {
 		GameObject::clean();
 	};

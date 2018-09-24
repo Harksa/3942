@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "GameObjectFactory.h"
+#include "PlayerEnum.h"
 
 /**
  * \brief La classe qui désigne l'avatar du joueur
@@ -8,7 +9,7 @@
 class Player : public GameObject {
 public:
 
-	Player(int player_id = 0) : id{player_id} {}
+	Player(PLAYER_NUM num = PLAYER_1) : id{num} {}
 
 	/**
 	 * \brief Charge le Player en fonction du LoadParameters
@@ -34,13 +35,7 @@ public:
 	/**
 	 * \brief Actions effectués lorsque le joueur rentre en collision avec un autre objet
 	 */
-	void onCollision() override;
-
-	/**
-	 * \brief Définie l'ID du player
-	 * \param i L'ID du player
-	 */
-	void setID(int i) { id = i; }
+	void onCollision();
 
 private:
 	/**
@@ -56,17 +51,17 @@ private:
 	/**
 	 * \brief Vitesse de déplacement du joueur
 	 */
-	const float speed = 5.0f;
+	const float speed{5.0f};
 
 	/**
 	 * \brief Le délai entre deux tires
 	 */
-	const int fireDelay = 10;
+	const int fireDelay{10};
 
 	/**
 	 * \brief Le timer qui permettra de savoir si le joueur peut tirer ou non.
 	 */
-	int timerFire = 0;
+	int timerFire{0};
 
 	/**
 	 * \brief La largeur par 2 du sprite du Bullet tiré par le Player.
@@ -77,12 +72,12 @@ private:
 	/**
 	 * \brief Les vies du joueur
 	 */
-	int lives = 3;
+	int lives{3};
 
 	/**
-	 * \brief l'ID du player
+	 * \brief L'ID du joueur
 	 */
-	int id{};
+	PLAYER_NUM id{};
 };
 
 /**

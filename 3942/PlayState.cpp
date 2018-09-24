@@ -6,7 +6,6 @@
 #include "CollisionManager.h"
 #include "StateChangeAsker.h"
 #include "SoundManager.h"
-#include "GameParameters.h"
 #include "UIManager.h"
 #include "PlayerManager.h"
 

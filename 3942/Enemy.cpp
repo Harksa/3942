@@ -38,11 +38,16 @@ void Enemy::load(const LoadParameters * parameters) {
 	velocity.y = 2;
 }
 
-void Enemy::onCollision() {
+
+void Enemy::onCollisionWithBullet(PLAYER_NUM player_bullet_num) {
 	health--;
 
 	if(health <= 0) {
-		ScoreManager::Instance()->addPoints(points);
+		ScoreManager::Instance()->addPoints(points, player_bullet_num);
 		is_dead = true;
 	}
+}
+
+void Enemy::onCollisionWithPlayer() {
+	is_dead = true;
 }

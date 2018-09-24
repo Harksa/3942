@@ -42,8 +42,6 @@ public:
 	 */
 	int getCallbackID() const {return _callbackID;}
 
-	void onCollision() override {};
-
 private:
 	/**
 	 * \brief La fonction callback associé au bouton

@@ -182,6 +182,7 @@
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />
+    <ClInclude Include="PlayerEnum.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="GameObject.h" />

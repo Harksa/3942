@@ -36,12 +36,13 @@ BulletManager::~BulletManager() {
 		clear();
 }
 
-void BulletManager::createPlayerBullet(const Vector2D position, const Vector2D velocity) {
+void BulletManager::createPlayerBullet(PLAYER_NUM player, const Vector2D position, const Vector2D velocity) {
 	assert(firstPlayerBulletAvailable != nullptr);
 
 	PlayerBullet * bullet = firstPlayerBulletAvailable;
 	firstPlayerBulletAvailable = bullet->getNext();
 
+	bullet->setPlayerNum(player);
 	setupBullet(bullet, position, velocity);
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Bullet.h"
+#include "PlayerEnum.h"
 
 /**
  * \brief Classe représentant les Bullets tirés par le joueur
@@ -36,6 +37,17 @@ public:
 	 */
 	void load(const LoadParameters* parameters) override;
 
+	/**
+	 * \brief Définie le Player qui a tiré le Bullet
+	 * \param player Le player qui a tiré le Bullet
+	 */
+	void setPlayerNum(PLAYER_NUM player) { player_num = player; }
+
+	/**
+	 * \brief Retourne l'ID du Player ayant tiré ce Bullet
+	 * \return L'ID du Player ayant tiré ce Bullet
+	 */
+	PLAYER_NUM getPlayerNum() const { return player_num; }
 
 	/**
 	 * \brief Mets à jour le voisin de ce Bullet
@@ -54,5 +66,10 @@ private:
 	 * \brief Le voisin de ce Bullet
 	 */
 	PlayerBullet * next{};
+
+	/**
+	 * \brief Le Player ayant tiré la balle
+	 */
+	PLAYER_NUM player_num{};
 };
 

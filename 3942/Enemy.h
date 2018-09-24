@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "GameObjectFactory.h"
+#include "PlayerEnum.h"
 
 /**
  * \brief La classe ennemi de base
@@ -32,9 +33,15 @@ public:
 	void load(const LoadParameters* parameters) override;
 
 	/**
-	 * \brief Action réalisé lorsque l'Enemy est rentré en collision
+	 * \brief Action réalisé lorsque l'Enemy est rentré en collision avec un Bullet
+	 * \param player_bullet_num Le Player ayant tiré la balle.
 	 */
-	void onCollision() override;
+	void onCollisionWithBullet(PLAYER_NUM player_bullet_num);
+
+	/**
+	 * \brief Action réalisé lorsque l'Enemy rentre en collision avec un Player
+	 */
+	void onCollisionWithPlayer();
 
 	/**
 	 * \brief Assigne les points gagnés en tuer cet ennemi

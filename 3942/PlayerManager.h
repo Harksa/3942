@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Player.h"
+#include "PlayerEnum.h"
 
 
 class PlayerManager {
@@ -13,11 +14,11 @@ public:
 		return instance;
 	}
 
-	void init();
+	void init() const;
 
-	void update() ;
+	void update() const;
 
-	void render();
+	void render() const;
 
 	void clear() const;
 

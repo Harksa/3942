@@ -3,9 +3,9 @@
 
 PlayerManager * PlayerManager::instance = nullptr;
 
-void PlayerManager::init() {
+void PlayerManager::init() const {
 	if(GameParameters::isTwoPlayer()) {
-		Player * player1 = new Player(0), * player2 = new Player(1);
+		Player * player1 = new Player(PLAYER_1), * player2 = new Player(PLAYER_2);
 
 		LoadParameters * p = new LoadParameters(GameParameters::getGameWidth() * 0.25f - TextureManager::Instance()->getTextureInformationsFromID("Player1").width * 0.5f, //Milieu de l'écran
 										static_cast<int> (GameParameters::getGameHeight()) * 0.8f,
@@ -38,13 +38,13 @@ void PlayerManager::init() {
 	}
 }
 
-void PlayerManager::update() {
+void PlayerManager::update() const {
 	for (auto& player : *players) {
 		player->update();
 	}
 }
 
-void PlayerManager::render() {
+void PlayerManager::render() const {
 	for (auto& player : *players) {
 		player->draw();
 	}

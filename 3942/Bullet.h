@@ -28,7 +28,7 @@ public:
 	/**
 	 * \brief Actions effecttuées lorsque le Bullet rentre en collision avec un autre objet.
 	 */
-	void onCollision() override;
+	virtual void onCollision();
 
 	/**
 	 * \brief Charge le Bullet en fonction du LoadParameter
@@ -60,7 +60,7 @@ public:
 	 */
 	void setChangeNext(bool value) {need_change_next = value;}
 
-private:
+	private:
 	/**
 	 * \brief Le booléen déterminant si ce Bullet est disponible ou non.
 	 */

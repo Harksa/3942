@@ -22,10 +22,11 @@ public:
 
 	/**
 	 * \brief Créer un PlayerBullet avec la position et la velocité donnée en paramètre
+	 * \param player Le Player qui a tiré le Bullet
 	 * \param position La position du Bullet
 	 * \param velocity La velocité du Bullet
 	 */
-	void createPlayerBullet(Vector2D position, Vector2D velocity);
+	void createPlayerBullet(PLAYER_NUM player, const Vector2D position, const Vector2D velocity);
 
 	/**
 	 * \brief Créer un EnemyBullet avec la position et la velocité donnée en paramètre

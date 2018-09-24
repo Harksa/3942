@@ -13,7 +13,7 @@ void CollisionManager::checkCollisionEnemyWithPlayerBullets(std::vector<GameObje
 			for (int i = 0 ; i < BulletManager::player_bullet_pool_size ; i++) {
 				if(player_bullets[i].isAvailable()) {
 					if(IntersectRect(object->getRect(), player_bullets[i].getRect())) {
-						object->onCollision();
+						static_cast<Enemy *>(object)->onCollisionWithBullet(player_bullets[i].getPlayerNum());
 						player_bullets[i].onCollision();
 					}
 				}
@@ -40,7 +40,8 @@ void CollisionManager::checkCollisionsPlayerAgainstEnemies(Player * player, std:
 		if(dynamic_cast<Enemy *> (object) != nullptr) {
 			if(IntersectRect(player->getRect(), object->getRect())) {
 				player->onCollision();
-				object->onCollision();
+				static_cast<Enemy*>(object)->onCollisionWithPlayer();
+
 			}
 		}
 	}
