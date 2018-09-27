@@ -64,7 +64,7 @@ void InputHandler::handleJoysticksConnection() {
 				}
 			}
 			SDL_JoystickClose(_joysticks[detachedJoyID]);
-			_joysticks.erase(_joysticks.begin() + detachedJoyID);
+			_joysticks.pop_back();
 			currentNumberOfJoysticks--;
 
 			if(currentNumberOfJoysticks == 0)
@@ -119,6 +119,7 @@ void InputHandler::clean() {
 
 void InputHandler::reset()
 {
+
     _mouseButtonStates[LEFT] = false;
     _mouseButtonStates[RIGHT] = false;
     _mouseButtonStates[MIDDLE] = false;

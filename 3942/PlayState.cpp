@@ -8,11 +8,18 @@
 #include "SoundManager.h"
 #include "UIManager.h"
 #include "PlayerManager.h"
+#include "GameParameters.h"
 
 const std::string PlayState::playID = "PLAY";
 
 void PlayState::update() {
 	if(is_loaded) {
+
+		if(GameParameters::isTwoPlayer() &&  InputHandler::getNumberOfJoysticks() != 2) {
+			StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
+			return;
+		}
+
 		if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
 			StateChangeAsker::askToPush(PAUSE);
 			return;
@@ -55,6 +62,11 @@ void PlayState::update() {
 
 void PlayState::render() {
 	if(is_loaded) {
+
+		if(GameParameters::isTwoPlayer() &&  InputHandler::getNumberOfJoysticks() != 2) {	
+			return;
+		}
+
 		background->draw();
 
 		BulletManager::Instance()->render();
@@ -84,17 +96,6 @@ bool PlayState::onEnter() {
 
 	PlayerManager::Instance()->init();
 
-	/*
-	player = new Player();
-	LoadParameters * p = new LoadParameters(GameParameters::getGameWidth() * 0.5f - TextureManager::Instance()->getTextureInformationsFromID("bob").width * 0.5f, //Milieu de l'écran
-									static_cast<int> (GameParameters::getGameHeight()) * 0.8f,
-									"bob");
-	player->load(p);
-	player->setID(0);
-
-	delete p;
-	*/
-
 	UIManager::Instance()->init();
 
 	is_loaded = true;
@@ -109,7 +110,6 @@ bool PlayState::onExit() {
 	UIManager::Instance()->clear();
 
 	PlayerManager::Instance()->clear();
-	//delete player;
 
 	return true;
 }

@@ -80,6 +80,12 @@ public:
 	static SDL_Joystick * getJoystickByID(int id) {return _joysticks[id];}
 
 	/**
+	 * \brief Retourne le nombre de joysticks actuellement connectés au PC
+	 * \return Le nombre de joysticks actuellement connectés
+	 */
+	static unsigned int getNumberOfJoysticks() { return SDL_NumJoysticks(); }
+
+	/**
 	 * \brief diviseur pour les axis du joysticks
 	 */
 	static constexpr float diviser = 32767.0f;
@@ -88,7 +94,6 @@ public:
 	 * \brief La zone morte du joystick
 	 */
 	static constexpr float _joystickDeadZone = 10000;
-
 
 private:
 

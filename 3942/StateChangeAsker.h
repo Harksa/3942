@@ -7,7 +7,8 @@ enum StateChoice {
 	MAIN_MENU,
 	PLAY,
 	PAUSE,
-	GAME_OVER
+	GAME_OVER,
+	RECONNECT_JOYSTICK
 };
 
 /**

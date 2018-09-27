@@ -3,6 +3,7 @@
 #include "MainMenuState.h"
 #include "PauseState.h"
 #include "GameOverState.h"
+#include "ReconnectJoystickState.h"
 
 void GameStateMachine::createState(StateChoice choice) {
 	switch(choice) {
@@ -18,8 +19,12 @@ void GameStateMachine::createState(StateChoice choice) {
 		case GAME_OVER:
 			_gameStates.push_back(std::make_shared<GameOverState>());
 			break;
+		case RECONNECT_JOYSTICK:
+			_gameStates.push_back(std::make_shared<ReconnectJoystickState>());
+			break;
 		default:
 			_gameStates.push_back(std::make_shared<MainMenuState>());
+			break;
 	}
 
 }

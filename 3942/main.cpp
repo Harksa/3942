@@ -20,6 +20,7 @@ int main(int argc, char** args) {
 				Game::Instance()->getStateMachine()->popState();
 
 			StateChangeAsker::reset();
+			InputHandler::reset();
 		} else {
 			const Uint32 frame_start = SDL_GetTicks();
 			Game::Instance()->handleEvents();
