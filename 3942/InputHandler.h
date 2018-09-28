@@ -77,7 +77,7 @@ public:
 	 * \param id L'ID du joystick désiré
 	 * \return Le joystick lié à l'ID
 	 */
-	static SDL_Joystick * getJoystickByID(int id) {return _joysticks[id];}
+	static SDL_Joystick * getJoystickByID(int id) {return joystick_arrays[id];}
 
 	/**
 	 * \brief Retourne le nombre de joysticks actuellement connectés au PC
@@ -96,6 +96,11 @@ public:
 	static constexpr float _joystickDeadZone = 10000;
 
 private:
+
+	/**
+	 * \brief Le nombre maximal de joueur pouvant jouer ensemble
+	 */
+	static constexpr unsigned int MAX_PLAYER_COUNT = 2;
 
 	/**
 	 * \brief Gère les connexions des joysticks
@@ -119,9 +124,14 @@ private:
 	static const Uint8 * keyStates;
 
 	/**
-	 * \brief Les joysticks initialisés
+	 * \brief Le tableau regroupant les joysticks
 	 */
-	static std::vector<SDL_Joystick*> _joysticks;
+	static SDL_Joystick * joystick_arrays[MAX_PLAYER_COUNT];
+
+	/**
+	 * \brief Le tableau déterminant si le joystick à l'ID indiqué est connecté ou non
+	 */
+	static bool is_connected[MAX_PLAYER_COUNT];
 
 	/**
 	 * \brief booléen déterminant si au moins un joystick a été initialisé ou non.
