@@ -21,6 +21,11 @@ public:
 	}
 
 	/**
+	 * \brief Initialise le BulletManager
+	 */
+	void init();
+
+	/**
 	 * \brief Créer un PlayerBullet avec la position et la velocité donnée en paramètre
 	 * \param player Le Player qui a tiré le Bullet
 	 * \param position La position du Bullet
@@ -50,8 +55,16 @@ public:
 	 */
 	void clear();
 
+	/**
+	 * \brief Retourne la liste des Bullets des players
+	 * \return La liste des Bullets des players
+	 */
 	PlayerBullet * getPlayerBullets() { return player_bullets;}
 
+	/**
+	 * \brief Retourne la liste des Bullets ennemis
+	 * \return La liste des Bullets ennemis
+	 */
 	EnemyBullet * getEnemyBullets() { return enemy_bullets;}
 
 	/**
@@ -64,9 +77,10 @@ public:
 	 */
 	static const int enemy_bullet_pool_size = 500;
 
-private:
-	BulletManager();
 	~BulletManager();
+
+private:
+	BulletManager() = default;
 
 	/**
 	 * \brief Setup un bullet

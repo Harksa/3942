@@ -20,7 +20,10 @@ void Bullet::update() {
 }
 
 void Bullet::clean() {
-	GameObject::clean();
+	if(!is_already_cleaned) {
+		GameObject::clean();
+		is_already_cleaned = true;
+	}
 }
 
 void Bullet::onCollision() {
@@ -29,5 +32,5 @@ void Bullet::onCollision() {
 }
 
 Bullet::~Bullet() {
-	GameObject::clean();
+	Bullet::clean();
 }

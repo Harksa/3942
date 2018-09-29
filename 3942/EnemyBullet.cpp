@@ -10,6 +10,7 @@ void EnemyBullet::draw() {
 
 void EnemyBullet::clean() {
 	Bullet::clean();
+	next = nullptr;
 }
 
 void EnemyBullet::load(const LoadParameters* parameters) {

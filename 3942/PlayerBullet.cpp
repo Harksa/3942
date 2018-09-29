@@ -10,6 +10,7 @@ void PlayerBullet::draw() {
 
 void PlayerBullet::clean() {
 	Bullet::clean();
+	next = nullptr;
 }
 
 void PlayerBullet::load(const LoadParameters* parameters) {

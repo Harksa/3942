@@ -3,6 +3,9 @@
 #include "GameObject.h"
 #include "MenuState.h"
 
+/**
+ * \brief Etat de pause du jeu
+ */
 class PauseState : public MenuState {
 public:
 	/**

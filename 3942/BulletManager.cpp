@@ -3,7 +3,9 @@
 
 BulletManager * BulletManager::instance = nullptr;
 
-BulletManager::BulletManager() {
+void BulletManager::init() {
+	is_already_cleared = false;
+
 	firstPlayerBulletAvailable = &player_bullets[0];
 	firstEnemyBulletAvailable =  &enemy_bullets[0];
 
@@ -104,16 +106,17 @@ void BulletManager::render() {
 }
 
 void BulletManager::clear() {
-	for (auto& bullet : player_bullets) {
-		bullet.clean();
+	if(!is_already_cleared) {
+		for (auto& bullet : player_bullets) {
+			bullet.clean();
+			bullet.setNext(nullptr);
+		}
+
+		for(auto& bullet : enemy_bullets) {
+			bullet.clean();
+			bullet.setNext(nullptr);
+		}
+
+		is_already_cleared = true;
 	}
-
-	for(auto& bullet : enemy_bullets) {
-		bullet.clean();
-	}
-
-	delete [] &player_bullets;
-	delete [] &enemy_bullets;
-
-	is_already_cleared = true;
 }

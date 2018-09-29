@@ -33,6 +33,12 @@ public:
 	void clean() override;
 
 	/**
+	 * \brief Détermine si le joueur a encore des vies ou non
+	 * \return Vrai si le joueur a encore des vies, faux sinon
+	 */
+	bool hasRemainingLives() const { return lives > 0; }
+
+	/**
 	 * \brief Actions effectués lorsque le joueur rentre en collision avec un autre objet
 	 */
 	void onCollision();

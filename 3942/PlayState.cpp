@@ -14,12 +14,19 @@ const std::string PlayState::playID = "PLAY";
 
 void PlayState::update() {
 	if(is_loaded) {
+		//Check mort joueurs
+		if(PlayerManager::Instance()->areAllPlayersDead()) {
+			StateChangeAsker::askToChange(GAME_OVER);
+			return;
+		}
 
+		//Check joysticks
 		if(GameParameters::isTwoPlayer() &&  InputHandler::getNumberOfJoysticks() != 2) {
 			StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
 			return;
 		}
 
+		//Check pause
 		if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
 			StateChangeAsker::askToPush(PAUSE);
 			return;
@@ -95,7 +102,7 @@ bool PlayState::onEnter() {
 	background->load("Textures/starBackground.png", "stars", 0.5f);
 
 	PlayerManager::Instance()->init();
-
+	BulletManager::Instance()->init();
 	UIManager::Instance()->init();
 
 	is_loaded = true;
@@ -106,10 +113,9 @@ bool PlayState::onEnter() {
 bool PlayState::onExit() {
 	clearState();
 
-	BulletManager::Instance()->clear();
 	UIManager::Instance()->clear();
-
 	PlayerManager::Instance()->clear();
+	BulletManager::Instance()->clear();
 
 	return true;
 }

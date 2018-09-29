@@ -7,7 +7,7 @@ class StateParser;
 const std::string GameOverState::gameOverID = "GAMEOVER";
 
 void GameOverState::_gameOverToMain() {
-	StateChangeAsker::askToChange(GAME_OVER);
+	StateChangeAsker::askToChange(MAIN_MENU);
 }
 
 void GameOverState::_restartPlay() {

@@ -7,9 +7,9 @@
 			<texture filename="Textures/Buttons/exit.png" ID="ExitButton" width="310" height="80" numFrames="0"/>
 		</TEXTURES>
 		<OBJECTS>
-			<object type="MenuButton" x="155" y="300" textureID="OnePlayerButton" callbackID="0"/>
-			<object type="MenuButton" x="155" y="400" textureID="TwoPlayerButton" callbackID="1"/>
-			<object type="MenuButton" x="155" y="500" textureID="ExitButton" callbackID="2"/>
+			<object type="MenuButton" x="150" y="300" textureID="OnePlayerButton" callbackID="0"/>
+			<object type="MenuButton" x="150" y="400" textureID="TwoPlayerButton" callbackID="1"/>
+			<object type="MenuButton" x="150" y="500" textureID="ExitButton" callbackID="2"/>
 		</OBJECTS>
 	</MENU>
 	
@@ -31,8 +31,8 @@
 			<texture filename="Textures/Buttons/main_menu.png" ID="MainButton" width="310" height="80"/>
 		</TEXTURES>
 		<OBJECTS>
-			<object type="MenuButton" x="155" y="100" textureID="MainButton" callbackID="0"/>
-			<object type="MenuButton" x="155" y="300" textureID="ResumeButton" callbackID="1"/>
+			<object type="MenuButton" x="150" y="100" textureID="MainButton" callbackID="0"/>
+			<object type="MenuButton" x="150" y="300" textureID="ResumeButton" callbackID="1"/>
 		</OBJECTS>
 	</PAUSE>
 	
@@ -44,9 +44,9 @@
 		</TEXTURES>
 		
 		<OBJECTS>
-			<object type="AnimatedGraphic" x="200" y="100" textureID="GameOverText"/>
-			<object type="MenuButton" x="155" y="200" textureID="MainButton" callbackID="0"/>
-			<object type="MenuButton" x="155" y="300" textureID="RestartButton" callbackID="1"/>
+			<object type="AnimatedGraphic" x="180" y="100" textureID="GameOverText"/>
+			<object type="MenuButton" x="150" y="200" textureID="MainButton" callbackID="0"/>
+			<object type="MenuButton" x="150" y="300" textureID="RestartButton" callbackID="1"/>
 		</OBJECTS>
 	</GAMEOVER>
 </STATES>
