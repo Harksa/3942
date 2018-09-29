@@ -1,5 +1,4 @@
 #include "InputHandler.h"
-#include <iostream>
 #include "Game.h"
 
 bool InputHandler::_joystickInitialised{false};

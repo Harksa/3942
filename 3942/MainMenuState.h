@@ -51,9 +51,14 @@ private:
 	static const std::string menuID;
 
 	/**
-	 * \brief Fonction permettant d'aller au jeu.
+	 * \brief Fonction permettant d'aller au jeu en mode solo
 	 */
-	static void menuToPlay();
+	static void menuToPlaySolo();
+
+	/**
+	 * \brief Fonction permettant d'aller au jeu en mode 2 joueurs
+	 */
+	static void menuToPlayMulti();
 
 	/**
 	 * \brief Fonction permettant de quitter le jeu.

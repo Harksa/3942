@@ -4,6 +4,7 @@
 #include "StateParser.h"
 #include "StateChangeAsker.h"
 #include "MenuButton.h"
+#include "GameParameters.h"
 
 const std::string MainMenuState::menuID = "MENU";
 
@@ -24,7 +25,13 @@ void MainMenuState::render() {
 	}
 }
 
-void MainMenuState::menuToPlay() {
+void MainMenuState::menuToPlaySolo() {
+	GameParameters::setMulti(false);
+	StateChangeAsker::askToChange(PLAY);
+}
+
+void MainMenuState::menuToPlayMulti() {
+	GameParameters::setMulti(true);
 	StateChangeAsker::askToChange(PLAY);
 }
 
@@ -39,7 +46,8 @@ bool MainMenuState::onEnter() {
 	background = new Background();
 	background->load("Textures/starBackground.png", "Star", 0.5f);
 
-	_callbacks.push_back(menuToPlay);
+	_callbacks.push_back(menuToPlaySolo);
+	_callbacks.push_back(menuToPlayMulti);
 	_callbacks.push_back(exitFromMenu);
 
 	setCallbacks(_callbacks);
