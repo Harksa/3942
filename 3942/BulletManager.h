@@ -59,13 +59,13 @@ public:
 	 * \brief Retourne la liste des Bullets des players
 	 * \return La liste des Bullets des players
 	 */
-	PlayerBullet * getPlayerBullets() { return player_bullets;}
+	PlayerBullet * getPlayerBullets() const { return bullet_pool->player_bullets;}
 
 	/**
 	 * \brief Retourne la liste des Bullets ennemis
 	 * \return La liste des Bullets ennemis
 	 */
-	EnemyBullet * getEnemyBullets() { return enemy_bullets;}
+	EnemyBullet * getEnemyBullets() const { return bullet_pool->enemy_bullets;}
 
 	/**
 	 * \brief La taille de la piscine de PlayerBullet
@@ -83,6 +83,11 @@ private:
 	BulletManager() = default;
 
 	/**
+	 * \brief L'instance du BulletManager
+	 */
+	static BulletManager * instance;
+
+	/**
 	 * \brief Setup un bullet
 	 * \param bullet Le Bullet à paramétrer
 	 * \param position Sa position de départ
@@ -90,31 +95,41 @@ private:
 	 */
 	void setupBullet(Bullet* bullet, Vector2D position, Vector2D velocity) const;
 
-	/**
-	 * \brief Le premier PlayerBullet disponible
-	 */
-	PlayerBullet * firstPlayerBulletAvailable;
+	bool is_already_cleared {false};
 
 	/**
-	 * \brief Le premier EnemyBullet disponible
+	 * \brief La structure regroupant les piscines de Bullets
 	 */
-	EnemyBullet * firstEnemyBulletAvailable;
+	struct BulletPool {
+
+		/**
+		 * \brief Le premier PlayerBullet disponible
+		 */
+		PlayerBullet * firstPlayerBulletAvailable{};
+
+		/**
+		 * \brief Le premier EnemyBullet disponible
+		 */
+		EnemyBullet * firstEnemyBulletAvailable{};
+
+		/**
+		 * \brief Le tableau de PlayerBullet
+		 */
+		PlayerBullet player_bullets[player_bullet_pool_size];
+
+		/**
+		 * \brief Le tableau d'EnemyBullet
+		 */
+		EnemyBullet enemy_bullets[enemy_bullet_pool_size];
+
+		BulletPool() = default;
+		~BulletPool() = default;
+	};
 
 	/**
-	 * \brief L'instance du BulletManager
+	 * \brief La piscine de Bullet
 	 */
-	static BulletManager * instance;
+	BulletPool * bullet_pool{};
 
-	/**
-	 * \brief Le tableau de PlayerBullet
-	 */
-	PlayerBullet player_bullets[player_bullet_pool_size];
-
-	/**
-	 * \brief Le tableau d'EnemyBullet
-	 */
-	EnemyBullet enemy_bullets[enemy_bullet_pool_size];
-
-	bool is_already_cleared = false;
 };
 
