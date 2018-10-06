@@ -6,9 +6,17 @@
 const std::string ReconnectJoystickState::RECONNECT_STATE_ID = "RECONNECTE_STATE";
 
 void ReconnectJoystickState::update() {
-	if(InputHandler::getNumberOfJoysticks() == 2) {
-		StateChangeAsker::askForPopBack();
-	}
+		if(GameParameters::isTwoPlayer()) {
+			if(!GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1) && InputHandler::getNumberOfJoysticks() == 2 ||
+			   (!GameParameters::isPlayerUsingKeyboard(0) && GameParameters::isPlayerUsingKeyboard(1) ||
+			   GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) && InputHandler::getNumberOfJoysticks() >= 1) {
+				StateChangeAsker::askForPopBack();
+				return;
+			}
+		} else if (!GameParameters::isPlayerUsingKeyboard(0) && InputHandler::getNumberOfJoysticks() < 1) {
+			StateChangeAsker::askForPopBack();
+			return;
+		}
 }
 
 void ReconnectJoystickState::render() {

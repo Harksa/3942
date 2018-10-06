@@ -36,13 +36,6 @@ public:
 	MainMenuState() = default;
 	~MainMenuState() = default;
 
-protected:
-	/**
-	 * \brief Permet d'affecter les actions aux bouttons du menu.
-	 * \param callbacks Les fonctions que l'on souhaiter affecter aux boutons.
-	 */
-	void setCallbacks(const std::vector<Callback>& callbacks) override;
-
 private:
 
 	/**
@@ -53,12 +46,17 @@ private:
 	/**
 	 * \brief Fonction permettant d'aller au jeu en mode solo
 	 */
-	static void menuToPlaySolo();
+	static void menuToPlay();
 
 	/**
-	 * \brief Fonction permettant d'aller au jeu en mode 2 joueurs
+	 * \brief Fonction permettant d'aller aux HighScores
 	 */
-	static void menuToPlayMulti();
+	static void menuToHighScores() {}
+
+	/**
+	 * \brief Fonction permettant d'aller aux options
+	 */
+	static void menuToOptions() {}
 
 	/**
 	 * \brief Fonction permettant de quitter le jeu.

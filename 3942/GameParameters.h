@@ -30,6 +30,12 @@ public:
 	 */
 	static bool isTwoPlayer() { return two_player; }
 
+
+	static bool isPlayerUsingKeyboard(int playerID) {return isUsingKeyboard[playerID]; }
+
+
+	static void setPlayerUsingKeyboard(int player, bool value) {isUsingKeyboard[player] = value; }
+
 private:
 	friend class Game;
 
@@ -47,6 +53,9 @@ private:
 	 * \brief Booléen déterminant si deux joueurs jouent 
 	 */
 	static bool two_player;
+
+
+	static bool isUsingKeyboard[2];
 
 };
 

@@ -35,17 +35,6 @@ bool PauseState::onEnter() {
 	return true;
 }
 
-
-void PauseState::setCallbacks(const std::vector<Callback>& callbacks) {
-	for (auto& _gameObject : _gameObjects) {
-		if(dynamic_cast<MenuButton*>(_gameObject)) {
-			auto button = dynamic_cast<MenuButton*>(_gameObject);
-			button->setCallback(callbacks[button->getCallbackID()]);
-		}
-	}
-}
-
-
 bool PauseState::onExit() {
 	clearState();
 

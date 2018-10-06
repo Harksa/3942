@@ -25,14 +25,9 @@ void MainMenuState::render() {
 	}
 }
 
-void MainMenuState::menuToPlaySolo() {
+void MainMenuState::menuToPlay() {
 	GameParameters::setMulti(false);
-	StateChangeAsker::askToChange(PLAY);
-}
-
-void MainMenuState::menuToPlayMulti() {
-	GameParameters::setMulti(true);
-	StateChangeAsker::askToChange(PLAY);
+	StateChangeAsker::askToChange(CHOOSE_CONTROLS);
 }
 
 void MainMenuState::exitFromMenu() {
@@ -46,24 +41,15 @@ bool MainMenuState::onEnter() {
 	background = new Background();
 	background->load("Textures/starBackground.png", "Star", 0.5f);
 
-	_callbacks.push_back(menuToPlaySolo);
-	_callbacks.push_back(menuToPlayMulti);
+	_callbacks.push_back(menuToPlay);
+	_callbacks.push_back(menuToHighScores);
+	_callbacks.push_back(menuToOptions);
 	_callbacks.push_back(exitFromMenu);
 
 	setCallbacks(_callbacks);
 
 	return true;
 }
-
-void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks) {
-	for (auto& _gameObject : _gameObjects) {
-		if(dynamic_cast<MenuButton*>(_gameObject)) {
-			auto button = dynamic_cast<MenuButton*>(_gameObject);
-			button->setCallback(callbacks[button->getCallbackID()]);
-		}
-	}
-}
-
 
 bool MainMenuState::onExit() {
 	clearState();

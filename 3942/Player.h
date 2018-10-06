@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "PlayerEnum.h"
+#include "InputHandler.h"
 
 /**
  * \brief La classe qui désigne l'avatar du joueur
@@ -37,6 +38,14 @@ public:
 	 * \return Vrai si le joueur a encore des vies, faux sinon
 	 */
 	bool hasRemainingLives() const { return lives > 0; }
+
+	
+	void setJoystickID(unsigned int joyID) { joystick_id = joyID;}
+
+
+	unsigned int getJoystickID() const {return joystick_id; }
+
+	bool isJoyConnected() const {return InputHandler::getJoystickByID(joystick_id) != nullptr; }
 
 	/**
 	 * \brief Actions effectués lorsque le joueur rentre en collision avec un autre objet
@@ -84,6 +93,11 @@ private:
 	 * \brief L'ID du joueur
 	 */
 	PLAYER_NUM id{};
+
+	/**
+	 * \brief L'ID du joystick utilisé par le joueur
+	 */
+	unsigned int joystick_id{}; 
 };
 
 /**

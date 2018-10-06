@@ -37,13 +37,6 @@ public:
 	PauseState() = default;
 	~PauseState() = default;
 
-protected:
-	/**
-	 * \brief Permet d'affecter les actions aux bouttons du menu.
-	 * \param callbacks Les fonctions que l'on souhaiter affecter aux boutons.
-	 */
-	void setCallbacks(const std::vector<Callback>& callbacks) override;
-
 private:
 	/**
 	 * \brief Reviens du menu de pause au menu principal.

@@ -4,11 +4,15 @@
 #include "PauseState.h"
 #include "GameOverState.h"
 #include "ReconnectJoystickState.h"
+#include "ChooseControlState.h"
 
-void GameStateMachine::createState(StateChoice choice) {
+void GameStateMachine::createState(const StateChoice choice) {
 	switch(choice) {
 		case MAIN_MENU:
 			_gameStates.push_back(std::make_shared<MainMenuState>());
+			break;
+		case CHOOSE_CONTROLS:
+			_gameStates.push_back(std::make_shared<ChooseControlState>());
 			break;
 		case PLAY:
 			_gameStates.push_back(std::make_shared<PlayState>());
@@ -29,12 +33,12 @@ void GameStateMachine::createState(StateChoice choice) {
 
 }
 
-void GameStateMachine::pushState(StateChoice choice) {
+void GameStateMachine::pushState(const StateChoice choice) {
 	createState(choice);
 	_gameStates.back()->onEnter();
 }
 
-void GameStateMachine::changeState(StateChoice choice) {
+void GameStateMachine::changeState(const StateChoice choice) {
 	if (!_gameStates.empty()) {
 		_gameStates.back()->onExit();
 		_gameStates.back() = nullptr;

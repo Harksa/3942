@@ -31,15 +31,6 @@ bool GameOverState::onExit() {
 	return true;
 }
 
-void GameOverState::setCallbacks(const std::vector<Callback>& callbacks) {
-	for (auto& _gameObject : _gameObjects) {
-		if(dynamic_cast<MenuButton*>(_gameObject)) {
-			auto button = dynamic_cast<MenuButton*>(_gameObject);
-			button->setCallback(callbacks[button->getCallbackID()]);
-		}
-	}
-}
-
 void GameOverState::update() {
 		if(!_gameObjects.empty()) {
 			for (auto game_object : _gameObjects) {

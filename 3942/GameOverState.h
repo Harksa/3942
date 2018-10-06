@@ -37,13 +37,6 @@ public:
 	GameOverState() = default;
 	~GameOverState() = default;
 
-protected:
-	/**
-	 * \brief Permet d'affecter les actions aux bouttons du menu.
-	 * \param callbacks Les fonctions que l'on souhaiter affecter aux boutons.
-	 */
-	void setCallbacks(const std::vector<Callback>& callbacks) override;
-
 private:
 	/**
 	 * \brief Fonction qui permet de revenir au menu principal.

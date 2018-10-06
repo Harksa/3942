@@ -21,7 +21,14 @@ void PlayState::update() {
 		}
 
 		//Check joysticks
-		if(GameParameters::isTwoPlayer() &&  InputHandler::getNumberOfJoysticks() != 2) {
+		if(GameParameters::isTwoPlayer()) {
+			if(!GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1) && InputHandler::getNumberOfJoysticks() != 2 ||
+			   (!GameParameters::isPlayerUsingKeyboard(0) && GameParameters::isPlayerUsingKeyboard(1) ||
+			   GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) && InputHandler::getNumberOfJoysticks() < 1) {
+				StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
+				return;
+			}
+		} else if (!GameParameters::isPlayerUsingKeyboard(0) && InputHandler::getNumberOfJoysticks() < 1) {
 			StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
 			return;
 		}
@@ -69,10 +76,6 @@ void PlayState::update() {
 
 void PlayState::render() {
 	if(is_loaded) {
-
-		if(GameParameters::isTwoPlayer() &&  InputHandler::getNumberOfJoysticks() != 2) {	
-			return;
-		}
 
 		background->draw();
 

@@ -5,7 +5,20 @@ PlayerManager * PlayerManager::instance = nullptr;
 
 void PlayerManager::init() const {
 	if(GameParameters::isTwoPlayer()) {
+
 		Player * player1 = new Player(PLAYER_1), * player2 = new Player(PLAYER_2);
+
+		std::cout << GameParameters::isPlayerUsingKeyboard(0) << std::endl;
+		std::cout << GameParameters::isPlayerUsingKeyboard(1) << std::endl;
+
+		if(!GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) {
+			player1->setJoystickID(0);
+			player2->setJoystickID(1);
+		} else if (!GameParameters::isPlayerUsingKeyboard(0) && GameParameters::isPlayerUsingKeyboard(1)) {
+			player1->setJoystickID(0);
+		} else if (GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) {
+			player2->setJoystickID(0);
+		}
 
 		LoadParameters * p = new LoadParameters(GameParameters::getGameWidth() * 0.25f - TextureManager::Instance()->getTextureInformationsFromID("Player1").width * 0.5f, //Milieu de l'écran
 										static_cast<int> (GameParameters::getGameHeight()) * 0.8f,

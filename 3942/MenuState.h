@@ -1,6 +1,7 @@
 #pragma once
-#include "GameState.h"
 #include <vector>
+#include "GameState.h"
+#include "MenuButton.h"
 
 /**
  * \brief Désigne un état possédant des boutons de menu.
@@ -23,7 +24,15 @@ protected:
 	 * \brief Mets en place les callbacks sur les boutons du menu.
 	 * \param callbacks La liste des fonctions qui seront associées aux boutons.
 	 */
-	virtual void setCallbacks(const std::vector<Callback>& callbacks) = 0;
+	virtual void setCallbacks(const std::vector<Callback>& callbacks) {
+		for (auto& _gameObject : _gameObjects) {
+			if(dynamic_cast<MenuButton*>(_gameObject)) {
+				auto button = dynamic_cast<MenuButton*>(_gameObject);
+				button->setCallback(callbacks[button->getCallbackID()]);
+			}
+		}
+	}
+
 
 	/**
 	 * \brief La liste des fonctions.

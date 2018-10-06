@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <STATES>
+
 	<MENU>
 		<TEXTURES>
-			<texture filename="Textures/Buttons/One_player.png" ID="OnePlayerButton" width="310" height="80" numFrames="0"/>
-			<texture filename="Textures/Buttons/Two_player.png" ID="TwoPlayerButton" width="310" height="80" numFrames="0"/>
-			<texture filename="Textures/Buttons/exit.png" ID="ExitButton" width="310" height="80" numFrames="0"/>
+			<texture filename="Textures/Buttons/play.png" ID="PlayButton" width="310" height="80"/>
+			<texture filename="Textures/Buttons/highscores.png" ID="HighscoresButton" width="310" height="80"/>
+			<texture filename="Textures/Buttons/options.png" ID="OptionsButton" width="310" height="80"/>
+			<texture filename="Textures/Buttons/exit.png" ID="ExitButton" width="310" height="80" />
 		</TEXTURES>
 		<OBJECTS>
-			<object type="MenuButton" x="150" y="300" textureID="OnePlayerButton" callbackID="0"/>
-			<object type="MenuButton" x="150" y="400" textureID="TwoPlayerButton" callbackID="1"/>
-			<object type="MenuButton" x="150" y="500" textureID="ExitButton" callbackID="2"/>
+			<object type="MenuButton" x="150" y="350" textureID="PlayButton" callbackID="0"/>
+			<object type="MenuButton" x="150" y="450" textureID="HighscoresButton" callbackID="1"/>
+			<object type="MenuButton" x="150" y="550" textureID="OptionsButton" callbackID="2"/>
+			<object type="MenuButton" x="150" y="650" textureID="ExitButton" callbackID="3"/>
 		</OBJECTS>
 	</MENU>
+	
+	<CHOOSE_CONTROLS>
+		<TEXTURES>
+			<texture filename="Textures/Buttons/left.png" ID="left" width="38" height="60"/>
+			<texture filename="Textures/Buttons/right.png" ID="right" width="38" height="60"/>
+			<texture filename="Textures/Buttons/gamepad.png" ID="gamepad" width="80" height="60"/>
+			<texture filename="Textures/Buttons/keyboard.png" ID="keyboard" width="80" height="60"/>
+			<texture filename="Textures/Buttons/cross.png" ID="cross" width="80" height="60" />
+			<texture filename="Textures/Player1.png" ID="Player1" width="25" height="38" numFrames="2" animSpeed="10"/>
+			<texture filename="Textures/Player2.png" ID="Player2" width="25" height="38" numFrames="2" animSpeed="10"/>
+			<texture filename="Textures/Buttons/go.png" ID="go" width="310" height="80"/>
+		</TEXTURES>
+		<OBJECTS>
+			<!-- Les AnimatedGraphic qui changeront de sprite en fonctions des choix de l'utilisateur -->
+			<object type="AnimatedGraphic" x="110" y="550" textureID="keyboard"/> <!-- Gauche -->
+			<object type="AnimatedGraphic" x="410" y="550" textureID="cross"/> <!-- Droite -->
+			<!-- Partie gauche -->
+			<object type="MenuButton" x="30" y="550" textureID="left" callbackID="0"/>
+			<object type="MenuButton" x="230" y="550" textureID="right" callbackID="0"/>
+			<object type="AnimatedGraphic" x="138" y="450" textureID="Player1"/>
+			<!-- Partie droite -->
+			<object type="MenuButton" x="330" y="550" textureID="left" callbackID="1"/>
+			<object type="MenuButton" x="530" y="550" textureID="right" callbackID="2"/>
+			<object type="AnimatedGraphic" x="438" y="450" textureID="Player2"/>
+			<!-- GO -->
+			<object type="MenuButton" x="145" y="680" textureID="go" callbackID="3"/> 
+		</OBJECTS>
+	</CHOOSE_CONTROLS>
 	
 	<PLAY>
 		<TEXTURES>
@@ -21,8 +52,7 @@
 			<texture filename="Textures/Player_Bullet.png" ID="PlayerBullet" width="5" height="14"/>
 			<texture filename="Textures/Enemy_Bullet.png" ID="EnemyBullet" width="5" height="22"/>
 		</TEXTURES>
-		<OBJECTS>
-		</OBJECTS>
+		<OBJECTS/>
 	</PLAY>
 	
 	<PAUSE>
@@ -39,14 +69,14 @@
 	<GAMEOVER>
 		<TEXTURES>
 			<texture filename="ressources/gameover.png" width="190" height="30" ID="GameOverText" numFrames="2" animSpeed="2"/>
-			<texture filename="Textures/Buttons/main_menu.png" ID="MainButton" width="310" height="80" />
+			<texture filename="Textures/Buttons/main_menu.png" ID="MainButton" width="310" height="80"/>
 			<texture filename="Textures/Buttons/restart.png" ID="RestartButton" width="310" height="80"/>
 		</TEXTURES>
-		
 		<OBJECTS>
 			<object type="AnimatedGraphic" x="180" y="100" textureID="GameOverText"/>
 			<object type="MenuButton" x="150" y="200" textureID="MainButton" callbackID="0"/>
 			<object type="MenuButton" x="150" y="300" textureID="RestartButton" callbackID="1"/>
 		</OBJECTS>
 	</GAMEOVER>
+	
 </STATES>

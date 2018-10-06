@@ -5,6 +5,7 @@
  */
 enum StateChoice {
 	MAIN_MENU,
+	CHOOSE_CONTROLS,
 	PLAY,
 	PAUSE,
 	GAME_OVER,

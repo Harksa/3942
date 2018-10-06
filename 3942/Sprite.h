@@ -88,7 +88,7 @@ public:
 	 * \brief Définie l'ID de la nouvelle texture du sprite
 	 * \param textureID L'ID de la nouvelle texture
 	 */
-	void setTextureID(const std::string& textureID) {
+	void changeTextureID(const std::string& textureID) {
 		_textureID = textureID;
 		const texture_informations texture = TextureManager::Instance()->getTextureInformationsFromID(_textureID);
 		_width = texture.width;

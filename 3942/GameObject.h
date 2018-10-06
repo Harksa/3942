@@ -104,6 +104,8 @@ public:
 	int getHeight() const {return sprite->getHeight();}
 
 
+	Sprite * getSprite() const {return sprite;}
+
 	/**
 	 * \brief Permet de savoir si le GameObject est mort ou non
 	 * \return Vrai s'il est mort, faux sinon
@@ -129,31 +131,31 @@ protected:
 	/**
 	 * \brief determine si le GameObject est mort ou non.
 	 */
-	bool is_dead = false;
+	bool is_dead{false};
 
 	/**
 	 * \brief La position du GameObject
 	 */
-	Vector2D position;
+	Vector2D position{};
 
 	/**
 	 * \brief La vitesse du GameObject
 	 */
-	Vector2D velocity;
+	Vector2D velocity{};
 
 	/**
 	 * \brief L'accélération du GameObject
 	 */
-	Vector2D acceleration;
+	Vector2D acceleration{};
 
 	/**
 	 * \brief Le Sprite lié au GameObject
 	 */
-	Sprite * sprite = nullptr;
+	Sprite * sprite{nullptr};
 
 	/**
 	 * \brief Booléen déterminant si le GameObject a déjà été nettoyé ou non.
 	 */
-	bool is_already_cleaned = false;
+	bool is_already_cleaned{false};
 };
 

@@ -41,6 +41,10 @@ public:
 
 	GameState() = default;
 
+	/**
+	 * \brief Nettoie les éléments communs des States.
+	 * background, GameObjects et textures
+	 */
 	void clearState() {
 		if(background != nullptr) {
 			background->clean();
