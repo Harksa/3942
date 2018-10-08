@@ -15,8 +15,11 @@ Player2Choice ChooseControlState::player2_choice{NO_PLAYER2};
 bool ChooseControlState::onEnter() {
 	StateParser::parseState("ressources/states.xml", ControlChooseStateID, &_gameObjects, &_textureIDList);
 
+	background = new Background();
+	background->load("Textures/Backgrounds/SelectControls.png", "SelectControls");
+
 	fc_font = FC_CreateFont();
-	FC_LoadFont(fc_font, Game::Instance()->getRenderer(),  "Fonts/TEXWORK.ttf", 20, FC_MakeColor(255,255,255,255), TTF_STYLE_NORMAL);
+	FC_LoadFont(fc_font, Game::Instance()->getRenderer(), "Fonts/TEXWORK.ttf", 20, FC_MakeColor(255,255,255,255), TTF_STYLE_NORMAL);
 
 	bool player1spritedone = false;
 
@@ -59,6 +62,8 @@ bool ChooseControlState::onExit() {
 }
 
 void ChooseControlState::render() {
+
+	background->draw();
 
 	if(!GameParameters::isPlayerUsingKeyboard(0) && InputHandler::getNumberOfJoysticks() < 1) {
 		FC_DrawBoxAlign(fc_font, Game::Instance()->getRenderer(), rect1, FC_ALIGN_CENTER, "Branchez une manette");

@@ -39,7 +39,7 @@ bool MainMenuState::onEnter() {
 	StateParser::parseState("ressources/states.xml", menuID, &_gameObjects, &_textureIDList);
 
 	background = new Background();
-	background->load("Textures/starBackground.png", "Star", 0.5f);
+	background->load("Textures/Backgrounds/MainMenu.png", "MainMenu");
 
 	_callbacks.push_back(menuToPlay);
 	_callbacks.push_back(menuToHighScores);
