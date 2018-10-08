@@ -102,7 +102,7 @@ bool PlayState::onEnter() {
 	SoundManager::load("Sons/laser01.wav", "PlayerLaser", SOUND_SFX);
 
 	background = new Background();
-	background->load("Textures/starBackground.png", "stars", 0.5f);
+	background->load("Textures/Backgrounds/starBackground.png", "stars", 0.6f);
 
 	PlayerManager::Instance()->init();
 	BulletManager::Instance()->init();

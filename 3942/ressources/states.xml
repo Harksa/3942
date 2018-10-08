@@ -48,7 +48,7 @@
 		<TEXTURES>
 			<texture filename="Textures/Player1.png" ID="Player1" width="25" height="38" numFrames="2" animSpeed="10"/>
 			<texture filename="Textures/Player2.png" ID="Player2" width="25" height="38" numFrames="2" animSpeed="10"/>
-			<texture filename="ressources/cartable.png" ID="cartable" width="50" height="50"/>
+			<texture filename="Textures/enemyGreen1.png" ID="EnemyGreen1" width="50" height="45"/>
 			<texture filename="Textures/Player_Bullet.png" ID="PlayerBullet" width="5" height="14"/>
 			<texture filename="Textures/Enemy_Bullet.png" ID="EnemyBullet" width="5" height="22"/>
 		</TEXTURES>
