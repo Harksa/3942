@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 /**
  * \brief Classe regroupant les paramètres du jeu
  */
@@ -30,10 +32,18 @@ public:
 	 */
 	static bool isTwoPlayer() { return two_player; }
 
-
+	/**
+	 * \brief Permet de savoir si un joueur joue avec le clavier ou non
+	 * \param playerID l'ID du joueur
+	 * \return vrai si le joueur joue avec le clavier, faux sinon
+	 */
 	static bool isPlayerUsingKeyboard(int playerID) {return isUsingKeyboard[playerID]; }
 
-
+	/**
+	 * \brief Permet de déterminer si un joueur joue au clavier ou non
+	 * \param player l'ID du player
+	 * \param value Le booléen déterminant si le joueur joue au clavier ou non
+	 */
 	static void setPlayerUsingKeyboard(int player, bool value) {isUsingKeyboard[player] = value; }
 
 private:
@@ -54,7 +64,9 @@ private:
 	 */
 	static bool two_player;
 
-
+	/**
+	 * \brief Tableau permettant de déterminer quelles joueurs jouent au clavier
+	 */
 	static bool isUsingKeyboard[2];
 
 };

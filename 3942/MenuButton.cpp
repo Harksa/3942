@@ -20,11 +20,11 @@ void MenuButton::update() {
 	   mousePosition->y < (position.y + sprite->getHeight()) && mousePosition->y > position.y) {
 		sprite->setCurrentFrame(MOUSE_OVER);
 
-		if(InputHandler::getMouseButtonState(LEFT) && released) {
+		if(InputHandler::getMouseButtonState(LEFT_BUTTON) && released) {
 			sprite->setCurrentFrame(CLICKED);
 			_callback();
 			released = false;
-		} else if(!InputHandler::getMouseButtonState(LEFT)) {
+		} else if(!InputHandler::getMouseButtonState(LEFT_BUTTON)) {
 			released = true;
 			sprite->setCurrentFrame(MOUSE_OVER);
 		}

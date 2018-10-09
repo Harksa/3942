@@ -3,6 +3,7 @@
 #include "BulletManager.h"
 #include "SoundManager.h"
 #include "GameParameters.h"
+#include "KeyboardControls.h"
 
 void Player::load(const LoadParameters* parameters) {
 	GameObject::load(parameters);
@@ -38,16 +39,16 @@ void Player::onCollision() {
 void Player::handleInput() {
 
 	//Gestion clavier
-	if(InputHandler::isKeyDown(SDL_SCANCODE_LEFT) && position.x > 0)
+	if(InputHandler::isKeyDown(KeyboardControls::Instance()->getKeyCode(id, MOVE_LEFT_KEY)) && position.x > 0)
 		velocity.x = -speed;
-	if(InputHandler::isKeyDown(SDL_SCANCODE_RIGHT) && position.x < (GameParameters::getGameWidth() - sprite->getWidth()))
+	if(InputHandler::isKeyDown(KeyboardControls::Instance()->getKeyCode(id, MOVE_RIGHT_KEY)) && position.x < (GameParameters::getGameWidth() - sprite->getWidth()))
 		velocity.x = speed;
-	if(InputHandler::isKeyDown(SDL_SCANCODE_UP)  && position.y > 0)
+	if(InputHandler::isKeyDown(KeyboardControls::Instance()->getKeyCode(id, MOVE_UP_KEY))  && position.y > 0)
 		velocity.y = -speed;
-	if(InputHandler::isKeyDown(SDL_SCANCODE_DOWN) && position.y < (GameParameters::getGameHeight() - sprite->getHeight()))
+	if(InputHandler::isKeyDown(KeyboardControls::Instance()->getKeyCode(id, MOVE_DOWN_KEY)) && position.y < (GameParameters::getGameHeight() - sprite->getHeight()))
 		velocity.y = speed;
 
-	if(InputHandler::isKeyDown(SDL_SCANCODE_SPACE))
+	if(InputHandler::isKeyDown(KeyboardControls::Instance()->getKeyCode(id, FIRE_KEY)))
 		handleBulletSpawner();
 		
 	if(InputHandler::joystickInitialised()) {

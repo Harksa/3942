@@ -87,20 +87,20 @@ void InputHandler::handleJoysticksConnection() {
 void InputHandler::handleMouse(SDL_Event& event) {
 	if(event.type == SDL_MOUSEBUTTONDOWN) {
 		if(event.button.button == SDL_BUTTON_LEFT)
-			_mouseButtonStates[LEFT] = true;
+			_mouseButtonStates[LEFT_BUTTON] = true;
 		if (event.button.button == SDL_BUTTON_MIDDLE)
-			_mouseButtonStates[MIDDLE] = true;
+			_mouseButtonStates[MIDDLE_BUTTON] = true;
 		if(event.button.button == SDL_BUTTON_RIGHT)
-			_mouseButtonStates[RIGHT] = true;
+			_mouseButtonStates[RIGHT_BUTTON] = true;
 	}
 
 	if(event.type == SDL_MOUSEBUTTONUP) {
 		if(event.button.button == SDL_BUTTON_LEFT)
-			_mouseButtonStates[LEFT] = false;
+			_mouseButtonStates[LEFT_BUTTON] = false;
 		if (event.button.button == SDL_BUTTON_MIDDLE)
-			_mouseButtonStates[MIDDLE] = false;
+			_mouseButtonStates[MIDDLE_BUTTON] = false;
 		if(event.button.button == SDL_BUTTON_RIGHT)
-			_mouseButtonStates[RIGHT] = false;
+			_mouseButtonStates[RIGHT_BUTTON] = false;
 	}
 
 	if(event.type == SDL_MOUSEMOTION) {
@@ -130,8 +130,8 @@ void InputHandler::clean() {
 }
 
 void InputHandler::reset() {
-    _mouseButtonStates[LEFT] = false;
-    _mouseButtonStates[RIGHT] = false;
-    _mouseButtonStates[MIDDLE] = false;
+    _mouseButtonStates[LEFT_BUTTON] = false;
+    _mouseButtonStates[RIGHT_BUTTON] = false;
+    _mouseButtonStates[MIDDLE_BUTTON] = false;
 }
 

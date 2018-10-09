@@ -7,9 +7,9 @@
  * \brief Enum regroupant les différents boutons de la souris
  */
 enum mouseButtons {
-	LEFT = 0,
-	MIDDLE = 1,
-	RIGHT = 2
+	LEFT_BUTTON = 0,
+	MIDDLE_BUTTON = 1,
+	RIGHT_BUTTON = 2
 };
 
 /**

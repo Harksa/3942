@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "Player.h"
-#include "PlayerEnum.h"
 
 /**
  * \brief Gère les joueurs

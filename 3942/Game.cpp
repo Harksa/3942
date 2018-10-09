@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "AnimatedGraphic.h"
 #include "GameParameters.h"
+#include "KeyboardControls.h"
 
 Game * Game::instance = nullptr;
 
@@ -39,6 +40,7 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 	_gameStateMachine = new GameStateMachine();
 	_gameStateMachine->changeState(MAIN_MENU);
 
+	KeyboardControls::Instance()->init();
 	InputHandler::initialiseJoysticks();
 
 	_running = true;
