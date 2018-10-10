@@ -8,9 +8,6 @@ void PlayerManager::init() const {
 
 		Player * player1 = new Player(PLAYER_1), * player2 = new Player(PLAYER_2);
 
-		std::cout << GameParameters::isPlayerUsingKeyboard(0) << std::endl;
-		std::cout << GameParameters::isPlayerUsingKeyboard(1) << std::endl;
-
 		if(!GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) {
 			player1->setJoystickID(0);
 			player2->setJoystickID(1);
@@ -66,6 +63,7 @@ void PlayerManager::render() const {
 void PlayerManager::clear() const {
 	for (auto& player : *players) {
 		player->clean();
+		delete player;
 	}
 
 	players->clear();

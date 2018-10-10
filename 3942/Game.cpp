@@ -8,9 +8,7 @@
 #include "GameParameters.h"
 #include "KeyboardControls.h"
 
-Game * Game::instance = nullptr;
-
-Game::Game() {}
+Game * Game::instance{nullptr};
 
 bool Game::init(const char * title, const int xpos, const int ypos, const int width, const int height, const bool fullscreen) {
 	if(SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
@@ -34,8 +32,8 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 	GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
 
 	SoundManager::openAudio();
-	SoundManager::load("Musics/level1.ogg", "lol", SOUND_MUSIC);
-	SoundManager::playMusic("lol");
+	SoundManager::load("Musics/level1.ogg", "music", SOUND_MUSIC);
+	SoundManager::playMusic("music");
 
 	_gameStateMachine = new GameStateMachine();
 	_gameStateMachine->changeState(MAIN_MENU);

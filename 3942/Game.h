@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include "GameStateMachine.h"
-#include "InputHandler.h"
 #include "SoundManager.h"
 
 /**
@@ -77,12 +76,12 @@ public:
 
 private:
 
-	Game();
+	Game() = default;
 
 	/**
 	 * \brief Le GameStateMachine du jeu.
 	 */
-	GameStateMachine * _gameStateMachine;
+	GameStateMachine * _gameStateMachine{nullptr};
 
 	/**
 	 * \brief l'instance de la classe Game.
@@ -92,16 +91,16 @@ private:
 	/**
 	 * \brief La fenêtre dans laquelle est rendu le jeu.
 	 */
-	SDL_Window * sdl_window = nullptr;
+	SDL_Window * sdl_window{nullptr};
 
 	/**
 	 * \brief Le renderer dans lequelle est rendu le jeu.
 	 */
-	SDL_Renderer * sdl_renderer = nullptr;
+	SDL_Renderer * sdl_renderer{nullptr};
 
 	/**
 	 * \brief booléen déterminant si le jeu est en cours d'éxecution ou non.
 	 */
-	bool _running;
+	bool _running{false};
 };
 

@@ -2,6 +2,7 @@
 #include <map>
 #include <SDL2/SDL.h>
 #include "PlayerEnum.h"
+#include "tinyxml2.h"
 
 /**
  * \brief Les contrôles du clavier possibles de l'utilisateur
@@ -35,19 +36,7 @@ public:
 	/**
 	 * \brief Initialise le KeyboardControls
 	 */
-	void init() {
-		controls[0].insert(std::make_pair(MOVE_UP_KEY, SDL_SCANCODE_UP));
-		controls[0].insert(std::make_pair(MOVE_LEFT_KEY, SDL_SCANCODE_LEFT));
-		controls[0].insert(std::make_pair(MOVE_DOWN_KEY, SDL_SCANCODE_DOWN));
-		controls[0].insert(std::make_pair(MOVE_RIGHT_KEY, SDL_SCANCODE_RIGHT));
-		controls[0].insert(std::make_pair(FIRE_KEY, SDL_SCANCODE_KP_0));
-
-		controls[1].insert(std::make_pair(MOVE_UP_KEY, SDL_SCANCODE_W));
-		controls[1].insert(std::make_pair(MOVE_LEFT_KEY, SDL_SCANCODE_A));
-		controls[1].insert(std::make_pair(MOVE_DOWN_KEY, SDL_SCANCODE_S));
-		controls[1].insert(std::make_pair(MOVE_RIGHT_KEY, SDL_SCANCODE_D));
-		controls[1].insert(std::make_pair(FIRE_KEY, SDL_SCANCODE_SPACE));
-	}
+	void init();
 
 	/**
 	 * \brief Retourne le keycode du joueur associé à un contrôle

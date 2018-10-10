@@ -2,6 +2,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "Game.h"
 #include "GameParameters.h"
+#include "InputHandler.h"
 
 const std::string ReconnectJoystickState::RECONNECT_STATE_ID = "RECONNECTE_STATE";
 

@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "StateChangeAsker.h"
+#include "InputHandler.h"
 
 constexpr float FPS = 60.0f;
 constexpr int DELAY_TIME = static_cast<int> (1000.0f / FPS);

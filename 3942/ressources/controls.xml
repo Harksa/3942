@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONTROLS>
+	<PLAYER1>
+		<control eventName="MOVE_UP_KEY" 	enumValue="0" key="82"/>
+		<control eventName="MOVE_LEFT_KEY" 	enumValue="1" key="80"/>
+		<control eventName="MOVE_DOWN_KEY" 	enumValue="2" key="81"/>
+		<control eventName="MOVE_RIGHT_KEY" enumValue="3" key="79"/>
+		<control eventName="FIRE_KEY" 		enumValue="4" key="88"/>
+	</PLAYER1> 
+	<PLAYER2>
+		<control eventName="MOVE_UP_KEY" 	enumValue="0" key="26"/>
+		<control eventName="MOVE_LEFT_KEY" 	enumValue="1" key="4" />
+		<control eventName="MOVE_DOWN_KEY" 	enumValue="2" key="23"/>
+		<control eventName="MOVE_RIGHT_KEY" enumValue="3" key="7" />
+		<control eventName="FIRE_KEY" 		enumValue="4" key="44"/>
+	</PLAYER2>
+</CONTROLS>
