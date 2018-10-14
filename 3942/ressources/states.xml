@@ -16,6 +16,18 @@
 		</OBJECTS>
 	</MENU>
 	
+	<OPTIONS>
+		<TEXTURES>
+			<texture filename="Textures/Buttons/KeyboardChange.png" ID="KeyboardChangeButton" width="164" height="42"/>
+			<texture filename="Textures/Buttons/buttonBack.png" ID="ButtonBack" width="155" height="53"/>
+			<texture filename="Textures/Backgrounds/gray.png" ID="gray" width="600" height="800"/>
+		</TEXTURES>
+		<OBJECTS>
+			<object type="AnimatedGraphic" x="0" y="0" textureID="gray" />
+			<object type="MenuButton" x="20" y="720" textureID="ButtonBack" callbackID="0" />
+		</OBJECTS>
+	</OPTIONS>
+	
 	<CHOOSE_CONTROLS>
 		<TEXTURES>
 			<texture filename="Textures/Buttons/left.png" ID="left" width="38" height="60"/>

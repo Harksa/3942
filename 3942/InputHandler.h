@@ -95,6 +95,8 @@ public:
 	 */
 	static constexpr float _joystickDeadZone = 10000;
 
+	static const Uint8* getKeyStates() { return keyStates;}
+
 private:
 
 	/**

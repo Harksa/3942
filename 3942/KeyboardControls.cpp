@@ -36,3 +36,33 @@ void KeyboardControls::init() {
 		}
 	}
 }
+
+void KeyboardControls::changeKey(SDL_Scancode new_key_value) {
+	controls[playerChange].at(controlsChange) = new_key_value;
+
+	tinyxml2::XMLDocument controlsDoc;
+
+	if(controlsDoc.LoadFile("ressources/controls.xml") == tinyxml2::XML_SUCCESS) {
+		tinyxml2::XMLElement * root = controlsDoc.RootElement();
+		if(playerChange == PLAYER_1) {
+			for(tinyxml2::XMLElement * e = root->FirstChildElement("PLAYER1")->FirstChildElement() ;  e != nullptr ; e = e->NextSiblingElement()) {
+				if(e->IntAttribute("enumValue") == controlsChange) {
+					e->SetAttribute("key", new_key_value);
+					break;
+				}
+			}
+		} else {
+			for(tinyxml2::XMLElement * e = root->FirstChildElement("PLAYER2")->FirstChildElement() ;  e != nullptr ; e = e->NextSiblingElement()) {
+				if(e->IntAttribute("enumValue") == controlsChange) {
+					e->SetAttribute("key", new_key_value);
+					break;
+				}	
+			}
+		}
+
+		controlsDoc.SaveFile("ressources/controls.xml");
+	} else {
+		std::cout << "KEYBOARDCONTROLS::ERREUR::IMPOSSIBLE D'OUVRIR LE FICHIER XML" << std::endl;
+	}
+}
+

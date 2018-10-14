@@ -177,6 +177,12 @@
     <ClCompile Include="KeyboardControls.cpp">
       <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="KeyboardOptionButton.cpp">
+      <Filter>Fichiers sources\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsState.cpp">
+      <Filter>Fichiers sources\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -313,6 +319,12 @@
     </ClInclude>
     <ClInclude Include="PlayerEnum.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardOptionButton.h">
+      <Filter>Fichiers d%27en-tête\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsState.h">
+      <Filter>Fichiers d%27en-tête\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,11 +5,15 @@
 #include "GameOverState.h"
 #include "ReconnectJoystickState.h"
 #include "ChooseControlState.h"
+#include "OptionsState.h"
 
 void GameStateMachine::createState(const StateChoice choice) {
 	switch(choice) {
 		case MAIN_MENU:
 			_gameStates.push_back(std::make_shared<MainMenuState>());
+			break;
+		case OPTIONS:
+			_gameStates.push_back(std::make_shared<OptionsState>());
 			break;
 		case CHOOSE_CONTROLS:
 			_gameStates.push_back(std::make_shared<ChooseControlState>());

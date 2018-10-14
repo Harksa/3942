@@ -38,6 +38,8 @@ public:
 	 */
 	void init();
 
+	void changeKey(SDL_Scancode new_key_value);
+
 	/**
 	 * \brief Retourne le keycode du joueur associé à un contrôle
 	 * \param player L'ID du joueur dont ont souhaite obtenir la touche
@@ -47,12 +49,31 @@ public:
 		return controls[player].at(key);
 	}
 
+	void askToChangeControls(bool value) {askToChange = value; }
+
+	void setToChange(PLAYER_NUM player, CONTROLS controls) {
+		playerChange = player;
+		controlsChange = controls;
+	}
+
+	bool isAskingToChangeControls() const {return askToChange; }
+
+	PLAYER_NUM getPlayerNumToChange() const { return playerChange; }
+
+	CONTROLS getControlToChange() const { return controlsChange; }
+
 private:
 
 	/**
 	 * \brief L'instance de KeyboardControls
 	 */
 	static KeyboardControls * instance;
+
+	bool askToChange{false};
+
+	PLAYER_NUM playerChange;
+
+	CONTROLS controlsChange;
 
 	/**
 	 * \brief Les contrôles des utilisateurs, associés à leurs touches du claviers

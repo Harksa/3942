@@ -42,7 +42,7 @@ void InputHandler::update() {
 		if(event.type == SDL_QUIT) {
 			Game::Instance()->quit();
 		}
-		
+
 		handleJoysticksConnection();
 		keyStates = SDL_GetKeyboardState(nullptr);
 		handleMouse(event);

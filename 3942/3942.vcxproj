@@ -132,12 +132,14 @@
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="KeyboardControls.cpp" />
+    <ClCompile Include="KeyboardOptionButton.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelParser.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
+    <ClCompile Include="OptionsState.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
@@ -175,6 +177,7 @@
     <ClInclude Include="GameParameters.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="KeyboardOptionButton.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Level.h" />
@@ -184,6 +187,7 @@
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="ObjectLayer.h" />
+    <ClInclude Include="OptionsState.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />

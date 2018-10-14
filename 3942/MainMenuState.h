@@ -56,7 +56,7 @@ private:
 	/**
 	 * \brief Fonction permettant d'aller aux options
 	 */
-	static void menuToOptions() {}
+	static void menuToOptions();
 
 	/**
 	 * \brief Fonction permettant de quitter le jeu.

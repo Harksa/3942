@@ -42,22 +42,8 @@ public:
 	 */
 	int getCallbackID() const {return _callbackID;}
 
-private:
-	/**
-	 * \brief La fonction callback associé au bouton
-	 */
-	void (*_callback) ();
-
-	/**
-	 * \brief Booléen déterminant si le bouton a été relaché ou non
-	 */
-	bool released;
-
-	/**
-	 * \brief L'ID du callback associé au bouton
-	 */
-	int _callbackID;
-
+protected:
+	
 	/**
 	 * \brief Les états des boutons de souris possible
 	 */
@@ -66,6 +52,23 @@ private:
 		MOUSE_OVER = 1,
 		CLICKED = 2
 	};
+
+	/**
+	 * \brief Booléen déterminant si le bouton a été relaché ou non
+	 */
+	bool released;
+
+private:
+	/**
+	 * \brief La fonction callback associé au bouton
+	 */
+	void (*_callback) ();
+
+	/**
+	 * \brief L'ID du callback associé au bouton
+	 */
+	int _callbackID;
+
 };
 
 /**

@@ -9,7 +9,7 @@ constexpr int DELAY_TIME = static_cast<int> (1000.0f / FPS);
 
 int main(int argc, char** args) {
 
-	Game::Instance()->init("BobVenture", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 800, false);
+	Game::Instance()->init("3942", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 800, false);
 
 	while(Game::Instance()->running()) {
 		if(StateChangeAsker::isAskingForAnyChanges()) {

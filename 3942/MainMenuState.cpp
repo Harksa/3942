@@ -30,6 +30,11 @@ void MainMenuState::menuToPlay() {
 	StateChangeAsker::askToChange(CHOOSE_CONTROLS);
 }
 
+void MainMenuState::menuToOptions() {
+	StateChangeAsker::askToChange(OPTIONS);
+}
+
+
 void MainMenuState::exitFromMenu() {
 	Game::Instance()->quit();
 }

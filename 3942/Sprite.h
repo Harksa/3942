@@ -85,6 +85,18 @@ public:
 	int getCurrentFrame() const {return _currentFrame;}
 
 	/**
+	 * \brief Définie si le sprite est visible ou non
+	 * \param isVisible Vrai si le sprite doit être visible, faux sinon
+	 */
+	void setVisibility(bool isVisible) { is_visible = isVisible; }
+
+	/**
+	 * \brief Permet de savoir si le sprite est visible ou non
+	 * \return Vrai si le sprite est visible, faux sinon
+	 */
+	bool getVisibility() const {return is_visible;}
+
+	/**
 	 * \brief Définie l'ID de la nouvelle texture du sprite
 	 * \param textureID L'ID de la nouvelle texture
 	 */
@@ -116,7 +128,10 @@ public:
 	 * \brief Mets à jour le sprite
 	 */
 	void update();
+
 private:
+
+	bool is_visible{true};
 	
 	int _width;
 	int _height;
