@@ -52,12 +52,13 @@ void OptionsState::render() {
 	_gameObjects[0]->draw(); //Fond gris
 
 	if(KeyboardControls::Instance()->isAskingToChangeControls()) {
-		std::string string = "Select a key for player ";
-		string += (1 + KeyboardControls::Instance()->getPlayerNumToChange());
-		string += "for controls : ";
-		string += KeyboardControls::Instance()->getControlToChange();
+		std::string text = "Select a key for player ";
+		text += std::to_string(1 + KeyboardControls::Instance()->getPlayerNumToChange());
+		text += " for controls : ";
+		text += ControlsToString[KeyboardControls::Instance()->getControlToChange()];
 
-		FC_DrawAlign(fc_font, Game::Instance()->getRenderer(), 30, GameParameters::getGameHeight() * 0.5f, FC_ALIGN_LEFT, string.c_str());
+		FC_DrawAlign(fc_font, Game::Instance()->getRenderer(), 30, GameParameters::getGameHeight() * 0.5f, FC_ALIGN_LEFT, text.c_str());
+
 	}
 }
 

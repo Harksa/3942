@@ -15,6 +15,8 @@ enum CONTROLS {
 	FIRE_KEY
 };
 
+static const std::string ControlsToString[] = {"Move Up", "Move Left", "Move Down", "Move Right", "Fire"};
+
 /**
  * \brief Cette classe permet de garder en mémoire les touches utilisées par les joueurs
  */

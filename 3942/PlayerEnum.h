@@ -2,5 +2,5 @@
 
 enum PLAYER_NUM {
 	PLAYER_1 = 0,
-	PLAYER_2
+	PLAYER_2 = 1
 };
