@@ -1,5 +1,4 @@
 #include "PlayState.h"
-#include "TextureManager.h"
 #include "Player.h"
 #include "InputHandler.h"
 #include "StateParser.h"
@@ -13,86 +12,82 @@
 const std::string PlayState::playID = "PLAY";
 
 void PlayState::update() {
-	if(is_loaded) {
-		//Check mort joueurs
-		if(PlayerManager::Instance()->areAllPlayersDead()) {
-			StateChangeAsker::askToChange(GAME_OVER);
-			return;
-		}
+	//Check mort joueurs
+	if(PlayerManager::Instance()->areAllPlayersDead()) {
+		StateChangeAsker::askToChange(GAME_OVER);
+		return;
+	}
 
-		//Check joysticks
-		if(GameParameters::isTwoPlayer()) {
-			if(!GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1) && InputHandler::getNumberOfJoysticks() != 2 ||
-			   (!GameParameters::isPlayerUsingKeyboard(0) && GameParameters::isPlayerUsingKeyboard(1) ||
-			   GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) && InputHandler::getNumberOfJoysticks() < 1) {
-				StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
-				return;
-			}
-		} else if (!GameParameters::isPlayerUsingKeyboard(0) && InputHandler::getNumberOfJoysticks() < 1) {
+	//Check joysticks
+	if(GameParameters::isTwoPlayer()) {
+		if(!GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1) && InputHandler::getNumberOfJoysticks() != 2 ||
+		   (!GameParameters::isPlayerUsingKeyboard(0) && GameParameters::isPlayerUsingKeyboard(1) ||
+		   GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) && InputHandler::getNumberOfJoysticks() < 1) {
 			StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
 			return;
 		}
-
-		//Check pause
-		if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
-			StateChangeAsker::askToPush(PAUSE);
-			return;
-		}
-
-		CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
-
-		for (auto& player : *PlayerManager::Instance()->getPlayers()) {
-			CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
-			CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
-		}
-
-		waveUpdate();
-
-		PlayerManager::Instance()->update();
-
-		if(!_gameObjects.empty()) {
-			for (auto game_object : _gameObjects) {
-				if(!game_object->isDead())
-					game_object->update();
-			}
-		}
-
-		BulletManager::Instance()->update();
-
-		std::vector<int> toBeDeleted;
-		for(unsigned int i = 0 ; i < _gameObjects.size() ; i++) {
-			if(_gameObjects[i]->isDead())
-				toBeDeleted.push_back(i);
-		}
-
-		for (auto to_be_deleted : toBeDeleted) {
-			_gameObjects[to_be_deleted]->clean();
-			_gameObjects.erase(_gameObjects.begin() + to_be_deleted);
-		}
-
-		toBeDeleted.clear();
+	} else if (!GameParameters::isPlayerUsingKeyboard(0) && InputHandler::getNumberOfJoysticks() < 1) {
+		StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
+		return;
 	}
+
+	//Check pause
+	if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
+		StateChangeAsker::askToPush(PAUSE);
+		return;
+	}
+
+	CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
+
+	for (auto& player : *PlayerManager::Instance()->getPlayers()) {
+		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
+		CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
+	}
+
+	waveUpdate();
+
+	PlayerManager::Instance()->update();
+
+	if(!_gameObjects.empty()) {
+		for (auto game_object : _gameObjects) {
+			if(!game_object->isDead())
+				game_object->update();
+		}
+	}
+
+	BulletManager::Instance()->update();
+
+	std::vector<int> toBeDeleted;
+	for(unsigned int i = 0 ; i < _gameObjects.size() ; i++) {
+		if(_gameObjects[i]->isDead())
+			toBeDeleted.push_back(i);
+	}
+
+	for (auto to_be_deleted : toBeDeleted) {
+		_gameObjects[to_be_deleted]->clean();
+		_gameObjects.erase(_gameObjects.begin() + to_be_deleted);
+	}
+
+	toBeDeleted.clear();
 }
 
 void PlayState::render() {
-	if(is_loaded) {
+	background->draw();
 
-		background->draw();
+	BulletManager::Instance()->render();
 
-		BulletManager::Instance()->render();
+	PlayerManager::Instance()->render();
 
-		PlayerManager::Instance()->render();
-
-		if(!_gameObjects.empty()) {
-			for (auto game_object : _gameObjects) {
-				if(!game_object->isDead())
-					game_object->draw();
-			}
+	if(!_gameObjects.empty()) {
+		for (auto game_object : _gameObjects) {
+			if(!game_object->isDead())
+				game_object->draw();
 		}
-
-		UIManager::Instance()->draw();
 	}
+
+	UIManager::Instance()->draw();
 }
+
 
 bool PlayState::onEnter() {
 

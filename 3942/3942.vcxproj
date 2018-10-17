@@ -125,6 +125,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
     <ClCompile Include="FontCache\SDL_FontCache.c" />
+    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameOverState.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="FontManager.h" />
     <ClInclude Include="KeyboardControls.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBullet.h" />

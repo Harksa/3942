@@ -27,6 +27,8 @@ void ReconnectJoystickState::render() {
 bool ReconnectJoystickState::onEnter() {
 	fc_font = FC_CreateFont();
 	FC_LoadFont(fc_font, Game::Instance()->getRenderer(), "Fonts/TEXWORK.ttf", 20, FC_MakeColor(255,255,255,255), TTF_STYLE_NORMAL);
+
+	is_loaded = true;
 	return true;
 }
 

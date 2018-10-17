@@ -15,6 +15,9 @@ enum CONTROLS {
 	FIRE_KEY
 };
 
+/**
+ * \brief Le nom associé au contrôle
+ */
 static const std::string ControlsToString[] = {"Move Up", "Move Left", "Move Down", "Move Right", "Fire"};
 
 /**
@@ -40,6 +43,10 @@ public:
 	 */
 	void init();
 
+	/**
+	 * \brief Change les contrôles avec la clé donnée en paramètre
+	 * \param new_key_value La nouvelle clé associé au contrôles et au joueur rentrés précédement en paramètres
+	 */
 	void changeKey(SDL_Scancode new_key_value);
 
 	/**
@@ -51,18 +58,40 @@ public:
 		return controls[player].at(key);
 	}
 
+	/**
+	 * \brief Détermine si les contrôles doivent être modifiés ou non
+	 * \param value Vrai si les contrôles doivent être modifiés, faux sinon
+	 */
 	void askToChangeControls(bool value) {askToChange = value; }
 
-	void setToChange(PLAYER_NUM player, CONTROLS controls) {
+	/**
+	 * \brief Définie le joueur et les contrôles qui doivent être changés
+	 * \param player Le player dont les contrôles seront modifiés
+	 * \param control Le contrôle qui sera modifié
+	 */
+	void setToChange(PLAYER_NUM player, CONTROLS control) {
 		playerChange = player;
-		controlsChange = controls;
+		controlsChange = control;
 	}
 
+	/**
+	 * \brief Permet de savoir si les contrôles doivent être changés ou non.
+	 * \return Vrai si les contrôles sont à modifier, faux sinon
+	 */
 	bool isAskingToChangeControls() const {return askToChange; }
 
-	PLAYER_NUM getPlayerNumToChange() const { return playerChange; }
 
-	CONTROLS getControlToChange() const { return controlsChange; }
+	/**
+	 * \brief Retourne le joueur dont les contrôles seront modifiés
+	 * \return Le joueur dont les côntroles seront modifiés
+	 */
+	PLAYER_NUM getPlayerNumToChange() const {return playerChange;}
+
+	/**
+	 * \brief Retourne le contrôle qui sera modifié
+	 * \return Le contrôle qui sera modifié
+	 */
+	CONTROLS getControlToChange() const {return controlsChange;}
 
 private:
 
@@ -73,8 +102,14 @@ private:
 
 	bool askToChange{false};
 
+	/**
+	 * \brief Le joueur qui vera ses contrôles êtres modifiés
+	 */
 	PLAYER_NUM playerChange;
 
+	/**
+	 * \brief Le contrôle à modifier
+	 */
 	CONTROLS controlsChange;
 
 	/**

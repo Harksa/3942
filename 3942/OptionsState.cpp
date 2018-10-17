@@ -1,8 +1,9 @@
 #include "OptionsState.h"
 #include "StateParser.h"
-#include "Game.h"
 #include "GameParameters.h"
 #include "InputHandler.h"
+#include "FontManager.h"
+#include "StateChangeAsker.h"
 
 std::string OptionsState::optionsID{"OPTIONS"};
 
@@ -17,6 +18,7 @@ void OptionsState::update() {
 
 		for(unsigned int i = 0 ; i < 255 ; i++) {
 			if(keys[i] == 1) {
+				//TODO CHECK IF ESCAPE OU SI TOUCHE DEJA UTILISEE
 				KeyboardControls::Instance()->changeKey(SDL_Scancode(i));
 				KeyboardControls::Instance()->askToChangeControls(false);
 				_gameObjects[0]->getSprite()->setVisibility(false);
@@ -45,8 +47,6 @@ void OptionsState::render() {
 	
 	for (auto keyboard_option : keyboard_options) {
 		keyboard_option->draw();
-		FC_Draw(fc_font, Game::Instance()->getRenderer(), keyboard_option->getTextPosition().x, keyboard_option->getTextPosition().y, 
-			SDL_GetScancodeName(KeyboardControls::Instance()->getKeyCode(keyboard_option->getPlayerNum(), keyboard_option->getAssociatedControl())) );
 	}
 	
 	_gameObjects[0]->draw(); //Fond gris
@@ -54,11 +54,10 @@ void OptionsState::render() {
 	if(KeyboardControls::Instance()->isAskingToChangeControls()) {
 		std::string text = "Select a key for player ";
 		text += std::to_string(1 + KeyboardControls::Instance()->getPlayerNumToChange());
-		text += " for controls : ";
+		text += " for \n";
 		text += ControlsToString[KeyboardControls::Instance()->getControlToChange()];
 
-		FC_DrawAlign(fc_font, Game::Instance()->getRenderer(), 30, GameParameters::getGameHeight() * 0.5f, FC_ALIGN_LEFT, text.c_str());
-
+		FontManager::Instance()->drawBoxAlign("TexWork", text_rect, FC_ALIGN_CENTER, text);
 	}
 }
 
@@ -71,12 +70,11 @@ bool OptionsState::onEnter() {
 	//Premier GameObject est le sprite de fond lors de la sélection d'une nouvelle touche
 	_gameObjects.at(0)->getSprite()->setVisibility(false);
 
-	fc_font = FC_CreateFont();
-	FC_LoadFont(fc_font, Game::Instance()->getRenderer(), "Fonts/TEXWORK.ttf", 18, {255,255,255,255}, TTF_STYLE_NORMAL);
+	FontManager::Instance()->createFont("TexWork", "Fonts/TexWork.ttf", 18, {255,255,255,255});
 
 	for(int i = 0 ; i < 2 ; i++) {
 		for(int j = 0 ; j < 5 ; j++) {
-			LoadParameters * p = new LoadParameters(200 + 200 * i, 230 + 50 * j, "KeyboardChangeButton", i * j + j);
+			LoadParameters * p = new LoadParameters(static_cast<float> (200 + 200 * i), static_cast<float>(230 + 50 * j), "KeyboardChangeButton");
 			keyboard_options.push_back(new KeyboardOptionButton());
 			keyboard_options.back()->load(p);
 			keyboard_options.back()->setAssociatedPlayer(PLAYER_NUM(i));
@@ -85,9 +83,17 @@ bool OptionsState::onEnter() {
 		}
 	}
 
+	text_rect.x = 0;
+	text_rect.w = GameParameters::getGameWidth();
+
+	text_rect.y = static_cast<int> (GameParameters::getGameHeight() * 0.5f);
+	text_rect.h = 100;
+
 	_callbacks.push_back(optionsToMenu);
 
 	setCallbacks(_callbacks);
+
+	is_loaded = true;
 
 	return true;
 }
@@ -101,6 +107,8 @@ bool OptionsState::onExit() {
 	}
 
 	keyboard_options.clear();
+
+	FontManager::Instance()->clear();
 
 	return true;
 }

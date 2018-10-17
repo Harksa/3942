@@ -1,12 +1,17 @@
 #include "KeyboardOptionButton.h"
 #include "InputHandler.h"
+#include "FontManager.h"
 
 void KeyboardOptionButton::load(const LoadParameters* parameters) {
 	MenuButton::load(parameters);
+	text_rect = getRect();
+	text_rect.y += 10;
 }
 
 void KeyboardOptionButton::draw() {
 	MenuButton::draw();
+	FontManager::Instance()->drawBoxAlign("TexWork", text_rect, FC_ALIGN_CENTER,
+		SDL_GetScancodeName(KeyboardControls::Instance()->getKeyCode(associate_player, associated_control)));
 }
 
 void KeyboardOptionButton::update() {

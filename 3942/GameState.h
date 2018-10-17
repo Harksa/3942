@@ -3,6 +3,7 @@
 #include <vector>
 #include "GameObject.h"
 #include "Background.h"
+#include "FontManager.h"
 
 /**
  * \brief Un GameState représente un niveau dans le jeu.
@@ -39,6 +40,12 @@ public:
 	 */
 	virtual std::string getStateID() const = 0;
 
+	/**
+	 * \brief Permet de savoir si l'état a été entièrement chargé
+	 * \return Vrai si l'état à été correctement et entièrement chargé, faux sinon
+	 */
+	bool isLoaded() const { return is_loaded;}
+
 	GameState() = default;
 
 	/**
@@ -64,6 +71,8 @@ public:
 
 		_gameObjects.clear();
 
+		FontManager::Instance()->clear();
+
 		is_already_cleared = true;
 	}
 
@@ -87,12 +96,15 @@ protected:
 	/**
 	 * \brief Définie si la scène a été entièrement chargé ou non.
 	 */
-	bool is_loaded = false;
+	bool is_loaded{false};
 
 	/**
 	 * \brief Background du l'état
 	 */
-	Background * background = nullptr;
+	Background * background{nullptr};
 
-	bool is_already_cleared = false;
+	/**
+	 * \brief Permet de savoir si l'état a déjà été nettoyé ou non
+	 */
+	bool is_already_cleared{false};
 };

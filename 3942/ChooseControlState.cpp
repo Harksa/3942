@@ -2,9 +2,8 @@
 #include "StateParser.h"
 #include "GameParameters.h"
 #include "InputHandler.h"
-#include "Game.h"
+#include "StateChangeAsker.h"
 
-#include <cmath>
 
 std::string ChooseControlState::ControlChooseStateID{"CHOOSE_CONTROLS"};
 
@@ -18,8 +17,7 @@ bool ChooseControlState::onEnter() {
 	background = new Background();
 	background->load("Textures/Backgrounds/SelectControls.png", "SelectControls");
 
-	fc_font = FC_CreateFont();
-	FC_LoadFont(fc_font, Game::Instance()->getRenderer(), "Fonts/TEXWORK.ttf", 20, FC_MakeColor(255,255,255,255), TTF_STYLE_NORMAL);
+	FontManager::Instance()->createFont("TexWork", "Fonts/TEXWORK.ttf", 20, {255,255,255,255});
 
 	bool player1spritedone = false;
 
@@ -49,6 +47,8 @@ bool ChooseControlState::onEnter() {
 
 	setCallbacks(_callbacks);
 
+	is_loaded = true;
+
 	return true;
 }
 
@@ -56,7 +56,7 @@ bool ChooseControlState::onEnter() {
 bool ChooseControlState::onExit() {
 	clearState();
 
-	FC_ClearFont(fc_font);
+	FontManager::Instance()->clear();
 
 	return true;
 }
@@ -66,11 +66,11 @@ void ChooseControlState::render() {
 	background->draw();
 
 	if(!GameParameters::isPlayerUsingKeyboard(0) && InputHandler::getNumberOfJoysticks() < 1) {
-		FC_DrawBoxAlign(fc_font, Game::Instance()->getRenderer(), rect1, FC_ALIGN_CENTER, "Branchez une manette");
+		FontManager::Instance()->drawBoxAlign("TexWork", rect1, FC_ALIGN_CENTER, "Branchez une manette");
 	}
 
 	if(player2_choice == GAMEPAD && InputHandler::getNumberOfJoysticks() < 2) {
-		FC_DrawBoxAlign(fc_font, Game::Instance()->getRenderer(), rect2, FC_ALIGN_CENTER, "Branchez une manette");
+		FontManager::Instance()->drawBoxAlign("TexWork", rect2, FC_ALIGN_CENTER, "Branchez une manette");
 	}
 
 	if(!_gameObjects.empty()) {

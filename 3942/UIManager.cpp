@@ -1,24 +1,23 @@
 #include "UIManager.h"
-#include "Game.h"
 #include "GameParameters.h"
 #include "ScoreManager.h"
+#include "FontManager.h"
 
-UIManager * UIManager::instance = nullptr;
+UIManager * UIManager::instance{nullptr};
 
 void UIManager::init() {
-	fc_font = FC_CreateFont();
-	FC_LoadFont(fc_font, Game::Instance()->getRenderer(), "Fonts/TEXWORK.ttf", 20, FC_MakeColor(255,255,255,255), TTF_STYLE_NORMAL);
+	FontManager::Instance()->createFont("TexWork", "Fonts/TEXWORK.ttf", 20, {255,255,255,255});
 }
 
 void UIManager::draw() const {
 	if(!GameParameters::isTwoPlayer()) {
-		FC_Draw(fc_font, Game::Instance()->getRenderer(), 15.0f, static_cast<float> (GameParameters::getGameHeight() - 35), "Score : %d", ScoreManager::Instance()->getScore());
+		FontManager::Instance()->draw("TexWork", 15, GameParameters::getGameHeight() - 35, "Score : " + std::to_string(ScoreManager::Instance()->getScore()));
 	} else {
-		FC_Draw(fc_font, Game::Instance()->getRenderer(), 15.0f, GameParameters::getGameHeight() - 35.0f, "Score : %d", ScoreManager::Instance()->getScore(PLAYER_1));
-		FC_DrawAlign(fc_font, Game::Instance()->getRenderer(), GameParameters::getGameWidth() - 15.0f, GameParameters::getGameHeight() - 35.0f, FC_ALIGN_RIGHT, "Score : %d", ScoreManager::Instance()->getScore(PLAYER_2));
+		FontManager::Instance()->draw("TexWork", 15, GameParameters::getGameHeight() - 35, "Score : " + std::to_string(ScoreManager::Instance()->getScore(PLAYER_1)));
+		FontManager::Instance()->drawAlign("TexWork", GameParameters::getGameWidth() - 15, GameParameters::getGameHeight() - 35, FC_ALIGN_RIGHT, "Score : " + std::to_string(ScoreManager::Instance()->getScore(PLAYER_2)));
 	}
 }
 
 void UIManager::clear() const {
-	FC_FreeFont(fc_font);
+	FontManager::Instance()->clear();
 }

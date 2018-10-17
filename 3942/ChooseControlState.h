@@ -60,8 +60,6 @@ private:
 	 */
 	static GameObject * ag_controls_player2;
 
-	FC_Font * fc_font{nullptr};
-
 	SDL_Rect rect1;
 
 	SDL_Rect rect2;

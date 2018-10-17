@@ -183,6 +183,9 @@
     <ClCompile Include="OptionsState.cpp">
       <Filter>Fichiers sources\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>Fichiers sources\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -325,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="OptionsState.h">
       <Filter>Fichiers d%27en-tête\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>Fichiers d%27en-tête\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

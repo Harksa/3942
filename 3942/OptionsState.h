@@ -48,9 +48,9 @@ private:
 	static std::vector<KeyboardOptionButton *> keyboard_options;
 
 	/**
-	 * \brief Le FC_Font utilisé pour afficher les textes
+	 * \brief Le rect où sera affiché le texte de selection de contrôles
 	 */
-	FC_Font * fc_font{nullptr};
+	SDL_Rect text_rect;
 
 	/**
 	 * \brief La fonction permettant de revenir au menu principal

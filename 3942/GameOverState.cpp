@@ -22,6 +22,8 @@ bool GameOverState::onEnter() {
 
 	setCallbacks(_callbacks);
 
+	is_loaded = true;
+
 	return true;
 }
 

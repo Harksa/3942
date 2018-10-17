@@ -46,9 +46,4 @@ private:
 	 */
 	static UIManager * instance;
 
-	/**
-	 * \brief La police de caractère utilisé
-	 */
-	FC_Font * fc_font{nullptr};
-
 };

@@ -64,6 +64,11 @@ public:
 private:
 
 	/**
+	 * \brief Le rect ou sera affiché le texte du bouton
+	 */
+	SDL_Rect text_rect;
+
+	/**
 	 * \brief Le joueur associé à ce boutton
 	 */
 	PLAYER_NUM associate_player{PLAYER_1};
