@@ -65,7 +65,7 @@ void ChooseControlState::render() {
 
 	background->draw();
 
-	if(!GameParameters::isPlayerUsingKeyboard(0) && InputHandler::getNumberOfJoysticks() < 1) {
+	if(!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && InputHandler::getNumberOfJoysticks() < 1) {
 		FontManager::Instance()->drawBoxAlign("TexWork", rect1, FC_ALIGN_CENTER, "Branchez une manette");
 	}
 
@@ -89,12 +89,12 @@ void ChooseControlState::update() {
 }
 
 void ChooseControlState::buttonChoicePlayer1() {
-	if(GameParameters::isPlayerUsingKeyboard(0))
+	if(GameParameters::isPlayerUsingKeyboard(PLAYER_1))
 		ag_controls_player1->getSprite()->changeTextureID("gamepad");
 	else
 		ag_controls_player1->getSprite()->changeTextureID("keyboard");
 
-	GameParameters::setPlayerUsingKeyboard(0, !GameParameters::isPlayerUsingKeyboard(0));
+	GameParameters::setPlayerUsingKeyboard(0, !GameParameters::isPlayerUsingKeyboard(PLAYER_1));
 }
 
 void ChooseControlState::buttonChoiceLeftPlayer2() {

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "PlayerEnum.h"
 
 
 /**
@@ -37,7 +37,7 @@ public:
 	 * \param playerID l'ID du joueur
 	 * \return vrai si le joueur joue avec le clavier, faux sinon
 	 */
-	static bool isPlayerUsingKeyboard(int playerID) {return isUsingKeyboard[playerID]; }
+	static bool isPlayerUsingKeyboard(PLAYER_NUM playerID) {return isUsingKeyboard[playerID]; }
 
 	/**
 	 * \brief Permet de déterminer si un joueur joue au clavier ou non

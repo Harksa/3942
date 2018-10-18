@@ -16,14 +16,14 @@ void FontManager::createFont(std::string font_name, const std::string& file_name
 
 void FontManager::draw(const std::string& font_name, const unsigned int pos_x, const unsigned int pos_y, const std::string& text) const {
 	if(fonts.find(font_name) != fonts.end())
-		FC_Draw(fonts.at(font_name), Game::Instance()->getRenderer(), pos_x, pos_y, text.c_str());
+		FC_Draw(fonts.at(font_name), Game::Instance()->getRenderer(), static_cast<float> (pos_x), static_cast<float> (pos_y), text.c_str());
 	else
 		std::cout << "ERROR::FONTMANAGER::DRAW::FONT " << font_name << "DOESN'T EXIST" << std::endl;
 }
 
 void FontManager::drawAlign(const std::string& font_name, const unsigned int pos_x, const unsigned int pos_y, const FC_AlignEnum align, const std::string& text) const {
 	if(fonts.find(font_name) != fonts.end())
-		FC_DrawAlign(fonts.at(font_name), Game::Instance()->getRenderer(), pos_x, pos_y, align, text.c_str());
+		FC_DrawAlign(fonts.at(font_name), Game::Instance()->getRenderer(), static_cast<float> (pos_x), static_cast<float>(pos_y), align, text.c_str());
 	else
 		std::cout << "ERROR::FONTMANAGER::DRAWALIGN::FONT " << font_name << "DOESN'T EXIST" << std::endl;
 }

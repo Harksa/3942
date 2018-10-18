@@ -39,6 +39,11 @@ public:
 
 private:
 
+	/**
+	 * \brief Le rect où sera affiché le texte de reconnection de manette
+	 */
+	SDL_Rect text_rect;
+
 	UIManager() = default;
 
 	/**

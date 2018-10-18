@@ -168,9 +168,6 @@
     <ClCompile Include="PlayerManager.cpp">
       <Filter>Fichiers sources\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="ReconnectJoystickState.cpp">
-      <Filter>Fichiers sources\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="ChooseControlState.cpp">
       <Filter>Fichiers sources\GameStates</Filter>
     </ClCompile>
@@ -310,9 +307,6 @@
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
       <Filter>Fichiers d%27en-tête\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="ReconnectJoystickState.h">
-      <Filter>Fichiers d%27en-tête\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="ChooseControlState.h">
       <Filter>Fichiers d%27en-tête\GameStates</Filter>

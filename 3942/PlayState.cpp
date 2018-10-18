@@ -7,7 +7,6 @@
 #include "SoundManager.h"
 #include "UIManager.h"
 #include "PlayerManager.h"
-#include "GameParameters.h"
 
 const std::string PlayState::playID = "PLAY";
 
@@ -18,24 +17,21 @@ void PlayState::update() {
 		return;
 	}
 
-	//Check joysticks
-	if(GameParameters::isTwoPlayer()) {
-		if(!GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1) && InputHandler::getNumberOfJoysticks() != 2 ||
-		   (!GameParameters::isPlayerUsingKeyboard(0) && GameParameters::isPlayerUsingKeyboard(1) ||
-		   GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) && InputHandler::getNumberOfJoysticks() < 1) {
-			StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
-			return;
-		}
-	} else if (!GameParameters::isPlayerUsingKeyboard(0) && InputHandler::getNumberOfJoysticks() < 1) {
-		StateChangeAsker::askToPush(RECONNECT_JOYSTICK);
-		return;
-	}
-
 	//Check pause
 	if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
 		StateChangeAsker::askToPush(PAUSE);
 		return;
 	}
+
+	//Check joysticks
+	if(!InputHandler::areNumberOfJoysticksEgalsToNumberOfPlayersUsingJoysticks()) {
+		_gameObjects[0]->getSprite()->setVisibility(true);
+		return;
+	} else {
+		_gameObjects[0]->getSprite()->setVisibility(false);
+	}
+
+	background->update();
 
 	CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
 
@@ -49,9 +45,10 @@ void PlayState::update() {
 	PlayerManager::Instance()->update();
 
 	if(!_gameObjects.empty()) {
-		for (auto game_object : _gameObjects) {
-			if(!game_object->isDead())
-				game_object->update();
+		for (unsigned int i = 1 ; i < _gameObjects.size(); i++){
+			if(!_gameObjects[i]->isDead()) {
+				_gameObjects[i]->update();
+			}
 		}
 	}
 
@@ -79,11 +76,14 @@ void PlayState::render() {
 	PlayerManager::Instance()->render();
 
 	if(!_gameObjects.empty()) {
-		for (auto game_object : _gameObjects) {
-			if(!game_object->isDead())
-				game_object->draw();
+		for (unsigned int i = 1 ; i < _gameObjects.size(); i++){
+			if(!_gameObjects[i]->isDead()) {
+				_gameObjects[i]->draw();
+			}
 		}
 	}
+
+	_gameObjects[0]->draw(); // Draw uniquement si isVisible = true donc pas besoin de if
 
 	UIManager::Instance()->draw();
 }
@@ -92,6 +92,9 @@ void PlayState::render() {
 bool PlayState::onEnter() {
 
 	StateParser::parseState("ressources/states.xml", playID, &_gameObjects, &_textureIDList);
+
+	_gameObjects[0]->getSprite()->setVisibility(false); //Fond gris
+
 	WaveGenerator::parseWave("Levels/Level1.xml", &enemy_spaw_informations);
 
 	SoundManager::load("Sons/laser01.wav", "PlayerLaser", SOUND_SFX);

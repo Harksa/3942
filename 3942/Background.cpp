@@ -16,6 +16,17 @@ void Background::draw() {
 		drawMoving();
 }
 
+void Background::update() {
+	if(movingSpeed != 0) {
+		offset += movingSpeed;
+
+	if(offset >= GameParameters::getGameHeight())
+		offset = 0;
+	} else {
+		std::cout << "INFORMATIONS::BACKGROUND::UPDATE::UPDATE ISN'T NEEDED IF MOVINGSPEED = 0 " << std::endl;
+	}
+}
+
 void Background::drawStatic() const {
 	TextureManager::Instance()->draw(backgroundID, 0, 0, GameParameters::getGameWidth(), GameParameters::getGameHeight());
 }
@@ -23,11 +34,6 @@ void Background::drawStatic() const {
 void Background::drawMoving() {
 	TextureManager::Instance()->draw(backgroundID, 0, static_cast<int>(offset), GameParameters::getGameWidth(), GameParameters::getGameHeight());
 	TextureManager::Instance()->draw(backgroundID, 0, static_cast<int>(offset) - GameParameters::getGameHeight(), GameParameters::getGameWidth(), GameParameters::getGameHeight());
-
-	offset += movingSpeed;
-
-	if(offset >= GameParameters::getGameHeight())
-		offset = 0;
 }
 
 void Background::clean() const {

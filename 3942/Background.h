@@ -23,6 +23,11 @@ public:
 	void draw();
 
 	/**
+	 * \brief Mets à jour le background
+	 */
+	void update();
+
+	/**
 	 * \brief Nettoie le background
 	 */
 	void clean() const;

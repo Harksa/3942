@@ -95,6 +95,12 @@ public:
 	 */
 	static constexpr float _joystickDeadZone = 10000;
 
+	/**
+	 * \brief Détermine si le nombre de joysticks connectés correspond au nombre de joueurs jouant avec un joysticks
+	 * \return Vrai si le nombre est correct, faux sinon
+	 */
+	static bool areNumberOfJoysticksEgalsToNumberOfPlayersUsingJoysticks();
+
 	static const Uint8* getKeyStates() { return keyStates;}
 
 private:

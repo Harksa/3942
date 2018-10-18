@@ -1,5 +1,6 @@
 #include "InputHandler.h"
 #include "Game.h"
+#include "GameParameters.h"
 
 bool InputHandler::_joystickInitialised{false};
 std::vector<bool> InputHandler::_mouseButtonStates{false, false, false}; //Bouton gauche/milieu/droit
@@ -65,7 +66,7 @@ void InputHandler::handleJoysticksConnection() {
 			currentNumberOfJoysticks++;
 		} else {
 
-			for(int i = 0 ; i < MAX_PLAYER_COUNT ; i++) {
+			for(unsigned int i = 0 ; i < MAX_PLAYER_COUNT ; i++) {
 				if(!is_connected[i]) {
 					if(!SDL_JoystickGetAttached(joystick_arrays[i])) {
 						SDL_JoystickClose(joystick_arrays[i]);
@@ -82,6 +83,20 @@ void InputHandler::handleJoysticksConnection() {
 		}
 	}
 
+}
+
+bool InputHandler::areNumberOfJoysticksEgalsToNumberOfPlayersUsingJoysticks() {
+	if(GameParameters::isTwoPlayer()) {
+		if(!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && !GameParameters::isPlayerUsingKeyboard(PLAYER_2) && currentNumberOfJoysticks != 2 ||
+		   (!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && GameParameters::isPlayerUsingKeyboard(PLAYER_2) ||
+		   GameParameters::isPlayerUsingKeyboard(PLAYER_1) && !GameParameters::isPlayerUsingKeyboard(PLAYER_2)) && currentNumberOfJoysticks < 1) {
+			return false;
+		}
+	} else if (!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && currentNumberOfJoysticks < 1) {
+		return false;
+	}
+
+	return true;
 }
 
 void InputHandler::handleMouse(SDL_Event& event) {
@@ -109,7 +124,7 @@ void InputHandler::handleMouse(SDL_Event& event) {
 	}
 }
 
-bool InputHandler::isKeyDown(SDL_Scancode key) {
+bool InputHandler::isKeyDown(const SDL_Scancode key) {
 	if(keyStates != nullptr) {
 		return keyStates[key] == 1;
 	}

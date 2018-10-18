@@ -8,12 +8,12 @@ void PlayerManager::init() const {
 
 		Player * player1 = new Player(PLAYER_1), * player2 = new Player(PLAYER_2);
 
-		if(!GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) {
+		if(!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && !GameParameters::isPlayerUsingKeyboard(PLAYER_2)) {
 			player1->setJoystickID(0);
 			player2->setJoystickID(1);
-		} else if (!GameParameters::isPlayerUsingKeyboard(0) && GameParameters::isPlayerUsingKeyboard(1)) {
+		} else if (!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && GameParameters::isPlayerUsingKeyboard(PLAYER_2)) {
 			player1->setJoystickID(0);
-		} else if (GameParameters::isPlayerUsingKeyboard(0) && !GameParameters::isPlayerUsingKeyboard(1)) {
+		} else if (GameParameters::isPlayerUsingKeyboard(PLAYER_1) && !GameParameters::isPlayerUsingKeyboard(PLAYER_2)) {
 			player2->setJoystickID(0);
 		}
 
