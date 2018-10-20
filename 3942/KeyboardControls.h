@@ -44,6 +44,20 @@ public:
 	void init();
 
 	/**
+	 * \brief Vérifie que le scancode rentré en paramètre est le même que celui actuellement utilisé en fonction du playerChange et du controlsChange
+	 * \param scancode Le Scancode à vérifier
+	 * \return Vrai s'il est déjà utilisé, faux sinon
+	 */
+	bool isScancodeTheSame(SDL_Scancode scancode);
+
+	/**
+	 * \brief Vérifie que la clé est déjà utilisé dans un autre control
+ 	 * \param scancode Le Scancode à vérifier
+	 * \return Vrai s'il est déjà utilisé, faux sinon
+	 */
+	bool isScancodeAlreadyUsed(SDL_Scancode scancode) const;
+
+	/**
 	 * \brief Change les contrôles avec la clé donnée en paramètre
 	 * \param new_key_value La nouvelle clé associé au contrôles et au joueur rentrés précédement en paramètres
 	 */

@@ -37,6 +37,12 @@ public:
 	std::string getStateID() const override {return optionsID;}
 
 private:
+
+	/**
+	 * \brief Booléen permettant de déterminer si un scancode a déjà été utilisé
+	 */
+	bool scancodeAlreadyUsed{false};
+
 	/**
 	 * \brief Le state ID de cet état
 	 */

@@ -18,15 +18,27 @@ void OptionsState::update() {
 
 		for(unsigned int i = 0 ; i < 255 ; i++) {
 			if(keys[i] == 1) {
-				//TODO CHECK IF ESCAPE OU SI TOUCHE DEJA UTILISEE
-				KeyboardControls::Instance()->changeKey(SDL_Scancode(i));
-				KeyboardControls::Instance()->askToChangeControls(false);
-				_gameObjects[0]->getSprite()->setVisibility(false);
-				break;
+				const SDL_Scancode scancode = SDL_Scancode(i);
+				if(scancode == SDL_SCANCODE_ESCAPE || KeyboardControls::Instance()->isScancodeTheSame(scancode)) {
+					KeyboardControls::Instance()->askToChangeControls(false);
+					_gameObjects[0]->getSprite()->setVisibility(false);
+					scancodeAlreadyUsed = false;
+					return;
+				} 
+
+				if(!KeyboardControls::Instance()->isScancodeAlreadyUsed(scancode)) {
+					KeyboardControls::Instance()->changeKey(scancode);
+					KeyboardControls::Instance()->askToChangeControls(false);
+					_gameObjects[0]->getSprite()->setVisibility(false);
+					scancodeAlreadyUsed = false;
+					break;
+				} else {
+					scancodeAlreadyUsed = true;
+					return;
+				}
+
 			}
 		}
-
-		return;
 	}
 
 	for (auto keyboard_option : keyboard_options) {
@@ -56,6 +68,10 @@ void OptionsState::render() {
 		text += std::to_string(1 + KeyboardControls::Instance()->getPlayerNumToChange());
 		text += " for \n";
 		text += ControlsToString[KeyboardControls::Instance()->getControlToChange()];
+
+		if(scancodeAlreadyUsed) {
+			text += "\n\nKey already used !";
+		}
 
 		FontManager::Instance()->drawBoxAlign("TexWork", text_rect, FC_ALIGN_CENTER, text);
 	}

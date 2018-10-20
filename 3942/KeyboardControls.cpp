@@ -37,6 +37,21 @@ void KeyboardControls::init() {
 	}
 }
 
+bool KeyboardControls::isScancodeTheSame(SDL_Scancode scancode) {
+	return controls[playerChange].at(controlsChange) == scancode;
+}
+
+bool KeyboardControls::isScancodeAlreadyUsed(SDL_Scancode scancode) const {
+	for (const auto& i : controls) {
+		for (const auto control : i) {
+			if(control.second == scancode)
+				return true;
+		}
+	}
+
+	return false;
+}
+
 void KeyboardControls::changeKey(SDL_Scancode new_key_value) {
 	controls[playerChange].at(controlsChange) = new_key_value;
 
