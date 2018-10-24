@@ -22,12 +22,12 @@ Les versions x86 sont installées par défaut, il est possible d'installer les v
 - [x] Ecran de menu principal, jeu, Game Over et pause
 - [x] Gestion des textures en fonctions d'un fichier xml
 - [x] Génération de vague à partir d'un fichier xml
+- [x] Balles ennemies et joueur
+- [x] Mode deux joueurs
+- [x] Gestion du score, de la vie et du HUD en général
 
 # Todo
-- [ ] Balles ennemies et joueur
 - [ ] Plusieurs variétés d'ennemis
-- [ ] Gestion du score, de la vie et du HUD en général
 - [ ] Création de plusieurs niveau
 - [ ] Bosses
-- [ ] Mode deux joueurs
 - [ ] Contrôle de l'IU avec la manette
