@@ -49,14 +49,7 @@ public:
 	 * \brief Permet de déterminer si tous les joueurs sont en vie ou non
 	 * \return Faux si au moins un joueur est en vie, faux sinon.
 	 */
-	bool areAllPlayersDead() const {
-		for (auto& player : *players) {
-			if(player->hasRemainingLives())
-				return false;
-		}
-
-		return true;
-	}
+	bool doesAllPlayersDoesntHaveAnyRemainingLives() const;
 
 private:
 

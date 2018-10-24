@@ -32,7 +32,7 @@ void Player::clean() {
 void Player::onCollision() {
 	lives--;
 
-	if(lives >= 0)
+	if(lives <= 0)
 		is_dead = true;
 }
 

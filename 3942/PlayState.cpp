@@ -12,7 +12,7 @@ const std::string PlayState::playID = "PLAY";
 
 void PlayState::update() {
 	//Check mort joueurs
-	if(PlayerManager::Instance()->areAllPlayersDead()) {
+	if(PlayerManager::Instance()->doesAllPlayersDoesntHaveAnyRemainingLives()) {
 		StateChangeAsker::askToChange(GAME_OVER);
 		return;
 	}
@@ -44,28 +44,19 @@ void PlayState::update() {
 
 	PlayerManager::Instance()->update();
 
-	if(!_gameObjects.empty()) {
-		for (unsigned int i = 1 ; i < _gameObjects.size(); i++){
-			if(!_gameObjects[i]->isDead()) {
-				_gameObjects[i]->update();
-			}
+	for(auto game_object = _gameObjects.begin() ; game_object != _gameObjects.end() ; ) {
+		if(!(*game_object)->isDead()) {
+			(*game_object)->update();
+			++game_object;
+		} else {
+			(*game_object)->clean();
+			delete *game_object;
+			game_object = _gameObjects.erase(game_object);
 		}
 	}
 
 	BulletManager::Instance()->update();
 
-	std::vector<int> toBeDeleted;
-	for(unsigned int i = 0 ; i < _gameObjects.size() ; i++) {
-		if(_gameObjects[i]->isDead())
-			toBeDeleted.push_back(i);
-	}
-
-	for (auto to_be_deleted : toBeDeleted) {
-		_gameObjects[to_be_deleted]->clean();
-		_gameObjects.erase(_gameObjects.begin() + to_be_deleted);
-	}
-
-	toBeDeleted.clear();
 }
 
 void PlayState::render() {

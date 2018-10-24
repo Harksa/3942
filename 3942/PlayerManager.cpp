@@ -49,14 +49,23 @@ void PlayerManager::init() const {
 }
 
 void PlayerManager::update() const {
-	for (auto& player : *players) {
-		player->update();
+	for(auto it = players->begin() ; it != players->end() ; ) {
+		if((*it)->hasRemainingLives()) {
+			(*it)->update();
+			++it;
+		} else {
+			(*it)->clean();
+			delete *it;
+			it = players->erase(it);
+		}
 	}
+
 }
 
 void PlayerManager::render() const {
 	for (auto& player : *players) {
-		player->draw();
+		if(player->hasRemainingLives())
+			player->draw();
 	}
 }
 
@@ -67,4 +76,13 @@ void PlayerManager::clear() const {
 	}
 
 	players->clear();
+}
+
+bool PlayerManager::doesAllPlayersDoesntHaveAnyRemainingLives() const {
+	for (auto& player : *players) {
+		if(player->hasRemainingLives())
+			return false;
+	}
+
+	return true;
 }

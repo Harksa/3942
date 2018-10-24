@@ -101,6 +101,10 @@ public:
 	 */
 	static bool areNumberOfJoysticksEgalsToNumberOfPlayersUsingJoysticks();
 
+	/**
+	 * \brief Retourne le KeyState de SDL
+	 * \return Le keyState de SDL
+	 */
 	static const Uint8* getKeyStates() { return keyStates;}
 
 private:

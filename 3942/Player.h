@@ -39,12 +39,22 @@ public:
 	 */
 	bool hasRemainingLives() const { return lives > 0; }
 
-	
+	/**
+	 * \brief Détermine l'ID du joystick associé à ce joueur
+	 * \param joyID l'ID du joystick
+	 */
 	void setJoystickID(unsigned int joyID) { joystick_id = joyID;}
 
-
+	/**
+	 * \brief Retourne le joystickID du joueur
+	 * \return Le joystickID du joueur
+	 */
 	unsigned int getJoystickID() const {return joystick_id; }
 
+	/**
+	 * \brief Permet de déterminer si le contrôlleur du joueur est connecté ou non
+	 * \return Vrai si le joystick est connecté, faux sinon.
+	 */
 	bool isJoyConnected() const {return InputHandler::getJoystickByID(joystick_id) != nullptr; }
 
 	/**
