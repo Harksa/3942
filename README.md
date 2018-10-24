@@ -4,7 +4,7 @@ Je n'étais pas satisfait d'avoir créé ce jeu en ayant eu le travail autant ma
 3942 est un shooter en 2D, réalisé en C++ avec la bibliothèque SDL, ainsi qu'avec TinyXML.
 
 ## Installation
-J'ai créer ce jeu sous Visual Studio 2018.
+J'ai créé ce jeu sous Visual Studio 2018.
 Pour pouvoir installer facilement la bibliothèque SDL, j'ai utilisé [VCPKG](https://github.com/Microsoft/vcpkg).
 Une fois VCPKG installé, il faut installer les dépendances comme suit :
 
