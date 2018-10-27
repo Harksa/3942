@@ -59,6 +59,8 @@ bool MainMenuState::onEnter() {
 }
 
 bool MainMenuState::onExit() {
+	is_exiting = true;
+
 	clearState();
 
 	return true;

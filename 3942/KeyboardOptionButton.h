@@ -31,14 +31,6 @@ public:
 	 */
 	void clean() override;
 
-
-	Vector2D getTextPosition() const {
-		Vector2D pos;
-		pos.x = position.x + sprite->getWidth() * 0.3f;
-		pos.y = position.y + sprite->getHeight() * 0.3f;
-		return pos;
-	}
-
 	/**
 	 * \brief Définie le joueur associé au contrôle du KeyboardOptionButton
 	 * \param player le joueur associé

@@ -49,6 +49,8 @@ public:
 	 
 private:
 
+	bool isLevelFinished();
+
 	/**
 	 * \brief l'ID de l'état.
 	 */

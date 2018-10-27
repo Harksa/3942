@@ -46,7 +46,12 @@ public:
 	 */
 	bool isLoaded() const { return is_loaded;}
 
-	GameState() = default;
+	/**
+	 * \brief Permet de savoir si l'état est en train d'être quitté
+	 * \return Vrai si l'état est en train d'être quitté, faux sinon
+	 */
+	bool isExiting() const {return is_exiting;}
+
 
 	/**
 	 * \brief Nettoie les éléments communs des States.
@@ -76,6 +81,8 @@ public:
 		is_already_cleared = true;
 	}
 
+	GameState() = default;
+
 	virtual ~GameState() {
 		if(!is_already_cleared)
 			clearState();
@@ -97,6 +104,11 @@ protected:
 	 * \brief Définie si la scène a été entièrement chargé ou non.
 	 */
 	bool is_loaded{false};
+
+	/**
+	 * \brief Définie si la scène est en train d'être quitté ou non.
+	 */
+	bool is_exiting{false};
 
 	/**
 	 * \brief Background du l'état

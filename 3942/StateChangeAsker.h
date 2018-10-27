@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 /**
  * \brief Le choix de l'état où l'on souhaiter se rendre.
@@ -85,11 +86,43 @@ public:
 		return is_asking_to_change || is_asking_to_push || is_asking_for_popback;
 	}
 
+	/**
+	 * \brief Incrèmente le niveau actuel
+	 */
+	static void incrementeLevel() { current_level++ ; }
+
+	/**
+	 * \brief Retourne le niveau actuel
+	 */
+	static unsigned int getCurrentLevel() { return current_level;}
+
+	/**
+	 * \brief Permet de parametrer la fin de jeu, selon si les joueur a gagnés ou perdu
+	 * \param value Vrai si le joueur a gagné, faux sinon
+	 */
+	static void setHasWon(bool value) { has_won = value; }
+
+	/**
+	 * \brief Retourne la valeur permettant de savoir si les joueurs ont gagnés ou non
+	 * \return Vrai si les joueurs ont gagnés, faux sinon
+	 */
+	static bool hasWonTheGame() { return has_won; }
+
 private:
 	/**
 	 * \brief Le choix de l'état où l'on souhaite se rendre
 	 */
 	static StateChoice choice;
+
+	/**
+	 * \brief Le niveau courant
+	 */
+	static unsigned int current_level;
+
+	/**
+	 * \brief Permet de déterminer si le joueur à gagné le jeu ou non.
+	 */
+	static bool has_won;
 
 	/**
 	 * \brief booléen déterminant si une demande de changement a été effectué

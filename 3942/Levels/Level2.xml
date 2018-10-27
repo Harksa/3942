@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave>
+	<enemy type="Enemy" x="50"  y="50"  health="2" points="5000" time="60"  textureID="EnemyGreen1"/>
+</wave>

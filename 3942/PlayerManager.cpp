@@ -3,7 +3,9 @@
 
 PlayerManager * PlayerManager::instance = nullptr;
 
-void PlayerManager::init() const {
+void PlayerManager::init() {
+	players = new std::vector<Player*>();
+
 	if(GameParameters::isTwoPlayer()) {
 
 		Player * player1 = new Player(PLAYER_1), * player2 = new Player(PLAYER_2);
@@ -33,7 +35,6 @@ void PlayerManager::init() const {
 		players->push_back(player2);
 
 		delete p;
-
 
 	} else {
 		Player * player = new Player();

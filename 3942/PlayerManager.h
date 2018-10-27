@@ -22,7 +22,7 @@ public:
 	/**
 	 * \brief Initialise le PlayerManager
 	 */
-	void init() const;
+	void init();
 
 	/**
 	 * \brief Mets à jours les joueurs
@@ -63,6 +63,6 @@ private:
 	/**
 	 * \brief La liste des joueurs présents dans le niveau
 	 */
-	std::vector<Player *> * players = new std::vector<Player *>();
+	std::vector<Player *> * players;
 };
 

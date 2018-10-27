@@ -38,6 +38,8 @@ bool PauseState::onEnter() {
 }
 
 bool PauseState::onExit() {
+	is_exiting = true;
+
 	clearState();
 
 	InputHandler::reset();

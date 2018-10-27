@@ -1,5 +1,6 @@
 #pragma once
 #include "PlayerEnum.h"
+#include <string>
 
 
 /**
@@ -46,6 +47,19 @@ public:
 	 */
 	static void setPlayerUsingKeyboard(int player, bool value) {isUsingKeyboard[player] = value; }
 
+	/**
+	 * \brief Compte le nombre de niveaux total en fonction du nombre de fichier compris dans le dossier rentré en paramètre
+	 * 1 fichier = 1 niveau
+	 * \param folder_path Le chemin du dossier contenant les niveaux
+	 */
+	static void countNumberOfLevels(const std::string& folder_path);
+
+	/**
+	 * \brief Retourne le nombre total de niveaux
+	 * \return Le nombre total de niveaux
+	 */
+	static unsigned int getTotalNumberOfLevels() { return number_of_levels;}
+
 private:
 	friend class Game;
 
@@ -68,6 +82,11 @@ private:
 	 * \brief Tableau permettant de déterminer quelles joueurs jouent au clavier
 	 */
 	static bool isUsingKeyboard[2];
+
+	/**
+	 * \brief Le nombre de niveaux total
+	 */
+	static unsigned int number_of_levels;
 
 };
 

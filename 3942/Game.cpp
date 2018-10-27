@@ -25,6 +25,7 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 
 	GameParameters::game_width = width;
 	GameParameters::game_height = height;
+	GameParameters::countNumberOfLevels("Levels");
 
 	GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
 	GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());

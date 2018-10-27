@@ -28,6 +28,8 @@ bool GameOverState::onEnter() {
 }
 
 bool GameOverState::onExit() {
+	is_exiting = true;
+
 	clearState();
 
 	return true;

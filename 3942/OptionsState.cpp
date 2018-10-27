@@ -115,6 +115,8 @@ bool OptionsState::onEnter() {
 }
 
 bool OptionsState::onExit() {
+	is_exiting = true;
+
 	clearState();
 
 	for (auto keyboard_option : keyboard_options) {

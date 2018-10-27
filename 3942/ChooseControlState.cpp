@@ -54,6 +54,8 @@ bool ChooseControlState::onEnter() {
 
 
 bool ChooseControlState::onExit() {
+	is_exiting = true;
+
 	clearState();
 
 	FontManager::Instance()->clear();

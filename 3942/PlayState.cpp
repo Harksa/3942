@@ -7,6 +7,7 @@
 #include "SoundManager.h"
 #include "UIManager.h"
 #include "PlayerManager.h"
+#include "GameParameters.h"
 
 const std::string PlayState::playID = "PLAY";
 
@@ -14,7 +15,20 @@ void PlayState::update() {
 	//Check mort joueurs
 	if(PlayerManager::Instance()->doesAllPlayersDoesntHaveAnyRemainingLives()) {
 		StateChangeAsker::askToChange(GAME_OVER);
+		StateChangeAsker::setHasWon(false);
 		return;
+	}
+
+	if(isLevelFinished()) {
+		if(StateChangeAsker::getCurrentLevel() == GameParameters::getTotalNumberOfLevels()) {
+			StateChangeAsker::askToChange(GAME_OVER);
+			StateChangeAsker::setHasWon(true);
+			return;
+		} else {
+			StateChangeAsker::askToChange(PLAY);
+			StateChangeAsker::incrementeLevel();
+			return;
+		}
 	}
 
 	//Check pause
@@ -44,14 +58,16 @@ void PlayState::update() {
 
 	PlayerManager::Instance()->update();
 
-	for(auto game_object = _gameObjects.begin() ; game_object != _gameObjects.end() ; ) {
-		if(!(*game_object)->isDead()) {
-			(*game_object)->update();
-			++game_object;
-		} else {
-			(*game_object)->clean();
-			delete *game_object;
-			game_object = _gameObjects.erase(game_object);
+	if(!_gameObjects.empty()) {
+		for(auto game_object = _gameObjects.begin() ; game_object != _gameObjects.end() ; ) {
+			if(!(*game_object)->isDead()) {
+				(*game_object)->update();
+				++game_object;
+			} else {
+				(*game_object)->clean();
+				delete *game_object;
+				game_object = _gameObjects.erase(game_object);
+			}
 		}
 	}
 
@@ -86,7 +102,7 @@ bool PlayState::onEnter() {
 
 	_gameObjects[0]->getSprite()->setVisibility(false); //Fond gris
 
-	WaveGenerator::parseWave("Levels/Level1.xml", &enemy_spaw_informations);
+	WaveGenerator::parseWave("Levels/Level" + std::to_string(StateChangeAsker::getCurrentLevel()) + ".xml", &enemy_spaw_informations);
 
 	SoundManager::load("Sons/laser01.wav", "PlayerLaser", SOUND_SFX);
 
@@ -103,6 +119,8 @@ bool PlayState::onEnter() {
 }
 
 bool PlayState::onExit() {
+	is_exiting = true;
+
 	clearState();
 
 	UIManager::Instance()->clear();
@@ -133,3 +151,16 @@ void PlayState::waveUpdate() {
 }
 
 
+bool PlayState::isLevelFinished() {
+	if(encouter == enemy_spaw_informations.size()) {
+		for (auto game_object : _gameObjects) {
+			if(dynamic_cast<Enemy*>(game_object) != nullptr) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	return false;
+}

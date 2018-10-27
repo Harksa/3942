@@ -59,13 +59,13 @@ void GameStateMachine::popState() {
 
 void GameStateMachine::update() {
 	if(!_gameStates.empty())
-		if(_gameStates.back()->isLoaded())
+		if(_gameStates.back()->isLoaded() && !_gameStates.back()->isExiting())
 			_gameStates.back()->update();
 }
 
 void GameStateMachine::render() {
 	if(!_gameStates.empty())
-		if(_gameStates.back()->isLoaded())
+		if(_gameStates.back()->isLoaded() && !_gameStates.back()->isExiting())
 			_gameStates.back()->render();
 }
 
