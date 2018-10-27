@@ -8,9 +8,6 @@
 class AnimatedGraphic :
 	public GameObject {
 public:
-	AnimatedGraphic() = default;
-	~AnimatedGraphic() = default;
-
 	/**
 	 * \brief Mets à jour l'animatedGraphic
 	 */
@@ -27,9 +24,13 @@ public:
 	 */
 	void load(const LoadParameters* parameters) override;
 
-	void clean() override {
-		GameObject::clean();
-	};
+	/**
+	 * \brief Nettoie l'AnimatedGraphic
+	 */
+	void clean() override;
+
+	AnimatedGraphic() = default;
+	~AnimatedGraphic() = default;
 };
 
 /**

@@ -1,7 +1,5 @@
 #pragma once
 #include "MenuState.h"
-#include "AnimatedGraphic.h"
-#include "FontCache/SDL_FontCache.h"
 
 enum Player2Choice {
 	NO_PLAYER2 = 0,
@@ -39,7 +37,7 @@ public:
 	 * \brief Retourne le State ID de cet état
 	 * \return Le stateID de cet état
 	 */
-	std::string getStateID() const override { return ControlChooseStateID; }
+	std::string getStateID() const override;
 
 	ChooseControlState() = default;
 	~ChooseControlState() = default;
@@ -60,20 +58,44 @@ private:
 	 */
 	static GameObject * ag_controls_player2;
 
+	/**
+	 * \brief Rect où sera positionné le texte pour le joueur 1 s'il n'a pas branché sa manette
+	 */
 	SDL_Rect rect1;
 
+	/**
+	 * \brief Rect où sera positionné le texte pour le joueur 2 s'il n'a pas branché sa manette
+	 */
 	SDL_Rect rect2;
 
+	/**
+	 * \brief Actions effectuées lorsque le joueur appuie sur l'un des boutons associé au joueur 1
+	 */
 	static void buttonChoicePlayer1();
 
+	/**
+	 * \brief Actions effectuées lorsqu'un joueur appuie sur le bouton droite associé au joueur 2
+	 */
 	static void buttonChoiceRightPlayer2();
 
+	/**
+	 * \brief Actions effectuées lorsqu'un joueur appuie sur le bouton gauche associé au joueur 2
+	 */
 	static void buttonChoiceLeftPlayer2();
 
+	/**
+	 * \brief Gère la selection du joueur 2
+	 */
 	static void handlePlayer2Choice();
 
+	/**
+	 * \brief Entre dans le jeu
+	 */
 	static void enterPlayMode();
 
+	/**
+	 * \brief Le choix du deuxième joueur
+	 */
 	static Player2Choice player2_choice;
 };
 

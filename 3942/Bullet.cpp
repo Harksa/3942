@@ -34,3 +34,11 @@ void Bullet::onCollision() {
 Bullet::~Bullet() {
 	Bullet::clean();
 }
+
+bool Bullet::isAvailable() const { return is_available; }
+
+void Bullet::setAvailability(const bool value) { is_available = value; }
+
+bool Bullet::needChangeNext() const { return need_change_next; }
+
+void Bullet::setChangeNext(bool value) { need_change_next = value; }

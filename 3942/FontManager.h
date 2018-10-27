@@ -11,12 +11,7 @@ public:
 	 * \brief Retourne l'instance de FontManager
 	 * \return L'instance de FontManager
 	 */
-	static FontManager * Instance() {
-		if(instance == nullptr)
-			instance = new FontManager();
-
-		return instance;
-	}
+	static FontManager* Instance();
 
 	/**
 	 * \brief Créer une police de caractère

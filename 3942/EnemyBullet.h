@@ -7,9 +7,6 @@
 class EnemyBullet :
 	public Bullet {
 public:
-	EnemyBullet() = default;
-	~EnemyBullet() = default;
-
 	/**
 	 * \brief Affiche le Bullet à l'écran
 	 */
@@ -41,13 +38,16 @@ public:
 	 * \brief Mets à jour le voisin de ce Bullet
 	 * \param new_bullet Le nouveau voisin
 	 */
-	void setNext(EnemyBullet * new_bullet) {next = new_bullet;}
+	void setNext(EnemyBullet* new_bullet);
 
 	/**
 	 * \brief Retourne le voisin de ce Bullet
 	 * \return Le voisin de ce Bullet
 	 */
-	EnemyBullet * getNext() const {return next;}
+	EnemyBullet* getNext() const;
+
+	EnemyBullet() = default;
+	~EnemyBullet() = default;
 
 private:
 	/**
@@ -55,4 +55,3 @@ private:
 	 */
 	EnemyBullet * next{};
 };
-

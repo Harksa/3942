@@ -10,9 +10,7 @@ class MenuState : public GameState {
 
 public:
 	MenuState() = default;
-	virtual ~MenuState() {
-		_callbacks.clear();
-	}
+	virtual ~MenuState();
 
 protected:
 	/**
@@ -24,15 +22,7 @@ protected:
 	 * \brief Mets en place les callbacks sur les boutons du menu.
 	 * \param callbacks La liste des fonctions qui seront associées aux boutons.
 	 */
-	virtual void setCallbacks(const std::vector<Callback>& callbacks) {
-		for (auto& _gameObject : _gameObjects) {
-			if(dynamic_cast<MenuButton*>(_gameObject)) {
-				auto button = dynamic_cast<MenuButton*>(_gameObject);
-				button->setCallback(callbacks[button->getCallbackID()]);
-			}
-		}
-	}
-
+	virtual void setCallbacks(const std::vector<Callback>& callbacks);
 
 	/**
 	 * \brief La liste des fonctions.
@@ -40,3 +30,15 @@ protected:
 	std::vector<Callback> _callbacks;
 };
 
+inline void MenuState::setCallbacks(const std::vector<Callback>& callbacks) {
+	for (auto& _gameObject : _gameObjects) {
+		if (dynamic_cast<MenuButton*>(_gameObject)) {
+			auto button = dynamic_cast<MenuButton*>(_gameObject);
+			button->setCallback(callbacks[button->getCallbackID()]);
+		}
+	}
+}
+
+inline MenuState::~MenuState() {
+	_callbacks.clear();
+}

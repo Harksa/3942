@@ -1,7 +1,15 @@
 #include "BulletManager.h"
 #include <cassert>
 
-BulletManager * BulletManager::instance = nullptr;
+BulletManager * BulletManager::instance {nullptr};
+
+BulletManager* BulletManager::Instance() {
+	if (instance == nullptr) {
+		instance = new BulletManager();
+	}
+
+	return instance;
+}
 
 void BulletManager::init() {
 	is_already_cleared = false;
@@ -122,3 +130,7 @@ void BulletManager::clear() {
 		is_already_cleared = true;
 	}
 }
+
+PlayerBullet* BulletManager::getPlayerBullets() const { return bullet_pool->player_bullets; }
+
+EnemyBullet* BulletManager::getEnemyBullets() const { return bullet_pool->enemy_bullets; }

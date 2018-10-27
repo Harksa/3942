@@ -1,7 +1,15 @@
 #include "FontManager.h"
 #include "Game.h"
+#include <iostream>
 
 FontManager * FontManager::instance{nullptr};
+
+FontManager* FontManager::Instance() {
+	if (instance == nullptr)
+		instance = new FontManager();
+
+	return instance;
+}
 
 void FontManager::createFont(std::string font_name, const std::string& file_name, const unsigned int size, const SDL_Color color, const int style) {
 	if(fonts.find(font_name) == fonts.end()) {

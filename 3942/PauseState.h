@@ -1,6 +1,4 @@
 #pragma once
-#include <vector>
-#include "GameObject.h"
 #include "MenuState.h"
 
 /**

@@ -2,7 +2,15 @@
 #include <SDL2/SDL_image.h>
 #include "Game.h"
 
-TextureManager * TextureManager::instance = nullptr;
+TextureManager * TextureManager::instance{nullptr};
+
+TextureManager* TextureManager::Instance() {
+	if (instance == nullptr) {
+		instance = new TextureManager();
+	}
+
+	return instance;
+}
 
 TextureManager::~TextureManager() {
 	for (const auto& texture_map : _textureMap) {
@@ -97,4 +105,8 @@ void TextureManager::drawTile(const std::string& id, const int margin, const int
 	destRect.y = y;
 
 	SDL_RenderCopyEx(Game::Instance()->getRenderer(), _textureMap[id], &srcRect, &destRect, 0, nullptr, SDL_FLIP_NONE);
+}
+
+texture_informations TextureManager::getTextureInformationsFromID(const std::string& id) {
+	return _textureInformations[id];
 }

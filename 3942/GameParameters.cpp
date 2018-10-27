@@ -24,3 +24,17 @@ void GameParameters::countNumberOfLevels(const std::string& folder_path) {
 		number_of_levels++;
 	}
 }
+
+int GameParameters::getGameWidth() { return game_width; }
+
+int GameParameters::getGameHeight() { return game_height; }
+
+void GameParameters::setMulti(bool newValue) { two_player = newValue; }
+
+bool GameParameters::isTwoPlayer() { return two_player; }
+
+bool GameParameters::isPlayerUsingKeyboard(PLAYER_NUM playerID) { return isUsingKeyboard[playerID]; }
+
+void GameParameters::setPlayerUsingKeyboard(int player, bool value) { isUsingKeyboard[player] = value; }
+
+unsigned GameParameters::getTotalNumberOfLevels() { return number_of_levels; }

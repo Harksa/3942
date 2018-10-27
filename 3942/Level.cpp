@@ -6,6 +6,11 @@ void Level::render() {
 	}
 }
 
+void Level::printAllTileSet() {
+	for (auto tileset : _tilesets) {
+		std::cout << tileset;
+	}
+}
 
 void Level::update() {
 	for (auto layer : _layers) {
@@ -25,3 +30,7 @@ std::ostream& operator<<(std::ostream& stream, Tileset& tileset) {
 	stream << "numColumns : " << tileset.numColumns << std::endl;
 	return stream;
 }
+
+std::vector<Tileset>* Level::getTilesets() { return &_tilesets; }
+
+std::vector<Layer*>* Level::getLayers() { return &_layers; }

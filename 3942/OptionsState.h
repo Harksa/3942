@@ -1,16 +1,12 @@
 #pragma once
 #include "MenuState.h"
 #include "KeyboardOptionButton.h"
-#include "FontCache/SDL_FontCache.h"
 
 /**
  * \brief Etat affichant les options du jeu
  */
 class OptionsState : public MenuState {
 public:
-	OptionsState() = default;
-	~OptionsState() = default;
-
 	/**
 	 * \brief Mets à jour l'état d'options
 	 */
@@ -34,7 +30,10 @@ public:
 	/**
 	 * \brief Retourne le StateID de l'état
 	 */
-	std::string getStateID() const override {return optionsID;}
+	std::string getStateID() const override;
+
+	OptionsState() = default;
+	~OptionsState() = default;
 
 private:
 
@@ -56,7 +55,7 @@ private:
 	/**
 	 * \brief Le rect où sera affiché le texte de selection de contrôles
 	 */
-	SDL_Rect text_rect;
+	SDL_Rect text_rect{};
 
 	/**
 	 * \brief La fonction permettant de revenir au menu principal

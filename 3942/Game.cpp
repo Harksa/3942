@@ -7,8 +7,17 @@
 #include "AnimatedGraphic.h"
 #include "GameParameters.h"
 #include "KeyboardControls.h"
+#include "InputHandler.h"
 
 Game * Game::instance{nullptr};
+
+Game* Game::Instance() {
+	if (instance == nullptr) {
+		instance = new Game();
+	}
+
+	return instance;
+}
 
 bool Game::init(const char * title, const int xpos, const int ypos, const int width, const int height, const bool fullscreen) {
 	if(SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
@@ -76,3 +85,10 @@ void Game::clean() const {
 }
 
 
+void Game::quit() { _running = false; }
+
+SDL_Renderer* Game::getRenderer() const { return sdl_renderer; }
+
+GameStateMachine* Game::getStateMachine() const { return _gameStateMachine; }
+
+bool Game::running() const { return _running; }

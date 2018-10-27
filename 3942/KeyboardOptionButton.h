@@ -7,9 +7,6 @@
  */
 class KeyboardOptionButton : public MenuButton {
 public:
-	KeyboardOptionButton() = default;
-	~KeyboardOptionButton() = default;
-
 	/**
 	 * \brief Charge le KeyboardOptionButton avec les paramètres rentrés
 	 * \param parameters Les paramètres du KeyboardOptionButton
@@ -35,24 +32,28 @@ public:
 	 * \brief Définie le joueur associé au contrôle du KeyboardOptionButton
 	 * \param player le joueur associé
 	 */
-	void setAssociatedPlayer(PLAYER_NUM player) { associate_player = player; }
+	void setAssociatedPlayer(PLAYER_NUM player);
 
 	/**
 	 * \brief Renvoie le joueur associé à ce boutton
 	 * \return Le joueur associé à ce boutton
 	 */
-	PLAYER_NUM getPlayerNum() const {return associate_player; }
+	PLAYER_NUM getPlayerNum() const;
 
 	/**
 	 * \brief Définie les contrôles associés à ce KeyboardOptionButton
 	 * \param control Le control associé
 	 */
-	void setAssociatedControl(CONTROLS control) {associated_control = control; }
+	void setAssociatedControl(CONTROLS control);
 
 	/**
 	 * \brief Retourne le contrôle associé à ce boutton
 	 */
-	CONTROLS getAssociatedControl() const {return associated_control; }
+	CONTROLS getAssociatedControl() const;
+
+	KeyboardOptionButton() = default;
+	~KeyboardOptionButton() = default;
+
 private:
 
 	/**

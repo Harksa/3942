@@ -6,9 +6,6 @@
  */
 class Background {
 public:
-	Background() = default;
-	~Background() = default;
-
 	/**
 	 * \brief Charge l'image du background
 	 * \param fileName L'emplacement du fichier
@@ -31,6 +28,9 @@ public:
 	 * \brief Nettoie le background
 	 */
 	void clean() const;
+
+	Background() = default;
+	~Background() = default;
 
 private:
 	/**

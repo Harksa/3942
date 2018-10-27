@@ -1,6 +1,7 @@
 #include "TileLayer.h"
 #include <utility>
 #include "GameParameters.h"
+#include "TextureManager.h"
 
 TileLayer::TileLayer(int tileSize, std::vector<Tileset> tilesets) : _tileSize{tileSize}, _tilesets{std::move(tilesets)} {
 	_numColumns = GameParameters::getGameWidth() / tileSize;
@@ -49,4 +50,12 @@ void TileLayer::render() {
 
 		}
 	}
+}
+
+void TileLayer::setTileIDs(const std::vector<std::vector<int>>& data) {
+	_tileIDs = data;
+}
+
+void TileLayer::setTileSize(int tileSize) {
+	_tileSize = tileSize;
 }

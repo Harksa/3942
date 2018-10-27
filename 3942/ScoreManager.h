@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "PlayerManager.h"
 
 /**
@@ -11,12 +10,7 @@ public:
 	/**
 	 * \brief Retourne l'instance du ScoreManager
 	 */
-	static ScoreManager * Instance() {
-		if(instance == nullptr)
-			instance = new ScoreManager();
-
-		return  instance;
-	}
+	static ScoreManager* Instance();
 
 	/**
 	 * \brief Ajoute des points au score du joueur

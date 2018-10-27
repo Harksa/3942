@@ -39,11 +39,7 @@ public:
 
 	GameStateMachine() = default;
 
-	~GameStateMachine() {
-		for (auto game_state : _gameStates) {
-			game_state = nullptr;
-		}
-	}
+	~GameStateMachine();
 
 private:
 

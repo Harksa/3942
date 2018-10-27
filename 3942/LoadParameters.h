@@ -15,14 +15,14 @@ public:
 	 * \param textureID 
 	 * \param callbackId 
 	 */
-	LoadParameters(float x, float y, std::string textureID, int callbackId = 0) :_x{x}, _y{y}, _textureID{std::move(textureID)}, callbackID{callbackId} {}
+	LoadParameters(float x, float y, std::string textureID, int callbackId = 0);
+
+	float getX() const;
+	float getY() const;
+	std::string getTextureID() const;
+	int getCallbackID() const;
 
 	~LoadParameters() = default;
-
-	float getX() const {return _x;}
-	float getY() const {return _y;}
-	std::string getTextureID() const {return _textureID;}
-	int getCallbackID() const {return callbackID;}
 
 private:
 	/**
@@ -47,3 +47,13 @@ private:
 
 };
 
+inline LoadParameters::LoadParameters(float x, float y, std::string textureID, int callbackId): 
+	_x{x}, _y{y}, _textureID{ std::move(textureID) }, callbackID{ callbackId} {}
+
+inline float LoadParameters::getX() const { return _x; }
+
+inline float LoadParameters::getY() const { return _y; }
+
+inline std::string LoadParameters::getTextureID() const { return _textureID; }
+
+inline int LoadParameters::getCallbackID() const { return callbackID; }

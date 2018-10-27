@@ -2,15 +2,17 @@
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "PlayerEnum.h"
-#include "InputHandler.h"
 
 /**
  * \brief La classe qui désigne l'avatar du joueur
  */
 class Player : public GameObject {
 public:
-
-	Player(PLAYER_NUM num = PLAYER_1) : id{num} {}
+	/**
+	 * \brief Créer un player
+	 * \param num L'ID du player
+	 */
+	Player(PLAYER_NUM num = PLAYER_1);
 
 	/**
 	 * \brief Charge le Player en fonction du LoadParameters
@@ -37,25 +39,25 @@ public:
 	 * \brief Détermine si le joueur a encore des vies ou non
 	 * \return Vrai si le joueur a encore des vies, faux sinon
 	 */
-	bool hasRemainingLives() const { return lives > 0; }
+	bool hasRemainingLives() const;
 
 	/**
 	 * \brief Détermine l'ID du joystick associé à ce joueur
 	 * \param joyID l'ID du joystick
 	 */
-	void setJoystickID(unsigned int joyID) { joystick_id = joyID;}
+	void setJoystickID(unsigned int joyID);
 
 	/**
 	 * \brief Retourne le joystickID du joueur
 	 * \return Le joystickID du joueur
 	 */
-	unsigned int getJoystickID() const {return joystick_id; }
+	unsigned int getJoystickID() const;
 
 	/**
 	 * \brief Permet de déterminer si le contrôlleur du joueur est connecté ou non
 	 * \return Vrai si le joystick est connecté, faux sinon.
 	 */
-	bool isJoyConnected() const {return InputHandler::getJoystickByID(joystick_id) != nullptr; }
+	bool isJoyConnected() const;
 
 	/**
 	 * \brief Actions effectués lorsque le joueur rentre en collision avec un autre objet

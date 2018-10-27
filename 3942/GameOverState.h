@@ -1,6 +1,4 @@
 #pragma once
-#include <vector>
-#include "GameObject.h"
 #include "MenuState.h"
 
 /**
@@ -32,7 +30,7 @@ public:
 	 * \brief retour l'ID de l'état.
 	 * \return l'ID de l'état.
 	 */
-	std::string getStateID() const override {return gameOverID;}
+	std::string getStateID() const override;
 
 	GameOverState() = default;
 	~GameOverState() = default;

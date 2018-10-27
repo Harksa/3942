@@ -1,4 +1,5 @@
 #include "PlayState.h"
+
 #include "Player.h"
 #include "InputHandler.h"
 #include "StateParser.h"
@@ -8,6 +9,7 @@
 #include "UIManager.h"
 #include "PlayerManager.h"
 #include "GameParameters.h"
+#include "BulletManager.h"
 
 const std::string PlayState::playID = "PLAY";
 
@@ -149,7 +151,6 @@ void PlayState::waveUpdate() {
 	
 }
 
-
 bool PlayState::isLevelFinished() {
 	if(encouter == enemy_spaw_informations.size()) {
 		for (auto game_object : _gameObjects) {
@@ -163,3 +164,5 @@ bool PlayState::isLevelFinished() {
 
 	return false;
 }
+
+std::string PlayState::getStateID() const { return playID; }

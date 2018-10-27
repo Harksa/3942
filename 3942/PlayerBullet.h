@@ -8,8 +8,6 @@
 class PlayerBullet :
 	public Bullet {
 public:
-	PlayerBullet() = default;
-	~PlayerBullet() = default;
 
 	/**
 	 * \brief Affiche le Bullet à l'écran
@@ -41,25 +39,28 @@ public:
 	 * \brief Définie le Player qui a tiré le Bullet
 	 * \param player Le player qui a tiré le Bullet
 	 */
-	void setPlayerNum(PLAYER_NUM player) { player_num = player; }
+	void setPlayerNum(PLAYER_NUM player);
 
 	/**
 	 * \brief Retourne l'ID du Player ayant tiré ce Bullet
 	 * \return L'ID du Player ayant tiré ce Bullet
 	 */
-	PLAYER_NUM getPlayerNum() const { return player_num; }
+	PLAYER_NUM getPlayerNum() const;
 
 	/**
 	 * \brief Mets à jour le voisin de ce Bullet
 	 * \param new_bullet Le nouveau voisin
 	 */
-	void setNext(PlayerBullet * new_bullet) {next = new_bullet;}
+	void setNext(PlayerBullet* new_bullet);
 
 	/**
 	 * \brief Retourne le voisin de ce Bullet
 	 * \return Le voisin de ce Bullet
 	 */
-	PlayerBullet * getNext() const {return next;}
+	PlayerBullet* getNext() const;
+
+	PlayerBullet() = default;
+	~PlayerBullet() = default;
 
 private:
 	/**

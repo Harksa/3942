@@ -12,13 +12,7 @@ public:
 	 * \brief Retourne l'instance de BulletManager
 	 * \return L'instance de BulletManager
 	 */
-	static BulletManager * Instance() {
-		if(instance == nullptr) {
-			instance = new BulletManager();
-		}
-
-		return instance;
-	}
+	static BulletManager* Instance();
 
 	/**
 	 * \brief Initialise le BulletManager
@@ -59,13 +53,13 @@ public:
 	 * \brief Retourne la liste des Bullets des players
 	 * \return La liste des Bullets des players
 	 */
-	PlayerBullet * getPlayerBullets() const { return bullet_pool->player_bullets;}
+	PlayerBullet* getPlayerBullets() const;
 
 	/**
 	 * \brief Retourne la liste des Bullets ennemis
 	 * \return La liste des Bullets ennemis
 	 */
-	EnemyBullet * getEnemyBullets() const { return bullet_pool->enemy_bullets;}
+	EnemyBullet* getEnemyBullets() const;
 
 	/**
 	 * \brief La taille de la piscine de PlayerBullet

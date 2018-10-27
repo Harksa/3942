@@ -44,47 +44,24 @@ public:
 	 * \brief Permet de savoir si l'état a été entièrement chargé
 	 * \return Vrai si l'état à été correctement et entièrement chargé, faux sinon
 	 */
-	bool isLoaded() const { return is_loaded;}
+	bool isLoaded() const;
 
 	/**
 	 * \brief Permet de savoir si l'état est en train d'être quitté
 	 * \return Vrai si l'état est en train d'être quitté, faux sinon
 	 */
-	bool isExiting() const {return is_exiting;}
+	bool isExiting() const;
 
 
 	/**
 	 * \brief Nettoie les éléments communs des States.
 	 * background, GameObjects et textures
 	 */
-	void clearState() {
-		background.clean();
-
-		for (const auto& i : _textureIDList) {
-			TextureManager::Instance()->clearFromTextureMapAndInformations(i);
-		}
-
-		_textureIDList.clear();
-
-		for (auto object : _gameObjects) {
-			object->clean();
-			delete object;
-		}
-
-		_gameObjects.clear();
-
-		FontManager::Instance()->clear();
-
-		is_already_cleared = true;
-	}
+	void clearState();
 
 	GameState() = default;
 
-	virtual ~GameState() {
-		if(!is_already_cleared)
-			clearState();
-	}
-
+	virtual ~GameState();
 
 protected:
 	/**
@@ -117,3 +94,32 @@ protected:
 	 */
 	bool is_already_cleared{false};
 };
+
+inline void GameState::clearState() {
+	background.clean();
+
+	for (const auto& i : _textureIDList) {
+		TextureManager::Instance()->clearFromTextureMapAndInformations(i);
+	}
+
+	_textureIDList.clear();
+
+	for (auto object : _gameObjects) {
+		object->clean();
+		delete object;
+	}
+
+	_gameObjects.clear();
+
+	FontManager::Instance()->clear();
+
+	is_already_cleared = true;
+}
+
+inline GameState::~GameState() {
+	if (!is_already_cleared)
+		clearState();
+}
+
+inline bool GameState::isLoaded() const { return is_loaded; }
+inline bool GameState::isExiting() const { return is_exiting; }

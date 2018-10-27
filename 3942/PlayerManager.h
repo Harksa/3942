@@ -12,12 +12,7 @@ public:
 	 * \brief Retourne l'instance du PlayerManager
 	 * \return L'instance du PlayerManager
 	 */
-	static PlayerManager * Instance() {
-		if(instance == nullptr)
-			instance = new PlayerManager();
-
-		return instance;
-	}
+	static PlayerManager* Instance();
 
 	/**
 	 * \brief Initialise le PlayerManager
@@ -43,7 +38,7 @@ public:
 	 * \brief Retourne la liste des joueurs
 	 * \return La liste des joueurs
 	 */
-	std::vector<Player *> getPlayers() const { return players; }
+	std::vector<Player *> getPlayers() const;
 
 	/**
 	 * \brief Permet de déterminer si tous les joueurs sont en vie ou non

@@ -1,5 +1,4 @@
 #pragma once
-#include "Sprite.h"
 #include "GameObject.h"
 
 /**
@@ -7,9 +6,6 @@
  */
 class Bullet : public GameObject {
 public:
-	Bullet() = default;
-	~Bullet();
-
 	/**
 	 * \brief Affiche le Bullet à l'écran
 	 */
@@ -40,25 +36,28 @@ public:
 	 * \brief Détermine si le Bullet courrant est utilisable ou non
 	 * \return Vrai si le Bullet est disponible, faux sinon
 	 */
-	bool isAvailable() const { return is_available;}
+	bool isAvailable() const;
 
 	/**
 	 * \brief Permet de mettre à jour la disponibilité du Bullet
 	 * \param value La nouvelle disponibilité du Bullet
 	 */
-	void setAvailability(const bool value) {is_available = value;}
+	void setAvailability(const bool value);
 
 	/**
 	 * \brief Permet de déterminer si le Bullet a besoin de changer de voisin ou non.
 	 * \return vrai si il y a besoin, faux sinon.
 	 */
-	bool needChangeNext() const { return need_change_next; }
+	bool needChangeNext() const;
 
 	/**
 	 * \brief Détermine si le Bullet à besoin de changer de voisin ou non
 	 * \param value La nouvelle valeur
 	 */
-	void setChangeNext(bool value) {need_change_next = value;}
+	void setChangeNext(bool value);
+
+	Bullet() = default;
+	~Bullet();
 
 	private:
 	/**

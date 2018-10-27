@@ -13,12 +13,7 @@ public:
 	 * \brief Retourne l'instance de UIManager
 	 * \return L'instance de UIManager
 	 */
-	static UIManager * Instance() {
-		if(instance == nullptr)
-			instance = new UIManager();
-
-		return instance;
-	}
+	static UIManager* Instance();
 
 	/**
 	 * \brief Initialise l'UIManager

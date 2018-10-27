@@ -23,7 +23,7 @@ public:
 	 * \brief Retourne la liste des gameobjects présent sur le niveau.
 	 * \return La liste des gameobjects présent sur le niveau.
 	 */
-	std::vector<GameObject*> * getGameObjects() { return &_gameobjects;}
+	std::vector<GameObject*>* getGameObjects();
 
 private:
 	/**

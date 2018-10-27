@@ -38,3 +38,11 @@ void KeyboardOptionButton::update() {
 void KeyboardOptionButton::clean() {
 	MenuButton::clean();
 }
+
+void KeyboardOptionButton::setAssociatedPlayer(PLAYER_NUM player) { associate_player = player; }
+
+PLAYER_NUM KeyboardOptionButton::getPlayerNum() const { return associate_player; }
+
+void KeyboardOptionButton::setAssociatedControl(CONTROLS control) { associated_control = control; }
+
+CONTROLS KeyboardOptionButton::getAssociatedControl() const { return associated_control; }

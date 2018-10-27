@@ -3,6 +3,7 @@
 #include "GameParameters.h"
 #include "InputHandler.h"
 #include "StateChangeAsker.h"
+#include "AnimatedGraphic.h"
 
 
 std::string ChooseControlState::ControlChooseStateID{"CHOOSE_CONTROLS"};
@@ -132,3 +133,5 @@ void ChooseControlState::handlePlayer2Choice() {
 void ChooseControlState::enterPlayMode() {
 	StateChangeAsker::askToChange(PLAY);
 }
+
+std::string ChooseControlState::getStateID() const { return ControlChooseStateID; }

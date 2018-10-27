@@ -29,7 +29,6 @@ std::ostream& operator<<(std::ostream& stream, Tileset& tileset);
  */
 class Level {
 public:
-	~Level() = default;
 
 	/**
 	 * \brief Mets à jour le niveau.
@@ -45,26 +44,24 @@ public:
 	 * \brief Retourne la liste des tilesets de ce niveau.
 	 * \return La liste des tilesets de ce niveau.
 	 */
-	std::vector<Tileset> * getTilesets() { return &_tilesets; }
+	std::vector<Tileset>* getTilesets();
 
 	/**
 	 * \brief Retourne la liste des layers de ce niveau.
 	 * \return La liste des Layers de ce niveau.
 	 */
-	std::vector<Layer*> * getLayers() { return &_layers; }
+	std::vector<Layer*>* getLayers();
 
 	/**
 	 * \brief Imprime les informations de chaque tilesets.
 	 */
-	void printAllTileSet() {
-		for (auto tileset : _tilesets) {
-			std::cout << tileset;
-		}
-	}
+	void printAllTileSet();
+
+	~Level() = default;
 
 private:
 	friend class LevelParser;
-	Level() {}
+	Level() = default;
 
 	/**
 	 * \brief les tilesets disponibles dans ce niveau.

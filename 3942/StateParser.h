@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include "GameObject.h"
 #include <tinyxml2.h>

@@ -51,3 +51,7 @@ void Enemy::onCollisionWithBullet(PLAYER_NUM player_bullet_num) {
 void Enemy::onCollisionWithPlayer() {
 	is_dead = true;
 }
+
+void Enemy::setPoints(unsigned p) { points = p; }
+
+void Enemy::setHealth(int h) { health = h; }

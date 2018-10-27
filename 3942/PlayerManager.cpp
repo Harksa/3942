@@ -3,6 +3,13 @@
 
 PlayerManager * PlayerManager::instance = nullptr;
 
+PlayerManager* PlayerManager::Instance() {
+	if (instance == nullptr)
+		instance = new PlayerManager();
+
+	return instance;
+}
+
 void PlayerManager::init() {
 	if(GameParameters::isTwoPlayer()) {
 
@@ -85,3 +92,5 @@ bool PlayerManager::doesAllPlayersDoesntHaveAnyRemainingLives() const {
 
 	return true;
 }
+
+std::vector<Player*> PlayerManager::getPlayers() const { return players; }

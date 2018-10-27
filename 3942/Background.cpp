@@ -1,6 +1,7 @@
 #include "Background.h"
 #include "TextureManager.h"
 #include "GameParameters.h"
+#include <iostream>
 
 bool Background::load(const std::string& fileName, const std::string& id, const float speed) {
 	movingSpeed = speed;

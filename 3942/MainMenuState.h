@@ -1,5 +1,4 @@
 #pragma once
-#include "GameObject.h"
 #include "MenuState.h"
 
 /**
@@ -31,7 +30,7 @@ public:
 	 * \brief Retourne l'ID de l'état
 	 * \return l'ID de l'état.
 	 */
-	std::string getStateID() const override {return menuID;}
+	std::string getStateID() const override;
 
 	MainMenuState() = default;
 	~MainMenuState() = default;
@@ -51,7 +50,7 @@ private:
 	/**
 	 * \brief Fonction permettant d'aller aux HighScores
 	 */
-	static void menuToHighScores() {}
+	static void menuToHighScores();
 
 	/**
 	 * \brief Fonction permettant d'aller aux options

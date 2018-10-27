@@ -1,12 +1,14 @@
 #pragma once
 #include <SDL2/SDL.h>
-#include <iostream>
 #include <map>
 
 /**
  * \brief Contient les informations des textures, telles que la taille, etc...
  */
 struct texture_informations {
+
+	texture_informations(const int w, const int h, const int numF, const int speed = 0) :  width{w}, height{h}, numFrames{numF}, animSpeed{speed} {}
+
 	/**
 	 * \brief La largeur de la texture
 	 */
@@ -29,8 +31,6 @@ struct texture_informations {
 
 	texture_informations() = default;
 	~texture_informations() = default;
-
-	texture_informations(const int w, const int h, const int numF, const int speed = 0) :  width{w}, height{h}, numFrames{numF}, animSpeed{speed} {}
 };
 
 /**
@@ -43,13 +43,7 @@ public:
 	 * \brief Retourne l'instance de TextureManager
 	 * \return L'instance du TextureManager
 	 */
-	static TextureManager * Instance() {
-		if(instance == nullptr) {
-			instance = new TextureManager();
-		}
-
-		return instance;
-	}
+	static TextureManager* Instance();
 
 	~TextureManager();
 
@@ -133,7 +127,7 @@ public:
 	 * \param id L'ID de la texture dont ont souhaite obtenir les informations
 	 * \return Les informations de la texture
 	 */
-	texture_informations getTextureInformationsFromID(const std::string& id) {return _textureInformations[id];}
+	texture_informations getTextureInformationsFromID(const std::string& id);
 
 private:
 	/**

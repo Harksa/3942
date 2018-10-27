@@ -12,3 +12,7 @@ void AnimatedGraphic::load(const LoadParameters * parameters) {
 	GameObject::load(parameters);
 }
 
+void AnimatedGraphic::clean() {
+	GameObject::clean();
+}
+

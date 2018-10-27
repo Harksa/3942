@@ -35,7 +35,6 @@ void InputHandler::initialiseJoysticks() {
 	}
 }
 
-
 void InputHandler::update() {
 	SDL_Event event;
 
@@ -150,3 +149,14 @@ void InputHandler::reset() {
     _mouseButtonStates[MIDDLE_BUTTON] = false;
 }
 
+bool InputHandler::joystickInitialised() { return _joystickInitialised; }
+
+bool InputHandler::getMouseButtonState(int buttonNumber) { return _mouseButtonStates[buttonNumber]; }
+
+Vector2D* InputHandler::getMousePosition() { return mousePosition; }
+
+SDL_Joystick* InputHandler::getJoystickByID(int id) { return joystick_arrays[id]; }
+
+unsigned InputHandler::getNumberOfJoysticks() { return SDL_NumJoysticks(); }
+
+const Uint8* InputHandler::getKeyStates() { return keyStates; }

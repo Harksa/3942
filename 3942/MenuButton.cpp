@@ -36,3 +36,7 @@ void MenuButton::update() {
 void MenuButton::clean() {
 	GameObject::clean();
 }
+
+void MenuButton::setCallback(void (* callback)()) { _callback = callback; }
+
+int MenuButton::getCallbackID() const { return _callbackID; }

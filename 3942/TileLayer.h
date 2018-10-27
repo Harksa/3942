@@ -3,7 +3,6 @@
 #include "Layer.h"
 #include "Level.h"
 #include "Vector2D.h"
-#include "TextureManager.h"
 
 /**
  * \brief Représente un layer d'arrière plan du jeu.
@@ -26,17 +25,13 @@ public:
 	 * \brief Initialise l'ID des tiles qui sont utilisés par Tiled.
 	 * \param data Le vecteur d'ID utilisé par Tiled.
 	 */
-	void setTileIDs(const std::vector<std::vector<int>> &data) {
-		_tileIDs = data;
-	}
+	void setTileIDs(const std::vector<std::vector<int>>& data);
 
 	/**
 	 * \brief Initialise la taille des tiles.
 	 * \param tileSize La taille des tiles désirés.
 	 */
-	void setTileSize(int tileSize) {
-		_tileSize = tileSize;
-	}
+	void setTileSize(int tileSize);
 
 	/**
 	 * \brief Donne le Tile en fonction de son ID

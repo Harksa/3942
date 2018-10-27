@@ -21,3 +21,6 @@ void EnemyBullet::onCollision() {
 	Bullet::onCollision();
 }
 
+void EnemyBullet::setNext(EnemyBullet* new_bullet) { next = new_bullet; }
+
+EnemyBullet* EnemyBullet::getNext() const { return next; }

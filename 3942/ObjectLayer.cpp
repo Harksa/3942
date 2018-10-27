@@ -12,3 +12,5 @@ void ObjectLayer::render() {
 	}
 }
 
+std::vector<GameObject*>* ObjectLayer::getGameObjects() { return &_gameobjects; }
+

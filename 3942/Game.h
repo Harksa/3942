@@ -11,13 +11,7 @@ public:
 	/**
 	 * \brief Retourne l'instance de Game.
 	 */
-	static Game * Instance() {
-		if(instance == nullptr) {
-			instance = new Game();
-		}
-
-		return instance;
-	}
+	static Game* Instance();
 
 	/**
 	 * \brief Initialise la fenêtre du jeu.
@@ -54,25 +48,25 @@ public:
 	/**
 	 * \brief Demande de quitter le jeu.
 	 */
-	void quit() { _running = false; }
+	void quit();
 
 	/**
 	 * \brief Retourne le renderer utilisé.
 	 * \return le SDL_Renderer du jeu
 	 */
-	SDL_Renderer * getRenderer() const {return sdl_renderer;}
+	SDL_Renderer* getRenderer() const;
 
 	/**
 	 * \brief Retourne le GameStateMachine utilisé dans le jeu
 	 * \return Le GameStateMachine du jeu.
 	 */
-	GameStateMachine * getStateMachine() const { return _gameStateMachine;}
+	GameStateMachine* getStateMachine() const;
 
 	/**
 	 * \brief booléen permettant de déterminer si le jeu est en cours d'éxecution ou non.
 	 * \return vrai si le jeu est en cours d'éxecution, faux sinon.
 	 */
-	bool running() const { return _running; }
+	bool running() const;
 
 private:
 

@@ -1,11 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include <vector>
-#include "GameObject.h"
-#include "Level.h"
 #include "WaveGenerator.h"
-#include "BulletManager.h"
-#include "Player.h"
 
 /**
  * \brief Etat de jeu.
@@ -37,7 +33,7 @@ public:
 	 * \brief Retourne l'ID de l'état
 	 * \return l'ID de l'état.
 	 */
-	std::string getStateID() const override {return playID;}
+	std::string getStateID() const override;
 
 	/**
 	 * \brief Mets à jour les informations des vagues et fait apparaitre les ennemis

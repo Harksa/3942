@@ -1,7 +1,16 @@
 #include "KeyboardControls.h"
 #include <iostream>
+#include <tinyxml2.h>
 
 KeyboardControls * KeyboardControls::instance{nullptr};
+
+KeyboardControls* KeyboardControls::Instance() {
+	if (instance == nullptr) {
+		instance = new KeyboardControls();
+	}
+
+	return instance;
+}
 
 void KeyboardControls::init() {
 
@@ -81,3 +90,19 @@ void KeyboardControls::changeKey(SDL_Scancode new_key_value) {
 	}
 }
 
+SDL_Scancode KeyboardControls::getKeyCode(PLAYER_NUM player, CONTROLS key) const {
+	return controls[player].at(key);
+}
+
+void KeyboardControls::askToChangeControls(bool value) { askToChange = value; }
+
+void KeyboardControls::setToChange(PLAYER_NUM player, CONTROLS control) {
+	playerChange = player;
+	controlsChange = control;
+}
+
+bool KeyboardControls::isAskingToChangeControls() const { return askToChange; }
+
+PLAYER_NUM KeyboardControls::getPlayerNumToChange() const { return playerChange; }
+
+CONTROLS KeyboardControls::getControlToChange() const { return controlsChange; }

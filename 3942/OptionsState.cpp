@@ -133,3 +133,5 @@ bool OptionsState::onExit() {
 void OptionsState::optionsToMenu() {
 	StateChangeAsker::askToChange(MAIN_MENU);
 }
+
+std::string OptionsState::getStateID() const { return optionsID; }

@@ -2,7 +2,6 @@
 #include <map>
 #include <SDL2/SDL.h>
 #include "PlayerEnum.h"
-#include "tinyxml2.h"
 
 /**
  * \brief Les contrôles du clavier possibles de l'utilisateur
@@ -30,13 +29,7 @@ public:
 	 * \brief Retourne l'instance de KeyboardControls
 	 * \return L'instance de KeyboardControls
 	 */
-	static KeyboardControls * Instance() {
-		if(instance == nullptr) {
-			instance = new KeyboardControls();
-		}
-
-		return instance;
-	}
+	static KeyboardControls* Instance();
 
 	/**
 	 * \brief Initialise le KeyboardControls
@@ -68,44 +61,39 @@ public:
 	 * \param player L'ID du joueur dont ont souhaite obtenir la touche
 	 * \param key Le contrôle associé à la touche
 	 */
-	SDL_Scancode getKeyCode(PLAYER_NUM player, CONTROLS key) const {
-		return controls[player].at(key);
-	}
+	SDL_Scancode getKeyCode(PLAYER_NUM player, CONTROLS key) const;
 
 	/**
 	 * \brief Détermine si les contrôles doivent être modifiés ou non
 	 * \param value Vrai si les contrôles doivent être modifiés, faux sinon
 	 */
-	void askToChangeControls(bool value) {askToChange = value; }
+	void askToChangeControls(bool value);
 
 	/**
 	 * \brief Définie le joueur et les contrôles qui doivent être changés
 	 * \param player Le player dont les contrôles seront modifiés
 	 * \param control Le contrôle qui sera modifié
 	 */
-	void setToChange(PLAYER_NUM player, CONTROLS control) {
-		playerChange = player;
-		controlsChange = control;
-	}
+	void setToChange(PLAYER_NUM player, CONTROLS control);
 
 	/**
 	 * \brief Permet de savoir si les contrôles doivent être changés ou non.
 	 * \return Vrai si les contrôles sont à modifier, faux sinon
 	 */
-	bool isAskingToChangeControls() const {return askToChange; }
+	bool isAskingToChangeControls() const;
 
 
 	/**
 	 * \brief Retourne le joueur dont les contrôles seront modifiés
 	 * \return Le joueur dont les côntroles seront modifiés
 	 */
-	PLAYER_NUM getPlayerNumToChange() const {return playerChange;}
+	PLAYER_NUM getPlayerNumToChange() const;
 
 	/**
 	 * \brief Retourne le contrôle qui sera modifié
 	 * \return Le contrôle qui sera modifié
 	 */
-	CONTROLS getControlToChange() const {return controlsChange;}
+	CONTROLS getControlToChange() const;
 
 private:
 
@@ -114,6 +102,9 @@ private:
 	 */
 	static KeyboardControls * instance;
 
+	/**
+	 * \brief Permet de savoir si le joueur demande de changer la valeur d'un contrôle
+	 */
 	bool askToChange{false};
 
 	/**

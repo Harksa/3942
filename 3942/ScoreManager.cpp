@@ -2,6 +2,13 @@
 
 ScoreManager * ScoreManager::instance {nullptr};
 
+ScoreManager* ScoreManager::Instance() {
+	if (instance == nullptr)
+		instance = new ScoreManager();
+
+	return instance;
+}
+
 void ScoreManager::addPoints(unsigned int points, PLAYER_NUM player) {
 	switch (player) {
 		case(PLAYER_1):

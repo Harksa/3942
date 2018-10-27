@@ -7,8 +7,6 @@
  */
 class MenuButton : public GameObject {
 public:
-	 MenuButton();
-
 	/**
 	 * \brief Charge le MenuButton avec les paramètres du LoadParameter
 	 * \param parameters Le LoadParameters contenant les informations du MenuButton
@@ -34,13 +32,15 @@ public:
 	 * \brief Associe une fonction callback au bouton
 	 * \param callback La fonction callback que l'on souhaite associer
 	 */
-	void setCallback(void (*callback) ()) { _callback = callback;}
+	void setCallback(void (*callback)());
 
 	/**
 	 * \brief Retourne l'ID du callback associé à ce bouton
 	 * \return L'ID du callback associé
 	 */
-	int getCallbackID() const {return _callbackID;}
+	int getCallbackID() const;
+
+	 MenuButton();
 
 protected:
 	

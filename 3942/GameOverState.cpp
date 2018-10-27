@@ -1,5 +1,4 @@
 #include "GameOverState.h"
-#include "MenuButton.h"
 #include "StateParser.h"
 #include "StateChangeAsker.h"
 
@@ -49,3 +48,5 @@ void GameOverState::render() {
 		game_object->draw();
 	}
 }
+
+std::string GameOverState::getStateID() const { return gameOverID; }

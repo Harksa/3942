@@ -5,6 +5,8 @@
 #include "GameParameters.h"
 #include "KeyboardControls.h"
 
+Player::Player(const PLAYER_NUM num): id{num} {}
+
 void Player::load(const LoadParameters* parameters) {
 	GameObject::load(parameters);
 
@@ -112,3 +114,11 @@ void Player::handleBulletSpawner() {
 		timerFire = fireDelay;
 	}
 }
+
+bool Player::hasRemainingLives() const { return lives > 0; }
+
+void Player::setJoystickID(unsigned joyID) { joystick_id = joyID; }
+
+unsigned Player::getJoystickID() const { return joystick_id; }
+
+bool Player::isJoyConnected() const { return InputHandler::getJoystickByID(joystick_id) != nullptr; }

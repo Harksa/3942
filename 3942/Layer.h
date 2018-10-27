@@ -1,6 +1,5 @@
 #pragma once
 
-
 /**
  * \brief Représente un layer dans Tiled.
  */

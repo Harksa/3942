@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 /**
  * \brief Le choix de l'état où l'on souhaiter se rendre.
@@ -23,90 +22,76 @@ public:
 	 * \brief Demande de changer d'état
 	 * \param newChoice Le nouveau choix d'état
 	 */
-	static void askToChange(StateChoice newChoice) {
-		choice = newChoice;
-		is_asking_to_change = true;
-	}
+	static void askToChange(StateChoice newChoice);
 
 	/**
 	 * \brief Demande de push un nouvelle état.
 	 * \param newChoice Le nouveau choix d'état
 	 */
-	static void askToPush(StateChoice newChoice) {
-		choice = newChoice;
-		is_asking_to_push = true;
-	}
+	static void askToPush(StateChoice newChoice);
 
 	/**
 	 * \brief Demande de popback du dernier état
 	 */
-	static void askForPopBack() {
-		is_asking_for_popback = true;
-	}
+	static void askForPopBack();
 
 	/**
 	 * \brief Réinitialise les paramètres
 	 */
-	static void reset() {
-		is_asking_to_change = false;
-		is_asking_for_popback = false;
-		is_asking_to_push = false;
-	};
+	static void reset();;
 
 
 	/**
 	 * \brief Retourne le choix de l'état
 	 * \return Le choix de l'état
 	 */
-	static StateChoice getChoice() { return choice;}
+	static StateChoice getChoice();
 
 	/**
 	 * \brief Permet de savoir si un changement d'état a été demandé
 	 * \return Vrai si un changement a été demandé, faux sinon.
 	 */
-	static bool isAskingToChange() {return is_asking_to_change;}
-	
+	static bool isAskingToChange();
+
 	/**
 	 * \brief Permet de savoir si une demande de push a été faite
 	 * \return Vrai si une demande a été faite, faux sinon
 	 */
-	static bool isAskingToPush() { return is_asking_to_push;}
+	static bool isAskingToPush();
 
 	/**
 	 * \brief Permet de savoir si une demande de pop a été demandé
 	 * \return Vrai si une demande a été faite, faux sinon
 	 */
-	static bool isAskingForPopBack() { return is_asking_for_popback;}
+	static bool isAskingForPopBack();
 
 	/**
 	 * \brief Permet de savoir si n'importe quel demande de changement dans les état a été faite
 	 * \return Vrai si une demande a été faite, faux sinon
 	 */
-	static bool isAskingForAnyChanges() {
-		return is_asking_to_change || is_asking_to_push || is_asking_for_popback;
-	}
+	static bool isAskingForAnyChanges();
 
 	/**
 	 * \brief Incrèmente le niveau actuel
 	 */
-	static void incrementeLevel() { current_level++ ; }
+	static void incrementeLevel();
 
 	/**
 	 * \brief Retourne le niveau actuel
 	 */
-	static unsigned int getCurrentLevel() { return current_level;}
+	static unsigned int getCurrentLevel();
 
 	/**
 	 * \brief Permet de parametrer la fin de jeu, selon si les joueur a gagnés ou perdu
 	 * \param value Vrai si le joueur a gagné, faux sinon
 	 */
-	static void setHasWon(bool value) { has_won = value; }
+	static void setHasWon(bool value);
 
 	/**
 	 * \brief Retourne la valeur permettant de savoir si les joueurs ont gagnés ou non
 	 * \return Vrai si les joueurs ont gagnés, faux sinon
 	 */
-	static bool hasWonTheGame() { return has_won; }
+	static bool hasWonTheGame();
 
 private:
 	/**

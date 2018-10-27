@@ -1,12 +1,18 @@
 #pragma once
 #include <vector>
-#include <utility>
 #include "Enemy.h"
 
 /**
  * \brief Les informations des vagues ennemies
  */
 struct EnemySpawInformations {
+
+	/**
+	 * \brief Constructeur
+	 */
+	EnemySpawInformations(std::string enemy, float x, float y, int h, unsigned int p,
+	                      unsigned int t, std::string texture);
+
 	/**
 	 * \brief Le type d'ennemie qui sera créé
 	 */
@@ -42,10 +48,6 @@ struct EnemySpawInformations {
 	 */
 	std::string textureID;
 
-	/**
-	 * \brief Constructeur
-	 */
-	EnemySpawInformations(std::string enemy, const float x, const float y, const int h, const unsigned int p, const unsigned int t, std::string texture) : type{std::move(enemy)}, spawn_x{x}, spawn_y{y}, health{h}, points{p}, timer{t}, textureID{std::move(texture)} {}
 };
 
 /**

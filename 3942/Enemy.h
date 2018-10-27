@@ -47,13 +47,13 @@ public:
 	 * \brief Assigne les points gagnés en tuer cet ennemi
 	 * \param p Les points de cet ennemi
 	 */
-	void setPoints(unsigned int p) { points = p; }
+	void setPoints(unsigned int p);
 
 	/**
 	 * \brief Assigne la vie de cet ennemi
 	 * \param h La vie de cet ennemi
 	 */
-	void setHealth(int h) { health = h; }
+	void setHealth(int h);
 
 private:
 	/**
@@ -64,7 +64,7 @@ private:
 	/**
 	 * \brief Points donnés par l'ennemi lorsqu'il a été tué par le joueur
 	 */
-	unsigned int points = 100;
+	unsigned int points;
 
 	bool bulletCreated;
 };

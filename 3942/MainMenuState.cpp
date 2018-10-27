@@ -64,3 +64,7 @@ bool MainMenuState::onExit() {
 
 	return true;
 }
+
+std::string MainMenuState::getStateID() const { return menuID; }
+
+void MainMenuState::menuToHighScores() {}

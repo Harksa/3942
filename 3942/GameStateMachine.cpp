@@ -69,3 +69,7 @@ void GameStateMachine::render() {
 			_gameStates.back()->render();
 }
 
+GameStateMachine::~GameStateMachine() {
+	for (auto game_state : _gameStates) {
+		game_state = nullptr;
+	}

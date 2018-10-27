@@ -35,14 +35,14 @@ public:
 	 * \brief Permet de savoir si le joystick a bien été initialisé ou non.
 	 * \return vrai si le joystick a été initialisé, faux sinon.
 	 */
-	static bool joystickInitialised() { return _joystickInitialised; }
+	static bool joystickInitialised();
 
 	/**
 	 * \brief Permet d'obtenir l'état des boutons de la souris
 	 * \param buttonNumber L'index du bouton
 	 * \return vrai si le bouton est appuyé, faux sinon.
 	 */
-	static bool getMouseButtonState(int buttonNumber) { return _mouseButtonStates[buttonNumber]; }
+	static bool getMouseButtonState(int buttonNumber);
 
 	/**
 	 * \brief Permet d'obtenir l'état d'un bouton du clavier
@@ -55,7 +55,7 @@ public:
 	 * \brief Permet d'obtenir la position de la souris sur la fenêtre de jeu.
 	 * \return La position de la souris
 	 */
-	static Vector2D * getMousePosition() { return mousePosition; }
+	static Vector2D* getMousePosition();
 
 	/**
 	 * \brief Mets à jour les informations des events
@@ -77,13 +77,13 @@ public:
 	 * \param id L'ID du joystick désiré
 	 * \return Le joystick lié à l'ID
 	 */
-	static SDL_Joystick * getJoystickByID(int id) {return joystick_arrays[id];}
+	static SDL_Joystick* getJoystickByID(int id);
 
 	/**
 	 * \brief Retourne le nombre de joysticks actuellement connectés au PC
 	 * \return Le nombre de joysticks actuellement connectés
 	 */
-	static unsigned int getNumberOfJoysticks() { return SDL_NumJoysticks(); }
+	static unsigned int getNumberOfJoysticks();
 
 	/**
 	 * \brief diviseur pour les axis du joysticks
@@ -105,7 +105,7 @@ public:
 	 * \brief Retourne le KeyState de SDL
 	 * \return Le keyState de SDL
 	 */
-	static const Uint8* getKeyStates() { return keyStates;}
+	static const Uint8* getKeyStates();
 
 private:
 
