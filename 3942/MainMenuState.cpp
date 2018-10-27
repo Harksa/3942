@@ -19,7 +19,7 @@ void MainMenuState::update() {
 }
 
 void MainMenuState::render() {
-	background->draw();
+	background.draw();
 	for (auto game_object : _gameObjects) {
 		game_object->draw();
 	}
@@ -43,8 +43,7 @@ void MainMenuState::exitFromMenu() {
 bool MainMenuState::onEnter() {
 	StateParser::parseState("ressources/states.xml", menuID, &_gameObjects, &_textureIDList);
 
-	background = new Background();
-	background->load("Textures/Backgrounds/MainMenu.png", "MainMenu");
+	background.load("Textures/Backgrounds/MainMenu.png", "MainMenu");
 
 	_callbacks.push_back(menuToPlay);
 	_callbacks.push_back(menuToHighScores);

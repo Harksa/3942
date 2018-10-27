@@ -45,7 +45,7 @@ void PlayState::update() {
 		_gameObjects[0]->getSprite()->setVisibility(false);
 	}
 
-	background->update();
+	background.update();
 
 	CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
 
@@ -76,7 +76,7 @@ void PlayState::update() {
 }
 
 void PlayState::render() {
-	background->draw();
+	background.draw();
 
 	BulletManager::Instance()->render();
 
@@ -106,8 +106,7 @@ bool PlayState::onEnter() {
 
 	SoundManager::load("Sons/laser01.wav", "PlayerLaser", SOUND_SFX);
 
-	background = new Background();
-	background->load("Textures/Backgrounds/starBackground.png", "stars", 0.6f);
+	background.load("Textures/Backgrounds/starBackground.png", "stars", 0.6f);
 
 	PlayerManager::Instance()->init();
 	BulletManager::Instance()->init();

@@ -54,6 +54,11 @@ private:
 	float movingSpeed;
 
 	/**
+	 * \brief Booléen permettant de déterminer si un background a été chargé ou non.
+	 */
+	bool is_loaded{false};
+
+	/**
 	 * \brief l'offset par rapport au haut de l'écran de jeu.
 	 */
 	float offset;

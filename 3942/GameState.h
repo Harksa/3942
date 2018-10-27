@@ -58,10 +58,7 @@ public:
 	 * background, GameObjects et textures
 	 */
 	void clearState() {
-		if(background != nullptr) {
-			background->clean();
-			delete background;
-		}
+		background.clean();
 
 		for (const auto& i : _textureIDList) {
 			TextureManager::Instance()->clearFromTextureMapAndInformations(i);
@@ -113,7 +110,7 @@ protected:
 	/**
 	 * \brief Background du l'état
 	 */
-	Background * background{nullptr};
+	Background background{};
 
 	/**
 	 * \brief Permet de savoir si l'état a déjà été nettoyé ou non

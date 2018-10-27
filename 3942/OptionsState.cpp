@@ -51,7 +51,7 @@ void OptionsState::update() {
 }
 
 void OptionsState::render() {
-	background->draw();
+	background.draw();
 
 	for (unsigned int i = 1 ; i < _gameObjects.size() ; i++) {
 		_gameObjects[i]->draw();	
@@ -78,8 +78,7 @@ void OptionsState::render() {
 }
 
 bool OptionsState::onEnter() {
-	background = new Background();
-	background->load("Textures/Backgrounds/Options.png", "options");
+	background.load("Textures/Backgrounds/Options.png", "options");
 
 	StateParser::parseState("ressources/states.xml", optionsID, &_gameObjects, &_textureIDList);
 

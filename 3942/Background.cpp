@@ -6,6 +6,9 @@ bool Background::load(const std::string& fileName, const std::string& id, const 
 	movingSpeed = speed;
 	backgroundID = id;
 	offset = 0;
+
+	is_loaded = true;
+
 	return TextureManager::Instance()->load(fileName, id);
 }
 
@@ -37,5 +40,6 @@ void Background::drawMoving() {
 }
 
 void Background::clean() const {
-	TextureManager::Instance()->clearFromTextureMap(backgroundID);
+	if(is_loaded)
+		TextureManager::Instance()->clearFromTextureMap(backgroundID);
 }
