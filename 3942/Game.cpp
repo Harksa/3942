@@ -68,6 +68,8 @@ void Game::clean() const {
 	InputHandler::clean();
 	SoundManager::clean();
 
+	delete _gameStateMachine;
+
 	SDL_DestroyRenderer(sdl_renderer);
 	SDL_DestroyWindow(sdl_window);
 	SDL_Quit();

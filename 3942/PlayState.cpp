@@ -49,7 +49,7 @@ void PlayState::update() {
 
 	CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
 
-	for (auto& player : *PlayerManager::Instance()->getPlayers()) {
+	for (auto player : PlayerManager::Instance()->getPlayers()) {
 		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
 		CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
 	}

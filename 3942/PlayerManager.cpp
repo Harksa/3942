@@ -4,8 +4,6 @@
 PlayerManager * PlayerManager::instance = nullptr;
 
 void PlayerManager::init() {
-	players = new std::vector<Player*>();
-
 	if(GameParameters::isTwoPlayer()) {
 
 		Player * player1 = new Player(PLAYER_1), * player2 = new Player(PLAYER_2);
@@ -31,8 +29,8 @@ void PlayerManager::init() {
 
 		player2->load(p);
 
-		players->push_back(player1);
-		players->push_back(player2);
+		players.push_back(player1);
+		players.push_back(player2);
 
 		delete p;
 
@@ -43,44 +41,44 @@ void PlayerManager::init() {
 										"Player1");
 		player->load(p);
 
-		players->push_back(player);
+		players.push_back(player);
 
 		delete p;
 	}
 }
 
-void PlayerManager::update() const {
-	for(auto it = players->begin() ; it != players->end() ; ) {
+void PlayerManager::update() {
+	for(auto it = players.begin() ; it != players.end() ; ) {
 		if((*it)->hasRemainingLives()) {
 			(*it)->update();
 			++it;
 		} else {
 			(*it)->clean();
 			delete *it;
-			it = players->erase(it);
+			it = players.erase(it);
 		}
 	}
 
 }
 
 void PlayerManager::render() const {
-	for (auto& player : *players) {
+	for (auto player : players) {
 		if(player->hasRemainingLives())
 			player->draw();
 	}
 }
 
-void PlayerManager::clear() const {
-	for (auto& player : *players) {
+void PlayerManager::clear() {
+	for (auto player : players) {
 		player->clean();
 		delete player;
 	}
 
-	players->clear();
+	players.clear();
 }
 
 bool PlayerManager::doesAllPlayersDoesntHaveAnyRemainingLives() const {
-	for (auto& player : *players) {
+	for (auto& player : players) {
 		if(player->hasRemainingLives())
 			return false;
 	}

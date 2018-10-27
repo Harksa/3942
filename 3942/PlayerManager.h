@@ -27,7 +27,7 @@ public:
 	/**
 	 * \brief Mets à jours les joueurs
 	 */
-	void update() const;
+	void update();
 
 	/**
 	 * \brief Affiche à l'écran les joueurs
@@ -37,13 +37,13 @@ public:
 	/**
 	 * \brief Nettoie les joueurs
 	 */
-	void clear() const;
+	void clear();
 
 	/**
 	 * \brief Retourne la liste des joueurs
 	 * \return La liste des joueurs
 	 */
-	std::vector<Player *> * getPlayers() const { return players; }
+	std::vector<Player *> getPlayers() const { return players; }
 
 	/**
 	 * \brief Permet de déterminer si tous les joueurs sont en vie ou non
@@ -63,6 +63,6 @@ private:
 	/**
 	 * \brief La liste des joueurs présents dans le niveau
 	 */
-	std::vector<Player *> * players;
+	std::vector<Player *> players;
 };
 
