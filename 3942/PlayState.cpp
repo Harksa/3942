@@ -14,6 +14,28 @@
 const std::string PlayState::play_id = "PLAY";
 
 void PlayState::update() {
+
+	PlayerManager::Instance()->update();
+
+	background.update();
+
+	UIManager::Instance()->update();
+
+	BulletManager::Instance()->update();
+
+	//Check pause
+	if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
+		StateChangeAsker::askToPush(PAUSE);
+		return;
+	}
+
+	if(!UIManager::Instance()->canStartGame()) {
+		game_objects[0]->getSprite()->setVisibility(true);
+		return;
+	} else {
+		game_objects[0]->getSprite()->setVisibility(false);
+	}
+
 	//Check mort joueurs
 	if(PlayerManager::Instance()->doesAllPlayersDoesntHaveAnyRemainingLives()) {
 		StateChangeAsker::askToChange(GAME_OVER);
@@ -21,6 +43,7 @@ void PlayState::update() {
 		return;
 	}
 
+	//Fin du niveau
 	if(isLevelFinished()) {
 		if(StateChangeAsker::getCurrentLevel() == GameParameters::getTotalNumberOfLevels()) {
 			StateChangeAsker::askToChange(GAME_OVER);
@@ -33,12 +56,6 @@ void PlayState::update() {
 		}
 	}
 
-	//Check pause
-	if(InputHandler::isKeyDown(SDL_SCANCODE_ESCAPE)) {
-		StateChangeAsker::askToPush(PAUSE);
-		return;
-	}
-
 	//Check joysticks
 	if(!InputHandler::areNumberOfJoysticksEgalsToNumberOfPlayersUsingJoysticks()) {
 		game_objects[0]->getSprite()->setVisibility(true);
@@ -47,8 +64,7 @@ void PlayState::update() {
 		game_objects[0]->getSprite()->setVisibility(false);
 	}
 
-	background.update();
-
+	//Gestion des collisions
 	CollisionManager::checkCollisionEnemyWithPlayerBullets(game_objects);
 
 	for (auto player : PlayerManager::Instance()->getPlayers()) {
@@ -58,8 +74,7 @@ void PlayState::update() {
 
 	waveUpdate();
 
-	PlayerManager::Instance()->update();
-
+	//MAJ des gameobjects
 	if(!game_objects.empty()) {
 		for(auto game_object = game_objects.begin() ; game_object != game_objects.end() ; ) {
 			if(!(*game_object)->isDead()) {
@@ -72,8 +87,6 @@ void PlayState::update() {
 			}
 		}
 	}
-
-	BulletManager::Instance()->update();
 
 }
 
