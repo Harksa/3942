@@ -8,16 +8,16 @@ class Background {
 public:
 	/**
 	 * \brief Charge l'image du background
-	 * \param fileName L'emplacement du fichier
-	 * \param id l'ID de la texture
-	 * \param speed Vitesse de déplacement du background. 0 par défaut si le background ne bouge pas.
+	 * \param pFileName L'emplacement du fichier
+	 * \param pId l'ID de la texture
+	 * \param pSpeed Vitesse de déplacement du background. 0 par défaut si le background ne bouge pas.
 	 */
-	bool load(const std::string& fileName, const std::string& id, float speed = 0);
+	bool load(const std::string& pFileName, const std::string& pId, float pSpeed = 0);
 
 	/**
 	 * \brief Affiche le background
 	 */
-	void draw();
+	void draw() const;
 
 	/**
 	 * \brief Mets à jour le background
@@ -41,17 +41,17 @@ private:
 	/**
 	 * \brief Affiche un background animé
 	 */
-	void drawMoving();
+	void drawMoving() const;
 
 	/**
 	 * \brief L'ID du background
 	 */
-	std::string backgroundID;
+	std::string background_id;
 
 	/**
 	 * \brief Vitesse de déplacement du background
 	 */
-	float movingSpeed;
+	float moving_speed;
 
 	/**
 	 * \brief Booléen permettant de déterminer si un background a été chargé ou non.

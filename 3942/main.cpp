@@ -11,7 +11,7 @@ int main(int argc, char** args) {
 
 	Game::Instance()->init("3942", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 800, false);
 
-	while(Game::Instance()->running()) {
+	while(Game::Instance()->isRunning()) {
 		if(StateChangeAsker::isAskingForAnyChanges()) {
 			if(StateChangeAsker::isAskingToChange()) 
 				Game::Instance()->getStateMachine()->changeState(StateChangeAsker::getChoice());

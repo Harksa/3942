@@ -5,7 +5,7 @@
 #include "GameParameters.h"
 #include "KeyboardControls.h"
 
-Player::Player(const PLAYER_NUM num): id{num} {}
+Player::Player(const PLAYER_NUM pNum): id{pNum} {}
 
 void Player::load(const LoadParameters* parameters) {
 	GameObject::load(parameters);
@@ -24,7 +24,7 @@ void Player::update() {
 
 	GameObject::update();
 
-	timerFire--;
+	timer_fire--;
 }
 
 void Player::clean() {
@@ -58,11 +58,11 @@ void Player::handleInput() {
 		const Sint16 leftX = SDL_JoystickGetAxis(InputHandler::getJoystickByID(id), SDL_CONTROLLER_AXIS_LEFTX);
 		const Sint16 leftY = SDL_JoystickGetAxis(InputHandler::getJoystickByID(id), SDL_CONTROLLER_AXIS_LEFTY);
 
-		if((leftX > InputHandler::_joystickDeadZone && position.x < (GameParameters::getGameWidth() - sprite->getWidth())) || 
-			(leftX < -InputHandler::_joystickDeadZone) && position.x > 0)
+		if((leftX > InputHandler::joystick_dead_zone && position.x < (GameParameters::getGameWidth() - sprite->getWidth())) || 
+			(leftX < -InputHandler::joystick_dead_zone) && position.x > 0)
 			velocity.x = speed * leftX / InputHandler::diviser;
-		if((leftY > InputHandler::_joystickDeadZone && position.y < (GameParameters::getGameHeight() - sprite->getHeight())) || 
-			(leftY < -InputHandler::_joystickDeadZone && position.y > 0)) 
+		if((leftY > InputHandler::joystick_dead_zone && position.y < (GameParameters::getGameHeight() - sprite->getHeight())) || 
+			(leftY < -InputHandler::joystick_dead_zone && position.y > 0)) 
 			velocity.y = speed * leftY / InputHandler::diviser;
 
 		//DPAD
@@ -108,16 +108,16 @@ void Player::handleInput() {
 }
 
 void Player::handleBulletSpawner() {
-	if(timerFire <= 0) {
+	if(timer_fire <= 0) {
 		SoundManager::playSound("PlayerLaser");
 		BulletManager::Instance()->createPlayerBullet(id, Vector2D(position.x + static_cast<int> (sprite->getWidth() * 0.5f) - bullet_sprite_width_by2, position.y), Vector2D(0,-7.5f));
-		timerFire = fireDelay;
+		timer_fire = fire_delay;
 	}
 }
 
 bool Player::hasRemainingLives() const { return lives > 0; }
 
-void Player::setJoystickID(unsigned joyID) { joystick_id = joyID; }
+void Player::setJoystickID(const unsigned int pJoyId) { joystick_id = pJoyId; }
 
 unsigned Player::getJoystickID() const { return joystick_id; }
 

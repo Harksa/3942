@@ -5,14 +5,14 @@
 #include "FontManager.h"
 #include "StateChangeAsker.h"
 
-std::string OptionsState::optionsID{"OPTIONS"};
+std::string OptionsState::options_id{"OPTIONS"};
 
 std::vector<KeyboardOptionButton *> OptionsState::keyboard_options{};
 
 void OptionsState::update() {
 
 	if(KeyboardControls::Instance()->isAskingToChangeControls()) {
-		_gameObjects[0]->getSprite()->setVisibility(true);
+		game_objects[0]->getSprite()->setVisibility(true);
 
 		const Uint8 * keys = InputHandler::getKeyStates();
 
@@ -21,19 +21,19 @@ void OptionsState::update() {
 				const SDL_Scancode scancode = SDL_Scancode(i);
 				if(scancode == SDL_SCANCODE_ESCAPE || KeyboardControls::Instance()->isScancodeTheSame(scancode)) {
 					KeyboardControls::Instance()->askToChangeControls(false);
-					_gameObjects[0]->getSprite()->setVisibility(false);
-					scancodeAlreadyUsed = false;
+					game_objects[0]->getSprite()->setVisibility(false);
+					scancode_already_used = false;
 					return;
 				} 
 
 				if(!KeyboardControls::Instance()->isScancodeAlreadyUsed(scancode)) {
 					KeyboardControls::Instance()->changeKey(scancode);
 					KeyboardControls::Instance()->askToChangeControls(false);
-					_gameObjects[0]->getSprite()->setVisibility(false);
-					scancodeAlreadyUsed = false;
+					game_objects[0]->getSprite()->setVisibility(false);
+					scancode_already_used = false;
 					break;
 				} else {
-					scancodeAlreadyUsed = true;
+					scancode_already_used = true;
 					return;
 				}
 
@@ -45,7 +45,7 @@ void OptionsState::update() {
 		keyboard_option->update();
 	}
 
-	for (auto game_object : _gameObjects) {
+	for (auto game_object : game_objects) {
 		game_object->update();
 	}
 }
@@ -53,23 +53,23 @@ void OptionsState::update() {
 void OptionsState::render() {
 	background.draw();
 
-	for (unsigned int i = 1 ; i < _gameObjects.size() ; i++) {
-		_gameObjects[i]->draw();	
+	for (unsigned int i = 1 ; i < game_objects.size() ; i++) {
+		game_objects[i]->draw();	
 	}
 	
 	for (auto keyboard_option : keyboard_options) {
 		keyboard_option->draw();
 	}
 	
-	_gameObjects[0]->draw(); //Fond gris
+	game_objects[0]->draw(); //Fond gris
 
 	if(KeyboardControls::Instance()->isAskingToChangeControls()) {
 		std::string text = "Select a key for player ";
 		text += std::to_string(1 + KeyboardControls::Instance()->getPlayerNumToChange());
 		text += " for \n";
-		text += ControlsToString[KeyboardControls::Instance()->getControlToChange()];
+		text += controls_to_string[KeyboardControls::Instance()->getControlToChange()];
 
-		if(scancodeAlreadyUsed) {
+		if(scancode_already_used) {
 			text += "\n\nKey already used !";
 		}
 
@@ -80,10 +80,10 @@ void OptionsState::render() {
 bool OptionsState::onEnter() {
 	background.load("Textures/Backgrounds/Options.png", "options");
 
-	StateParser::parseState("ressources/states.xml", optionsID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/states.xml", options_id, &game_objects, &texture_id_list);
 
 	//Premier GameObject est le sprite de fond lors de la sélection d'une nouvelle touche
-	_gameObjects.at(0)->getSprite()->setVisibility(false);
+	game_objects.at(0)->getSprite()->setVisibility(false);
 
 	FontManager::Instance()->createFont("TexWork", "Fonts/TexWork.ttf", 18, {255,255,255,255});
 
@@ -134,4 +134,4 @@ void OptionsState::optionsToMenu() {
 	StateChangeAsker::askToChange(MAIN_MENU);
 }
 
-std::string OptionsState::getStateID() const { return optionsID; }
+std::string OptionsState::getStateID() const { return options_id; }

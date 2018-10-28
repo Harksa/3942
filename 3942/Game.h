@@ -15,15 +15,15 @@ public:
 
 	/**
 	 * \brief Initialise la fenêtre du jeu.
-	 * \param title Le titre de la fenêtre
-	 * \param xpos La position en X de la fenêtre
-	 * \param ypos La position en Y de la fenêtre
-	 * \param width La largeur de la fenêtre
-	 * \param height La hauteur de la fenêtre
-	 * \param fullscreen booléen déterminant si le jeu est en plein écran ou non.
+	 * \param pTitle Le titre de la fenêtre
+	 * \param pXpos La position en X de la fenêtre
+	 * \param pYpos La position en Y de la fenêtre
+	 * \param pWidth La largeur de la fenêtre
+	 * \param pHeight La hauteur de la fenêtre
+	 * \param pFullscreen booléen déterminant si le jeu est en plein écran ou non.
 	 * \return vrai si la fenêtre est correctement initialisé, faux sinon.
 	 */
-	bool init(const char * title, int xpos, int ypos, int width, int height, bool fullscreen);
+	bool init(const char * pTitle, int pXpos, int pYpos, int pWidth, int pHeight, bool pFullscreen);
 
 	/**
 	 * \brief Affiche les éléments du jeu.
@@ -66,7 +66,7 @@ public:
 	 * \brief booléen permettant de déterminer si le jeu est en cours d'éxecution ou non.
 	 * \return vrai si le jeu est en cours d'éxecution, faux sinon.
 	 */
-	bool running() const;
+	bool isRunning() const;
 
 private:
 
@@ -75,7 +75,7 @@ private:
 	/**
 	 * \brief Le GameStateMachine du jeu.
 	 */
-	GameStateMachine * _gameStateMachine{nullptr};
+	GameStateMachine * game_state_machine{nullptr};
 
 	/**
 	 * \brief l'instance de la classe Game.
@@ -95,6 +95,6 @@ private:
 	/**
 	 * \brief booléen déterminant si le jeu est en cours d'éxecution ou non.
 	 */
-	bool _running{false};
+	bool running{false};
 };
 

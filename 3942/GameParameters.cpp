@@ -14,13 +14,13 @@ bool GameParameters::isUsingKeyboard[2] {true,true};
 
 unsigned int GameParameters::number_of_levels{0};
 
-void GameParameters::countNumberOfLevels(const std::string& folder_path) {
-	if(!fs::exists(folder_path)) {
-		std::cout << "ERROR::GAMEPARAMETERS::COUNTNUMBEROFLEVELS:: Directory " << folder_path << " doesn't exist." << std::endl;
+void GameParameters::countNumberOfLevels(const std::string& pFolderPath) {
+	if(!fs::exists(pFolderPath)) {
+		std::cout << "ERROR::GAMEPARAMETERS::COUNTNUMBEROFLEVELS:: Directory " << pFolderPath << " doesn't exist." << std::endl;
 		return;
 	}
 
-	for(auto &it : fs::directory_iterator(folder_path)) {
+	for(auto &it : fs::directory_iterator(pFolderPath)) {
 		number_of_levels++;
 	}
 }
@@ -35,6 +35,6 @@ bool GameParameters::isTwoPlayer() { return two_player; }
 
 bool GameParameters::isPlayerUsingKeyboard(PLAYER_NUM playerID) { return isUsingKeyboard[playerID]; }
 
-void GameParameters::setPlayerUsingKeyboard(int player, bool value) { isUsingKeyboard[player] = value; }
+void GameParameters::setPlayerUsingKeyboard(const int pPlayer, bool pValue) { isUsingKeyboard[pPlayer] = pValue; }
 
 unsigned GameParameters::getTotalNumberOfLevels() { return number_of_levels; }

@@ -9,9 +9,9 @@ class MenuButton : public GameObject {
 public:
 	/**
 	 * \brief Charge le MenuButton avec les paramètres du LoadParameter
-	 * \param parameters Le LoadParameters contenant les informations du MenuButton
+	 * \param pParameters Le LoadParameters contenant les informations du MenuButton
 	 */
-	void load(const LoadParameters *parameters) override;
+	void load(const LoadParameters *pParameters) override;
 
 	/**
 	 * \brief Affiche le MenuButton
@@ -30,17 +30,17 @@ public:
 
 	/**
 	 * \brief Associe une fonction callback au bouton
-	 * \param callback La fonction callback que l'on souhaite associer
+	 * \param pCallback La fonction callback que l'on souhaite associer
 	 */
-	void setCallback(void (*callback)());
+	void setCallback(void (*pCallback)());
 
 	/**
 	 * \brief Retourne l'ID du callback associé à ce bouton
 	 * \return L'ID du callback associé
 	 */
-	int getCallbackID() const;
+	int getCallbackId() const;
 
-	 MenuButton();
+	 MenuButton() = default;
 
 protected:
 	
@@ -56,18 +56,18 @@ protected:
 	/**
 	 * \brief Booléen déterminant si le bouton a été relaché ou non
 	 */
-	bool released;
+	bool released {true};
 
 private:
 	/**
 	 * \brief La fonction callback associé au bouton
 	 */
-	void (*_callback) ();
+	void (*callback)() {nullptr};
 
 	/**
 	 * \brief L'ID du callback associé au bouton
 	 */
-	int _callbackID;
+	int callback_id{0};
 
 };
 

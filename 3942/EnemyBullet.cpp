@@ -13,14 +13,14 @@ void EnemyBullet::clean() {
 	next = nullptr;
 }
 
-void EnemyBullet::load(const LoadParameters* parameters) {
-	Bullet::load(parameters);
+void EnemyBullet::load(const LoadParameters* pParameters) {
+	Bullet::load(pParameters);
 }
 
 void EnemyBullet::onCollision() {
 	Bullet::onCollision();
 }
 
-void EnemyBullet::setNext(EnemyBullet* new_bullet) { next = new_bullet; }
+void EnemyBullet::setNext(EnemyBullet* pNewBullet) { next = pNewBullet; }
 
 EnemyBullet* EnemyBullet::getNext() const { return next; }

@@ -5,9 +5,9 @@
 /**
  * \brief Contient les informations des textures, telles que la taille, etc...
  */
-struct texture_informations {
+struct Texture_Informations {
 
-	texture_informations(const int w, const int h, const int numF, const int speed = 0) :  width{w}, height{h}, numFrames{numF}, animSpeed{speed} {}
+	Texture_Informations(const int w, const int h, const int numF, const int speed = 0) :  width{w}, height{h}, numFrames{numF}, animSpeed{speed} {}
 
 	/**
 	 * \brief La largeur de la texture
@@ -29,8 +29,8 @@ struct texture_informations {
 	 */
 	int animSpeed;
 
-	texture_informations() = default;
-	~texture_informations() = default;
+	Texture_Informations() = default;
+	~Texture_Informations() = default;
 };
 
 /**
@@ -49,101 +49,98 @@ public:
 
 	/**
 	 * \brief Charge un fichier image
-	 * \param fileName l'emplacement du fichier image
-	 * \param id l'Id donnée à cette texture
+	 * \param pFileName l'emplacement du fichier image
+	 * \param pId l'Id donnée à cette texture
 	 * \return vrai si l'image a été correctement chargé, faux sinon
 	 */
-	bool load(const std::string& fileName, const std::string& id);
+	bool load(const std::string& pFileName, const std::string& pId);
 
 	/**
 	 * \brief Charge un fichier image
-	 * \param fileName l'emplacement du fichier image
-	 * \param id l'Id donnée à cette texture
-	 * \param width La largeur de la texture
-	 * \param height La hauteur de la texture
-	 * \param numFrames Le nombres de frames de la texture
-	 * \param speed La vitesse d'animations de la texture
+	 * \param pFileName l'emplacement du fichier image
+	 * \param pId l'Id donnée à cette texture
+	 * \param pWidth La largeur de la texture
+	 * \param pHeight La hauteur de la texture
+	 * \param pNumFrames Le nombres de frames de la texture
+	 * \param pSpeed La vitesse d'animations de la texture
 	 * \return vrai si l'image a été correctement chargé, faux sinon
 	 */
-	bool load(const std::string& fileName, const std::string& id, const int width, const int height, const int numFrames, const int
-	          speed);
+	bool load(const std::string& pFileName, const std::string& pId, int pWidth, int pHeight, int pNumFrames, int pSpeed);
 
 	/**
 	 * \brief Dessine un élément à l'écran
-	 * \param id L'ID de la texture à dessiner
-	 * \param x La position en X
-	 * \param y La position en Y
-	 * \param width La largeur de la texture
-	 * \param height La hauteur de la texture
-	 * \param flip le paramètre permettant de savoir si la texture est retourné ou non
+	 * \param pId L'ID de la texture à dessiner
+	 * \param pX La position en X
+	 * \param pY La position en Y
+	 * \param pWidth La largeur de la texture
+	 * \param pHeight La hauteur de la texture
+	 * \param pFlip le paramètre permettant de savoir si la texture est retourné ou non
 	 */
-	void draw(const std::string& id, const int x, const int y, const int width, const int height, SDL_RendererFlip flip =
-		          SDL_FLIP_NONE);
+	void draw(const std::string& pId, int pX, int pY, int pWidth, int pHeight, SDL_RendererFlip pFlip = SDL_FLIP_NONE);
 	
 	/**
 	 * \brief Dessine la frame d'une texture à l'écran
-	 * \param id L'ID de la texture à dessiner
-	 * \param x La position en X
-	 * \param y La position en Y
-	 * \param width La largeur de la texture
-	 * \param height La hauteur de la texture
-	 * \param currentRow La ligne de la frame dans le fichier image
-	 * \param currentFrame La frame que l'on désire afficher
-	 * \param flip le paramètre permettant de savoir si la texture est retourné ou non
+	 * \param pId L'ID de la texture à dessiner
+	 * \param pX La position en X
+	 * \param pY La position en Y
+	 * \param pWidth La largeur de la texture
+	 * \param pHeight La hauteur de la texture
+	 * \param pCurrentRow La ligne de la frame dans le fichier image
+	 * \param pCurrentFrame La frame que l'on désire afficher
+	 * \param pFlip le paramètre permettant de savoir si la texture est retourné ou non
 	 */
-	void drawFrame(const std::string& id, const int x, const int y, const int width, const int height, const int currentRow, const int
-	               currentFrame, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void drawFrame(const std::string& pId, int pX, int pY, int pWidth, int pHeight, int pCurrentRow, int pCurrentFrame, SDL_RendererFlip pFlip = SDL_FLIP_NONE);
 
 	/**
 	 * \brief Nettoie la texture et les informations ayant l'ID rentré en paramètre
-	 * \param id L'ID de la texture que l'on souhaite effacer
+	 * \param pId L'ID de la texture que l'on souhaite effacer
 	 */
-	void clearFromTextureMapAndInformations(const std::string& id);
+	void clearFromTextureMapAndInformations(const std::string& pId);
 
 	/**
 	 * \brief Nettoie la texture seulement ayant l'ID rentré en paramètre
-	 * \param id L'ID de la texture que l'on souhaite effacer
+	 * \param pId L'ID de la texture que l'on souhaite effacer
 	 */
-	void clearFromTextureMap(const std::string& id);
+	void clearFromTextureMap(const std::string& pId);
 
 	/**
 	 * \brief Dessine la frame d'une texture à l'écran
 	 * \param id L'ID de la texture à dessiner
-	 * \param margin L'espace entre deux colonnes
-	 * \param spacing L'espace entre deux lignes
-	 * \param x La position en X
-	 * \param y La position en Y
-	 * \param width La largeur de la texture
-	 * \param height La hauteur de la texture
-	 * \param currentRow La ligne de la frame dans le fichier image
-	 * \param currentFrame La frame que l'on désire afficher
+	 * \param pMargin L'espace entre deux colonnes
+	 * \param pSpacing L'espace entre deux lignes
+	 * \param pX La position en X
+	 * \param pY La position en Y
+	 * \param pWidth La largeur de la texture
+	 * \param pHeight La hauteur de la texture
+	 * \param pCurrentRow La ligne de la frame dans le fichier image
+	 * \param pCurrentFrame La frame que l'on désire afficher
 	 */
-	void drawTile(const std::string& id, const int margin, const int spacing, const int x, const int y, const int width,
-	              const int height, const int currentRow, const int currentFrame);
+	void drawTile(const std::string& id, int pMargin, int pSpacing, int pX, int pY, int pWidth,
+	              int pHeight, int pCurrentRow, int pCurrentFrame);
 
 
 	/**
 	 * \brief Donne les informations d'une texture à partir de son ID.
-	 * \param id L'ID de la texture dont ont souhaite obtenir les informations
+	 * \param pId L'ID de la texture dont ont souhaite obtenir les informations
 	 * \return Les informations de la texture
 	 */
-	texture_informations getTextureInformationsFromID(const std::string& id);
+	Texture_Informations getTextureInformationsFromID(const std::string& pId);
 
 private:
 	/**
 	 * \brief L'instance du TextureManager
 	 */
-	static TextureManager *instance;
+	static TextureManager * instance;
 
 	/**
 	 * \brief Les réferences vers les textures
 	 */
-	std::map<std::string, SDL_Texture*> _textureMap;
+	std::map<std::string, SDL_Texture*> texture_map;
 
 	/**
 	 * \brief Map gérant les informations des textures
 	 */
-	std::map<std::string, texture_informations> _textureInformations;
+	std::map<std::string, Texture_Informations> texture_informations;
 
 	TextureManager() = default;
 };

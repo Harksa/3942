@@ -9,9 +9,9 @@ class KeyboardOptionButton : public MenuButton {
 public:
 	/**
 	 * \brief Charge le KeyboardOptionButton avec les paramètres rentrés
-	 * \param parameters Les paramètres du KeyboardOptionButton
+	 * \param pParameters Les paramètres du KeyboardOptionButton
 	 */
-	void load(const LoadParameters* parameters) override;
+	void load(const LoadParameters* pParameters) override;
 
 	/**
 	 * \brief Dessine le KeyboardOptionButton à l'écran
@@ -30,9 +30,9 @@ public:
 
 	/**
 	 * \brief Définie le joueur associé au contrôle du KeyboardOptionButton
-	 * \param player le joueur associé
+	 * \param pPlayer le joueur associé
 	 */
-	void setAssociatedPlayer(PLAYER_NUM player);
+	void setAssociatedPlayer(PLAYER_NUM pPlayer);
 
 	/**
 	 * \brief Renvoie le joueur associé à ce boutton
@@ -41,10 +41,10 @@ public:
 	PLAYER_NUM getPlayerNum() const;
 
 	/**
-	 * \brief Définie les contrôles associés à ce KeyboardOptionButton
-	 * \param control Le control associé
+	 * \brief Définie le contrôle associé à ce KeyboardOptionButton
+	 * \param pControl Le contrôle associé
 	 */
-	void setAssociatedControl(CONTROLS control);
+	void setAssociatedControl(CONTROLS pControl);
 
 	/**
 	 * \brief Retourne le contrôle associé à ce boutton

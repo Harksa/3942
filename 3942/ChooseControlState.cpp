@@ -5,15 +5,14 @@
 #include "StateChangeAsker.h"
 #include "AnimatedGraphic.h"
 
-
-std::string ChooseControlState::ControlChooseStateID{"CHOOSE_CONTROLS"};
+std::string ChooseControlState::control_choose_state_id{"CHOOSE_CONTROLS"};
 
 GameObject * ChooseControlState::ag_controls_player1{nullptr};
 GameObject * ChooseControlState::ag_controls_player2{nullptr};
 Player2Choice ChooseControlState::player2_choice{NO_PLAYER2};
 
 bool ChooseControlState::onEnter() {
-	StateParser::parseState("ressources/states.xml", ControlChooseStateID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/states.xml", control_choose_state_id, &game_objects, &texture_id_list);
 
 	background.load("Textures/Backgrounds/SelectControls.png", "SelectControls");
 
@@ -21,7 +20,7 @@ bool ChooseControlState::onEnter() {
 
 	bool player1spritedone = false;
 
-	for (auto game_object : _gameObjects) {
+	for (auto game_object : game_objects) {
 		if(dynamic_cast<AnimatedGraphic *>(game_object) != nullptr) {
 			if(!player1spritedone) {
 				ag_controls_player1 = game_object;
@@ -75,16 +74,16 @@ void ChooseControlState::render() {
 		FontManager::Instance()->drawBoxAlign("TexWork", rect2, FC_ALIGN_CENTER, "Branchez une manette");
 	}
 
-	if(!_gameObjects.empty()) {
-		for (auto game_object : _gameObjects) {
+	if(!game_objects.empty()) {
+		for (auto game_object : game_objects) {
 			game_object->draw();
 		}
 	}
 }
 
 void ChooseControlState::update() {
-	if(!_gameObjects.empty()) {
-		for (auto game_object : _gameObjects) {
+	if(!game_objects.empty()) {
+		for (auto game_object : game_objects) {
 			game_object->update();
 		}
 	}
@@ -134,4 +133,4 @@ void ChooseControlState::enterPlayMode() {
 	StateChangeAsker::askToChange(PLAY);
 }
 
-std::string ChooseControlState::getStateID() const { return ControlChooseStateID; }
+std::string ChooseControlState::getStateID() const { return control_choose_state_id; }

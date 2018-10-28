@@ -31,15 +31,15 @@ public:
 
 	/**
 	 * \brief Charge le Bullet en fonction du LoadParameter
-	 * \param parameters Les paramètres du Bullet
+	 * \param pParameters Les paramètres du Bullet
 	 */
-	void load(const LoadParameters* parameters) override;
+	void load(const LoadParameters* pParameters) override;
 
 	/**
 	 * \brief Définie le Player qui a tiré le Bullet
-	 * \param player Le player qui a tiré le Bullet
+	 * \param pPlayer Le player qui a tiré le Bullet
 	 */
-	void setPlayerNum(PLAYER_NUM player);
+	void setPlayerNum(PLAYER_NUM pPlayer);
 
 	/**
 	 * \brief Retourne l'ID du Player ayant tiré ce Bullet
@@ -49,9 +49,9 @@ public:
 
 	/**
 	 * \brief Mets à jour le voisin de ce Bullet
-	 * \param new_bullet Le nouveau voisin
+	 * \param pNewBullet Le nouveau voisin
 	 */
-	void setNext(PlayerBullet* new_bullet);
+	void setNext(PlayerBullet* pNewBullet);
 
 	/**
 	 * \brief Retourne le voisin de ce Bullet

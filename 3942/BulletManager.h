@@ -21,23 +21,23 @@ public:
 
 	/**
 	 * \brief Créer un PlayerBullet avec la position et la velocité donnée en paramètre
-	 * \param player Le Player qui a tiré le Bullet
-	 * \param position La position du Bullet
-	 * \param velocity La velocité du Bullet
+	 * \param pLayer Le Player qui a tiré le Bullet
+	 * \param pPosition La position du Bullet
+	 * \param pVelocity La velocité du Bullet
 	 */
-	void createPlayerBullet(PLAYER_NUM player, const Vector2D position, const Vector2D velocity);
+	void createPlayerBullet(PLAYER_NUM pLayer, const Vector2D pPosition, const Vector2D pVelocity);
 
 	/**
 	 * \brief Créer un EnemyBullet avec la position et la velocité donnée en paramètre
-	 * \param position La position du Bullet
-	 * \param velocity La velocité du Bullet
+	 * \param pPosition La position du Bullet
+	 * \param pVelocity La velocité du Bullet
 	 */
-	void createEnemyBullet(Vector2D position, Vector2D velocity);
+	void createEnemyBullet(Vector2D pPosition, Vector2D pVelocity);
 
 	/**
 	 * \brief Affiches les Bullets à l'écran
 	 */
-	void render();
+	void render() const;
 
 	/**
 	 * \brief Mets à jour les Bullets
@@ -64,12 +64,12 @@ public:
 	/**
 	 * \brief La taille de la piscine de PlayerBullet
 	 */
-	static const int player_bullet_pool_size = 50;
+	static const int player_bullet_pool_size{50};
 
 	/**
 	 * \brief La taille de la piscine d'EnemyBullet
 	 */
-	static const int enemy_bullet_pool_size = 500;
+	static const int enemy_bullet_pool_size{500};
 
 	~BulletManager();
 
@@ -99,12 +99,12 @@ private:
 		/**
 		 * \brief Le premier PlayerBullet disponible
 		 */
-		PlayerBullet * firstPlayerBulletAvailable{};
+		PlayerBullet * firstPlayerBulletAvailable{nullptr};
 
 		/**
 		 * \brief Le premier EnemyBullet disponible
 		 */
-		EnemyBullet * firstEnemyBulletAvailable{};
+		EnemyBullet * firstEnemyBulletAvailable{nullptr};
 
 		/**
 		 * \brief Le tableau de PlayerBullet

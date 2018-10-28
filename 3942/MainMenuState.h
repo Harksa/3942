@@ -40,7 +40,7 @@ private:
 	/**
 	 * L'ID de l'état.
 	 */
-	static const std::string menuID;
+	static const std::string menu_id;
 
 	/**
 	 * \brief Fonction permettant d'aller au jeu en mode solo

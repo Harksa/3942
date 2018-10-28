@@ -1,7 +1,7 @@
 #include "Bullet.h"
 
-void Bullet::load(const LoadParameters* parameters) {
-	 GameObject::load(parameters);
+void Bullet::load(const LoadParameters* pParameters) {
+	 GameObject::load(pParameters);
 }
 
 void Bullet::draw() {
@@ -37,8 +37,8 @@ Bullet::~Bullet() {
 
 bool Bullet::isAvailable() const { return is_available; }
 
-void Bullet::setAvailability(const bool value) { is_available = value; }
+void Bullet::setAvailability(const bool pValue) { is_available = pValue; }
 
 bool Bullet::needChangeNext() const { return need_change_next; }
 
-void Bullet::setChangeNext(bool value) { need_change_next = value; }
+void Bullet::setChangeNext(const bool pValue) { need_change_next = pValue; }

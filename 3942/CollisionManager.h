@@ -11,22 +11,22 @@ public:
 
 	/**
 	 * \brief Gère les collisions entre les PlayerBullets et les autres GameObjects
-	 * \param objects Les GameObjects de la scène
+	 * \param pObjects Les GameObjects de la scène
 	 */
-	static void checkCollisionEnemyWithPlayerBullets(std::vector<GameObject*> &objects);
+	static void checkCollisionEnemyWithPlayerBullets(std::vector<GameObject*> &pObjects);
 
 	/**
 	 * \brief Gère les collisions des EnemyBullets avec le Player
-	 * \param player Le player dont on va vérifier les collisions.
+	 * \param pPlayer Le player dont on va vérifier les collisions.
 	 */
-	static void checkCollisionPlayerWithEnemyBullets(Player * player);
+	static void checkCollisionPlayerWithEnemyBullets(Player * pPlayer);
 	
 	/**
 	 * \brief Gère la collision entre joueurs et ennemis
-	 * \param player Le joueur
-	 * \param objects La liste des objets du jeu
+	 * \param pPlayer Le joueur
+	 * \param pObjects La liste des objets du jeu
 	 */
-	static void checkCollisionsPlayerAgainstEnemies(Player* player, std::vector<GameObject*>& objects);
+	static void checkCollisionsPlayerAgainstEnemies(Player* pPlayer, std::vector<GameObject*>& pObjects);
 
 };
 

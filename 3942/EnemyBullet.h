@@ -29,16 +29,15 @@ public:
 
 	/**
 	 * \brief Charge le Bullet en fonction du LoadParameter
-	 * \param parameters Les paramètres du Bullet
+	 * \param pParameters Les paramètres du Bullet
 	 */
-	void load(const LoadParameters* parameters) override;
-
+	void load(const LoadParameters* pParameters) override;
 
 	/**
 	 * \brief Mets à jour le voisin de ce Bullet
-	 * \param new_bullet Le nouveau voisin
+	 * \param pNewBullet Le nouveau voisin
 	 */
-	void setNext(EnemyBullet* new_bullet);
+	void setNext(EnemyBullet* pNewBullet);
 
 	/**
 	 * \brief Retourne le voisin de ce Bullet

@@ -20,15 +20,15 @@ public:
 	void render() override;
 
 	/**
-	 * \brief Retourne la liste des gameobjects présent sur le niveau.
-	 * \return La liste des gameobjects présent sur le niveau.
+	 * \brief Retourne la liste des game_objects présent sur le niveau.
+	 * \return La liste des game_objects présent sur le niveau.
 	 */
 	std::vector<GameObject*>* getGameObjects();
 
 private:
 	/**
-	 * \brief La liste des gameobjects présent sur le niveau.
+	 * \brief La liste des game_objects présent sur le niveau.
 	 */
-	std::vector<GameObject*> _gameobjects;
+	std::vector<GameObject*> game_objects;
 };
 

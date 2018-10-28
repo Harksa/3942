@@ -1,6 +1,6 @@
 #pragma once
-#include "Level.h"
 #include <tinyxml2.h>
+#include "Level.h"
 
 /**
  *\brief Charge un niveau à partir d'un fichier d'un fichier TMX et d'un ou plusieurs fichiers tsx.
@@ -10,56 +10,56 @@ public:
 
 	/**
 	 * \brief Charge le niveau à partir du fichier tsx rentrée en paramètre.
-	 * \param levelFile Le chemin du fichier tsx.
+	 * \param pLevelFile Le chemin du fichier tsx.
 	 * \return Le niveau chargé.
 	 */
-	Level * parseLevel(const char* levelFile);
+	Level * parseLevel(const char* pLevelFile);
 
 private:
 
 	/**
 	 * \brief Charge en mémoire les informations des tilesets.
-	 * \param tilesetRoot Le chemin dans le fichier xml des informations des tilesets.
-	 * \param tilesets Le pointeur vers le tilesets du niveau.
+	 * \param pTilesetRoot Le chemin dans le fichier xml des informations des tilesets.
+	 * \param pTilesets Le pointeur vers le tilesets du niveau.
 	 */
-	void parseTilesets(tinyxml2::XMLElement * tilesetRoot, std::vector<Tileset> * tilesets);
+	void parseTilesets(tinyxml2::XMLElement * pTilesetRoot, std::vector<Tileset> * pTilesets);
 
 	/**
 	 * \brief Charge en mémoire les informations concernant les Layers du niveau.
-	 * \param tileElements Le chemin dans le fichier xml des informations sur les tiles.
-	 * \param layers Le pointeur vers les layers de ce niveau.
-	 * \param tilesets Le pointeur vers le tilesets du niveau.
+	 * \param pTileElements Le chemin dans le fichier xml des informations sur les tiles.
+	 * \param pLayers Le pointeur vers les layers de ce niveau.
+	 * \param pTilesets Le pointeur vers le tilesets du niveau.
 	 */
-	void parseTileLayers(tinyxml2::XMLElement  *tileElements, std::vector<Layer*> *layers, const std::vector<Tileset> * tilesets);
+	void parseTileLayers(tinyxml2::XMLElement  *pTileElements, std::vector<Layer*> *pLayers, const std::vector<Tileset> * pTilesets);
 
 
 	/**
 	 * \brief Charge en mémoire les informations des textures de ce niveau.
-	 * \param textureRoot Le chemin dans le fichier xml des informations sur les textures.
+	 * \param pTextureRoot Le chemin dans le fichier xml des informations sur les textures.
 	 */
-	void parseTextures(tinyxml2::XMLElement * textureRoot);
+	void parseTextures(tinyxml2::XMLElement * pTextureRoot);
 
 
 	/**
 	 * \brief Charge en mémoire le layer d'objet dont le chemin est donné en paramètre.
-	 * \param objectElement Le chemin de l'objectLayer dans le fichier xml.
-	 * \param layer Le pointeur vers les layers de ce niveau.
+	 * \param pObjectElement Le chemin de l'objectLayer dans le fichier xml.
+	 * \param pLayer Le pointeur vers les layers de ce niveau.
 	 */
-	void parseObjectLayer(tinyxml2::XMLElement * objectElement, std::vector<Layer*> * layer);
+	void parseObjectLayer(tinyxml2::XMLElement * pObjectElement, std::vector<Layer*> * pLayer);
 
 	/**
 	 * \brief La taille des tiles de ce niveau.
 	 */
-	int _tileSize = 0;
+	int tile_size{0};
 
 	/**
 	 * \brief La longueur totale du niveau.
 	 */
-	int _width = 0;
+	int width{0};
 
 	/**
 	 * \brief La hauteur totale du niveau.
 	 */
-	int _height = 0;
+	int height{0};
 };
 

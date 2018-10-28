@@ -10,23 +10,23 @@ GameObjectFactory* GameObjectFactory::Instance() {
 	return instance;
 }
 
-bool GameObjectFactory::registerType(std::string typeID, BaseCreator* creator) {
-	std::map<std::string, BaseCreator*>::iterator it = _creator.find(typeID);
+bool GameObjectFactory::registerType(const std::string& pTypeId, BaseCreator* pCreator) {
+	std::map<std::string, BaseCreator*>::iterator it = _creator.find(pTypeId);
 
 	if (it != _creator.end()) {
-		delete creator;
+		delete pCreator;
 		return false;
 	}
 
-	_creator[typeID] = creator;
+	_creator[pTypeId] = pCreator;
 	return true;
 }
 
-GameObject* GameObjectFactory::create(std::string typeID) {
-	auto it = _creator.find(typeID);
+GameObject* GameObjectFactory::create(const std::string& pTypeId) {
+	auto it = _creator.find(pTypeId);
 
 	if (it == _creator.end()) {
-		std::cout << "GAMEOBJECTFACTORY::CREATE::COULDNT FIND TYPE : " << typeID << std::endl;
+		std::cout << "GAMEOBJECTFACTORY::CREATE::COULDNT FIND TYPE : " << pTypeId << std::endl;
 		return nullptr;
 	}
 

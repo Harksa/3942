@@ -13,16 +13,16 @@ TextureManager* TextureManager::Instance() {
 }
 
 TextureManager::~TextureManager() {
-	for (const auto& texture_map : _textureMap) {
+	for (const auto& texture_map : texture_map) {
 		clearFromTextureMapAndInformations(texture_map.first);
 	}
 
-	_textureMap.clear();
-	_textureInformations.clear();
+	texture_map.clear();
+	texture_informations.clear();
 }
 
-bool TextureManager::load(const std::string& fileName, const std::string& id) {
-	SDL_Surface * surface = IMG_Load(fileName.c_str());
+bool TextureManager::load(const std::string& pFileName, const std::string& pId) {
+	SDL_Surface * surface = IMG_Load(pFileName.c_str());
 
 	if(surface == nullptr) return false;
 
@@ -30,83 +30,83 @@ bool TextureManager::load(const std::string& fileName, const std::string& id) {
 	SDL_FreeSurface(surface);
 
 	if(texture != nullptr) {
-		_textureMap[id] = texture;
+		texture_map[pId] = texture;
 		return true;
 	}
 
 	return false;
 }
 
-bool TextureManager::load(const std::string &fileName, const std::string& id, const int width, const int height, const int numFrames, const int speed) {
-	SDL_Surface * surface = IMG_Load(fileName.c_str());
+bool TextureManager::load(const std::string &pFileName, const std::string& pId, const int pWidth, const int pHeight, const int pNumFrames, const int pSpeed) {
+	SDL_Surface * surface = IMG_Load(pFileName.c_str());
 
 	if(surface == nullptr) return false;
 
 	SDL_Texture * texture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), surface);
 
 	if(texture != nullptr) {
-		_textureMap[id] = texture;
-		_textureInformations[id] = texture_informations(width, height, numFrames, speed);
+		texture_map[pId] = texture;
+		texture_informations[pId] = Texture_Informations(pWidth, pHeight, pNumFrames, pSpeed);
 		return true;
 	}
 
 	return false;
 }
 
-void TextureManager::draw(const std::string& id, const int x, const int y, const int width, const int height, SDL_RendererFlip flip) {
+void TextureManager::draw(const std::string& pId, const int pX, const int pY, const int pWidth, const int pHeight, const SDL_RendererFlip pFlip) {
 	SDL_Rect srcRect, destRect;
 
 	srcRect.x = srcRect.y = 0;
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
+	srcRect.w = destRect.w = pWidth;
+	srcRect.h = destRect.h = pHeight;
 
-	destRect.x = x;
-	destRect.y = y;
+	destRect.x = pX;
+	destRect.y = pY;
 	
-	SDL_RenderCopyEx(Game::Instance()->getRenderer(), _textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
+	SDL_RenderCopyEx(Game::Instance()->getRenderer(), texture_map[pId], &srcRect, &destRect, 0, nullptr, pFlip);
 }
 
-void TextureManager::drawFrame(const std::string& id, const int x, const int y, const int width, const int height, const int currentRow, const int currentFrame, SDL_RendererFlip flip) {
+void TextureManager::drawFrame(const std::string& pId, const int pX, const int pY, const int pWidth, const int pHeight, const int pCurrentRow, const int pCurrentFrame, const SDL_RendererFlip pFlip) {
 	SDL_Rect srcRect, destRect;
 
-    srcRect.x = width * currentFrame;
-	srcRect.y = height * currentRow;
+    srcRect.x = pWidth * pCurrentFrame;
+	srcRect.y = pHeight * pCurrentRow;
 
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
+	srcRect.w = destRect.w = pWidth;
+	srcRect.h = destRect.h = pHeight;
 
-	destRect.x = x;
-	destRect.y = y;
+	destRect.x = pX;
+	destRect.y = pY;
 
-	SDL_RenderCopyEx(Game::Instance()->getRenderer(), _textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
+	SDL_RenderCopyEx(Game::Instance()->getRenderer(), texture_map[pId], &srcRect, &destRect, 0, nullptr, pFlip);
 }
 
-void TextureManager::clearFromTextureMapAndInformations(const std::string& id) {
-	clearFromTextureMap(id);
-	_textureInformations.erase(id);
+void TextureManager::clearFromTextureMapAndInformations(const std::string& pId) {
+	clearFromTextureMap(pId);
+	texture_informations.erase(pId);
 }
 
-void TextureManager::clearFromTextureMap(const std::string& id) {
-	SDL_DestroyTexture(_textureMap.at(id));
-	_textureMap.erase(id);
+void TextureManager::clearFromTextureMap(const std::string& pId) {
+	SDL_DestroyTexture(texture_map.at(pId));
+	texture_map.erase(pId);
 }
 
 
-void TextureManager::drawTile(const std::string& id, const int margin, const int spacing, const int x, const int y, const int width, const int height, const int currentRow, const int currentFrame) {
+void TextureManager::drawTile(const std::string& pId, const int pMargin, const int pSpacing, const int pX, const int pY, const int pWidth, const int pHeight, const int pCurrentRow, const int pCurrentFrame) {
 	SDL_Rect srcRect, destRect;
 
-	srcRect.x = margin + (spacing + width) * currentFrame;
-	srcRect.y = margin + (spacing + height) * currentRow;
+	srcRect.x = pMargin + (pSpacing + pWidth) * pCurrentFrame;
+	srcRect.y = pMargin + (pSpacing + pHeight) * pCurrentRow;
 
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
+	srcRect.w = destRect.w = pWidth;
+	srcRect.h = destRect.h = pHeight;
 
-	destRect.x = x;
-	destRect.y = y;
+	destRect.x = pX;
+	destRect.y = pY;
 
-	SDL_RenderCopyEx(Game::Instance()->getRenderer(), _textureMap[id], &srcRect, &destRect, 0, nullptr, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(Game::Instance()->getRenderer(), texture_map[pId], &srcRect, &destRect, 0, nullptr, SDL_FLIP_NONE);
 }
 
-texture_informations TextureManager::getTextureInformationsFromID(const std::string& id) {
-	return _textureInformations[id];
+Texture_Informations TextureManager::getTextureInformationsFromID(const std::string& pId) {
+	return texture_informations[pId];
 }

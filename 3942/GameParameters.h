@@ -22,9 +22,9 @@ public:
 
 	/**
 	 * \brief Détermine si le jeu se joue à deux joueurs ou non
-	 * \param newValue Vrai si deux joueurs, faux sinon
+	 * \param pNewValue Vrai si deux joueurs, faux sinon
 	 */
-	static void setMulti(bool newValue);
+	static void setMulti(bool pNewValue);
 
 	/**
 	 * \brief Détermine si le jeu est en mode 2 joueurs ou non
@@ -34,24 +34,24 @@ public:
 
 	/**
 	 * \brief Permet de savoir si un joueur joue avec le clavier ou non
-	 * \param playerID l'ID du joueur
+	 * \param pLayerId l'ID du joueur
 	 * \return vrai si le joueur joue avec le clavier, faux sinon
 	 */
-	static bool isPlayerUsingKeyboard(PLAYER_NUM playerID);
+	static bool isPlayerUsingKeyboard(PLAYER_NUM pLayerId);
 
 	/**
 	 * \brief Permet de déterminer si un joueur joue au clavier ou non
-	 * \param player l'ID du player
-	 * \param value Le booléen déterminant si le joueur joue au clavier ou non
+	 * \param pPlayer l'ID du player
+	 * \param pValue Le booléen déterminant si le joueur joue au clavier ou non
 	 */
-	static void setPlayerUsingKeyboard(int player, bool value);
+	static void setPlayerUsingKeyboard(int pPlayer, bool pValue);
 
 	/**
 	 * \brief Compte le nombre de niveaux total en fonction du nombre de fichier compris dans le dossier rentré en paramètre
 	 * 1 fichier = 1 niveau
-	 * \param folder_path Le chemin du dossier contenant les niveaux
+	 * \param pFolderPath Le chemin du dossier contenant les niveaux
 	 */
-	static void countNumberOfLevels(const std::string& folder_path);
+	static void countNumberOfLevels(const std::string& pFolderPath);
 
 	/**
 	 * \brief Retourne le nombre total de niveaux

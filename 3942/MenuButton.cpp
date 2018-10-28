@@ -1,11 +1,9 @@
 #include "MenuButton.h"
 #include "InputHandler.h"
 
-MenuButton::MenuButton() : _callback{nullptr}, released{true}, _callbackID{0} { }
-
-void MenuButton::load(const LoadParameters *parameters) {
-	GameObject::load(parameters);
-	_callbackID = parameters->getCallbackID();
+void MenuButton::load(const LoadParameters *pParameters) {
+	GameObject::load(pParameters);
+	callback_id = pParameters->getCallbackID();
 	sprite->setCurrentFrame(MOUSE_OUT);
 }
 
@@ -22,7 +20,7 @@ void MenuButton::update() {
 
 		if(InputHandler::getMouseButtonState(LEFT_BUTTON) && released) {
 			sprite->setCurrentFrame(CLICKED);
-			_callback();
+			callback();
 			released = false;
 		} else if(!InputHandler::getMouseButtonState(LEFT_BUTTON)) {
 			released = true;
@@ -37,6 +35,6 @@ void MenuButton::clean() {
 	GameObject::clean();
 }
 
-void MenuButton::setCallback(void (* callback)()) { _callback = callback; }
+void MenuButton::setCallback(void (* pCallback)()) { callback = pCallback; }
 
-int MenuButton::getCallbackID() const { return _callbackID; }
+int MenuButton::getCallbackId() const { return callback_id; }

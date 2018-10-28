@@ -20,15 +20,15 @@ public:
 
 	/**
 	 * \brief Demande de changer d'état
-	 * \param newChoice Le nouveau choix d'état
+	 * \param pNewChoice Le nouveau choix d'état
 	 */
-	static void askToChange(StateChoice newChoice);
+	static void askToChange(StateChoice pNewChoice);
 
 	/**
 	 * \brief Demande de push un nouvelle état.
-	 * \param newChoice Le nouveau choix d'état
+	 * \param pNewChoice Le nouveau choix d'état
 	 */
-	static void askToPush(StateChoice newChoice);
+	static void askToPush(StateChoice pNewChoice);
 
 	/**
 	 * \brief Demande de popback du dernier état
@@ -83,9 +83,9 @@ public:
 
 	/**
 	 * \brief Permet de parametrer la fin de jeu, selon si les joueur a gagnés ou perdu
-	 * \param value Vrai si le joueur a gagné, faux sinon
+	 * \param pValue Vrai si le joueur a gagné, faux sinon
 	 */
-	static void setHasWon(bool value);
+	static void setHasWon(bool pValue);
 
 	/**
 	 * \brief Retourne la valeur permettant de savoir si les joueurs ont gagnés ou non

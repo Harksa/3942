@@ -13,18 +13,18 @@ void PlayerBullet::clean() {
 	next = nullptr;
 }
 
-void PlayerBullet::load(const LoadParameters* parameters) {
-	Bullet::load(parameters);
+void PlayerBullet::load(const LoadParameters* pParameters) {
+	Bullet::load(pParameters);
 }
 
 void PlayerBullet::onCollision() {
 	Bullet::onCollision();
 }
 
-void PlayerBullet::setPlayerNum(PLAYER_NUM player) { player_num = player; }
+void PlayerBullet::setPlayerNum(const PLAYER_NUM pPlayer) { player_num = pPlayer; }
 
 PLAYER_NUM PlayerBullet::getPlayerNum() const { return player_num; }
 
-void PlayerBullet::setNext(PlayerBullet* new_bullet) { next = new_bullet; }
+void PlayerBullet::setNext(PlayerBullet* pNewBullet) { next = pNewBullet; }
 
 PlayerBullet* PlayerBullet::getNext() const { return next; }

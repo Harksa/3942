@@ -16,5 +16,5 @@ public:
 	virtual void update() = 0;
 
 protected:
-	virtual ~Layer() {}
+	virtual ~Layer() = default;
 };

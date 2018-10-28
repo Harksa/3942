@@ -48,30 +48,30 @@ BulletManager::~BulletManager() {
 		clear();
 }
 
-void BulletManager::createPlayerBullet(PLAYER_NUM player, const Vector2D position, const Vector2D velocity) {
+void BulletManager::createPlayerBullet(const PLAYER_NUM pPlayer, const Vector2D pPosition, const Vector2D pVelocity) {
 	assert(bullet_pool->firstPlayerBulletAvailable != nullptr);
 
 	PlayerBullet * bullet = bullet_pool->firstPlayerBulletAvailable;
 	bullet_pool->firstPlayerBulletAvailable = bullet->getNext();
 
-	bullet->setPlayerNum(player);
-	setupBullet(bullet, position, velocity);
+	bullet->setPlayerNum(pPlayer);
+	setupBullet(bullet, pPosition, pVelocity);
 }
 
-void BulletManager::createEnemyBullet(const Vector2D position, const Vector2D velocity) {
+void BulletManager::createEnemyBullet(const Vector2D pPosition, const Vector2D pVelocity) {
 	assert(bullet_pool->firstEnemyBulletAvailable != nullptr);
 
 	EnemyBullet * bullet = bullet_pool->firstEnemyBulletAvailable;
 	bullet_pool->firstEnemyBulletAvailable = bullet->getNext();
 
-	setupBullet(bullet, position, velocity);
+	setupBullet(bullet, pPosition, pVelocity);
 }
 
-void BulletManager::setupBullet(Bullet * bullet, Vector2D position, Vector2D velocity) const {
-	bullet->setPosition(position);
-	bullet->setVelocity(velocity);
-	bullet->setAvailability(true);
-	bullet->setChangeNext(false);
+void BulletManager::setupBullet(Bullet * pBullet, const Vector2D pPosition, const Vector2D pVelocity) const {
+	pBullet->setPosition(pPosition);
+	pBullet->setVelocity(pVelocity);
+	pBullet->setAvailability(true);
+	pBullet->setChangeNext(false);
 }
 
 void BulletManager::update() {
@@ -101,7 +101,7 @@ void BulletManager::update() {
 }
 
 
-void BulletManager::render() {
+void BulletManager::render() const {
 	for (auto& bullet : bullet_pool->player_bullets) {
 		if(bullet.isAvailable()) {
 			bullet.draw();

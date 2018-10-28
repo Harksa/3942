@@ -2,8 +2,8 @@
 #include "InputHandler.h"
 #include "FontManager.h"
 
-void KeyboardOptionButton::load(const LoadParameters* parameters) {
-	MenuButton::load(parameters);
+void KeyboardOptionButton::load(const LoadParameters* pParameters) {
+	MenuButton::load(pParameters);
 	text_rect = getRect();
 	text_rect.y += 10;
 }
@@ -39,10 +39,10 @@ void KeyboardOptionButton::clean() {
 	MenuButton::clean();
 }
 
-void KeyboardOptionButton::setAssociatedPlayer(PLAYER_NUM player) { associate_player = player; }
+void KeyboardOptionButton::setAssociatedPlayer(const PLAYER_NUM pPlayer) { associate_player = pPlayer; }
 
 PLAYER_NUM KeyboardOptionButton::getPlayerNum() const { return associate_player; }
 
-void KeyboardOptionButton::setAssociatedControl(CONTROLS control) { associated_control = control; }
+void KeyboardOptionButton::setAssociatedControl(const CONTROLS pControl) { associated_control = pControl; }
 
 CONTROLS KeyboardOptionButton::getAssociatedControl() const { return associated_control; }

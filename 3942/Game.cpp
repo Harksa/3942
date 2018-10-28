@@ -19,9 +19,9 @@ Game* Game::Instance() {
 	return instance;
 }
 
-bool Game::init(const char * title, const int xpos, const int ypos, const int width, const int height, const bool fullscreen) {
+bool Game::init(const char * pTitle, const int pXpos, const int pYpos, const int pWidth, const int pHeight, const bool pFullscreen) {
 	if(SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
-		sdl_window = SDL_CreateWindow(title, xpos, ypos, width, height, fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN ); 
+		sdl_window = SDL_CreateWindow(pTitle, pXpos, pYpos, pWidth, pHeight, pFullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN ); 
 		if(sdl_window != nullptr) {
 			sdl_renderer = SDL_CreateRenderer(sdl_window, -1, 0);
 			if(sdl_renderer != nullptr) {
@@ -32,8 +32,8 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 			return false;
 	}
 
-	GameParameters::game_width = width;
-	GameParameters::game_height = height;
+	GameParameters::game_width = pWidth;
+	GameParameters::game_height = pHeight;
 	GameParameters::countNumberOfLevels("Levels");
 
 	GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
@@ -45,13 +45,13 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 	SoundManager::load("Musics/level1.ogg", "music", SOUND_MUSIC);
 	SoundManager::playMusic("music");
 
-	_gameStateMachine = new GameStateMachine();
-	_gameStateMachine->changeState(MAIN_MENU);
+	game_state_machine = new GameStateMachine();
+	game_state_machine->changeState(MAIN_MENU);
 
 	KeyboardControls::Instance()->init();
 	InputHandler::initialiseJoysticks();
 
-	_running = true;
+	running = true;
 
 	return true;
 }
@@ -60,13 +60,13 @@ bool Game::init(const char * title, const int xpos, const int ypos, const int wi
 void Game::render() const {
 	SDL_RenderClear(sdl_renderer);
 
-	_gameStateMachine->render();
+	game_state_machine->render();
 
 	SDL_RenderPresent(sdl_renderer);
 }
 
 void Game::update() const {
-	_gameStateMachine->update();
+	game_state_machine->update();
 }
 
 void Game::handleEvents() const {
@@ -77,7 +77,7 @@ void Game::clean() const {
 	InputHandler::clean();
 	SoundManager::clean();
 
-	delete _gameStateMachine;
+	delete game_state_machine;
 
 	SDL_DestroyRenderer(sdl_renderer);
 	SDL_DestroyWindow(sdl_window);
@@ -85,10 +85,10 @@ void Game::clean() const {
 }
 
 
-void Game::quit() { _running = false; }
+void Game::quit() { running = false; }
 
 SDL_Renderer* Game::getRenderer() const { return sdl_renderer; }
 
-GameStateMachine* Game::getStateMachine() const { return _gameStateMachine; }
+GameStateMachine* Game::getStateMachine() const { return game_state_machine; }
 
-bool Game::running() const { return _running; }
+bool Game::isRunning() const { return running; }

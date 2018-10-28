@@ -17,7 +17,7 @@ enum CONTROLS {
 /**
  * \brief Le nom associé au contrôle
  */
-static const std::string ControlsToString[] = {"Move Up", "Move Left", "Move Down", "Move Right", "Fire"};
+static const std::string controls_to_string[] = {"Move Up", "Move Left", "Move Down", "Move Right", "Fire"};
 
 /**
  * \brief Cette classe permet de garder en mémoire les touches utilisées par les joueurs
@@ -38,43 +38,43 @@ public:
 
 	/**
 	 * \brief Vérifie que le scancode rentré en paramètre est le même que celui actuellement utilisé en fonction du playerChange et du controlsChange
-	 * \param scancode Le Scancode à vérifier
+	 * \param pScancode Le Scancode à vérifier
 	 * \return Vrai s'il est déjà utilisé, faux sinon
 	 */
-	bool isScancodeTheSame(SDL_Scancode scancode);
+	bool isScancodeTheSame(SDL_Scancode pScancode);
 
 	/**
 	 * \brief Vérifie que la clé est déjà utilisé dans un autre control
- 	 * \param scancode Le Scancode à vérifier
+ 	 * \param pScancode Le Scancode à vérifier
 	 * \return Vrai s'il est déjà utilisé, faux sinon
 	 */
-	bool isScancodeAlreadyUsed(SDL_Scancode scancode) const;
+	bool isScancodeAlreadyUsed(SDL_Scancode pScancode) const;
 
 	/**
 	 * \brief Change les contrôles avec la clé donnée en paramètre
-	 * \param new_key_value La nouvelle clé associé au contrôles et au joueur rentrés précédement en paramètres
+	 * \param pNewKeyValue La nouvelle clé associé au contrôles et au joueur rentrés précédement en paramètres
 	 */
-	void changeKey(SDL_Scancode new_key_value);
+	void changeKey(SDL_Scancode pNewKeyValue);
 
 	/**
 	 * \brief Retourne le keycode du joueur associé à un contrôle
-	 * \param player L'ID du joueur dont ont souhaite obtenir la touche
-	 * \param key Le contrôle associé à la touche
+	 * \param pPlayer L'ID du joueur dont ont souhaite obtenir la touche
+	 * \param pKey Le contrôle associé à la touche
 	 */
-	SDL_Scancode getKeyCode(PLAYER_NUM player, CONTROLS key) const;
+	SDL_Scancode getKeyCode(PLAYER_NUM pPlayer, CONTROLS pKey) const;
 
 	/**
 	 * \brief Détermine si les contrôles doivent être modifiés ou non
-	 * \param value Vrai si les contrôles doivent être modifiés, faux sinon
+	 * \param pValue Vrai si les contrôles doivent être modifiés, faux sinon
 	 */
-	void askToChangeControls(bool value);
+	void askToChangeControls(bool pValue);
 
 	/**
 	 * \brief Définie le joueur et les contrôles qui doivent être changés
-	 * \param player Le player dont les contrôles seront modifiés
-	 * \param control Le contrôle qui sera modifié
+	 * \param pPlayer Le player dont les contrôles seront modifiés
+	 * \param pControl Le contrôle qui sera modifié
 	 */
-	void setToChange(PLAYER_NUM player, CONTROLS control);
+	void setToChange(PLAYER_NUM pPlayer, CONTROLS pControl);
 
 	/**
 	 * \brief Permet de savoir si les contrôles doivent être changés ou non.
@@ -105,17 +105,17 @@ private:
 	/**
 	 * \brief Permet de savoir si le joueur demande de changer la valeur d'un contrôle
 	 */
-	bool askToChange{false};
+	bool ask_to_change{false};
 
 	/**
 	 * \brief Le joueur qui vera ses contrôles êtres modifiés
 	 */
-	PLAYER_NUM playerChange;
+	PLAYER_NUM player_change;
 
 	/**
 	 * \brief Le contrôle à modifier
 	 */
-	CONTROLS controlsChange;
+	CONTROLS controls_change;
 
 	/**
 	 * \brief Les contrôles des utilisateurs, associés à leurs touches du claviers

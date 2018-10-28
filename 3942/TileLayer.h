@@ -9,7 +9,7 @@
  */
 class TileLayer : public Layer {
 public:
-	TileLayer(int tileSize, std::vector<Tileset> tilesets);
+	TileLayer(int pTileSize, std::vector<Tileset> pTilesets);
 
 	/**
 	 * \brief Affiche les tiles du layer.
@@ -23,57 +23,57 @@ public:
 
 	/***
 	 * \brief Initialise l'ID des tiles qui sont utilisés par Tiled.
-	 * \param data Le vecteur d'ID utilisé par Tiled.
+	 * \param pData Le vecteur d'ID utilisé par Tiled.
 	 */
-	void setTileIDs(const std::vector<std::vector<int>>& data);
+	void setTileIDs(const std::vector<std::vector<int>>& pData);
 
 	/**
 	 * \brief Initialise la taille des tiles.
-	 * \param tileSize La taille des tiles désirés.
+	 * \param pTileSize La taille des tiles désirés.
 	 */
-	void setTileSize(int tileSize);
+	void setTileSize(int pTileSize);
 
 	/**
 	 * \brief Donne le Tile en fonction de son ID
-	 * \param tileID l'ID du tile que l'on souhaite trouver.
+	 * \param pTileId l'ID du tile que l'on souhaite trouver.
 	 * \return le Tile désiré.
 	 */
-	Tileset getTilesetByID(int tileID) const;
+	Tileset getTilesetByID(int pTileId) const;
 
 private:
 	/**
 	 * \brief le nombre de colones présent à l'écran.
 	 */
-	int _numColumns;
+	int num_columns;
 
 	/**
 	 * \brief Le nombre de lignes présent à l'écran.
 	 */
-	int _numRows;
+	int num_rows;
 
 	/**
 	 * \brief La taille des tiles
 	 */
-	int _tileSize;
+	int tile_size;
 
 	/**
 	 * La position de la caméra 
 	 */
-	Vector2D _position;
+	Vector2D position;
 
 	/**
 	 * \brief La vitesse de la caméra.
 	 */
-	Vector2D _velocity;
+	Vector2D velocity;
 
 	/**
 	 * \brief les tiles du niveau.
 	 */
-	const std::vector<Tileset> _tilesets;
+	const std::vector<Tileset> tilesets;
 
 	/**
 	 * \brief Les IDs des tiles du niveau.
 	 */
-	std::vector<std::vector<int>> _tileIDs;
+	std::vector<std::vector<int>> tile_ids;
 };
 

@@ -1,11 +1,11 @@
 #include "GameObject.h"
 #include "GameParameters.h"
 
-void GameObject::load(const LoadParameters* parameters) {
-	position = Vector2D(parameters->getX(), parameters->getY());
+void GameObject::load(const LoadParameters* pParameters) {
+	position = Vector2D(pParameters->getX(), pParameters->getY());
 	velocity = acceleration = Vector2D(0, 0);
 
-	sprite = new Sprite(parameters->getTextureID());
+	sprite = new Sprite(pParameters->getTextureID());
 }
 
 void GameObject::draw() {
@@ -35,22 +35,22 @@ bool GameObject::isOutsideScreenBondaries() const {
 
 Vector2D& GameObject::getPosition() { return position; }
 
-void GameObject::setPosition(Vector2D newPosition) { position = newPosition; }
+void GameObject::setPosition(const Vector2D pNewPosition) { position = pNewPosition; }
 
-void GameObject::setPosition(float new_x, float new_y) {
-	position.x = new_x;
-	position.y = new_y;
+void GameObject::setPosition(const float pNewX, const float pNewY) {
+	position.x = pNewX;
+	position.y = pNewY;
 }
 
-void GameObject::setVelocity(Vector2D new_velocity) { velocity = new_velocity; }
+void GameObject::setVelocity(const Vector2D pNewVelocity) { velocity = pNewVelocity; }
 
-void GameObject::setVelocity(float new_x, float new_y) {
-	velocity.x = new_x;
-	velocity.y = new_y;
+void GameObject::setVelocity(const float pNewX, const float pNewY) {
+	velocity.x = pNewX;
+	velocity.y = pNewY;
 }
 
-void GameObject::setSpriteAngle(float new_angle) const {
-	sprite->setAngle(new_angle);
+void GameObject::setSpriteAngle(const float pNewAngle) const {
+	sprite->setAngle(pNewAngle);
 }
 
 int GameObject::getWidth() const { return sprite->getWidth(); }

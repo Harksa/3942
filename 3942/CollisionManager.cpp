@@ -5,10 +5,10 @@
 #include "Collision.h"
 #include "Enemy.h"
 
-void CollisionManager::checkCollisionEnemyWithPlayerBullets(std::vector<GameObject *> &objects) {
+void CollisionManager::checkCollisionEnemyWithPlayerBullets(std::vector<GameObject *> &pObjects) {
 	PlayerBullet * player_bullets = BulletManager::Instance()->getPlayerBullets();
 
-	for (auto &object : objects) {
+	for (auto &object : pObjects) {
 		if(dynamic_cast<Enemy *> (object) != nullptr) {
 			for (int i = 0 ; i < BulletManager::player_bullet_pool_size ; i++) {
 				if(player_bullets[i].isAvailable()) {
@@ -22,24 +22,24 @@ void CollisionManager::checkCollisionEnemyWithPlayerBullets(std::vector<GameObje
 	}
 }
 
-void CollisionManager::checkCollisionPlayerWithEnemyBullets(Player* player) {
+void CollisionManager::checkCollisionPlayerWithEnemyBullets(Player* pPlayer) {
 	EnemyBullet * enemy_bullet = BulletManager::Instance()->getEnemyBullets();
 
 	for(unsigned i = 0 ; i < BulletManager::enemy_bullet_pool_size ; i++) {
 		if(enemy_bullet[i].isAvailable()) {
-			if(IntersectRect(player->getRect(), enemy_bullet[i].getRect())) {
+			if(IntersectRect(pPlayer->getRect(), enemy_bullet[i].getRect())) {
 				enemy_bullet[i].onCollision();
-				player->onCollision();
+				pPlayer->onCollision();
 			}
 		}
 	}
 }
 
-void CollisionManager::checkCollisionsPlayerAgainstEnemies(Player * player, std::vector<GameObject*> &objects) {
-	for (auto &object : objects) {
+void CollisionManager::checkCollisionsPlayerAgainstEnemies(Player * pPlayer, std::vector<GameObject*> &pObjects) {
+	for (auto &object : pObjects) {
 		if(dynamic_cast<Enemy *> (object) != nullptr) {
-			if(IntersectRect(player->getRect(), object->getRect())) {
-				player->onCollision();
+			if(IntersectRect(pPlayer->getRect(), object->getRect())) {
+				pPlayer->onCollision();
 				static_cast<Enemy*>(object)->onCollisionWithPlayer();
 
 			}

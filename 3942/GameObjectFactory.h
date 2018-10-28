@@ -30,14 +30,14 @@ public:
 	 * \param creator Le creator qui permettra d'instancier le gameboject
 	 * \return vrai si le type a bien été enregistré, faux sinon.
 	 */
-	bool registerType(std::string typeID, BaseCreator* creator);
+	bool registerType(const std::string& typeID, BaseCreator* creator);
 
 	/**
 	 * \brief Créer le GameObject avec le type rentré en paramètre.
 	 * \param typeID le type de GameObject que l'on souhaite créer.
 	 * \return Le GameObject désiré
 	 */
-	GameObject* create(std::string typeID);
+	GameObject* create(const std::string& typeID);
 
 	~GameObjectFactory() = default;
 

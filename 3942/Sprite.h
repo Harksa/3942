@@ -11,16 +11,16 @@ public:
 	/**
 	 * \brief Créer un sprite en fonction de l'ID rentré en paramètre.
 	 * Les informations sont cherchés dans le texture manager grâce à ce dernier.
-	 * \param textureID L'ID de la texture
+	 * \param pTextureId L'ID de la texture
 	 */
-	Sprite(const std::string& textureID);
+	Sprite(const std::string& pTextureId);
 
 	~Sprite() = default;
 
 	/**
 	 * \brief Définie la largeur du sprite, en pixel
 	 */
-	void setWidth(int width);
+	void setWidth(int pWidth);
 
 	/**
 	 * \brief Retourne la largeur du sprite
@@ -31,7 +31,7 @@ public:
 	/**
 	 * \brief Définie la hauteur du sprite, en pixel
 	 */
-	void setHeight(int height);
+	void setHeight(int pHeight);
 
 	/**
 	 * \brief Retourne la hauteur du sprite
@@ -41,9 +41,9 @@ public:
 
 	/**
 	 * \brief Définie l'angle du sprite
-	 * \param angle Le nouvel angle
+	 * \param pAngle Le nouvel angle
 	 */
-	void setAngle(float angle);
+	void setAngle(float pAngle);
 
 	/**
 	 * \brief Retourne l'angle du sprite.
@@ -53,9 +53,9 @@ public:
 
 	/**
 	 * \brief Définie le nombre de frames du sprite
-	 * \param numFrames Le nouveau nombre de frames
+	 * \param pNumFrames Le nouveau nombre de frames
 	 */
-	void setNumFrames(int numFrames);
+	void setNumFrames(int pNumFrames);
 
 	/**
 	 * \brief Retourne le nombre de frame du sprite
@@ -65,9 +65,9 @@ public:
 
 	/**
 	 * \brief Définie la frame actuelle du sprite
-	 * \param frame Le nouveau frame
+	 * \param pFrame Le nouveau frame
 	 */
-	void setCurrentFrame(int frame);
+	void setCurrentFrame(int pFrame);
 
 	/**
 	 * \brief Retourne la frame actuelle du sprite
@@ -77,9 +77,9 @@ public:
 
 	/**
 	 * \brief Définie si le sprite est visible ou non
-	 * \param isVisible Vrai si le sprite doit être visible, faux sinon
+	 * \param pIsVisible Vrai si le sprite doit être visible, faux sinon
 	 */
-	void setVisibility(bool isVisible);
+	void setVisibility(bool pIsVisible);
 
 	/**
 	 * \brief Permet de savoir si le sprite est visible ou non
@@ -89,9 +89,9 @@ public:
 
 	/**
 	 * \brief Définie l'ID de la nouvelle texture du sprite
-	 * \param textureID L'ID de la nouvelle texture
+	 * \param pTextureId L'ID de la nouvelle texture
 	 */
-	void changeTextureID(const std::string& textureID);
+	void changeTextureID(const std::string& pTextureId);
 
 	/**
 	 * \brief Retourne l'ID de la texture du sprite
@@ -101,10 +101,10 @@ public:
 
 	/**
 	 * \brief Affiche le sprite dans la fenêtre SDL
-	 * \param position La position du sprite à l'écran
-	 * \param velocity La vélocité du GameObject associé, pour déterminer si l'on doit retourner la texture ou non
+	 * \param pPosition La position du sprite à l'écran
+	 * \param pVelocity La vélocité du GameObject associé, pour déterminer si l'on doit retourner la texture ou non
 	 */
-	void draw(Vector2D position, Vector2D velocity) const;
+	void draw(Vector2D pPosition, Vector2D pVelocity) const;
 
 	/**
 	 * \brief Mets à jour le sprite
@@ -115,17 +115,17 @@ private:
 
 	bool is_visible{true};
 	
-	int _width;
-	int _height;
+	int width;
+	int height;
 
-	float _angle;
+	float angle;
 	
-	int _currentFrame;
-	int _currentRow;
-	int _numFrames;
+	int current_frame;
+	int current_row;
+	int num_frames;
 
-	int _animSpeed;
+	int anim_speed;
 	
-	std::string _textureID;
+	std::string texture_id;
 };
 

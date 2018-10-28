@@ -1,7 +1,7 @@
 #pragma once
 #include "LoadParameters.h"
-#include "Vector2D.h"
 #include "Sprite.h"
+#include "Vector2D.h"
 
 /**
  * \brief La classe qui permet de gérer les éléments graphiques du jeu.
@@ -10,9 +10,9 @@ class GameObject {
 public:
 	/**
 	 * \brief Charge le GameObject en fonction du LoadParameters
-	 * \param parameters Les paramètres du GameObject
+	 * \param pParameters Les paramètres du GameObject
 	 */
-	virtual void load(const LoadParameters* parameters);
+	virtual void load(const LoadParameters* pParameters);
 
 	/**
 	 * \brief Affiche le GameObject
@@ -36,35 +36,35 @@ public:
 
 	/**
 	 * \brief Positionne le GameObject
-	 * \param newPosition La nouvelle position du GameObject
+	 * \param pNewPosition La nouvelle position du GameObject
 	 */
-	void setPosition(Vector2D newPosition);
+	void setPosition(Vector2D pNewPosition);
 
 	/**
 	 * \brief Positionne le GameObject
-	 * \param new_x La nouvelle position en X
-	 * \param new_y La nouvelle position en Y
+	 * \param pNewX La nouvelle position en X
+	 * \param pNewY La nouvelle position en Y
 	 */
-	void setPosition(float new_x, float new_y);
+	void setPosition(float pNewX, float pNewY);
 
 	/**
 	 * \brief Définie la vélocité du GameObject
-	 * \param new_velocity La nouvelle vélocité
+	 * \param pNewVelocity La nouvelle vélocité
 	 */
-	void setVelocity(Vector2D new_velocity);
+	void setVelocity(Vector2D pNewVelocity);
 
 	/**
 	 * \brief Définie la vélocité du GameObject
-	 * \param new_x La nouvelle vélocité en X
-	 * \param new_y La nouvelle vélocité en Y
+	 * \param pNewX La nouvelle vélocité en X
+	 * \param pNewY La nouvelle vélocité en Y
 	 */
-	void setVelocity(float new_x, float new_y);
+	void setVelocity(float pNewX, float pNewY);
 
 	/**
 	 * \brief Définie l'angle du sprite (en degrès)
-	 * \param new_angle Le nouvelle angle du sprite
+	 * \param pNewAngle Le nouvelle angle du sprite
 	 */
-	void setSpriteAngle(float new_angle) const;
+	void setSpriteAngle(float pNewAngle) const;
 
 	/**
 	 * \brief Détermine si le GameObject est dedans ou en dehors des frontières de l'écran de jeu.
@@ -84,7 +84,10 @@ public:
 	 */
 	int getHeight() const;
 
-
+	/**
+	 * \brief Retourne le sprite
+	 * \return Le sprite
+	 */
 	Sprite* getSprite() const;
 
 	/**

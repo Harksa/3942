@@ -49,6 +49,6 @@ private:
 	/**
 	 * L'ID de l'état.
 	 */
-	static const std::string pauseID;
+	static const std::string pause_id;
 };
 

@@ -14,16 +14,16 @@ public:
 
 	/**
 	 * \brief Ajoute des points au score du joueur
-	 * \param points Les points à ajouter
-	 * \param player Le joueur dont on souhaite ajouter des points
+	 * \param pPoints Les points à ajouter
+	 * \param pPlayer Le joueur dont on souhaite ajouter des points
 	 */
-	void addPoints(unsigned int points, PLAYER_NUM player);
+	void addPoints(unsigned int pPoints, PLAYER_NUM pPlayer);
 
 	/**
 	 * \brief Retourne le score actuel du joueur
-	 * \param player Le joueur dont on souhaite obtenir le score
+	 * \param pPlayer Le joueur dont on souhaite obtenir le score
 	 */
-	unsigned int getScore(PLAYER_NUM player = PLAYER_1) const;
+	unsigned int getScore(PLAYER_NUM pPlayer = PLAYER_1) const;
 
 	~ScoreManager() = default;
 private:

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+
 #include "GameObject.h"
 #include "Background.h"
 #include "FontManager.h"
@@ -67,12 +68,12 @@ protected:
 	/**
 	 * \brief Liste des textures utilisés dans cet état.
 	 */
-	std::vector<std::string> _textureIDList;
+	std::vector<std::string> texture_id_list;
 
 	/**
 	 * \brief La liste des gameobjects comprit dans l'état.
 	 */
-	std::vector<GameObject *> _gameObjects;
+	std::vector<GameObject *> game_objects;
 
 	/**
 	 * \brief Définie si la scène a été entièrement chargé ou non.
@@ -98,18 +99,18 @@ protected:
 inline void GameState::clearState() {
 	background.clean();
 
-	for (const auto& i : _textureIDList) {
+	for (const auto& i : texture_id_list) {
 		TextureManager::Instance()->clearFromTextureMapAndInformations(i);
 	}
 
-	_textureIDList.clear();
+	texture_id_list.clear();
 
-	for (auto object : _gameObjects) {
+	for (auto object : game_objects) {
 		object->clean();
 		delete object;
 	}
 
-	_gameObjects.clear();
+	game_objects.clear();
 
 	FontManager::Instance()->clear();
 
@@ -122,4 +123,5 @@ inline GameState::~GameState() {
 }
 
 inline bool GameState::isLoaded() const { return is_loaded; }
+
 inline bool GameState::isExiting() const { return is_exiting; }

@@ -39,17 +39,17 @@ public:
 
 	/**
 	 * \brief Permet d'obtenir l'état des boutons de la souris
-	 * \param buttonNumber L'index du bouton
+	 * \param pButtonNumber L'index du bouton
 	 * \return vrai si le bouton est appuyé, faux sinon.
 	 */
-	static bool getMouseButtonState(int buttonNumber);
+	static bool getMouseButtonState(int pButtonNumber);
 
 	/**
 	 * \brief Permet d'obtenir l'état d'un bouton du clavier
-	 * \param key le bouton du clavier dont on souhaite connaître l'état
+	 * \param pKey le bouton du clavier dont on souhaite connaître l'état
 	 * \return vrai si le bouton est appuyé, faux sinon
 	 */
-	static bool isKeyDown(SDL_Scancode key);
+	static bool isKeyDown(SDL_Scancode pKey);
 
 	/**
 	 * \brief Permet d'obtenir la position de la souris sur la fenêtre de jeu.
@@ -74,10 +74,10 @@ public:
 
 	/**
 	 * \brief Retourne le SDL_Joystick en fonction de son ID.
-	 * \param id L'ID du joystick désiré
+	 * \param pId L'ID du joystick désiré
 	 * \return Le joystick lié à l'ID
 	 */
-	static SDL_Joystick* getJoystickByID(int id);
+	static SDL_Joystick* getJoystickByID(int pId);
 
 	/**
 	 * \brief Retourne le nombre de joysticks actuellement connectés au PC
@@ -88,12 +88,12 @@ public:
 	/**
 	 * \brief diviseur pour les axis du joysticks
 	 */
-	static constexpr float diviser = 32767.0f;
+	static constexpr float diviser{32767.0f};
 
 	/**
 	 * \brief La zone morte du joystick
 	 */
-	static constexpr float _joystickDeadZone = 10000;
+	static constexpr float joystick_dead_zone{10000};
 
 	/**
 	 * \brief Détermine si le nombre de joysticks connectés correspond au nombre de joueurs jouant avec un joysticks
@@ -121,19 +121,19 @@ private:
 
 	/**
 	 * \brief Gère les évenements liés à la souris
-	 * \param event L'évenement SDL
+	 * \param pEvent L'évenement SDL
 	 */
-	static void handleMouse(SDL_Event & event);
+	static void handleMouse(SDL_Event & pEvent);
 
 	/**
 	 * \brief La position de la souris sur la fenêtre de jeu
 	 */
-	static Vector2D* mousePosition;
+	static Vector2D* mouse_position;
 
 	/**
 	 * \brief Tableau d'informations des touches du claviers
 	 */
-	static const Uint8 * keyStates;
+	static const Uint8 * key_states;
 
 	/**
 	 * \brief Le tableau regroupant les joysticks
@@ -148,16 +148,16 @@ private:
 	/**
 	 * \brief booléen déterminant si au moins un joystick a été initialisé ou non.
 	 */
-	static bool _joystickInitialised;
+	static bool joystick_initialised;
 
 	/**
 	 * \brief Le nombre de joysticks actuellement branché.
 	 */
-	static int currentNumberOfJoysticks;
+	static int current_number_of_joysticks;
 
 	/**
 	 * \brief Vecteur déterminant les états des boutons de la souris
 	 */
-	static std::vector<bool> _mouseButtonStates;
+	static std::vector<bool> mouse_button_states;
 
 };

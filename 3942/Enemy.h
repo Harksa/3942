@@ -28,15 +28,15 @@ public:
 
 	/**
 	 * \brief Charge l'ennemi avec les paramètres donnés
-	 * \param parameters Les paramètres de cet Enemy
+	 * \param pParameters Les paramètres de cet Enemy
 	 */
-	void load(const LoadParameters* parameters) override;
+	void load(const LoadParameters* pParameters) override;
 
 	/**
 	 * \brief Action réalisé lorsque l'Enemy est rentré en collision avec un Bullet
-	 * \param player_bullet_num Le Player ayant tiré la balle.
+	 * \param pLayerBulletNum Le Player ayant tiré la balle.
 	 */
-	void onCollisionWithBullet(PLAYER_NUM player_bullet_num);
+	void onCollisionWithBullet(PLAYER_NUM pLayerBulletNum);
 
 	/**
 	 * \brief Action réalisé lorsque l'Enemy rentre en collision avec un Player
@@ -45,15 +45,15 @@ public:
 
 	/**
 	 * \brief Assigne les points gagnés en tuer cet ennemi
-	 * \param p Les points de cet ennemi
+	 * \param pPoints Les points de cet ennemi
 	 */
-	void setPoints(unsigned int p);
+	void setPoints(unsigned int pPoints);
 
 	/**
 	 * \brief Assigne la vie de cet ennemi
-	 * \param h La vie de cet ennemi
+	 * \param pHealth La vie de cet ennemi
 	 */
-	void setHealth(int h);
+	void setHealth(int pHealth);
 
 private:
 	/**
@@ -66,7 +66,7 @@ private:
 	 */
 	unsigned int points;
 
-	bool bulletCreated;
+	bool bullet_created;
 };
 
 class EnemyCreator : public BaseCreator {

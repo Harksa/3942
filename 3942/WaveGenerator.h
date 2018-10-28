@@ -9,9 +9,16 @@ struct EnemySpawInformations {
 
 	/**
 	 * \brief Constructeur
+	 * \param pEnemyType Le type d'enemie à créer
+	 * \param pX Sa position en X
+	 * \param pY Sa position en Y
+	 * \param pHealth Sa vie
+	 * \param pPoints Le nombre de points attribués à sa mort
+	 * \param pTimer Le temps à laquel il apparait
+	 * \param pTexture La texture associé à l'ennemi 
 	 */
-	EnemySpawInformations(std::string enemy, float x, float y, int h, unsigned int p,
-	                      unsigned int t, std::string texture);
+	EnemySpawInformations(std::string pEnemyType, float pX, float pY, int pHealth, unsigned int pPoints,
+	                      unsigned int pTimer, std::string pTexture);
 
 	/**
 	 * \brief Le type d'ennemie qui sera créé
@@ -46,7 +53,7 @@ struct EnemySpawInformations {
 	/**
 	 * \brief La texture assigné à cet ennemi
 	 */
-	std::string textureID;
+	std::string texture_id;
 
 };
 
@@ -58,10 +65,10 @@ public:
 
 	/**
 	 * \brief Créer une vague en fonction du fichier rentré en paramètre
-	 * \param fileName Le fichier où sont stockées les informations des vagues
-	 * \param enemy_spaw_informations Le vecteur où seront stockés les informations tirées du fichier
+	 * \param pFileName Le fichier où sont stockées les informations des vagues
+	 * \param pEnemySpawInformations Le vecteur où seront stockés les informations tirées du fichier
 	 */
-	static void parseWave(const std::string& fileName, std::vector<EnemySpawInformations> * enemy_spaw_informations);
+	static void parseWave(const std::string& pFileName, std::vector<EnemySpawInformations> * pEnemySpawInformations);
 
 };
 

@@ -13,48 +13,48 @@ void Vector2D::normalize() {
 	}
 }
 
-Vector2D Vector2D::operator+(const Vector2D& v2) const {
-	return {x + v2.x, y + v2.y};
+Vector2D Vector2D::operator+(const Vector2D& pV2) const {
+	return {x + pV2.x, y + pV2.y};
 }
 
-Vector2D& operator+=(Vector2D& v1, Vector2D& v2) {
-	v1.x += v2.x;
-	v1.y += v2.y;
-	return v1;
+Vector2D& operator+=(Vector2D& pV1, Vector2D& pV2) {
+	pV1.x += pV2.x;
+	pV1.y += pV2.y;
+	return pV1;
 }
 
-Vector2D Vector2D::operator*(float scalar) const {
-	return {x * scalar, y * scalar};
+Vector2D Vector2D::operator*(const float pScalar) const {
+	return {x * pScalar, y * pScalar};
 }
 
-Vector2D Vector2D::operator*=(float scalar) {
-	x *= scalar, y *= scalar;
+Vector2D Vector2D::operator*=(const float pScalar) {
+	x *= pScalar, y *= pScalar;
 	return *this;
 }
 
-Vector2D Vector2D::operator-(const Vector2D& v2) const {
-	return {x - v2.x, y - v2.y};
+Vector2D Vector2D::operator-(const Vector2D& pV2) const {
+	return {x - pV2.x, y - pV2.y};
 }
 
-Vector2D& operator-=(Vector2D& v1, const Vector2D v2) {
-	v1.x -= v2.x;
-	v1.y -= v2.y;
+Vector2D& operator-=(Vector2D& pV1, const Vector2D pV2) {
+	pV1.x -= pV2.x;
+	pV1.y -= pV2.y;
 
-	return v1;
+	return pV1;
 }
 
-Vector2D Vector2D::operator/(float scalar) const {
-	return Vector2D(x / scalar, y / scalar);
+Vector2D Vector2D::operator/(const float pScalar) const {
+	return Vector2D(x / pScalar, y / pScalar);
 }
 
-Vector2D& Vector2D::operator/=(float scalar) {
-	x /= scalar;
-	y /= scalar;
+Vector2D& Vector2D::operator/=(const float pScalar) {
+	x /= pScalar;
+	y /= pScalar;
 
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream& stream, Vector2D& vector2D) {
-	stream << "Vector2D (" << vector2D.x << "," << vector2D.y << ")";
-	return stream;
+std::ostream& operator<<(std::ostream& pStream, Vector2D& pVector2D) {
+	pStream << "Vector2D (" << pVector2D.x << "," << pVector2D.y << ")";
+	return pStream;
 }

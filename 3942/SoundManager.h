@@ -29,26 +29,26 @@ public:
 
 	/**
 	 * \brief Charge un fichier son
-	 * \param fileName Le fichier son à charger
-	 * \param id L'ID du son ou de la musique à charger
-	 * \param type Le type de son à charger
+	 * \param pFileName Le fichier son à charger
+	 * \param pId L'ID du son ou de la musique à charger
+	 * \param pType Le type de son à charger
 	 * \return Vrai si le son a bien été chargé, faux sinon
 	 */
-	static bool load(const std::string& fileName, const std::string& id, sound_type type);
+	static bool load(const std::string& pFileName, const std::string& pId, sound_type pType);
 
 	/**
 	 * \brief Joue le son avec l'ID donnée en paramètre
-	 * \param id L'ID du son
-	 * \param loop
+	 * \param pId L'ID du son
+	 * \param pLoop
 	 */
-	static void playSound(std::string id, int loop = 0);
+	static void playSound(std::string pId, int pLoop = 0);
 
 	/**
 	 * \brief Joue la musique avec l'ID donnée en paramètre
-	 * \param id L'ID de la musique
-	 * \param loop
+	 * \param pId L'ID de la musique
+	 * \param pLoop
 	 */
-	static void playMusic(std::string id, int loop = -1);
+	static void playMusic(std::string pId, int pLoop = -1);
 
 	/**
 	 * \brief Arrête la musique en cours
@@ -67,16 +67,16 @@ private:
 	/**
 	 * \brief Booléen permettant de définir si l'audio a déjà été initialisé ou non.
 	 */
-	static bool audioOpened;
+	static bool audio_opened;
 
 	/**
 	 * \brief Map regroupant la liste des sfxs
 	 */
-	static std::map<std::string, Mix_Chunk*> _sfxs;
+	static std::map<std::string, Mix_Chunk*> sfxs;
 
 	/**
 	 * \brief Map regroupant la liste des musiques
 	 */
-	static std::map<std::string, Mix_Music*> _musics;
+	static std::map<std::string, Mix_Music*> musics;
 };
 

@@ -1,22 +1,21 @@
 #include "LevelParser.h"
+#include <sstream>
+#include "GameObjectFactory.h"
+#include "ObjectLayer.h"
 #include "TextureManager.h"
 #include "TileLayer.h"
 
-
-#include "ObjectLayer.h"
-#include "GameObjectFactory.h"
-
-Level* LevelParser::parseLevel(const char* levelFile) {
+Level* LevelParser::parseLevel(const char* pLevelFile) {
 	tinyxml2::XMLDocument levelDocument;
-	levelDocument.LoadFile(levelFile);
+	levelDocument.LoadFile(pLevelFile);
 
 	Level * level = new Level();
 
 	tinyxml2::XMLElement * root = levelDocument.RootElement();
 
-	_width =  root->IntAttribute("width");
-	_height =  root->IntAttribute("height");
-	_tileSize = root->IntAttribute("tilewidth");
+	width =  root->IntAttribute("width");
+	height =  root->IntAttribute("height");
+	tile_size = root->IntAttribute("tilewidth");
 
 	for(tinyxml2::XMLElement *e = root->FirstChildElement("properties")->FirstChildElement() ; e != nullptr ; e = e->NextSiblingElement()) {
 		if(e->Value() == std::string("property"))
@@ -36,9 +35,9 @@ Level* LevelParser::parseLevel(const char* levelFile) {
 	return level;
 }
 
-void LevelParser::parseTilesets(tinyxml2::XMLElement* tilesetRoot, std::vector<Tileset>* tilesets) {
+void LevelParser::parseTilesets(tinyxml2::XMLElement* pTilesetRoot, std::vector<Tileset>* pTilesets) {
 	std::string filename = "ressources/";
-	filename +=  tilesetRoot->Attribute("source");
+	filename +=  pTilesetRoot->Attribute("source");
 
 	tinyxml2::XMLDocument document;
 	document.LoadFile(filename.c_str());
@@ -53,23 +52,23 @@ void LevelParser::parseTilesets(tinyxml2::XMLElement* tilesetRoot, std::vector<T
 	tileset.width		= root->FirstChildElement()->IntAttribute("width");
 	tileset.height		= root->FirstChildElement()->IntAttribute("height");
 
-	tileset.firstGridID = tilesetRoot->IntAttribute("firstgid");
-	tileset.tileHeight	= root->IntAttribute("tileheight");
-	tileset.tileWidth	= root->IntAttribute("tilewidth");
+	tileset.first_grid_id = pTilesetRoot->IntAttribute("firstgid");
+	tileset.tile_height	= root->IntAttribute("tileheight");
+	tileset.tile_width	= root->IntAttribute("tilewidth");
 	tileset.spacing		= root->IntAttribute("spacing");
 	tileset.margin		= root->IntAttribute("margin");
 	tileset.name		= root->Attribute("name");
 
-	tileset.numColumns = tileset.width / (tileset.tileWidth + tileset.spacing);
+	tileset.num_columns = tileset.width / (tileset.tile_width + tileset.spacing);
 
-	tilesets->push_back(tileset);
+	pTilesets->push_back(tileset);
 }
 
-void LevelParser::parseTileLayers(tinyxml2::XMLElement* tileElements, std::vector<Layer*>* layers, const std::vector<Tileset>* tilesets) {
-	auto tileLayer = new TileLayer(_tileSize, * tilesets);
+void LevelParser::parseTileLayers(tinyxml2::XMLElement* pTileElements, std::vector<Layer*>* pLayers, const std::vector<Tileset>* pTilesets) {
+	auto tileLayer = new TileLayer(tile_size, * pTilesets);
 
 	std::vector<std::vector<int>> data;
-	const std::string csv_data = tileElements->FirstChildElement("data")->GetText();
+	const std::string csv_data = pTileElements->FirstChildElement("data")->GetText();
 
 	std::stringstream str_strm(csv_data);
 	std::string tmp;
@@ -79,30 +78,30 @@ void LevelParser::parseTileLayers(tinyxml2::XMLElement* tileElements, std::vecto
 		csv_values.push_back(stoi(tmp));
 	}
 
-	const std::vector<int> layerRow(_width);
+	const std::vector<int> layerRow(width);
 
-	data.reserve(_height);
-	for(int i = 0 ; i < _height ; i++)
+	data.reserve(height);
+	for(int i = 0 ; i < height ; i++)
 		data.push_back(layerRow);
 
-	for(int rows = 0 ; rows < _height ; rows++) {
-		for (int cols = 0 ; cols < _width ; cols++) {
-			data[rows][cols] = csv_values[rows * _width + cols];
+	for(int rows = 0 ; rows < height ; rows++) {
+		for (int cols = 0 ; cols < width ; cols++) {
+			data[rows][cols] = csv_values[rows * width + cols];
 		}
 	}
 
 	tileLayer->setTileIDs(data);
-	layers->push_back(tileLayer);
+	pLayers->push_back(tileLayer);
 }
 
-void LevelParser::parseTextures(tinyxml2::XMLElement* textureRoot) {
-	TextureManager::Instance()->load(textureRoot->Attribute("value"), textureRoot->Attribute("name"));
+void LevelParser::parseTextures(tinyxml2::XMLElement* pTextureRoot) {
+	TextureManager::Instance()->load(pTextureRoot->Attribute("value"), pTextureRoot->Attribute("name"));
 }
 
-void LevelParser::parseObjectLayer(tinyxml2::XMLElement* objectElement, std::vector<Layer*>* layer) {
+void LevelParser::parseObjectLayer(tinyxml2::XMLElement* pObjectElement, std::vector<Layer*>* pLayer) {
 	ObjectLayer * objectLayer = new ObjectLayer();
 
-	for(tinyxml2::XMLElement * objectRoot = objectElement->FirstChildElement() ; objectRoot != nullptr ; objectRoot = objectRoot->NextSiblingElement()) {
+	for(tinyxml2::XMLElement * objectRoot = pObjectElement->FirstChildElement() ; objectRoot != nullptr ; objectRoot = objectRoot->NextSiblingElement()) {
 		if(objectRoot->Value() == std::string("object")) {
 
 			int x,y, width = 0, height = 0, numFrames = 0, callbackID = 0, animSpeed = 0;
@@ -126,6 +125,6 @@ void LevelParser::parseObjectLayer(tinyxml2::XMLElement* objectElement, std::vec
 		}
 	}
 
-	layer->push_back(objectLayer);
+	pLayer->push_back(objectLayer);
 
 }

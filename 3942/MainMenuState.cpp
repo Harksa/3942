@@ -1,16 +1,14 @@
 #include "MainMenuState.h"
-#include "TextureManager.h"
 #include "Game.h"
 #include "StateParser.h"
 #include "StateChangeAsker.h"
-#include "MenuButton.h"
 #include "GameParameters.h"
 
-const std::string MainMenuState::menuID = "MENU";
+const std::string MainMenuState::menu_id = "MENU";
 
 void MainMenuState::update() {
-	if(!_gameObjects.empty()) {
-		for (auto& _gameObject : _gameObjects) {
+	if(!game_objects.empty()) {
+		for (auto& _gameObject : game_objects) {
 			if(_gameObject != nullptr) {
 				_gameObject->update();
 			}
@@ -20,7 +18,7 @@ void MainMenuState::update() {
 
 void MainMenuState::render() {
 	background.draw();
-	for (auto game_object : _gameObjects) {
+	for (auto game_object : game_objects) {
 		game_object->draw();
 	}
 }
@@ -41,7 +39,7 @@ void MainMenuState::exitFromMenu() {
 
 
 bool MainMenuState::onEnter() {
-	StateParser::parseState("ressources/states.xml", menuID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/states.xml", menu_id, &game_objects, &texture_id_list);
 
 	background.load("Textures/Backgrounds/MainMenu.png", "MainMenu");
 
@@ -65,6 +63,6 @@ bool MainMenuState::onExit() {
 	return true;
 }
 
-std::string MainMenuState::getStateID() const { return menuID; }
+std::string MainMenuState::getStateID() const { return menu_id; }
 
 void MainMenuState::menuToHighScores() {}

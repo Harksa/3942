@@ -1,23 +1,20 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <zlib.h>
-#include <sstream>
-#include <iostream>
 #include "Layer.h"
 
 /**
  *\brief Les informations d'un set de tile enregistré dans Tiled.
  */
 struct Tileset {
-	int firstGridID;
-	int tileWidth;
-	int tileHeight;
+	int first_grid_id;
+	int tile_width;
+	int tile_height;
 	int spacing;
 	int margin;
 	int width;
 	int height;
-	int numColumns;
+	int num_columns;
 
 	std::string name;
 };
@@ -66,11 +63,11 @@ private:
 	/**
 	 * \brief les tilesets disponibles dans ce niveau.
 	 */
-	std::vector<Tileset> _tilesets;
+	std::vector<Tileset> tilesets;
 
 	/**
 	 * \brief Les layers disponibles dans ce niveau.
 	 */
-	std::vector<Layer*> _layers;
+	std::vector<Layer*> layers;
 };
 

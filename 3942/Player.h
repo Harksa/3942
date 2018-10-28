@@ -10,15 +10,15 @@ class Player : public GameObject {
 public:
 	/**
 	 * \brief Créer un player
-	 * \param num L'ID du player
+	 * \param pNum L'ID du player
 	 */
-	Player(PLAYER_NUM num = PLAYER_1);
+	Player(PLAYER_NUM pNum = PLAYER_1);
 
 	/**
 	 * \brief Charge le Player en fonction du LoadParameters
-	 * \param parameters Les attributs du Player
+	 * \param pParameters Les attributs du Player
 	 */
-	void load(const LoadParameters* parameters) override;
+	void load(const LoadParameters* pParameters) override;
 
 	/**
 	 * \brief Affiche le Player
@@ -43,9 +43,9 @@ public:
 
 	/**
 	 * \brief Détermine l'ID du joystick associé à ce joueur
-	 * \param joyID l'ID du joystick
+	 * \param pJoyId l'ID du joystick
 	 */
-	void setJoystickID(unsigned int joyID);
+	void setJoystickID(unsigned int pJoyId);
 
 	/**
 	 * \brief Retourne le joystickID du joueur
@@ -83,12 +83,12 @@ private:
 	/**
 	 * \brief Le délai entre deux tires
 	 */
-	const int fireDelay{10};
+	const int fire_delay{10};
 
 	/**
 	 * \brief Le timer qui permettra de savoir si le joueur peut tirer ou non.
 	 */
-	int timerFire{0};
+	int timer_fire{0};
 
 	/**
 	 * \brief La largeur par 2 du sprite du Bullet tiré par le Player.

@@ -1,17 +1,17 @@
 #include "PlayState.h"
 
-#include "Player.h"
-#include "InputHandler.h"
-#include "StateParser.h"
+#include "BulletManager.h"
 #include "CollisionManager.h"
+#include "GameParameters.h"
+#include "InputHandler.h"
+#include "Player.h"
+#include "PlayerManager.h"
 #include "StateChangeAsker.h"
+#include "StateParser.h"
 #include "SoundManager.h"
 #include "UIManager.h"
-#include "PlayerManager.h"
-#include "GameParameters.h"
-#include "BulletManager.h"
 
-const std::string PlayState::playID = "PLAY";
+const std::string PlayState::play_id = "PLAY";
 
 void PlayState::update() {
 	//Check mort joueurs
@@ -41,34 +41,34 @@ void PlayState::update() {
 
 	//Check joysticks
 	if(!InputHandler::areNumberOfJoysticksEgalsToNumberOfPlayersUsingJoysticks()) {
-		_gameObjects[0]->getSprite()->setVisibility(true);
+		game_objects[0]->getSprite()->setVisibility(true);
 		return;
 	} else {
-		_gameObjects[0]->getSprite()->setVisibility(false);
+		game_objects[0]->getSprite()->setVisibility(false);
 	}
 
 	background.update();
 
-	CollisionManager::checkCollisionEnemyWithPlayerBullets(_gameObjects);
+	CollisionManager::checkCollisionEnemyWithPlayerBullets(game_objects);
 
 	for (auto player : PlayerManager::Instance()->getPlayers()) {
 		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
-		CollisionManager::checkCollisionsPlayerAgainstEnemies(player, _gameObjects);
+		CollisionManager::checkCollisionsPlayerAgainstEnemies(player, game_objects);
 	}
 
 	waveUpdate();
 
 	PlayerManager::Instance()->update();
 
-	if(!_gameObjects.empty()) {
-		for(auto game_object = _gameObjects.begin() ; game_object != _gameObjects.end() ; ) {
+	if(!game_objects.empty()) {
+		for(auto game_object = game_objects.begin() ; game_object != game_objects.end() ; ) {
 			if(!(*game_object)->isDead()) {
 				(*game_object)->update();
 				++game_object;
 			} else {
 				(*game_object)->clean();
 				delete *game_object;
-				game_object = _gameObjects.erase(game_object);
+				game_object = game_objects.erase(game_object);
 			}
 		}
 	}
@@ -84,15 +84,15 @@ void PlayState::render() {
 
 	PlayerManager::Instance()->render();
 
-	if(!_gameObjects.empty()) {
-		for (unsigned int i = 1 ; i < _gameObjects.size(); i++){
-			if(!_gameObjects[i]->isDead()) {
-				_gameObjects[i]->draw();
+	if(!game_objects.empty()) {
+		for (unsigned int i = 1 ; i < game_objects.size(); i++){
+			if(!game_objects[i]->isDead()) {
+				game_objects[i]->draw();
 			}
 		}
 	}
 
-	_gameObjects[0]->draw(); // Draw uniquement si isVisible = true donc pas besoin de if
+	game_objects[0]->draw(); // Draw uniquement si isVisible = true donc pas besoin de if
 
 	UIManager::Instance()->draw();
 }
@@ -100,9 +100,9 @@ void PlayState::render() {
 
 bool PlayState::onEnter() {
 
-	StateParser::parseState("ressources/states.xml", playID, &_gameObjects, &_textureIDList);
+	StateParser::parseState("ressources/states.xml", play_id, &game_objects, &texture_id_list);
 
-	_gameObjects[0]->getSprite()->setVisibility(false); //Fond gris
+	game_objects[0]->getSprite()->setVisibility(false); //Fond gris
 
 	WaveGenerator::parseWave("Levels/Level" + std::to_string(StateChangeAsker::getCurrentLevel()) + ".xml", &enemy_spaw_informations);
 
@@ -137,14 +137,14 @@ void PlayState::waveUpdate() {
 	if(encouter < enemy_spaw_informations.size()) 
 		if(enemy_spaw_informations[encouter].timer == timer) {
 			GameObject * gameObject = GameObjectFactory::Instance()->create(enemy_spaw_informations[encouter].type);
-			LoadParameters * parameters = new LoadParameters(enemy_spaw_informations[encouter].spawn_x, enemy_spaw_informations[encouter].spawn_y, enemy_spaw_informations[encouter].textureID);
+			LoadParameters * parameters = new LoadParameters(enemy_spaw_informations[encouter].spawn_x, enemy_spaw_informations[encouter].spawn_y, enemy_spaw_informations[encouter].texture_id);
 			gameObject->load(parameters);
 			delete parameters;
 
 			static_cast<Enemy*>(gameObject)->setPoints(enemy_spaw_informations[encouter].points);
 			static_cast<Enemy*>(gameObject)->setHealth(enemy_spaw_informations[encouter].health);
 
-			_gameObjects.push_back(gameObject);
+			game_objects.push_back(gameObject);
 
 			encouter++;
 		}
@@ -153,7 +153,7 @@ void PlayState::waveUpdate() {
 
 bool PlayState::isLevelFinished() {
 	if(encouter == enemy_spaw_informations.size()) {
-		for (auto game_object : _gameObjects) {
+		for (auto game_object : game_objects) {
 			if(dynamic_cast<Enemy*>(game_object) != nullptr) {
 				return false;
 			}
@@ -165,4 +165,4 @@ bool PlayState::isLevelFinished() {
 	return false;
 }
 
-std::string PlayState::getStateID() const { return playID; }
+std::string PlayState::getStateID() const { return play_id; }

@@ -8,8 +8,8 @@ void AnimatedGraphic::draw() {
 	GameObject::draw();
 }
 
-void AnimatedGraphic::load(const LoadParameters * parameters) {
-	GameObject::load(parameters);
+void AnimatedGraphic::load(const LoadParameters * pParameters) {
+	GameObject::load(pParameters);
 }
 
 void AnimatedGraphic::clean() {

@@ -50,7 +50,7 @@ private:
 	/**
 	 * \brief l'ID de l'état.
 	 */
-	static const std::string playID;
+	static const std::string play_id;
 
 	/**
 	 * \brief Informations concernant les vagues d'enemies
@@ -60,11 +60,11 @@ private:
 	/**
 	 * \brief Le timer pour l'appartion de vagues ennemies
 	 */
-	unsigned int timer = 0;
+	unsigned int timer{0};
 
 	/**
 	 * \brief Le compteur d'ennemis créés
 	 */
-	unsigned int encouter = 0;
+	unsigned int encouter{0};
 };
 

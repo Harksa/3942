@@ -1,7 +1,5 @@
 #pragma once
-#include <SDL2/SDL_ttf.h>
 #include "FontCache/SDL_FontCache.h"
-#include <string>
 
 /**
  * \brief Cette classe gère l'interface utilisateur en jeu.
@@ -35,15 +33,15 @@ public:
 private:
 
 	/**
-	 * \brief Le rect où sera affiché le texte de reconnection de manette
-	 */
-	SDL_Rect text_rect;
-
-	UIManager() = default;
-
-	/**
 	 * \brief L'instance de UIManager
 	 */
 	static UIManager * instance;
+
+	/**
+	 * \brief Le rect où sera affiché le texte de reconnection de manette
+	 */
+	SDL_Rect text_rect;
+	
+	UIManager() = default;
 
 };

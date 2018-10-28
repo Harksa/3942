@@ -9,19 +9,19 @@ ScoreManager* ScoreManager::Instance() {
 	return instance;
 }
 
-void ScoreManager::addPoints(unsigned int points, PLAYER_NUM player) {
-	switch (player) {
+void ScoreManager::addPoints(const unsigned int pPoints, const PLAYER_NUM pPlayer) {
+	switch (pPlayer) {
 		case(PLAYER_1):
-			score_player_1 += points;
+			score_player_1 += pPoints;
 			break;
 		case(PLAYER_2):
-			score_player_2 += points;
+			score_player_2 += pPoints;
 			break;
 	}
 }
 
-unsigned int ScoreManager::getScore(PLAYER_NUM player) const {
-		switch (player) {
+unsigned int ScoreManager::getScore(const PLAYER_NUM pPlayer) const {
+		switch (pPlayer) {
 			case PLAYER_1:
 				return score_player_1;
 			case PLAYER_2:

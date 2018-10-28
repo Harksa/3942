@@ -6,70 +6,71 @@
 #include "ChooseControlState.h"
 #include "OptionsState.h"
 
-void GameStateMachine::createState(const StateChoice choice) {
-	switch(choice) {
+void GameStateMachine::createState(const StateChoice pChoice) {
+	switch(pChoice) {
 		case MAIN_MENU:
-			_gameStates.push_back(std::make_shared<MainMenuState>());
+			game_states.push_back(std::make_shared<MainMenuState>());
 			break;
 		case OPTIONS:
-			_gameStates.push_back(std::make_shared<OptionsState>());
+			game_states.push_back(std::make_shared<OptionsState>());
 			break;
 		case CHOOSE_CONTROLS:
-			_gameStates.push_back(std::make_shared<ChooseControlState>());
+			game_states.push_back(std::make_shared<ChooseControlState>());
 			break;
 		case PLAY:
-			_gameStates.push_back(std::make_shared<PlayState>());
+			game_states.push_back(std::make_shared<PlayState>());
 			break;
 		case PAUSE:
-			_gameStates.push_back(std::make_shared<PauseState>());
+			game_states.push_back(std::make_shared<PauseState>());
 			break;
 		case GAME_OVER:
-			_gameStates.push_back(std::make_shared<GameOverState>());
+			game_states.push_back(std::make_shared<GameOverState>());
 			break;
 		default:
-			_gameStates.push_back(std::make_shared<MainMenuState>());
+			game_states.push_back(std::make_shared<MainMenuState>());
 			break;
 	}
 
 }
 
-void GameStateMachine::pushState(const StateChoice choice) {
-	createState(choice);
-	_gameStates.back()->onEnter();
+void GameStateMachine::pushState(const StateChoice pChoice) {
+	createState(pChoice);
+	game_states.back()->onEnter();
 }
 
-void GameStateMachine::changeState(const StateChoice choice) {
-	if (!_gameStates.empty()) {
-		_gameStates.back()->onExit();
-		_gameStates.back() = nullptr;
-		_gameStates.pop_back();
+void GameStateMachine::changeState(const StateChoice pChoice) {
+	if (!game_states.empty()) {
+		game_states.back()->onExit();
+		game_states.back() = nullptr;
+		game_states.pop_back();
 	}
 
-	createState(choice);
-	_gameStates.back()->onEnter();
+	createState(pChoice);
+	game_states.back()->onEnter();
 }
 
 void GameStateMachine::popState() {
-	if (!_gameStates.empty()) {
-		_gameStates.back()->onExit();
-		_gameStates.back() = nullptr;
-		_gameStates.pop_back();
+	if (!game_states.empty()) {
+		game_states.back()->onExit();
+		game_states.back() = nullptr;
+		game_states.pop_back();
 	}
 }
 
 void GameStateMachine::update() {
-	if(!_gameStates.empty())
-		if(_gameStates.back()->isLoaded() && !_gameStates.back()->isExiting())
-			_gameStates.back()->update();
+	if(!game_states.empty())
+		if(game_states.back()->isLoaded() && !game_states.back()->isExiting())
+			game_states.back()->update();
 }
 
 void GameStateMachine::render() {
-	if(!_gameStates.empty())
-		if(_gameStates.back()->isLoaded() && !_gameStates.back()->isExiting())
-			_gameStates.back()->render();
+	if(!game_states.empty())
+		if(game_states.back()->isLoaded() && !game_states.back()->isExiting())
+			game_states.back()->render();
 }
 
 GameStateMachine::~GameStateMachine() {
-	for (auto game_state : _gameStates) {
+	for (auto game_state : game_states) {
 		game_state = nullptr;
 	}
+}

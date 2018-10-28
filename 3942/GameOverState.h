@@ -39,17 +39,17 @@ private:
 	/**
 	 * \brief Fonction qui permet de revenir au menu principal.
 	 */
-	static void _gameOverToMain();
+	static void gameOverToMain();
 
 	/**
 	 * \brief Fonction qui permet de relancer le jeu.
 	 */
-	static void _restartPlay();
+	static void restartPlay();
 
 	/**
 	 * L'ID de l'état.
 	 */
-	static const std::string gameOverID;
+	static const std::string game_over_id;
 
 };
 

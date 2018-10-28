@@ -28,9 +28,9 @@ public:
 
 	/**
 	 * \brief Charge le Bullet en fonction du LoadParameter
-	 * \param parameters Les paramètres du Bullet
+	 * \param pParameters Les paramètres du Bullet
 	 */
-	void load(const LoadParameters* parameters) override;
+	void load(const LoadParameters* pParameters) override;
 
 	/**
 	 * \brief Détermine si le Bullet courrant est utilisable ou non
@@ -40,9 +40,9 @@ public:
 
 	/**
 	 * \brief Permet de mettre à jour la disponibilité du Bullet
-	 * \param value La nouvelle disponibilité du Bullet
+	 * \param pValue La nouvelle disponibilité du Bullet
 	 */
-	void setAvailability(const bool value);
+	void setAvailability(bool pValue);
 
 	/**
 	 * \brief Permet de déterminer si le Bullet a besoin de changer de voisin ou non.
@@ -52,9 +52,9 @@ public:
 
 	/**
 	 * \brief Détermine si le Bullet à besoin de changer de voisin ou non
-	 * \param value La nouvelle valeur
+	 * \param pValue La nouvelle valeur
 	 */
-	void setChangeNext(bool value);
+	void setChangeNext(bool pValue);
 
 	Bullet() = default;
 	~Bullet();

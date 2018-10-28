@@ -46,14 +46,14 @@ void KeyboardControls::init() {
 	}
 }
 
-bool KeyboardControls::isScancodeTheSame(SDL_Scancode scancode) {
-	return controls[playerChange].at(controlsChange) == scancode;
+bool KeyboardControls::isScancodeTheSame(const SDL_Scancode pScancode) {
+	return controls[player_change].at(controls_change) == pScancode;
 }
 
-bool KeyboardControls::isScancodeAlreadyUsed(SDL_Scancode scancode) const {
+bool KeyboardControls::isScancodeAlreadyUsed(const SDL_Scancode pScancode) const {
 	for (const auto& i : controls) {
 		for (const auto control : i) {
-			if(control.second == scancode)
+			if(control.second == pScancode)
 				return true;
 		}
 	}
@@ -61,24 +61,24 @@ bool KeyboardControls::isScancodeAlreadyUsed(SDL_Scancode scancode) const {
 	return false;
 }
 
-void KeyboardControls::changeKey(SDL_Scancode new_key_value) {
-	controls[playerChange].at(controlsChange) = new_key_value;
+void KeyboardControls::changeKey(const SDL_Scancode pNewKeyValue) {
+	controls[player_change].at(controls_change) = pNewKeyValue;
 
 	tinyxml2::XMLDocument controlsDoc;
 
 	if(controlsDoc.LoadFile("ressources/controls.xml") == tinyxml2::XML_SUCCESS) {
 		tinyxml2::XMLElement * root = controlsDoc.RootElement();
-		if(playerChange == PLAYER_1) {
+		if(player_change == PLAYER_1) {
 			for(tinyxml2::XMLElement * e = root->FirstChildElement("PLAYER1")->FirstChildElement() ;  e != nullptr ; e = e->NextSiblingElement()) {
-				if(e->IntAttribute("enumValue") == controlsChange) {
-					e->SetAttribute("key", new_key_value);
+				if(e->IntAttribute("enumValue") == controls_change) {
+					e->SetAttribute("key", pNewKeyValue);
 					break;
 				}
 			}
 		} else {
 			for(tinyxml2::XMLElement * e = root->FirstChildElement("PLAYER2")->FirstChildElement() ;  e != nullptr ; e = e->NextSiblingElement()) {
-				if(e->IntAttribute("enumValue") == controlsChange) {
-					e->SetAttribute("key", new_key_value);
+				if(e->IntAttribute("enumValue") == controls_change) {
+					e->SetAttribute("key", pNewKeyValue);
 					break;
 				}	
 			}
@@ -90,19 +90,19 @@ void KeyboardControls::changeKey(SDL_Scancode new_key_value) {
 	}
 }
 
-SDL_Scancode KeyboardControls::getKeyCode(PLAYER_NUM player, CONTROLS key) const {
-	return controls[player].at(key);
+SDL_Scancode KeyboardControls::getKeyCode(const PLAYER_NUM pPlayer, const CONTROLS pKey) const {
+	return controls[pPlayer].at(pKey);
 }
 
-void KeyboardControls::askToChangeControls(bool value) { askToChange = value; }
+void KeyboardControls::askToChangeControls(const bool value) { ask_to_change = value; }
 
-void KeyboardControls::setToChange(PLAYER_NUM player, CONTROLS control) {
-	playerChange = player;
-	controlsChange = control;
+void KeyboardControls::setToChange(const PLAYER_NUM pPlayer, const CONTROLS pControl) {
+	player_change = pPlayer;
+	controls_change = pControl;
 }
 
-bool KeyboardControls::isAskingToChangeControls() const { return askToChange; }
+bool KeyboardControls::isAskingToChangeControls() const { return ask_to_change; }
 
-PLAYER_NUM KeyboardControls::getPlayerNumToChange() const { return playerChange; }
+PLAYER_NUM KeyboardControls::getPlayerNumToChange() const { return player_change; }
 
-CONTROLS KeyboardControls::getControlToChange() const { return controlsChange; }
+CONTROLS KeyboardControls::getControlToChange() const { return controls_change; }

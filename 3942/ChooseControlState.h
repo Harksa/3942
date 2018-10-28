@@ -46,7 +46,7 @@ private:
 	/**
 	 * \brief Le State ID de cet état
 	 */
-	static std::string ControlChooseStateID;
+	static std::string control_choose_state_id;
 
 	/**
 	 * \brief L'Animated Graphic représentant le choix de controle du joueur 1

@@ -3,25 +3,25 @@
 #include "GameParameters.h"
 #include "TextureManager.h"
 
-TileLayer::TileLayer(int tileSize, std::vector<Tileset> tilesets) : _tileSize{tileSize}, _tilesets{std::move(tilesets)} {
-	_numColumns = GameParameters::getGameWidth() / tileSize;
-	_numRows = GameParameters::getGameHeight() / tileSize;
+TileLayer::TileLayer(const int pTileSize, std::vector<Tileset> pTilesets) : tile_size{pTileSize}, tilesets{std::move(pTilesets)} {
+	num_columns = GameParameters::getGameWidth() / pTileSize;
+	num_rows = GameParameters::getGameHeight() / pTileSize;
 }
 
 void TileLayer::update() {
-	_position += _velocity;
-	_velocity.x = 1;
+	position += velocity;
+	velocity.x = 1;
 }
 
-Tileset TileLayer::getTilesetByID(int tileID) const {
+Tileset TileLayer::getTilesetByID(const int pTileId) const {
 
-    for(unsigned int i = 0; i < _tilesets.size(); i++) {
-        if( i + 1 <= _tilesets.size() - 1)  {
-            if(tileID >= _tilesets[i].firstGridID && tileID < _tilesets[i + 1].firstGridID) {
-                return _tilesets[i];
+    for(unsigned int i = 0; i < tilesets.size(); i++) {
+        if( i + 1 <= tilesets.size() - 1)  {
+            if(pTileId >= tilesets[i].first_grid_id && pTileId < tilesets[i + 1].first_grid_id) {
+                return tilesets[i];
             }
         }  else  {
-            return _tilesets[i];
+            return tilesets[i];
         }
     }
 
@@ -31,31 +31,31 @@ Tileset TileLayer::getTilesetByID(int tileID) const {
 void TileLayer::render() {
 	int x, y, x2, y2;
 
-	x = static_cast<int> (_position.x / _tileSize);
-	y = static_cast<int> (_position.y / _tileSize);
+	x = static_cast<int> (position.x / tile_size);
+	y = static_cast<int> (position.y / tile_size);
 
-	x2 = int(_position.x) % _tileSize;
-	y2 = int(_position.y) % _tileSize;
+	x2 = int(position.x) % tile_size;
+	y2 = int(position.y) % tile_size;
 
-	for(int i = 0 ; i < _numRows ; i++) {
-		for(int j = 0 ; j < _numColumns ; j++) {
-			int id = _tileIDs[i][j + x];
+	for(int i = 0 ; i < num_rows ; i++) {
+		for(int j = 0 ; j < num_columns ; j++) {
+			int id = tile_ids[i][j + x];
 			if(id == 0) continue;
 
 			Tileset tileset = getTilesetByID(id);
 			id--;
 
-			TextureManager::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing, (j * _tileSize) - x2, (i * _tileSize) - y2, _tileSize, _tileSize, (id - (tileset.firstGridID - 1)) /
-			                                     tileset.numColumns, (id - (tileset.firstGridID - 1)) % tileset.numColumns);
+			TextureManager::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing, (j * tile_size) - x2, (i * tile_size) - y2, tile_size, tile_size, (id - (tileset.first_grid_id - 1)) /
+			                                     tileset.num_columns, (id - (tileset.first_grid_id - 1)) % tileset.num_columns);
 
 		}
 	}
 }
 
-void TileLayer::setTileIDs(const std::vector<std::vector<int>>& data) {
-	_tileIDs = data;
+void TileLayer::setTileIDs(const std::vector<std::vector<int>>& pData) {
+	tile_ids = pData;
 }
 
-void TileLayer::setTileSize(int tileSize) {
-	_tileSize = tileSize;
+void TileLayer::setTileSize(const int pTileSize) {
+	tile_size = pTileSize;
 }

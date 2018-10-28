@@ -2,13 +2,13 @@
 #include "Game.h"
 #include "GameParameters.h"
 
-bool InputHandler::_joystickInitialised{false};
-std::vector<bool> InputHandler::_mouseButtonStates{false, false, false}; //Bouton gauche/milieu/droit
-Vector2D * InputHandler::mousePosition = new Vector2D();
+bool InputHandler::joystick_initialised{false};
+std::vector<bool> InputHandler::mouse_button_states{false, false, false}; //Bouton gauche/milieu/droit
+Vector2D * InputHandler::mouse_position = new Vector2D();
 bool InputHandler::is_connected[2]{false, false};
 SDL_Joystick * InputHandler::joystick_arrays[2];
-int InputHandler::currentNumberOfJoysticks{0};
-unsigned char const * InputHandler::keyStates = new unsigned char();
+int InputHandler::current_number_of_joysticks{0};
+unsigned char const * InputHandler::key_states = new unsigned char();
 
 void InputHandler::initialiseJoysticks() {
 	if(SDL_WasInit(SDL_INIT_JOYSTICK) == 0) {
@@ -19,7 +19,7 @@ void InputHandler::initialiseJoysticks() {
 		for (int i = 0 ; i < SDL_NumJoysticks() ; i++) {
 			SDL_Joystick* joy = SDL_JoystickOpen(i);
 
-			currentNumberOfJoysticks++;
+			current_number_of_joysticks++;
 
 			if(joy) {
 				joystick_arrays[i] = joy;
@@ -29,9 +29,9 @@ void InputHandler::initialiseJoysticks() {
 
 		SDL_JoystickEventState(SDL_ENABLE);
 
-		_joystickInitialised = true;
+		joystick_initialised = true;
 	} else {
-		_joystickInitialised = false;
+		joystick_initialised = false;
 	}
 }
 
@@ -44,14 +44,14 @@ void InputHandler::update() {
 		}
 
 		handleJoysticksConnection();
-		keyStates = SDL_GetKeyboardState(nullptr);
+		key_states = SDL_GetKeyboardState(nullptr);
 		handleMouse(event);
 	}
 }
 
 void InputHandler::handleJoysticksConnection() {
-	if(currentNumberOfJoysticks != SDL_NumJoysticks()) {
-		if(currentNumberOfJoysticks < SDL_NumJoysticks()) {
+	if(current_number_of_joysticks != SDL_NumJoysticks()) {
+		if(current_number_of_joysticks < SDL_NumJoysticks()) {
 			for(unsigned int i = 0 ; i < MAX_PLAYER_COUNT ; i++) {
 				if(!SDL_JoystickGetAttached(joystick_arrays[i])) {
 					joystick_arrays[i] = SDL_JoystickOpen(i);
@@ -61,8 +61,8 @@ void InputHandler::handleJoysticksConnection() {
 			}
 
 			SDL_JoystickEventState(SDL_ENABLE);
-			_joystickInitialised = true;
-			currentNumberOfJoysticks++;
+			joystick_initialised = true;
+			current_number_of_joysticks++;
 		} else {
 
 			for(unsigned int i = 0 ; i < MAX_PLAYER_COUNT ; i++) {
@@ -75,10 +75,10 @@ void InputHandler::handleJoysticksConnection() {
 				}
 			}
 			
-			currentNumberOfJoysticks--;
+			current_number_of_joysticks--;
 
-			if(currentNumberOfJoysticks == 0)
-				_joystickInitialised = false;
+			if(current_number_of_joysticks == 0)
+				joystick_initialised = false;
 		}
 	}
 
@@ -86,46 +86,46 @@ void InputHandler::handleJoysticksConnection() {
 
 bool InputHandler::areNumberOfJoysticksEgalsToNumberOfPlayersUsingJoysticks() {
 	if(GameParameters::isTwoPlayer()) {
-		if(!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && !GameParameters::isPlayerUsingKeyboard(PLAYER_2) && currentNumberOfJoysticks != 2 ||
+		if(!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && !GameParameters::isPlayerUsingKeyboard(PLAYER_2) && current_number_of_joysticks != 2 ||
 		   (!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && GameParameters::isPlayerUsingKeyboard(PLAYER_2) ||
-		   GameParameters::isPlayerUsingKeyboard(PLAYER_1) && !GameParameters::isPlayerUsingKeyboard(PLAYER_2)) && currentNumberOfJoysticks < 1) {
+		   GameParameters::isPlayerUsingKeyboard(PLAYER_1) && !GameParameters::isPlayerUsingKeyboard(PLAYER_2)) && current_number_of_joysticks < 1) {
 			return false;
 		}
-	} else if (!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && currentNumberOfJoysticks < 1) {
+	} else if (!GameParameters::isPlayerUsingKeyboard(PLAYER_1) && current_number_of_joysticks < 1) {
 		return false;
 	}
 
 	return true;
 }
 
-void InputHandler::handleMouse(SDL_Event& event) {
-	if(event.type == SDL_MOUSEBUTTONDOWN) {
-		if(event.button.button == SDL_BUTTON_LEFT)
-			_mouseButtonStates[LEFT_BUTTON] = true;
-		if (event.button.button == SDL_BUTTON_MIDDLE)
-			_mouseButtonStates[MIDDLE_BUTTON] = true;
-		if(event.button.button == SDL_BUTTON_RIGHT)
-			_mouseButtonStates[RIGHT_BUTTON] = true;
+void InputHandler::handleMouse(SDL_Event& pEvent) {
+	if(pEvent.type == SDL_MOUSEBUTTONDOWN) {
+		if(pEvent.button.button == SDL_BUTTON_LEFT)
+			mouse_button_states[LEFT_BUTTON] = true;
+		if (pEvent.button.button == SDL_BUTTON_MIDDLE)
+			mouse_button_states[MIDDLE_BUTTON] = true;
+		if(pEvent.button.button == SDL_BUTTON_RIGHT)
+			mouse_button_states[RIGHT_BUTTON] = true;
 	}
 
-	if(event.type == SDL_MOUSEBUTTONUP) {
-		if(event.button.button == SDL_BUTTON_LEFT)
-			_mouseButtonStates[LEFT_BUTTON] = false;
-		if (event.button.button == SDL_BUTTON_MIDDLE)
-			_mouseButtonStates[MIDDLE_BUTTON] = false;
-		if(event.button.button == SDL_BUTTON_RIGHT)
-			_mouseButtonStates[RIGHT_BUTTON] = false;
+	if(pEvent.type == SDL_MOUSEBUTTONUP) {
+		if(pEvent.button.button == SDL_BUTTON_LEFT)
+			mouse_button_states[LEFT_BUTTON] = false;
+		if (pEvent.button.button == SDL_BUTTON_MIDDLE)
+			mouse_button_states[MIDDLE_BUTTON] = false;
+		if(pEvent.button.button == SDL_BUTTON_RIGHT)
+			mouse_button_states[RIGHT_BUTTON] = false;
 	}
 
-	if(event.type == SDL_MOUSEMOTION) {
-		mousePosition->x = static_cast<float> (event.motion.x);
-		mousePosition->y = static_cast<float> (event.motion.y);
+	if(pEvent.type == SDL_MOUSEMOTION) {
+		mouse_position->x = static_cast<float> (pEvent.motion.x);
+		mouse_position->y = static_cast<float> (pEvent.motion.y);
 	}
 }
 
-bool InputHandler::isKeyDown(const SDL_Scancode key) {
-	if(keyStates != nullptr) {
-		return keyStates[key] == 1;
+bool InputHandler::isKeyDown(const SDL_Scancode pKey) {
+	if(key_states != nullptr) {
+		return key_states[pKey] == 1;
 	}
 
 	return false;
@@ -133,7 +133,7 @@ bool InputHandler::isKeyDown(const SDL_Scancode key) {
 
 
 void InputHandler::clean() {
-	if(_joystickInitialised) {
+	if(joystick_initialised) {
 		for(unsigned int i = 0 ; i < MAX_PLAYER_COUNT ; i++) {
 			if(is_connected[i]) {
 				SDL_JoystickClose(joystick_arrays[i]);
@@ -144,19 +144,19 @@ void InputHandler::clean() {
 }
 
 void InputHandler::reset() {
-    _mouseButtonStates[LEFT_BUTTON] = false;
-    _mouseButtonStates[RIGHT_BUTTON] = false;
-    _mouseButtonStates[MIDDLE_BUTTON] = false;
+    mouse_button_states[LEFT_BUTTON] = false;
+    mouse_button_states[RIGHT_BUTTON] = false;
+    mouse_button_states[MIDDLE_BUTTON] = false;
 }
 
-bool InputHandler::joystickInitialised() { return _joystickInitialised; }
+bool InputHandler::joystickInitialised() { return joystick_initialised; }
 
-bool InputHandler::getMouseButtonState(int buttonNumber) { return _mouseButtonStates[buttonNumber]; }
+bool InputHandler::getMouseButtonState(const int pButtonNumber) { return mouse_button_states[pButtonNumber]; }
 
-Vector2D* InputHandler::getMousePosition() { return mousePosition; }
+Vector2D* InputHandler::getMousePosition() { return mouse_position; }
 
-SDL_Joystick* InputHandler::getJoystickByID(int id) { return joystick_arrays[id]; }
+SDL_Joystick* InputHandler::getJoystickByID(const int pId) { return joystick_arrays[pId]; }
 
 unsigned InputHandler::getNumberOfJoysticks() { return SDL_NumJoysticks(); }
 
-const Uint8* InputHandler::getKeyStates() { return keyStates; }
+const Uint8* InputHandler::getKeyStates() { return key_states; }

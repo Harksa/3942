@@ -40,12 +40,12 @@ private:
 	/**
 	 * \brief Booléen permettant de déterminer si un scancode a déjà été utilisé
 	 */
-	bool scancodeAlreadyUsed{false};
+	bool scancode_already_used{false};
 
 	/**
 	 * \brief Le state ID de cet état
 	 */
-	static std::string optionsID;
+	static std::string options_id;
 
 	/**
 	 * \brief Les vecteurs comprennant les boutons de changement de touches du clavier

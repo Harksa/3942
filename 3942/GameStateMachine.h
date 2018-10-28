@@ -9,18 +9,23 @@
  */
 class GameStateMachine {
 public:
-	void createState(StateChoice choice);
+	/**
+	 * \brief Créer un état
+	 * \param pChoice Le choix de l'état à créer
+	 */
+	void createState(StateChoice pChoice);
+
 	/**
 	 * \brief Rajoute un état par dessus un état existant. (sans suppression)
-	 * \param choice Le nouvel état où l'on souhaiter aller.
+	 * \param pChoice Le nouvel état où l'on souhaiter aller.
 	 */
-	void pushState(StateChoice choice);
+	void pushState(StateChoice pChoice);
 
 	/**
 	 * \brief Change l'état pour celui rentré en paramètre.
-	 * \param choice Le nouvel état où l'on souhaiter aller.
+	 * \param pChoice Le nouvel état où l'on souhaiter aller.
 	 */
-	void changeState(StateChoice choice);
+	void changeState(StateChoice pChoice);
 
 	/**
 	 * \brief Détruit le dernier état de la liste.
@@ -46,6 +51,6 @@ private:
 	/**
 	 * \brief La liste des états du jeu.
 	 */
-	std::vector<std::shared_ptr<GameState>> _gameStates;
+	std::vector<std::shared_ptr<GameState>> game_states;
 };
 
