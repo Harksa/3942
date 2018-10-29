@@ -49,8 +49,8 @@ public:
 
 	 MenuButton() = default;
 
-protected:
-	
+private:
+
 	/**
 	 * \brief Les états des boutons de souris possible
 	 */
@@ -64,8 +64,6 @@ protected:
 	 * \brief Booléen déterminant si le bouton a été relaché ou non
 	 */
 	bool released {true};
-
-private:
 	/**
 	 * \brief La fonction callback associé au bouton
 	 */
@@ -75,7 +73,6 @@ private:
 	 * \brief L'ID du callback associé au bouton
 	 */
 	int callback_id{0};
-
 };
 
 /**
