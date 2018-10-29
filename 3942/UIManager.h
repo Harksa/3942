@@ -8,12 +8,6 @@ class UIManager {
 public:
 
 	/**
-	 * \brief Retourne l'instance de UIManager
-	 * \return L'instance de UIManager
-	 */
-	static UIManager* Instance();
-
-	/**
 	 * \brief Initialise l'UIManager
 	 */
 	void init();
@@ -39,14 +33,10 @@ public:
 	 */
 	bool canStartGame() const;
 
+	UIManager() = default;
 	~UIManager() = default;
 
 private:
-
-	/**
-	 * \brief L'instance de UIManager
-	 */
-	static UIManager * instance;
 
 	/**
 	 * \brief Le rect où sera affiché le texte de reconnection de manette
@@ -67,6 +57,5 @@ private:
 	 * \brief Le timer
 	 */
 	unsigned int timer{0};
-	
-	UIManager() = default;
+
 };

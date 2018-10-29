@@ -1,6 +1,9 @@
 #pragma once
 #include "GameState.h"
 #include <vector>
+
+#include "PlayerManager.h"
+#include "UIManager.h"
 #include "WaveGenerator.h"
 
 /**
@@ -45,6 +48,9 @@ public:
 	 
 private:
 
+	/**
+	 * \brief Détermine si le niveau est terminé ou non
+	 */
 	bool isLevelFinished();
 
 	/**
@@ -56,6 +62,16 @@ private:
 	 * \brief Informations concernant les vagues d'enemies
 	 */
 	std::vector<EnemySpawInformations> enemy_spaw_informations;
+
+	/**
+	 * \brief Le PlayerManager
+	 */
+	PlayerManager player_manager{};
+
+	/**
+	 * \brief L'UIManager
+	 */
+	UIManager ui_manager{};
 
 	/**
 	 * \brief Le timer pour l'appartion de vagues ennemies

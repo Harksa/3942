@@ -5,15 +5,6 @@
 #include "InputHandler.h"
 #include "StateChangeAsker.h"
 
-UIManager * UIManager::instance{nullptr};
-
-UIManager* UIManager::Instance() {
-	if (instance == nullptr)
-		instance = new UIManager();
-
-	return instance;
-}
-
 void UIManager::init() {
 	FontManager::Instance()->createFont("TexWork", "Fonts/TEXWORK.ttf", 20, {255,255,255,255});
 

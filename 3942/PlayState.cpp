@@ -15,11 +15,11 @@ const std::string PlayState::play_id = "PLAY";
 
 void PlayState::update() {
 
-	PlayerManager::Instance()->update();
+	player_manager.update();
 
 	background.update();
 
-	UIManager::Instance()->update();
+	ui_manager.update();
 
 	BulletManager::Instance()->update();
 
@@ -29,7 +29,7 @@ void PlayState::update() {
 		return;
 	}
 
-	if(!UIManager::Instance()->canStartGame()) {
+	if(!ui_manager.canStartGame()) {
 		game_objects[0]->getSprite()->setVisibility(true);
 		return;
 	} else {
@@ -37,7 +37,7 @@ void PlayState::update() {
 	}
 
 	//Check mort joueurs
-	if(PlayerManager::Instance()->doesAllPlayersDoesntHaveAnyRemainingLives()) {
+	if(player_manager.doesAllPlayersDoesntHaveAnyRemainingLives()) {
 		StateChangeAsker::askToChange(GAME_OVER);
 		StateChangeAsker::setHasWon(false);
 		return;
@@ -67,7 +67,7 @@ void PlayState::update() {
 	//Gestion des collisions
 	CollisionManager::checkCollisionEnemyWithPlayerBullets(game_objects);
 
-	for (auto player : PlayerManager::Instance()->getPlayers()) {
+	for (auto player : player_manager.getPlayers()) {
 		CollisionManager::checkCollisionPlayerWithEnemyBullets(player);
 		CollisionManager::checkCollisionsPlayerAgainstEnemies(player, game_objects);
 	}
@@ -95,7 +95,7 @@ void PlayState::render() {
 
 	BulletManager::Instance()->render();
 
-	PlayerManager::Instance()->render();
+	player_manager.render();
 
 	if(!game_objects.empty()) {
 		for (unsigned int i = 1 ; i < game_objects.size(); i++){
@@ -107,7 +107,7 @@ void PlayState::render() {
 
 	game_objects[0]->draw(); // Draw uniquement si isVisible = true donc pas besoin de if
 
-	UIManager::Instance()->draw();
+	ui_manager.draw();
 }
 
 
@@ -123,9 +123,9 @@ bool PlayState::onEnter() {
 
 	background.load("Textures/Backgrounds/starBackground.png", "stars", 0.6f);
 
-	PlayerManager::Instance()->init();
+	player_manager.init();
+	ui_manager.init();
 	BulletManager::Instance()->init();
-	UIManager::Instance()->init();
 
 	is_loaded = true;
 
@@ -137,8 +137,9 @@ bool PlayState::onExit() {
 
 	clearState();
 
-	UIManager::Instance()->clear();
-	PlayerManager::Instance()->clear();
+	ui_manager.clear();
+	player_manager.clear();
+
 	BulletManager::Instance()->clear();
 
 	return true;

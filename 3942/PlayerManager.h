@@ -9,12 +9,6 @@ class PlayerManager {
 public:
 
 	/**
-	 * \brief Retourne l'instance du PlayerManager
-	 * \return L'instance du PlayerManager
-	 */
-	static PlayerManager* Instance();
-
-	/**
 	 * \brief Initialise le PlayerManager
 	 */
 	void init();
@@ -46,14 +40,9 @@ public:
 	 */
 	bool doesAllPlayersDoesntHaveAnyRemainingLives() const;
 
-private:
-
 	PlayerManager() = default;
 
-	/**
-	 * \brief L'instance de PlayerManager
-	 */
-	static PlayerManager * instance;
+private:
 
 	/**
 	 * \brief La liste des joueurs présents dans le niveau
