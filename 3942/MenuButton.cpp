@@ -1,5 +1,6 @@
 #include "MenuButton.h"
 #include "InputHandler.h"
+#include <functional>
 
 void MenuButton::load(const LoadParameters *pParameters) {
 	GameObject::load(pParameters);
@@ -36,5 +37,9 @@ void MenuButton::clean() {
 }
 
 void MenuButton::setCallback(void (* pCallback)()) { callback = pCallback; }
+
+void MenuButton::setCallback(const std::function<void()>& pCallback) {
+	callback = pCallback;
+} 
 
 int MenuButton::getCallbackId() const { return callback_id; }

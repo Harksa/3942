@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "GameObjectFactory.h"
+#include <functional>
 
 /**
  * \brief Boutton de menu. Le joueur peut cliquer dessus et une action sera effectué en fonction du callback associé.
@@ -35,6 +36,12 @@ public:
 	void setCallback(void (*pCallback)());
 
 	/**
+	 * \brief Associe une fonction callback au bouton
+	 * \param pCallback La fonction callback que l'on souhaite associer
+	 */
+	void setCallback(const std::function<void()>& pCallback);
+
+	/**
 	 * \brief Retourne l'ID du callback associé à ce bouton
 	 * \return L'ID du callback associé
 	 */
@@ -62,7 +69,7 @@ private:
 	/**
 	 * \brief La fonction callback associé au bouton
 	 */
-	void (*callback)() {nullptr};
+	std::function<void()> callback {nullptr};
 
 	/**
 	 * \brief L'ID du callback associé au bouton

@@ -57,6 +57,11 @@ public:
 private:
 
 	/**
+	 * \brief La fonction callback appelée par ce bouton
+	 */
+	void callbackFunction() const;
+
+	/**
 	 * \brief Le rect ou sera affiché le texte du bouton
 	 */
 	SDL_Rect text_rect;
