@@ -29,11 +29,13 @@ void PlayState::update() {
 		return;
 	}
 
+
 	if(!ui_manager.canStartGame()) {
 		game_objects[0]->getSprite()->setVisibility(true);
 		return;
 	} else {
 		game_objects[0]->getSprite()->setVisibility(false);
+		ui_manager.setGameEntered();
 	}
 
 	//Check mort joueurs
@@ -45,14 +47,19 @@ void PlayState::update() {
 
 	//Fin du niveau
 	if(isLevelFinished()) {
-		if(StateChangeAsker::getCurrentLevel() == GameParameters::getTotalNumberOfLevels()) {
-			StateChangeAsker::askToChange(GAME_OVER);
-			StateChangeAsker::setHasWon(true);
-			return;
-		} else {
-			StateChangeAsker::askToChange(PLAY);
-			StateChangeAsker::incrementeLevel();
-			return;
+		ui_manager.setHasWon();
+		ui_manager.resetTimer();
+
+		if(ui_manager.canMoveToNextLevel()) {
+			if(StateChangeAsker::getCurrentLevel() == GameParameters::getTotalNumberOfLevels()) {
+				StateChangeAsker::askToChange(GAME_OVER);
+				StateChangeAsker::setHasWon(true);
+				return;
+			} else {
+				StateChangeAsker::askToChange(PLAY);
+				StateChangeAsker::incrementeLevel();
+				return;
+			}
 		}
 	}
 

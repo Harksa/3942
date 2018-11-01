@@ -33,6 +33,33 @@ public:
 	 */
 	bool canStartGame() const;
 
+	/**
+	 * \brief Indique que le joueur a gagné la partie
+	 */
+	void setHasWon();
+
+	/**
+	 * \brief Permet de savoir si le joueur a gagné la partie
+	 * \return Vrai s'il a gagné la partie, faux sinon
+	 */
+	bool hasWonGame() const;
+
+	/**
+	 * \brief Permet de savoir si le joueur peut avancer au niveau suivant
+	 * \return Vrai s'il peut, faux sinon
+	 */
+	bool canMoveToNextLevel() const;
+
+	/**
+	 * \brief Indique que le joueur est entré en jeu
+	 */
+	void setGameEntered();
+
+	/**
+	 * \brief Reset le timer
+	 */
+	void resetTimer();
+
 	UIManager() = default;
 	~UIManager() = default;
 
@@ -54,8 +81,28 @@ private:
 	unsigned int enter_game_timer{150};
 
 	/**
+	 * \brief Le temps avant de quiter le jeu
+	 */
+	unsigned int exit_game_timer{150};
+
+	/**
 	 * \brief Le timer
 	 */
 	unsigned int timer{0};
+
+	/**
+	 * \brief Détermine si le joueur a gagné la partie ou non
+	 */
+	bool has_won_game{false};
+
+	/**
+	 * brief Détermine si le joueur est entré en jeu
+	 */
+	bool game_entered{false};
+
+	/**
+	 * \brief Détermine si le timer a déjà été réinitialisé
+	 */
+	bool timer_already_reseted{false};
 
 };

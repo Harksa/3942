@@ -24,11 +24,15 @@ void UIManager::update() {
 
 void UIManager::draw() const {
 	
-	if(timer <= enter_game_timer) {
+	if(!game_entered && timer <= enter_game_timer) {
 		FontManager::Instance()->drawBoxAlign("TexWork", text_rect, FC_ALIGN_CENTER, "Level " + std::to_string(StateChangeAsker::getCurrentLevel()));
 
 		if(timer >= enter_game_timer * 0.5f)
 			FontManager::Instance()->drawBoxAlign("TexWork", start_text_rect, FC_ALIGN_CENTER, "Start");
+	}
+
+	if(has_won_game) {
+		FontManager::Instance()->drawBoxAlign("TexWork", text_rect, FC_ALIGN_CENTER, "Level " + std::to_string(StateChangeAsker::getCurrentLevel()) + " completed !");
 	}
 
 	if(!InputHandler::areNumberOfJoysticksEgalsToNumberOfPlayersUsingJoysticks()) {
@@ -48,5 +52,28 @@ void UIManager::clear() const {
 }
 
 bool UIManager::canStartGame() const {
-	return timer >= enter_game_timer;
+	return game_entered || timer >= enter_game_timer;
+}
+
+void UIManager::setHasWon() {
+	has_won_game = true;
+}
+
+bool UIManager::hasWonGame() const {
+	return has_won_game;
+}
+
+bool UIManager::canMoveToNextLevel() const {
+	return has_won_game && timer >= exit_game_timer;
+}
+
+void UIManager::setGameEntered() {
+	game_entered = true;
+}
+
+void UIManager::resetTimer() {
+	if(!timer_already_reseted) {
+		timer = 0;
+		timer_already_reseted = true;
+	}
 }

@@ -64,6 +64,7 @@ private:
 	 * \brief Booléen déterminant si le bouton a été relaché ou non
 	 */
 	bool released {true};
+
 	/**
 	 * \brief La fonction callback associé au bouton
 	 */
