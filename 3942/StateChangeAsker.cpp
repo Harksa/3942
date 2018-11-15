@@ -12,13 +12,13 @@ bool StateChangeAsker::has_won{false};
 
 unsigned int StateChangeAsker::current_level{1};
 
-void StateChangeAsker::askToChange(StateChoice new_choice) {
-	choice = new_choice;
+void StateChangeAsker::askToChange(const StateChoice pNewChoice) {
+	choice = pNewChoice;
 	is_asking_to_change = true;
 }
 
-void StateChangeAsker::askToPush(StateChoice new_choice) {
-	choice = new_choice;
+void StateChangeAsker::askToPush(const StateChoice pNewChoice) {
+	choice = pNewChoice;
 	is_asking_to_push = true;
 }
 

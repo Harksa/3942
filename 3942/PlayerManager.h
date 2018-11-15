@@ -38,7 +38,7 @@ public:
 	 * \brief Permet de déterminer si tous les joueurs sont en vie ou non
 	 * \return Faux si au moins un joueur est en vie, faux sinon.
 	 */
-	bool doesAllPlayersDoesntHaveAnyRemainingLives() const;
+	bool areAllPlayersDead() const;
 
 	PlayerManager() = default;
 

@@ -97,6 +97,12 @@ public:
 	bool isDead() const;
 
 	/**
+	 * \brief Permet de savoir si le GameObject est en train de mourir ou non
+	 * \return Vrai s'il meurt, faux sinon
+	 */
+	bool isDying() const;
+
+	/**
 	 * \brief Retourne le SDL_Rect du sprite
 	 */
 	SDL_Rect getRect() const;
@@ -108,9 +114,9 @@ public:
 protected:
 
 	/**
-	 * \brief determine si le GameObject est mort ou non.
+	 * \brief Détermine si l'objet est en train de mourrir ou non
 	 */
-	bool is_dead{false};
+	bool is_dying{false};
 
 	/**
 	 * \brief La position du GameObject
@@ -136,5 +142,12 @@ protected:
 	 * \brief Booléen déterminant si le GameObject a déjà été nettoyé ou non.
 	 */
 	bool is_already_cleaned{false};
+
+private:
+	/**
+	 * \brief determine si le GameObject est mort ou non.
+	 */
+	bool is_dead{false};
+
 };
 

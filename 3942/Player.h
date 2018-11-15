@@ -36,12 +36,6 @@ public:
 	void clean() override;
 
 	/**
-	 * \brief Détermine si le joueur a encore des vies ou non
-	 * \return Vrai si le joueur a encore des vies, faux sinon
-	 */
-	bool hasRemainingLives() const;
-
-	/**
 	 * \brief Détermine l'ID du joystick associé à ce joueur
 	 * \param pJoyId l'ID du joystick
 	 */

@@ -9,13 +9,23 @@ void GameObject::load(const LoadParameters* pParameters) {
 }
 
 void GameObject::draw() {
-	sprite->draw(position, velocity);
+	if(!isOutsideScreenBondaries())
+		sprite->draw(position, velocity);
 }
 
 void GameObject::update() {
-	sprite->update();
-	velocity += acceleration;
-	position += velocity;
+	if(!isOutsideScreenBondaries()) {
+		sprite->update();
+	}
+
+	if(!isDying()) {
+		velocity += acceleration;
+		position += velocity;
+	} else {
+		if(sprite->isPlayingLastFrame()) {
+			is_dead = true;
+		}
+	}
 }
 
 void GameObject::clean() {
@@ -60,6 +70,10 @@ int GameObject::getHeight() const { return sprite->getHeight(); }
 Sprite* GameObject::getSprite() const { return sprite; }
 
 bool GameObject::isDead() const { return is_dead; }
+
+bool GameObject::isDying() const {
+	return is_dying;
+}
 
 SDL_Rect GameObject::getRect() const {
 	SDL_Rect tmp_rect;

@@ -100,6 +100,12 @@ public:
 	std::string getTextureID() const;
 
 	/**
+	 * \brief Permet de savoir si le sprite joue sa dernière frame
+	 * \return Vrai s'il joue sa dernière frame, faux sinon
+	 */
+	bool isPlayingLastFrame() const;
+
+	/**
 	 * \brief Affiche le sprite dans la fenêtre SDL
 	 * \param pPosition La position du sprite à l'écran
 	 * \param pVelocity La vélocité du GameObject associé, pour déterminer si l'on doit retourner la texture ou non
@@ -113,19 +119,54 @@ public:
 
 private:
 
+	/**
+	 * \brief Booléen déterminant si le sprite est affiché ou non
+	 */
 	bool is_visible{true};
-	
+
+	/**
+	 * \brief La largeur d'un frame du sprite
+	 */
 	int width;
+
+	/**
+	 * \brief La hauteur d'un frame du sprite
+	 */
 	int height;
 
+	/**
+	 * \brief L'angle à laquel le sprite est dessiné
+	 */
 	float angle;
-	
-	int current_frame;
-	int current_row;
-	int num_frames;
 
+	/**
+	 * \brief Le frame courrament dessiné
+	 */
+	int current_frame{0};
+
+	/**
+	 * \brief La colonne actuelle où est situé le frame dessiné
+	 */
+	int current_row{0};
+
+	/**
+	 * \brief Le total de frames que possède cet animation
+	 */
+	int total_num_frames;
+
+	/**
+	 * \brief La vitesse d'animation du sprite
+	 */
 	int anim_speed;
-	
+
+	/**
+	 * \brief La textureID associé à ce sprite
+	 */
 	std::string texture_id;
+
+	/**
+	 * \brief Utilisé pour que les frames soient remis à 0 lors d'un changement de texture
+	 */
+	Uint32 time_reseter{0};
 };
 

@@ -9,12 +9,15 @@ void CollisionManager::checkCollisionEnemyWithPlayerBullets(std::vector<GameObje
 	PlayerBullet * player_bullets = BulletManager::Instance()->getPlayerBullets();
 
 	for (auto &object : pObjects) {
-		if(dynamic_cast<Enemy *> (object) != nullptr) {
-			for (int i = 0 ; i < BulletManager::player_bullet_pool_size ; i++) {
-				if(player_bullets[i].isAvailable()) {
-					if(IntersectRect(object->getRect(), player_bullets[i].getRect())) {
-						static_cast<Enemy *>(object)->onCollisionWithBullet(player_bullets[i].getPlayerNum());
-						player_bullets[i].onCollision();
+		Enemy * casted_enemy = dynamic_cast<Enemy *> (object) ;
+		if(casted_enemy != nullptr) {
+			if(!casted_enemy->isDying()) {
+				for (int i = 0 ; i < BulletManager::player_bullet_pool_size ; i++) {
+					if(player_bullets[i].isAvailable()) {
+						if(IntersectRect(object->getRect(), player_bullets[i].getRect())) {
+							casted_enemy->onCollisionWithBullet(player_bullets[i].getPlayerNum());
+							player_bullets[i].onCollision();
+						}
 					}
 				}
 			}
@@ -23,13 +26,15 @@ void CollisionManager::checkCollisionEnemyWithPlayerBullets(std::vector<GameObje
 }
 
 void CollisionManager::checkCollisionPlayerWithEnemyBullets(Player* pPlayer) {
-	EnemyBullet * enemy_bullet = BulletManager::Instance()->getEnemyBullets();
+	if(!pPlayer->isDying()) {
+		EnemyBullet * enemy_bullet = BulletManager::Instance()->getEnemyBullets();
 
-	for(unsigned i = 0 ; i < BulletManager::enemy_bullet_pool_size ; i++) {
-		if(enemy_bullet[i].isAvailable()) {
-			if(IntersectRect(pPlayer->getRect(), enemy_bullet[i].getRect())) {
-				enemy_bullet[i].onCollision();
-				pPlayer->onCollision();
+		for(unsigned i = 0 ; i < BulletManager::enemy_bullet_pool_size ; i++) {
+			if(enemy_bullet[i].isAvailable()) {
+				if(IntersectRect(pPlayer->getRect(), enemy_bullet[i].getRect())) {
+					enemy_bullet[i].onCollision();
+					pPlayer->onCollision();
+				}
 			}
 		}
 	}
@@ -37,11 +42,13 @@ void CollisionManager::checkCollisionPlayerWithEnemyBullets(Player* pPlayer) {
 
 void CollisionManager::checkCollisionsPlayerAgainstEnemies(Player * pPlayer, std::vector<GameObject*> &pObjects) {
 	for (auto &object : pObjects) {
-		if(dynamic_cast<Enemy *> (object) != nullptr) {
-			if(IntersectRect(pPlayer->getRect(), object->getRect())) {
-				pPlayer->onCollision();
-				static_cast<Enemy*>(object)->onCollisionWithPlayer();
-
+		Enemy * casted_enemy = dynamic_cast<Enemy *> (object);
+		if(casted_enemy != nullptr) {
+			if(!casted_enemy->isDying()) {
+				if(IntersectRect(pPlayer->getRect(), object->getRect())) {
+					pPlayer->onCollision();
+					casted_enemy->onCollisionWithPlayer();
+				}
 			}
 		}
 	}

@@ -44,12 +44,14 @@ void Enemy::onCollisionWithBullet(PLAYER_NUM pLayerBulletNum) {
 
 	if(health <= 0) {
 		ScoreManager::Instance()->addPoints(points, pLayerBulletNum);
-		is_dead = true;
+		sprite->changeTextureID("Explosion");
+		is_dying = true;
 	}
 }
 
 void Enemy::onCollisionWithPlayer() {
-	is_dead = true;
+	sprite->changeTextureID("Explosion");
+	is_dying = true;
 }
 
 void Enemy::setPoints(const unsigned int pPoints) { points = pPoints; }

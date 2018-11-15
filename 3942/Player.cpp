@@ -11,7 +11,6 @@ void Player::load(const LoadParameters* parameters) {
 	GameObject::load(parameters);
 
 	bullet_sprite_width_by2 = static_cast<int> (TextureManager::Instance()->getTextureInformationsFromID("PlayerBullet").width * 0.5f);
-	is_dead = false;
 }
 
 void Player::draw() {
@@ -34,8 +33,10 @@ void Player::clean() {
 void Player::onCollision() {
 	lives--;
 
-	if(lives <= 0)
-		is_dead = true;
+	if(lives <= 0) {
+		sprite->changeTextureID("Explosion");
+		is_dying = true;
+	}
 }
 
 void Player::handleInput() {
@@ -114,8 +115,6 @@ void Player::handleBulletSpawner() {
 		timer_fire = fire_delay;
 	}
 }
-
-bool Player::hasRemainingLives() const { return lives > 0; }
 
 void Player::setJoystickID(const unsigned int pJoyId) { joystick_id = pJoyId; }
 

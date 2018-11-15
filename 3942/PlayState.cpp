@@ -39,7 +39,7 @@ void PlayState::update() {
 	}
 
 	//Check mort joueurs
-	if(player_manager.doesAllPlayersDoesntHaveAnyRemainingLives()) {
+	if(player_manager.areAllPlayersDead()) {
 		StateChangeAsker::askToChange(GAME_OVER);
 		StateChangeAsker::setHasWon(false);
 		return;
@@ -157,13 +157,13 @@ void PlayState::waveUpdate() {
 
 	if(encouter < enemy_spaw_informations.size()) 
 		if(enemy_spaw_informations[encouter].timer == timer) {
-			GameObject * gameObject = GameObjectFactory::Instance()->create(enemy_spaw_informations[encouter].type);
+			Enemy * gameObject = dynamic_cast<Enemy*> (GameObjectFactory::Instance()->create(enemy_spaw_informations[encouter].type));
 			LoadParameters * parameters = new LoadParameters(enemy_spaw_informations[encouter].spawn_x, enemy_spaw_informations[encouter].spawn_y, enemy_spaw_informations[encouter].texture_id);
 			gameObject->load(parameters);
 			delete parameters;
 
-			static_cast<Enemy*>(gameObject)->setPoints(enemy_spaw_informations[encouter].points);
-			static_cast<Enemy*>(gameObject)->setHealth(enemy_spaw_informations[encouter].health);
+			gameObject->setPoints(enemy_spaw_informations[encouter].points);
+			gameObject->setHealth(enemy_spaw_informations[encouter].health);
 
 			game_objects.push_back(gameObject);
 

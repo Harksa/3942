@@ -47,7 +47,7 @@ void PlayerManager::init() {
 
 void PlayerManager::update() {
 	for(auto it = players.begin() ; it != players.end() ; ) {
-		if((*it)->hasRemainingLives()) {
+		if(!(*it)->isDead()) {
 			(*it)->update();
 			++it;
 		} else {
@@ -61,7 +61,7 @@ void PlayerManager::update() {
 
 void PlayerManager::render() const {
 	for (auto player : players) {
-		if(player->hasRemainingLives())
+		if(!player->isDead())
 			player->draw();
 	}
 }
@@ -75,9 +75,9 @@ void PlayerManager::clear() {
 	players.clear();
 }
 
-bool PlayerManager::doesAllPlayersDoesntHaveAnyRemainingLives() const {
+bool PlayerManager::areAllPlayersDead() const {
 	for (auto& player : players) {
-		if(player->hasRemainingLives())
+		if(!player->isDead())
 			return false;
 	}
 

@@ -4,10 +4,8 @@ Sprite::Sprite(const std::string& pTextureId): texture_id(pTextureId) {
 	const Texture_Informations texture = TextureManager::Instance()->getTextureInformationsFromID(pTextureId);
 	width = texture.width;
 	height = texture.height;
-	num_frames = texture.numFrames;
+	total_num_frames = texture.numFrames;
 	anim_speed = texture.animSpeed;
-	current_frame = 0;
-	current_row = 0;
 	angle = 0;
 }
 
@@ -16,13 +14,16 @@ void Sprite::changeTextureID(const std::string& pTextureId) {
 	const Texture_Informations texture = TextureManager::Instance()->getTextureInformationsFromID(texture_id);
 	width = texture.width;
 	height = texture.height;
-	num_frames = texture.numFrames;
+	total_num_frames = texture.numFrames;
 	anim_speed = texture.animSpeed;
-	current_frame = 0;
-	current_row = 0;
+	time_reseter = SDL_GetTicks();
 }
 
 std::string Sprite::getTextureID() const { return texture_id; }
+
+bool Sprite::isPlayingLastFrame() const {
+	return current_frame == (total_num_frames - 1);
+}
 
 void Sprite::draw(const Vector2D pPosition, const Vector2D pVelocity) const {
 	if(is_visible) {
@@ -34,8 +35,8 @@ void Sprite::draw(const Vector2D pPosition, const Vector2D pVelocity) const {
 }
 
 void Sprite::update() {
-	if(num_frames != 0) {
-		current_frame = (((SDL_GetTicks() / (1000 / anim_speed)) % num_frames));
+	if(total_num_frames != 0) {
+		current_frame = ((SDL_GetTicks() - time_reseter) / (1000 / anim_speed)) % total_num_frames;
 	}
 }
 
@@ -51,9 +52,9 @@ void Sprite::setAngle(float pAngle) { angle = pAngle; }
 
 float Sprite::getAngle() const { return angle; }
 
-void Sprite::setNumFrames(const int pNumFrames) { num_frames = pNumFrames; }
+void Sprite::setNumFrames(const int pNumFrames) { total_num_frames = pNumFrames; }
 
-int Sprite::getNumFrames() const { return num_frames; }
+int Sprite::getNumFrames() const { return total_num_frames; }
 
 void Sprite::setCurrentFrame(const int pFrame) { current_frame = pFrame; }
 
