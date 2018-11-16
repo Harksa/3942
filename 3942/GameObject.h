@@ -30,6 +30,12 @@ public:
 	virtual void clean();
 
 	/**
+	 * \brief Change le sprite du GameObject et repositionne ce dernier pour être au centrer le sprite
+	 * \param pTextureId l'ID du nouveau sprite.
+	 */
+	void changeSprite(std::string pTextureId);
+
+	/**
 	 * \brief Retourne la position du GameObject (haut gauche du sprite)
 	 */
 	Vector2D& getPosition();

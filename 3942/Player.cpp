@@ -34,7 +34,7 @@ void Player::onCollision() {
 	lives--;
 
 	if(lives <= 0) {
-		sprite->changeTextureID("Explosion");
+		changeSprite("Explosion");
 		is_dying = true;
 	}
 }

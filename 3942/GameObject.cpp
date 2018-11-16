@@ -35,6 +35,14 @@ void GameObject::clean() {
 	}
 }
 
+void GameObject::changeSprite(std::string pTextureId) {
+	const Texture_Informations texture_informations = TextureManager::Instance()->getTextureInformationsFromID(pTextureId);
+
+	const Vector2D new_position{position.x + sprite->getWidth() * 0.5f - texture_informations.width * 0.5f, position.y + sprite->getHeight() * 0.5f - texture_informations.height * 0.5f};
+	sprite->changeTextureID(pTextureId);
+	position = new_position;
+}
+
 bool GameObject::isOutsideScreenBondaries() const {
 	return
 		(position.x + sprite->getWidth()) < 0 || 
