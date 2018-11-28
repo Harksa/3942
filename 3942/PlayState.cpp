@@ -126,7 +126,12 @@ bool PlayState::onEnter() {
 
 	WaveGenerator::parseWave("Levels/Level" + std::to_string(StateChangeAsker::getCurrentLevel()) + ".xml", &enemy_spaw_informations);
 
-	SoundManager::load("Sons/laser01.wav", "PlayerLaser", SOUND_SFX);
+	SoundManager::load("Musics/level1.ogg", "LevelMusic", SOUND_MUSIC);
+	SoundManager::playMusic("LevelMusic");
+	SoundManager::setMusicVolume(50);
+
+	SoundManager::load("Sounds/laser01.wav", "PlayerLaser", SOUND_SFX);
+	SoundManager::load("Sounds/NenadSimic - Muffled Distant Explosion.wav", "Explosion", SOUND_SFX);
 
 	background.load("Textures/Backgrounds/starBackground.png", "stars", 0.6f);
 

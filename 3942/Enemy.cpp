@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "BulletManager.h"
 #include "ScoreManager.h"
+#include "SoundManager.h"
 
 Enemy::Enemy() {
 	velocity.y = 2;
@@ -44,6 +45,7 @@ void Enemy::onCollisionWithBullet(PLAYER_NUM pLayerBulletNum) {
 
 	if(health <= 0) {
 		ScoreManager::Instance()->addPoints(points, pLayerBulletNum);
+		SoundManager::playSound("Explosion");
 		changeSprite("Explosion");
 		is_dying = true;
 	}

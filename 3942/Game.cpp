@@ -42,8 +42,6 @@ bool Game::init(const char * pTitle, const int pXpos, const int pYpos, const int
 	GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
 
 	SoundManager::openAudio();
-	SoundManager::load("Musics/level1.ogg", "music", SOUND_MUSIC);
-	SoundManager::playMusic("music");
 
 	game_state_machine = new GameStateMachine();
 	game_state_machine->changeState(MAIN_MENU);

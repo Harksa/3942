@@ -37,18 +37,24 @@ public:
 	static bool load(const std::string& pFileName, const std::string& pId, sound_type pType);
 
 	/**
+	 * \brief Définie le volume de la musique.
+	 * \param pNewVolume Le nouveau volume de la musique. Définie entre 0 et 100
+	 */
+	static void setMusicVolume(unsigned int pNewVolume);
+
+	/**
 	 * \brief Joue le son avec l'ID donnée en paramètre
 	 * \param pId L'ID du son
 	 * \param pLoop
 	 */
-	static void playSound(std::string pId, int pLoop = 0);
+	static void playSound(const std::string& pId, int pLoop = 0);
 
 	/**
 	 * \brief Joue la musique avec l'ID donnée en paramètre
 	 * \param pId L'ID de la musique
 	 * \param pLoop
 	 */
-	static void playMusic(std::string pId, int pLoop = -1);
+	static void playMusic(const std::string& pId, int pLoop = -1);
 
 	/**
 	 * \brief Arrête la musique en cours
@@ -78,5 +84,10 @@ private:
 	 * \brief Map regroupant la liste des musiques
 	 */
 	static std::map<std::string, Mix_Music*> musics;
+
+	/**
+	 * \brief Détermine si la musique est activé ou non.
+	 */
+	static bool is_music_enabled;
 };
 

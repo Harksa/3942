@@ -4,6 +4,7 @@
 #include "InputHandler.h"
 #include "StateChangeAsker.h"
 #include "AnimatedGraphic.h"
+#include "SoundManager.h"
 
 std::string ChooseControlState::control_choose_state_id{"CHOOSE_CONTROLS"};
 
@@ -56,6 +57,8 @@ bool ChooseControlState::onExit() {
 	is_exiting = true;
 
 	clearState();
+
+	SoundManager::stopMusic();
 
 	FontManager::Instance()->clear();
 

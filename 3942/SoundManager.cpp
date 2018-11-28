@@ -3,6 +3,7 @@
 
 std::map<std::string, Mix_Chunk*> SoundManager::sfxs;
 std::map<std::string, Mix_Music*> SoundManager::musics;
+bool SoundManager::is_music_enabled = true;
 
 bool SoundManager::audio_opened{false};
 
@@ -21,38 +22,57 @@ void SoundManager::closeAudio() {
 
 bool SoundManager::load(const std::string& pFileName, const std::string& pId, const sound_type pType) {
 	if(pType == SOUND_MUSIC) {
-		Mix_Music * music = Mix_LoadMUS(pFileName.c_str());
-		if(music == nullptr) {
-			std::cout << "Could not load music : ERROR - " << Mix_GetError() << std::endl;
-			return false;
-		}
+		if(musics.find(pId) == musics.end()) {
+			Mix_Music * music = Mix_LoadMUS(pFileName.c_str());
+			if(music == nullptr) {
+				std::cout << "SOUNDMANAGER::LOAD:: " << Mix_GetError() << std::endl;
+				return false;
+			}
 
-		musics[pId] = music;
+			musics[pId] = music;
+		}
 		return true;
-	} else if(pType == SOUND_SFX) {
-		Mix_Chunk * chunck = Mix_LoadWAV(pFileName.c_str());
-		if(chunck == nullptr) {
-			std::cout << "Couldn't load SFX : ERROR - " << Mix_GetError() << std::endl;
-			return false;
-		}
+	} 
+	
+	if(pType == SOUND_SFX) {
+		if(sfxs.find(pId) == sfxs.end()) {
+			Mix_Chunk * chunck = Mix_LoadWAV(pFileName.c_str());
+			if(chunck == nullptr) {
+				std::cout << "SOUNDMANAGER::LOAD:: " << Mix_GetError() << std::endl;
+				return false;
+			}
 
-		sfxs[pId] = chunck;
+			sfxs[pId] = chunck;
+		}
 		return true;
 	}
 
 	return false;
 }
 
-void SoundManager::playMusic(const std::string pId, const int pLoop) {
-	Mix_PlayMusic(musics[pId], pLoop);
+void SoundManager::setMusicVolume(unsigned int pNewVolume) {
+	if(pNewVolume > 100)
+		pNewVolume = 100;
+
+	Mix_VolumeMusic(pNewVolume * 100 / MIX_MAX_VOLUME);
+}
+
+void SoundManager::playMusic(const std::string& pId, const int pLoop) {
+	if(is_music_enabled) {
+		if(Mix_PlayMusic(musics[pId], pLoop) == -1) {
+			std::cout << "ERROR::SOUNDMANAGER::PLAY MUSIC : " << Mix_GetError() << std::endl;
+		}
+	}
 }
 
 void SoundManager::stopMusic() {
 	Mix_HaltMusic();
 }
 
-void SoundManager::playSound(const std::string pId, const int pLoop) {
-	Mix_PlayChannel(-1, sfxs[pId], pLoop);
+void SoundManager::playSound(const std::string& pId, const int pLoop) {
+	if(Mix_PlayChannel(-1, sfxs[pId], pLoop) == -1) {
+		std::cout << "ERROR::SOUNDMANAGER::PLAY SOUND : " << Mix_GetError() << std::endl;
+	}
 }
 
 void SoundManager::clean() {

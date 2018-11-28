@@ -1,9 +1,9 @@
 #include "Player.h"
-#include "InputHandler.h"
 #include "BulletManager.h"
-#include "SoundManager.h"
 #include "GameParameters.h"
+#include "InputHandler.h"
 #include "KeyboardControls.h"
+#include "SoundManager.h"
 
 Player::Player(const PLAYER_NUM pNum): id{pNum} {}
 
@@ -35,6 +35,7 @@ void Player::onCollision() {
 
 	if(lives <= 0) {
 		changeSprite("Explosion");
+		SoundManager::playSound("Explosion");
 		is_dying = true;
 	}
 }

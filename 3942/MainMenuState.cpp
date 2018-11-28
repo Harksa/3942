@@ -50,6 +50,9 @@ bool MainMenuState::onEnter() {
 
 	setCallbacks(_callbacks);
 
+	SoundManager::load("Musics/Space Cadet.ogg", "Main Menu Music", SOUND_MUSIC);
+	SoundManager::playMusic("Main Menu Music");
+
 	is_loaded = true;
 
 	return true;

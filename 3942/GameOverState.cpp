@@ -1,6 +1,7 @@
 #include "GameOverState.h"
 #include "StateParser.h"
 #include "StateChangeAsker.h"
+#include "SoundManager.h"
 
 class StateParser;
 const std::string GameOverState::game_over_id = "GAMEOVER";
@@ -15,6 +16,9 @@ void GameOverState::restartPlay() {
 
 bool GameOverState::onEnter() {
 	StateParser::parseState("ressources/states.xml", game_over_id, &game_objects, &texture_id_list);
+
+	SoundManager::load("Musics/Sad Town.ogg", "Game Over", SOUND_MUSIC);
+	SoundManager::playMusic("Game Over");
 
 	_callbacks.push_back(gameOverToMain);
 	_callbacks.push_back(restartPlay);
